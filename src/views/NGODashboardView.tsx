@@ -185,7 +185,7 @@ const NGODashboardView = () => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="mb-4 p-6 bg-amber-50 border border-amber-100 rounded-[2rem] flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm"
+                className="mb-4 p-6 bg-amber-50 border border-amber-100 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm relative z-10"
               >
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center">
