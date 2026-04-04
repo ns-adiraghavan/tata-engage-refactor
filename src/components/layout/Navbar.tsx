@@ -25,7 +25,7 @@ const Navbar = ({ onNavigate, isLoggedIn, onToggleMenu, user }: {
           <span className="text-[#003580] font-bold text-[10px] uppercase tracking-tight">Menu</span>
         </div>
         <div className="h-10 w-px bg-zinc-200 mx-2 hidden md:block" />
-        <div className="flex items-center cursor-pointer" onClick={() => onNavigate(user.role === 'ngo' ? 'ngo-dashboard' : (isLoggedIn ? "dashboard" : "home"))}>
+        <div className="flex items-center cursor-pointer" onClick={() => onNavigate(user?.role === 'ngo' ? 'ngo-dashboard' : (isLoggedIn ? "dashboard" : "home"))}>
           <img 
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRG2f-xo_Z2La9Y0SPnOLqZWBtorh4oXrzkVg&s" 
             alt="TATA engage" 
