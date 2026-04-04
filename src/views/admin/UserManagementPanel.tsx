@@ -281,53 +281,126 @@ export const UserManagementPanel = () => {
 
     const AccessControlTab = () => {
       const modules = ["tvw", "proengage", "reports", "cms", "certificates"];
-      const userTypes = ["volunteer", "spoc", "ngo", "sub_admin"];
+      const baseUserTypes = Object.keys(permissions);
+
+      // Local toggle state: true = Allow, false = Block
+      const [toggleState, setToggleState] = useState<Record<string, Record<string, boolean>>>(() => {
+        const initial: Record<string, Record<string, boolean>> = {};
+        for (const role of baseUserTypes) {
+          initial[role] = {};
+          for (const mod of modules) {
+            initial[role][mod] = (permissions as any)[role]?.[mod] !== "None";
+          }
+        }
+        return initial;
+      });
+
+      const [addingRole, setAddingRole] = useState(false);
+      const [newRoleName, setNewRoleName] = useState("");
+
+      const handleToggle = (role: string, mod: string) => {
+        const current = toggleState[role]?.[mod] ?? false;
+        const next = !current;
+        setToggleState(prev => ({
+          ...prev,
+          [role]: { ...prev[role], [mod]: next }
+        }));
+        addAuditLog("Update Permission", `Changed ${role} access to ${mod} to ${next ? "Allow" : "Block"}`);
+        triggerToast(`${role.replace("_", " ")} → ${mod}: ${next ? "Allow" : "Block"}`);
+      };
+
+      const handleSaveNewRole = () => {
+        const key = newRoleName.trim().toLowerCase().replace(/\s+/g, "_");
+        if (!key) return;
+        setToggleState(prev => ({
+          ...prev,
+          [key]: modules.reduce((acc, m) => ({ ...acc, [m]: false }), {} as Record<string, boolean>)
+        }));
+        addAuditLog("Add Role", `Added new role "${newRoleName.trim()}" to permission matrix`);
+        triggerToast(`Role "${newRoleName.trim()}" added.`);
+        setNewRoleName("");
+        setAddingRole(false);
+      };
+
+      const allRoles = Object.keys(toggleState);
 
       return (
         <div className="space-y-6">
-          <div className="p-4 bg-blue-50 border border-blue-100 flex items-center gap-3 text-tata-blue">
-            <Info size={18} />
-            <p className="text-xs font-bold uppercase tracking-widest">Changes to permissions take effect immediately for all active sessions.</p>
-          </div>
+          <p className="text-[13px] text-muted-foreground">Changes apply platform-wide. All edits are logged to the audit trail.</p>
 
-          <div className="overflow-x-auto border border-slate-100">
+          <div className="overflow-x-auto border border-slate-100 rounded-xl">
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="bg-slate-50 border-b border-slate-200 text-xs font-semibold text-slate-400 uppercase tracking-widest">
-                  <th className="p-4">User Type</th>
+                  <th className="p-4">Role</th>
                   {modules.map(m => <th key={m} className="p-4 text-center">{m}</th>)}
+                  <th className="p-4 w-10" />
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
-                {userTypes.map(type => (
-                  <tr key={type} className="hover:bg-slate-50 transition-colors">
-                    <td className="p-4 text-xs font-semibold text-slate-900 uppercase tracking-widest">{type.replace("_", " ")}</td>
-                    {modules.map(module => (
-                      <td key={module} className="p-4 text-center">
-                        <select 
-                          className={`text-xs font-semibold uppercase tracking-widest border-none bg-transparent outline-none cursor-pointer ${
-                            (permissions as any)[type][module] === "Write" ? "text-green-600" : 
-                            (permissions as any)[type][module] === "Read" ? "text-tata-blue" : "text-slate-300"
-                          }`}
-                          value={(permissions as any)[type][module]}
-                          onChange={(e) => {
-                            const newVal = e.target.value;
-                            setPermissions({
-                              ...permissions,
-                              [type]: { ...(permissions as any)[type], [module]: newVal }
-                            });
-                            addAuditLog("Update Permission", `Changed ${type} access to ${module} to ${newVal}`);
-                            triggerToast(`Permissions updated for ${type}.`);
-                          }}
-                        >
-                          <option>None</option>
-                          <option>Read</option>
-                          <option>Write</option>
-                        </select>
-                      </td>
-                    ))}
+                {allRoles.map(role => (
+                  <tr key={role} className="hover:bg-slate-50 transition-colors">
+                    <td className="p-4 text-xs font-semibold text-slate-900 uppercase tracking-widest">{role.replace(/_/g, " ")}</td>
+                    {modules.map(mod => {
+                      const allowed = toggleState[role]?.[mod] ?? false;
+                      return (
+                        <td key={mod} className="p-4 text-center">
+                          <button
+                            onClick={() => handleToggle(role, mod)}
+                            className={`inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider cursor-pointer transition-colors ${
+                              allowed ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
+                            }`}
+                          >
+                            {allowed ? "Allow" : "Block"}
+                          </button>
+                        </td>
+                      );
+                    })}
+                    <td className="p-4" />
                   </tr>
                 ))}
+
+                {/* Add role row */}
+                {addingRole ? (
+                  <tr className="bg-blue-50/40">
+                    <td className="p-4">
+                      <input
+                        type="text"
+                        placeholder="Role name…"
+                        value={newRoleName}
+                        onChange={(e) => setNewRoleName(e.target.value)}
+                        className="w-full text-xs font-semibold uppercase tracking-widest bg-white border border-slate-200 rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-tata-blue/20"
+                        autoFocus
+                      />
+                    </td>
+                    {modules.map(mod => (
+                      <td key={mod} className="p-4 text-center">
+                        <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-red-100 text-red-800">Block</span>
+                      </td>
+                    ))}
+                    <td className="p-4">
+                      <div className="flex gap-2">
+                        <button onClick={handleSaveNewRole} className="px-3 py-1.5 bg-tata-blue text-white text-xs font-bold rounded-lg hover:bg-tata-blue/90 transition-colors cursor-pointer flex items-center gap-1">
+                          <Save size={12} /> Save
+                        </button>
+                        <button onClick={() => { setAddingRole(false); setNewRoleName(""); }} className="px-3 py-1.5 bg-slate-100 text-slate-600 text-xs font-bold rounded-lg hover:bg-slate-200 transition-colors cursor-pointer">
+                          Cancel
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ) : (
+                  <tr>
+                    <td colSpan={modules.length + 2} className="p-4">
+                      <button
+                        onClick={() => setAddingRole(true)}
+                        className="flex items-center gap-2 text-xs font-bold text-tata-blue hover:underline cursor-pointer"
+                      >
+                        <Plus size={14} /> Add role
+                      </button>
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>
