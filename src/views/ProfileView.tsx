@@ -5,7 +5,8 @@ import type { View } from "@/types";
 import { useAppContext } from "@/context/AppContext";
 
 const ProfileView = () => {
-  const { user, setUser, userRole, projectStatus, feedbackSubmitted, supportHistory, ngoData, triggerToast } = useAppContext();
+  const { user, setUser, userRole } = useAuth();
+  const { projectStatus, feedbackSubmitted, supportHistory, ngoData, triggerToast } = useAppContext();
   const [isEditing, setIsEditing] = useState(false);
   const [profileData, setProfileData] = useState(userRole === 'ngo' ? {
     firstName: "Anjali",

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ShieldCheck, Mail, Globe, Send } from "lucide-react";
 import { useAppContext } from "@/context/AppContext";
+import { useAppNavigate } from "@/hooks/useAppNavigate";
 
 const OtpChannelView = () => {
   const { otpChannel, setOtpChannel, handleOtpChannelSelect } = useAppContext();

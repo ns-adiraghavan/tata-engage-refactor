@@ -4,7 +4,8 @@ import { Building2, ArrowLeft, CheckCircle2, MapPin, Info, List, Send, FileText,
 import { useAppContext } from "@/context/AppContext";
 
 const CreateProjectView = () => {
-  const { clonedProject, setClonedProject, navigate, triggerToast } = useAppContext();
+  const { clonedProject, setClonedProject, triggerToast } = useAppContext();
+  const navigate = useAppNavigate();
   const [step, setStep] = useState(1);
   const [projectData, setProjectData] = useState(clonedProject || {
     title: "",

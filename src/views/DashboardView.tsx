@@ -3,9 +3,13 @@ import { motion } from "framer-motion";
 import { ChevronRight, Building2, Heart, Mail, CheckCircle2, Search, Globe, Calendar, MapPin, Award, FileText, Check, Sparkles, MessageSquare, ArrowRight, Save, ShieldAlert } from "lucide-react";
 import type { View } from "@/types";
 import { useAppContext } from "@/context/AppContext";
+import { useAuth } from "@/context/AuthContext";
+import { useAppNavigate } from "@/hooks/useAppNavigate";
 
 const DashboardView = () => {
-  const { user, projectStatus, setProjectStatus, showPulseCheck, setShowPulseCheck, pulseCheckSubmitted, setPulseCheckSubmitted, setShowFeedbackForm, referralCount, isDRActive, setDrResponses, hasSubmittedAvailability, setHasSubmittedAvailability, drDeploymentLog, isDRClosed, navigate, triggerToast } = useAppContext();
+  const { user } = useAuth();
+  const navigate = useAppNavigate();
+  const { projectStatus, setProjectStatus, showPulseCheck, setShowPulseCheck, pulseCheckSubmitted, setPulseCheckSubmitted, setShowFeedbackForm, referralCount, isDRActive, setDrResponses, hasSubmittedAvailability, setHasSubmittedAvailability, drDeploymentLog, isDRClosed, triggerToast } = useAppContext();
   const [pulseText, setPulseText] = useState("");
 
   const handlePulseSubmit = () => {

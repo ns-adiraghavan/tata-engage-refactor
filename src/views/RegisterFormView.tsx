@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Info } from "lucide-react";
 import { useAppContext } from "@/context/AppContext";
+import { useAppNavigate } from "@/hooks/useAppNavigate";
 
 const RegisterFormView = () => {
   const { selectedRole, formData, setFormData, handleFormSubmit } = useAppContext();

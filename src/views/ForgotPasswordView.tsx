@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowLeft, Send } from "lucide-react";
-import { useAppContext } from "@/context/AppContext";
+import { useAppNavigate } from "@/hooks/useAppNavigate";
 
 const ForgotPasswordView = () => {
   const navigate = useAppNavigate();
