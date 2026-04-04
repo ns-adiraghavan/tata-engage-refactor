@@ -45,10 +45,10 @@ const MegaMenu = ({ isOpen, onClose, isLoggedIn, onNavigate, onLogout, user }: {
                 <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Main Menu</h3>
                 <ul className="space-y-4 text-xl font-medium">
                   <li 
-                    onClick={() => { onNavigate(user.role === 'ngo' ? 'ngo-dashboard' : (isLoggedIn ? "dashboard" : "home")); onClose(); }}
+                    onClick={() => { onNavigate(user?.role === 'ngo' ? 'ngo-dashboard' : (isLoggedIn ? "dashboard" : "home")); onClose(); }}
                     className="hover:text-tata-blue cursor-pointer flex items-center justify-between group"
                   >
-                    {isLoggedIn ? (user.role === 'ngo' ? "NGO Dashboard" : "Dashboard") : "Home"} <ChevronRight size={20} className="opacity-0 group-hover:opacity-100 transition-all" />
+                    {isLoggedIn ? (user?.role === 'ngo' ? "NGO Dashboard" : "Dashboard") : "Home"} <ChevronRight size={20} className="opacity-0 group-hover:opacity-100 transition-all" />
                   </li>
                   {isLoggedIn && (
                     <>
