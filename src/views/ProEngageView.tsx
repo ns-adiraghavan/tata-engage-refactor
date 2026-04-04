@@ -97,7 +97,21 @@ const ProEngageView = () => {
                 <div className="text-xs font-bold text-tata-blue uppercase tracking-widest mb-2 flex items-center gap-2">
                   <Building2 size={12} /> {project.ngo}
                 </div>
-                <h3 className="text-xl font-bold text-zinc-900 mb-3 group-hover:text-tata-blue transition-colors leading-tight">{project.title}</h3>
+                <h3 className="text-xl font-bold text-zinc-900 mb-2 group-hover:text-tata-blue transition-colors leading-tight">{project.title}</h3>
+                {project.matched && (() => {
+                  const skillArea = project.area;
+                  const location = project.mode.includes("Mumbai") ? "Mumbai" : project.mode.includes("Delhi") ? "Delhi" : "";
+                  const chip = user.skills?.some((s: string) => s.toLowerCase() === skillArea.toLowerCase())
+                    ? `Matches your ${skillArea} skills`
+                    : location === user.city
+                      ? `Near you · ${location}`
+                      : "Recommended for you";
+                  return (
+                    <span className="inline-block px-2.5 py-0.5 rounded-full bg-purple-50 text-purple-700 text-xs mb-2">
+                      {chip}
+                    </span>
+                  );
+                })()}
                 <div className="flex flex-wrap gap-2">
                   <span className="px-3 py-1 rounded-full bg-slate-50 text-slate-500 text-xs font-bold uppercase tracking-wider">{project.area}</span>
                   <span className="px-3 py-1 rounded-full bg-slate-50 text-slate-500 text-xs font-bold uppercase tracking-wider">{project.mode}</span>

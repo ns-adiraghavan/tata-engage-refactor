@@ -326,16 +326,31 @@ const DashboardView = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {[
-                { title: "Digital Literacy for Seniors", org: "HelpAge India", match: "98% Match" },
-                { title: "Sustainability Audit", org: "Green Earth NGO", match: "92% Match" },
-                { title: "Career Mentorship", org: "Udaan Foundation", match: "85% Match" }
-              ].map((item, i) => (
-                <div key={i} className="p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:border-tata-cyan transition-colors cursor-pointer group">
-                  <div className="text-xs font-bold text-tata-cyan uppercase tracking-widest mb-2">{item.match}</div>
-                  <h4 className="font-bold text-sm mb-1 group-hover:text-tata-blue transition-colors">{item.title}</h4>
-                  <p className="text-xs text-slate-500">{item.org}</p>
-                </div>
-              ))}
+                { title: "Digital Literacy for Seniors", org: "HelpAge India", match: "98% Match", skillArea: "Education", location: "Delhi", applicantCount: 25, isNew: false },
+                { title: "Sustainability Audit", org: "Green Earth NGO", match: "92% Match", skillArea: "Finance", location: "Pune", applicantCount: 10, isNew: false },
+                { title: "Career Mentorship", org: "Udaan Foundation", match: "85% Match", skillArea: "Strategic Planning", location: "Mumbai", applicantCount: 8, isNew: true }
+              ].map((item, i) => {
+                const chip = user.skills?.some((s: string) => s.toLowerCase() === item.skillArea.toLowerCase())
+                  ? `Matches your ${item.skillArea} skills`
+                  : item.location === user.city
+                    ? `Near you · ${item.location}`
+                    : item.applicantCount > 20
+                      ? "Trending this edition"
+                      : item.isNew
+                        ? "New NGO partner"
+                        : "Recommended for you";
+
+                return (
+                  <div key={i} className="p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:border-tata-cyan transition-colors cursor-pointer group">
+                    <div className="text-xs font-bold text-tata-cyan uppercase tracking-widest mb-2">{item.match}</div>
+                    <h4 className="font-bold text-sm mb-1 group-hover:text-tata-blue transition-colors">{item.title}</h4>
+                    <p className="text-xs text-slate-500 mb-2">{item.org}</p>
+                    <span className="inline-block px-2.5 py-0.5 rounded-full bg-purple-50 text-purple-700 text-xs">
+                      {chip}
+                    </span>
+                  </div>
+                );
+              })}
             </div>
           </section>
 
