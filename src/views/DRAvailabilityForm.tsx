@@ -3,7 +3,7 @@ import { ArrowLeft, Search, Send, ShieldAlert } from "lucide-react";
 import { useAppContext } from "@/context/AppContext";
 
 const DRAvailabilityForm = () => {
-  const { user, formData, setFormData, setDrResponses, setHasSubmittedAvailability, navigate, triggerToast } = useAppContext();
+  const { user, setDrResponses, setHasSubmittedAvailability, navigate, triggerToast } = useAppContext();
   const [formData, setFormData] = useState({
     location: "Mumbai, Maharashtra",
     willingToTravel: "Assam, North East India",

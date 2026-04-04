@@ -1,3 +1,4 @@
+import { useAppContext } from "@/context/AppContext";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { X, User, Search, Clock, Info, Plus, Save, AlertTriangle } from "lucide-react";
@@ -5,6 +6,7 @@ import type { Role } from "@/types";
 import { COMPANY_DOMAINS, VOLUNTEER_RECORDS, PERMISSION_MATRIX, SPOC_DIRECTORY } from "@/data/mockData";
 
 export const UserManagementPanel = () => {
+  const { addAuditLog, triggerToast } = useAppContext();
     const [activeSubTab, setActiveSubTab] = useState("Company Domain Registry");
     const [showAddDomain, setShowAddDomain] = useState(false);
     const [showEditVolunteer, setShowEditVolunteer] = useState<any>(null);

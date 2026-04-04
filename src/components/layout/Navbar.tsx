@@ -1,6 +1,5 @@
 import { Menu, Bell } from "lucide-react";
 import type { View } from "@/types";
-import type { View } from "@/types";
 
 const Navbar = ({ onNavigate, isLoggedIn, onToggleMenu, user }: { 
   onNavigate: (view: View) => void, 

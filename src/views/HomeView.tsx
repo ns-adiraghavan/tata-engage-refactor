@@ -1,3 +1,4 @@
+import Footer from "@/components/layout/Footer";
 import { motion } from "framer-motion";
 import { ChevronRight, Heart, Award } from "lucide-react";
 import type { View } from "@/types";

@@ -5,7 +5,7 @@ import type { View } from "@/types";
 import { useAppContext } from "@/context/AppContext";
 
 const ActiveProjectManagementView = ({ project }: { project: any }) => {
-  const { user, projectStatus, setProjectStatus, navigate, triggerToast } = useAppContext();
+  const { user, navigate, triggerToast } = useAppContext();
   const [healthUpdates, setHealthUpdates] = useState(MOCK_HEALTH_UPDATES);
   const [projectStatus, setProjectStatus] = useState(project?.status || "Active");
   const [showConfirmModal, setShowConfirmModal] = useState<"pause" | "close" | "extend" | null>(null);
