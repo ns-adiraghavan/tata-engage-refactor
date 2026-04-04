@@ -1,140 +1,135 @@
 import { useState } from "react";
-import { User } from "lucide-react";
-import { MOCK_TESTIMONIALS, MOCK_FLAGGED_COMMENTS } from "@/data/mockData";
+import { motion, AnimatePresence } from "framer-motion";
 
-export const ModerationPanel = ({ addAuditLog, triggerToast }: { addAuditLog: any, triggerToast: any }) => {
-  const [testimonials, setTestimonials] = useState(MOCK_TESTIMONIALS);
-  const [comments, setComments] = useState(MOCK_FLAGGED_COMMENTS);
+interface ModerationItem {
+  id: number;
+  submitter: string;
+  text: string;
+  date: string;
+  status: string;
+}
 
-  const handleTestimonial = (id: number, status: string) => {
-    setTestimonials(prev => prev.map(t => t.id === id ? { ...t, status } : t));
-    addAuditLog("Testimonial Moderated", `Testimonial ${id} set to ${status}`);
-    triggerToast(`Testimonial ${status.toLowerCase()}`);
+const INITIAL_NGO_TESTIMONIALS: ModerationItem[] = [
+  { id: 1, submitter: "Pratham Foundation", text: "The volunteer cohort exceeded our expectations in the digital literacy project across 3 districts.", date: "2 Apr 2026", status: "Pending" },
+  { id: 2, submitter: "Teach For India", text: "Exceptional commitment from TCS volunteers — they helped us scale to 12 new classrooms this quarter.", date: "30 Mar 2026", status: "Pending" },
+  { id: 3, submitter: "CRY India", text: "Our partnership with Tata Volunteering Week delivered measurable outcomes for child welfare programmes.", date: "28 Mar 2026", status: "Pending" },
+];
+
+const INITIAL_VOLUNTEER_TESTIMONIALS: ModerationItem[] = [
+  { id: 10, submitter: "Priya Sharma", text: "It was a life-changing experience teaching the elderly how to use digital payments safely.", date: "1 Apr 2026", status: "Pending" },
+  { id: 11, submitter: "Amit Verma", text: "Seeing the impact on the ground was incredible — the farmers adopted new techniques within weeks.", date: "29 Mar 2026", status: "Pending" },
+];
+
+const INITIAL_VIBE_SUBMISSIONS: ModerationItem[] = [
+  { id: 20, submitter: "Rohan Desai", text: "Beach cleanup drive at Versova — 200 kg of plastic collected by our team of 45 volunteers!", date: "3 Apr 2026", status: "Pending" },
+  { id: 21, submitter: "Sneha Patil", text: "Tree plantation event in Pune — planted 500 saplings with the local community and school children.", date: "1 Apr 2026", status: "Pending" },
+  { id: 22, submitter: "Kavita Nair", text: "Health awareness camp in rural Kerala — free check-ups for 300+ families over the weekend.", date: "28 Mar 2026", status: "Pending" },
+  { id: 23, submitter: "Arjun Mehta", text: "Coding bootcamp for underprivileged youth — 60 students completed their first web project!", date: "25 Mar 2026", status: "Pending" },
+];
+
+export const ModerationPanel = ({ addAuditLog, triggerToast }: { addAuditLog: any; triggerToast: any }) => {
+  const [ngoTestimonials, setNgoTestimonials] = useState(INITIAL_NGO_TESTIMONIALS);
+  const [volunteerTestimonials, setVolunteerTestimonials] = useState(INITIAL_VOLUNTEER_TESTIMONIALS);
+  const [vibeSubmissions, setVibeSubmissions] = useState(INITIAL_VIBE_SUBMISSIONS);
+
+  const handleAction = (
+    setter: React.Dispatch<React.SetStateAction<ModerationItem[]>>,
+    category: string,
+    id: number,
+    action: "Approved" | "Rejected"
+  ) => {
+    setter(prev => prev.filter(item => item.id !== id));
+    addAuditLog(`${category} Moderated`, `Item ${id} ${action.toLowerCase()}`);
+    triggerToast(`${category} ${action.toLowerCase()}.`);
   };
 
-  const handleComment = (id: number, action: string) => {
-    setComments(prev => prev.map(c => c.id === id ? { ...c, status: action === "Remove" ? "Removed" : "Dismissed" } : c));
-    addAuditLog("Comment Moderated", `Comment ${id} ${action.toLowerCase()}d`);
-    triggerToast(`Comment ${action.toLowerCase()}d`);
-  };
+  const truncate = (text: string, max = 80) =>
+    text.length > max ? text.slice(0, max) + "…" : text;
 
-  return (
-    <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
-      <section className="space-y-6">
-        <div className="flex items-center justify-between bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-          <div>
-            <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-[0.1em]">Testimonials Queue</h3>
-            <p className="text-xs text-slate-400 font-medium mt-0.5">Review and approve volunteer success stories.</p>
-          </div>
-          <span className="text-xs font-semibold text-slate-400 bg-slate-50 px-3 py-1 rounded-full border border-slate-100">
-            {testimonials.filter(t => t.status === "Pending").length} Pending
-          </span>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {testimonials.map(t => (
-            <div key={t.id} className="bg-white rounded-2xl border border-slate-100 p-6 shadow-sm hover:shadow-md transition-all relative group">
-              {t.status === "Approved" && (
-                <div className="absolute top-4 right-4 px-2 py-0.5 bg-green-50 text-green-600 text-[10px] font-semibold uppercase tracking-widest rounded-lg border border-green-100">
-                  Live
-                </div>
-              )}
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center text-xs font-semibold text-slate-400 group-hover:bg-tata-blue/10 group-hover:text-tata-blue transition-colors">
-                  {t.volunteer[0]}
-                </div>
-                <div>
-                  <div className="text-xs font-semibold text-slate-900 uppercase tracking-tight">{t.volunteer}</div>
-                  <div className="text-xs text-slate-400 font-mono uppercase tracking-widest">{t.project}</div>
-                </div>
-              </div>
-              <p className="text-xs text-slate-600 italic leading-relaxed bg-slate-50/50 p-4 rounded-2xl border border-slate-50">
-                "{t.text}"
-              </p>
-              <div className="flex gap-3 pt-4">
-                <button 
-                  onClick={() => handleTestimonial(t.id, "Approved")} 
-                  className="flex-1 py-2.5 bg-green-50 text-green-600 text-xs font-semibold uppercase tracking-widest rounded-2xl hover:bg-green-600 hover:text-white hover:shadow-lg hover:shadow-green-600/20 transition-all border border-green-100"
-                >
-                  Approve
-                </button>
-                <button 
-                  onClick={() => handleTestimonial(t.id, "Unpublished")} 
-                  className="flex-1 py-2.5 bg-slate-50 text-slate-400 text-xs font-semibold uppercase tracking-widest rounded-2xl hover:bg-slate-200 hover:text-slate-600 transition-all border border-slate-100"
-                >
-                  Unpublish
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+  const renderSection = (
+    title: string,
+    items: ModerationItem[],
+    setter: React.Dispatch<React.SetStateAction<ModerationItem[]>>,
+    category: string
+  ) => (
+    <section className="space-y-4">
+      <div className="flex items-center gap-3">
+        <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-[0.1em]">{title}</h3>
+        <span className="text-xs font-bold text-white bg-tata-blue px-2.5 py-0.5 rounded-full min-w-[22px] text-center">
+          {items.length}
+        </span>
+      </div>
 
-      <section className="space-y-6">
-        <div className="flex items-center justify-between bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-          <div>
-            <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-[0.1em]">Comment Moderation</h3>
-            <p className="text-xs text-slate-400 font-medium mt-0.5">Manage flagged content and maintain community standards.</p>
-          </div>
-          <div className="flex gap-2">
-            <span className="text-xs font-semibold text-red-600 bg-red-50 px-3 py-1 rounded-full border border-red-100 animate-pulse">
-              {comments.filter(c => c.status === "Flagged").length} Flagged
-            </span>
-          </div>
-        </div>
+      {items.length === 0 ? (
+        <p className="text-xs text-muted-foreground py-4 text-center bg-slate-50 rounded-xl border border-slate-100">
+          No items pending review.
+        </p>
+      ) : (
         <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-slate-50/50 border-b border-slate-50 text-xs font-semibold text-slate-400 uppercase tracking-widest">
-                <th className="p-6">User</th>
-                <th className="p-6">Comment</th>
-                <th className="p-6">Reason</th>
-                <th className="p-6">Status</th>
-                <th className="p-6 text-right">Actions</th>
+                <th className="p-4">Submitter</th>
+                <th className="p-4">Excerpt</th>
+                <th className="p-4">Date</th>
+                <th className="p-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-50">
-              {comments.map(c => (
-                <tr key={c.id} className="hover:bg-slate-50/50 transition-colors group">
-                  <td className="p-6">
-                    <div className="text-xs font-semibold text-slate-900 uppercase tracking-tight">{c.user}</div>
-                  </td>
-                  <td className="p-6">
-                    <p className="text-xs text-slate-600 max-w-md truncate font-medium">{c.comment}</p>
-                  </td>
-                  <td className="p-6">
-                    <span className="text-xs font-semibold text-red-600 bg-red-50 px-2 py-1 rounded-lg border border-red-100 uppercase tracking-widest">
-                      {c.reason}
-                    </span>
-                  </td>
-                  <td className="p-6">
-                    <span className={`px-2 py-1 text-xs font-semibold uppercase tracking-widest rounded-full border ${
-                      c.status === "Flagged" ? "bg-amber-50 text-amber-600 border-amber-100" : 
-                      c.status === "Removed" ? "bg-red-50 text-red-600 border-red-100" : 
-                      "bg-slate-50 text-slate-400 border-slate-100"
-                    }`}>
-                      {c.status}
-                    </span>
-                  </td>
-                  <td className="p-6 text-right space-x-3">
-                    <button 
-                      onClick={() => handleComment(c.id, "Dismiss")} 
-                      className="text-xs font-semibold text-slate-400 uppercase tracking-widest hover:text-tata-blue transition-colors"
-                    >
-                      Dismiss Flag
-                    </button>
-                    <button 
-                      onClick={() => handleComment(c.id, "Remove")} 
-                      className="text-xs font-semibold text-red-600 uppercase tracking-widest hover:underline"
-                    >
-                      Remove Comment
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
+            <AnimatePresence>
+              <tbody className="divide-y divide-slate-50">
+                {items.map(item => (
+                  <motion.tr
+                    key={item.id}
+                    initial={{ opacity: 1 }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="hover:bg-slate-50/50 transition-colors"
+                  >
+                    <td className="p-4">
+                      <span className="text-xs font-semibold text-slate-900">{item.submitter}</span>
+                    </td>
+                    <td className="p-4">
+                      <span className="text-xs text-slate-600 font-medium">{truncate(item.text)}</span>
+                    </td>
+                    <td className="p-4">
+                      <span className="text-xs text-muted-foreground font-mono">{item.date}</span>
+                    </td>
+                    <td className="p-4 text-right">
+                      <div className="flex justify-end gap-2">
+                        <button
+                          onClick={() => handleAction(setter, category, item.id, "Approved")}
+                          className="px-3 py-1.5 bg-green-50 text-green-700 text-xs font-semibold rounded-lg border border-green-100 hover:bg-green-600 hover:text-white hover:border-green-600 transition-all cursor-pointer"
+                        >
+                          Approve
+                        </button>
+                        <button
+                          onClick={() => handleAction(setter, category, item.id, "Rejected")}
+                          className="px-3 py-1.5 bg-red-50 text-red-700 text-xs font-semibold rounded-lg border border-red-100 hover:bg-red-600 hover:text-white hover:border-red-600 transition-all cursor-pointer"
+                        >
+                          Reject
+                        </button>
+                      </div>
+                    </td>
+                  </motion.tr>
+                ))}
+              </tbody>
+            </AnimatePresence>
           </table>
         </div>
-      </section>
+      )}
+    </section>
+  );
+
+  return (
+    <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+        <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-[0.1em]">Content Moderation</h3>
+        <p className="text-xs text-slate-400 font-medium mt-0.5">Review and approve testimonials and vibe submissions before they go live.</p>
+      </div>
+
+      {renderSection("NGO testimonials", ngoTestimonials, setNgoTestimonials, "NGO Testimonial")}
+      {renderSection("Volunteer testimonials", volunteerTestimonials, setVolunteerTestimonials, "Volunteer Testimonial")}
+      {renderSection("Biweekly vibe submissions", vibeSubmissions, setVibeSubmissions, "Vibe Submission")}
     </div>
   );
 };
