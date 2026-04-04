@@ -141,7 +141,7 @@ export default function App() {
   };
 
   const handleOtpChannelSelect = () => { navigate("otp"); };
-  const handleOtpVerify = () => { setIsLoggedIn(true); navigate("dashboard"); triggerToast("Registration Successful! Welcome to Tata Engage."); };
+  const handleOtpVerify = () => { setIsLoggedIn(true); setUser(PRIYA_SHARMA); navigate("dashboard"); triggerToast("Registration Successful! Welcome to Tata Engage."); };
 
   const onLogout = () => {
     authLogout();

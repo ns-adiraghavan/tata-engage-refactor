@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Building2, ShieldCheck, Mail, Lock, Eye } from "lucide-react";
-import { VIKRAM_NAIR, ROHAN_DESAI } from "@/data/mockData";
+import { VIKRAM_NAIR, ROHAN_DESAI, PRIYA_SHARMA } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
 import { useAuth } from "@/context/AuthContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
@@ -37,7 +37,9 @@ const LoginView = () => {
       <button 
         onClick={() => {
           setIsLoggedIn(true);
-          navigate("home");
+          setUser(PRIYA_SHARMA);
+          navigate("dashboard");
+          triggerToast("Login Successful! Welcome back, Priya.");
         }}
         className="w-full flex items-center justify-center gap-3 bg-[#003580] text-white py-4 rounded-xl font-bold hover:bg-[#002a66] transition-all mb-6 cursor-pointer shadow-lg shadow-blue-900/20"
       >
@@ -95,7 +97,7 @@ const LoginView = () => {
             <button type="button" className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-900 cursor-pointer"><Eye size={18} /></button>
           </div>
         </div>
-        <button onClick={() => setIsLoggedIn(true)} type="button" className="w-full btn-black py-4 text-lg mt-4 cursor-pointer">Log In</button>
+        <button onClick={() => { setIsLoggedIn(true); setUser(PRIYA_SHARMA); navigate("dashboard"); triggerToast("Login Successful!"); }} type="button" className="w-full btn-black py-4 text-lg mt-4 cursor-pointer">Log In</button>
       </form>
 
       <p className="text-center text-sm text-slate-500 mt-8">
