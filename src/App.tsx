@@ -43,7 +43,7 @@ export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isConsentOpen, setIsConsentOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState(PRIYA_SHARMA);
+  const [user, setUser] = useState<any>(PRIYA_SHARMA);
   const userRole = user.role;
   const [isOrientationDismissed, setIsOrientationDismissed] = useState(false);
   const [showOrientationModal, setShowOrientationModal] = useState(false);
