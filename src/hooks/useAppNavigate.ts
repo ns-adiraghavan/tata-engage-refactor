@@ -6,7 +6,6 @@ const VIEW_TO_PATH: Record<string, string> = {
   login: "/login",
   "register-role": "/register",
   "register-form": "/register/form",
-  "otp-channel": "/otp/channel",
   otp: "/otp/verify",
   "forgot-password": "/forgot-password",
   dashboard: "/dashboard",
