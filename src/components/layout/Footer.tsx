@@ -1,4 +1,5 @@
 import { ChevronRight, Facebook, Twitter, Instagram, Linkedin, Youtube } from "lucide-react";
+import tataEngageLogoNoBg from "@/assets/tata-engage-logo-nobg.png";
 
 const Footer = () => (
   <footer className="bg-slate-900 text-white pt-16 pb-8 px-6 md:px-12">
