@@ -97,7 +97,7 @@ const LoginView = () => {
             <button type="button" className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-900 cursor-pointer"><Eye size={18} /></button>
           </div>
         </div>
-        <button onClick={() => setIsLoggedIn(true)} type="button" className="w-full btn-black py-4 text-lg mt-4 cursor-pointer">Log In</button>
+        <button onClick={() => { setIsLoggedIn(true); setUser(PRIYA_SHARMA); navigate("dashboard"); triggerToast("Login Successful!"); }} type="button" className="w-full btn-black py-4 text-lg mt-4 cursor-pointer">Log In</button>
       </form>
 
       <p className="text-center text-sm text-slate-500 mt-8">
