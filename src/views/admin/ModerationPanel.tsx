@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ThumbsUp } from "lucide-react";
 
 interface ModerationItem {
   id: number;
