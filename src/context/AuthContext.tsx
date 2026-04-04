@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState, useCallback } from "react";
-import { PRIYA_SHARMA } from "@/data/mockData";
 
 export interface AuthContextType {
   user: any;

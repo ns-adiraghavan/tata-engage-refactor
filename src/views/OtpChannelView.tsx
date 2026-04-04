@@ -3,7 +3,8 @@ import { ShieldCheck, Mail, Globe, Send } from "lucide-react";
 import { useAppContext } from "@/context/AppContext";
 
 const OtpChannelView = () => {
-  const { otpChannel, setOtpChannel, navigate, handleOtpChannelSelect } = useAppContext();
+  const { otpChannel, setOtpChannel, handleOtpChannelSelect } = useAppContext();
+  const navigate = useAppNavigate();
   return (
   <div className="min-h-screen pt-20 flex items-center justify-center p-6 bg-slate-100">
     <motion.div 

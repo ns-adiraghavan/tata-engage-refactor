@@ -3,7 +3,8 @@ import { Info } from "lucide-react";
 import { useAppContext } from "@/context/AppContext";
 
 const RegisterFormView = () => {
-  const { selectedRole, formData, setFormData, navigate, handleFormSubmit } = useAppContext();
+  const { selectedRole, formData, setFormData, handleFormSubmit } = useAppContext();
+  const navigate = useAppNavigate();
   const renderFields = () => {
     switch (selectedRole) {
       case "volunteer":

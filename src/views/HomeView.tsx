@@ -5,7 +5,7 @@ import type { View } from "@/types";
 import { useAppContext } from "@/context/AppContext";
 
 const HomeView = () => {
-  const { navigate } = useAppContext();
+  const navigate = useAppNavigate();
   return (
   <div className="pt-20">
     {/* Hero Section */}
