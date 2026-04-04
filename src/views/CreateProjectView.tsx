@@ -22,16 +22,32 @@ const CreateProjectView = () => {
   const [qualityScore, setQualityScore] = useState(0);
   const [lastSaved, setLastSaved] = useState<Date | null>(null);
 
-  // AI Quality Score Calculation
+  // AI Quality Score Calculation (debounced 300ms)
+  const [scoreHint, setScoreHint] = useState("");
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   useEffect(() => {
-    let score = 0;
-    if (projectData.title.length > 10) score += 1;
-    if (projectData.skillArea) score += 1;
-    if (projectData.brief.length > 50) score += 2;
-    if (projectData.brief.length > 200) score += 2;
-    if (projectData.outcomes.length > 30) score += 2;
-    if (projectData.outcomes.length > 100) score += 2;
-    setQualityScore(score);
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => {
+      let score = 0;
+      const conditions: { met: boolean; hint: string }[] = [
+        { met: (projectData.brief || "").trim().split(/\s+/).filter(Boolean).length >= 50, hint: "Write at least 50 words in the description to improve your score." },
+        { met: (projectData.outcomes || "").trim().length > 0, hint: "Add text to the outcomes/impact section to improve your score." },
+        { met: (projectData.outcomes || "").trim().split(/\s+/).filter(Boolean).length >= 30, hint: "Add more detail to your outcome section to improve your score." },
+        { met: !!(projectData.duration || "").trim(), hint: "Select a project duration to improve your score." },
+        { met: !!(projectData.mode || "").trim(), hint: "Select a project mode to improve your score." },
+        { met: !!(projectData.skillArea || "").trim(), hint: "Select a skill area to improve your score." },
+        { met: (projectData.title || "").trim().split(/\s+/).filter(Boolean).length >= 4, hint: "Use at least 4 words in your project title." },
+        { met: projectData.volunteers > 0, hint: "Set a volunteer count to improve your score." },
+      ];
+      const points = [2, 2, 1, 1, 1, 1, 1, 1]; // max 10
+      conditions.forEach((c, i) => { if (c.met) score += points[i]; });
+      setQualityScore(Math.min(score, 10));
+
+      const firstUnmet = conditions.find(c => !c.met);
+      setScoreHint(firstUnmet ? firstUnmet.hint : "");
+    }, 300);
+    return () => { if (debounceRef.current) clearTimeout(debounceRef.current); };
   }, [projectData]);
 
   // Auto-save simulation
