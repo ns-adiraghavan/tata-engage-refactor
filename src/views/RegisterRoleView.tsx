@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { User, Users, Building2, Briefcase, Heart, ShieldCheck } from "lucide-react";
+import tataEngageLogoNoBg from "@/assets/tata-engage-logo-nobg.png";
 import type { Role } from "@/types";
 import { useAppContext } from "@/context/AppContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
