@@ -278,36 +278,64 @@ export const NGOApprovalsPanel = ({ addAuditLog, triggerToast }: { addAuditLog: 
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-6">
-                      <div className="p-4 bg-slate-50 border border-slate-100">
-                        <div className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest mb-1">Completeness Score</div>
-                        <div className="text-2xl font-black text-slate-900">{selectedNgo.completeness}</div>
+                    {/* Overall Score */}
+                    <div className="text-center py-4">
+                      <div className="text-5xl font-black text-slate-900 tracking-tighter">{selectedNgo.aiScore}</div>
+                      <div className="text-xs font-semibold text-slate-400 uppercase tracking-widest mt-1">/ 10</div>
+                    </div>
+
+                    {/* Breakdown Rows */}
+                    <div className="space-y-5 pt-2">
+                      {/* Document completeness */}
+                      <div className="flex items-center justify-between gap-4">
+                        <span className="text-xs font-semibold text-slate-600 shrink-0">Document completeness</span>
+                        <div className="flex items-center gap-3 flex-1 justify-end">
+                          <div className="w-24 h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                            <div
+                              className="h-full bg-green-500 rounded-full"
+                              style={{ width: selectedNgo.completeness }}
+                            />
+                          </div>
+                          <span className="text-xs font-bold text-slate-900 w-10 text-right">{selectedNgo.completeness}</span>
+                        </div>
                       </div>
-                      <div className="p-4 bg-slate-50 border border-slate-100">
-                        <div className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest mb-1">AI Risk Score</div>
-                        <div className="text-2xl font-black text-red-600">{(10 - selectedNgo.aiScore).toFixed(1)}/10</div>
+
+                      {/* FCRA certificate */}
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-semibold text-slate-600">FCRA certificate</span>
+                        {selectedNgo.docs?.some((d: string) => d.toLowerCase().includes("fcra")) ? (
+                          <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-green-100 text-green-800">Present</span>
+                        ) : (
+                          <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-red-100 text-red-800">Missing</span>
+                        )}
+                      </div>
+
+                      {/* Impact statement clarity */}
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-semibold text-slate-600">Impact statement clarity</span>
+                        {(() => {
+                          const level = selectedNgo.aiScore >= 7 ? "High" : selectedNgo.aiScore >= 5 ? "Medium" : "Low";
+                          const cls = level === "High" ? "bg-green-100 text-green-800" : level === "Medium" ? "bg-amber-100 text-amber-800" : "bg-red-100 text-red-800";
+                          return <span className={`px-2.5 py-0.5 rounded-full text-xs font-semibold ${cls}`}>{level}</span>;
+                        })()}
+                      </div>
+
+                      {/* Risk flags */}
+                      <div className="flex items-start justify-between gap-4">
+                        <span className="text-xs font-semibold text-slate-600 shrink-0 pt-0.5">Risk flags</span>
+                        {selectedNgo.riskFlags.length > 0 ? (
+                          <div className="flex flex-wrap gap-1.5 justify-end">
+                            {selectedNgo.riskFlags.map((flag: string, i: number) => (
+                              <span key={i} className="px-2 py-0.5 rounded bg-red-100 text-red-700 text-xs font-semibold">{flag}</span>
+                            ))}
+                          </div>
+                        ) : (
+                          <span className="text-xs text-muted-foreground">None identified</span>
+                        )}
                       </div>
                     </div>
 
-                    <div className="space-y-4">
-                      <div className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest">Risk Flags</div>
-                      {selectedNgo.riskFlags.length > 0 ? (
-                        <div className="space-y-2">
-                          {selectedNgo.riskFlags.map((flag: string, i: number) => (
-                            <div key={i} className="flex items-center gap-2 text-red-600 bg-red-50 p-2 text-xs font-bold">
-                              <AlertTriangle size={12} />
-                              {flag}
-                            </div>
-                          ))}
-                        </div>
-                      ) : (
-                        <div className="text-xs text-green-600 font-bold flex items-center gap-2">
-                          <CheckCircle2 size={12} /> No critical risk flags detected
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="space-y-4">
+                    <div className="space-y-4 pt-4 border-t border-slate-100">
                       <div className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest">AI Profile Summary</div>
                       <p className="text-xs text-slate-600 leading-relaxed font-medium italic">
                         "{selectedNgo.aiSummary}"
