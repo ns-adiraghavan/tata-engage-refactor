@@ -11,7 +11,7 @@ import { PRIYA_SHARMA, ANJALI_MEHTA } from "@/data/mockData";
 
 import Navbar from "@/components/layout/Navbar";
 import MegaMenu from "@/components/layout/MegaMenu";
-import ConsentModal from "@/components/shared/ConsentModal";
+
 import OrientationModal from "@/components/shared/OrientationModal";
 import Chatbot from "@/components/shared/Chatbot";
 import FeedbackModal from "@/components/shared/FeedbackModal";
