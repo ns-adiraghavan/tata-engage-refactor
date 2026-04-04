@@ -16,7 +16,7 @@ export const DisasterResponsePanel = ({ addAuditLog, triggerToast, drResponses, 
   isDRClosed: boolean,
   setIsDRClosed: (val: boolean) => void
 }) => {
-  const navigate = useAppNavigate();
+  
   const [step, setStep] = useState<"initiate" | "status" | "dashboard">("initiate");
   const [audience, setAudience] = useState<"all" | "specific" | "geography">("all");
   const [selectedCompanies, setSelectedCompanies] = useState<string[]>([]);
