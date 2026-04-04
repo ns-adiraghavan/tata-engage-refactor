@@ -118,7 +118,7 @@ const MegaMenu = ({ isOpen, onClose, isLoggedIn, onNavigate, onLogout, user }: {
                 ) : (
                   <>
                     <button onClick={() => { onNavigate("register-role"); onClose(); }} className="w-full btn-black mb-4 cursor-pointer">Register Now</button>
-                    <button onClick={() => { onNavigate("login"); onClose(); }} className="w-full btn-outline cursor-pointer">Login</button>
+                    <button onClick={() => { onNavigate("login"); onClose(); }} className="w-full btn-outline cursor-pointer">Login to your account</button>
                   </>
                 )}
               </div>

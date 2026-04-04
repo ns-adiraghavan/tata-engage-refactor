@@ -67,7 +67,6 @@ const Navbar = ({ onNavigate, isLoggedIn, onToggleMenu, user }: {
         </div>
       ) : (
         <div className="hidden md:flex items-center gap-3 ml-4">
-          <button onClick={() => onNavigate("login")} className="btn-outline py-2 px-6 text-sm cursor-pointer">Login</button>
           <button onClick={() => onNavigate("register-role")} className="btn-black py-2 px-6 text-sm cursor-pointer">Register</button>
         </div>
       )}
