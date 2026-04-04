@@ -1,7 +1,7 @@
-import React(', {{ {', '.join(react_hooks)} }}') from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Users, Building2, ShieldCheck, Eye, CheckCircle2, Globe, MapPin, Filter, List, Send, Check, Zap, Plus, History, AlertTriangle, Activity, ShieldAlert } from "lucide-react";
-import { View } from "@/types";
+import type { View } from "@/types";
 import { TATA_COMPANIES, GEOGRAPHIES } from "@/constants";
 import { DR_TEMPLATES } from "@/data/mockData";
 

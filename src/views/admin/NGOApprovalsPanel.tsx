@@ -1,4 +1,4 @@
-import React(', {{ {', '.join(react_hooks)} }}') from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Building2, CheckCircle2, ExternalLink, Info, Filter, LayoutGrid, FileText, Check, ChevronDown, Sparkles, Edit2, Save, AlertTriangle, Download } from "lucide-react";
 import { MOCK_NGO_APPLICATIONS } from "@/constants";

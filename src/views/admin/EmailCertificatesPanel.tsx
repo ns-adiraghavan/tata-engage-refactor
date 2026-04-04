@@ -1,4 +1,4 @@
-import React(', {{ {', '.join(react_hooks)} }}') from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Users, ShieldCheck, Eye, Award, Send, ChevronDown, Save, History } from "lucide-react";
 import { COMPANY_DOMAINS, MOCK_EMAIL_TRIGGERS, MOCK_BULK_EMAILS, MOCK_CERTIFICATE_PROJECTS } from "@/data/mockData";

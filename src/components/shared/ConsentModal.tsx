@@ -1,7 +1,7 @@
-import React(', {{ {', '.join(react_hooks)} }}') from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default const ConsentModal = ({ isOpen, onAccept, onCancel }: { isOpen: boolean, onAccept: () => void, onCancel: () => void }) => {
+const ConsentModal = ({ isOpen, onAccept, onCancel }: { isOpen: boolean, onAccept: () => void, onCancel: () => void }) => {
   const [agreed, setAgreed] = useState(false);
 
   return (
@@ -62,3 +62,5 @@ export default const ConsentModal = ({ isOpen, onAccept, onCancel }: { isOpen: b
     </AnimatePresence>
   );
 };
+
+export default ConsentModal;

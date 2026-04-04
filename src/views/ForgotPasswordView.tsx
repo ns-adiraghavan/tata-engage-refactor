@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowLeft, Send } from "lucide-react";
 import { useAppContext } from "@/context/AppContext";
 
-export default const ForgotPasswordView = () => {
+const ForgotPasswordView = () => {
   const { navigate } = useAppContext();
   return (
   <div className="min-h-screen pt-20 flex items-center justify-center p-6 bg-slate-100">
@@ -31,3 +31,5 @@ export default const ForgotPasswordView = () => {
   </div>
   );
 };
+
+export default ForgotPasswordView;

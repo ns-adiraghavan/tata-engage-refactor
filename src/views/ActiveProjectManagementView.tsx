@@ -1,10 +1,10 @@
-import React(', {{ {', '.join(react_hooks)} }}') from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { User, Mail, CheckCircle2, Sparkles, Edit2, Pause, StopCircle, History, AlertTriangle, Activity, ChevronLeft } from "lucide-react";
-import { View } from "@/types";
+import type { View } from "@/types";
 import { useAppContext } from "@/context/AppContext";
 
-export default const ActiveProjectManagementView = ({ project }: { project: any }) => {
+const ActiveProjectManagementView = ({ project }: { project: any }) => {
   const { user, projectStatus, setProjectStatus, navigate, triggerToast } = useAppContext();
   const [healthUpdates, setHealthUpdates] = useState(MOCK_HEALTH_UPDATES);
   const [projectStatus, setProjectStatus] = useState(project?.status || "Active");
@@ -328,3 +328,5 @@ export default const ActiveProjectManagementView = ({ project }: { project: any 
     </div>
   );
 };
+
+export default ActiveProjectManagementView;

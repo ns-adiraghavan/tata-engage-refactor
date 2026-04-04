@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useAppContext } from "@/context/AppContext";
 
-export default const TVWVibeView = () => (
+const TVWVibeView = () => (
   <div className="pt-28 pb-20 px-6 md:px-12 bg-white min-h-screen">
     <div className="max-w-7xl mx-auto">
       <div className="flex justify-between items-end mb-12">
@@ -46,3 +46,5 @@ export default const TVWVibeView = () => (
     </div>
   </div>
 );
+
+export default TVWVibeView;

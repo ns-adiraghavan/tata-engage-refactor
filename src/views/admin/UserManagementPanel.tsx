@@ -1,7 +1,7 @@
-import React(', {{ {', '.join(react_hooks)} }}') from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { X, User, Search, Clock, Info, Plus, Save, AlertTriangle } from "lucide-react";
-import { Role } from "@/types";
+import type { Role } from "@/types";
 import { COMPANY_DOMAINS, VOLUNTEER_RECORDS, PERMISSION_MATRIX, SPOC_DIRECTORY } from "@/data/mockData";
 
 export const UserManagementPanel = () => {

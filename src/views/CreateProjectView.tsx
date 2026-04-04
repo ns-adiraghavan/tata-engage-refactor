@@ -1,9 +1,9 @@
-import React(', {{ {', '.join(react_hooks)} }}') from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Building2, ArrowLeft, CheckCircle2, MapPin, Info, List, Send, FileText, Check, Sparkles, ArrowRight, Save, Copy } from "lucide-react";
 import { useAppContext } from "@/context/AppContext";
 
-export default const CreateProjectView = () => {
+const CreateProjectView = () => {
   const { clonedProject, setClonedProject, navigate, triggerToast } = useAppContext();
   const [step, setStep] = useState(1);
   const [projectData, setProjectData] = useState(clonedProject || {
@@ -380,3 +380,5 @@ export default const CreateProjectView = () => {
     </div>
   );
 };
+
+export default CreateProjectView;

@@ -1,9 +1,9 @@
-import React(', {{ {', '.join(react_hooks)} }}') from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Send } from "lucide-react";
 import { useAppContext } from "@/context/AppContext";
 
-export default const SupportModal = () => {
+const SupportModal = () => {
   const { showSupportModal, setShowSupportModal, supportSubject, setSupportSubject, triggerToast } = useAppContext();
   const [message, setMessage] = useState("");
   const [isSending, setIsSending] = useState(false);
@@ -79,3 +79,5 @@ export default const SupportModal = () => {
     </AnimatePresence>
   );
 };
+
+export default SupportModal;

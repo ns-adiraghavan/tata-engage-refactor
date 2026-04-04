@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { X, Lock, Check } from "lucide-react";
 import { useAppContext } from "@/context/AppContext";
 
-export default const OrientationModal = () => {
+const OrientationModal = () => {
   const { setShowOrientationModal } = useAppContext();
   const modules = [
     { id: 1, title: "Platform Overview", status: "Completed" },
@@ -71,3 +71,5 @@ export default const OrientationModal = () => {
     </div>
   );
 };
+
+export default OrientationModal;

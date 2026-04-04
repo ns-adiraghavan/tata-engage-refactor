@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { User, Users, Building2, Briefcase, Heart, ShieldCheck } from "lucide-react";
-import { Role } from "@/types";
+import type { Role } from "@/types";
 import { useAppContext } from "@/context/AppContext";
 
-export default const RegisterRoleView = () => {
+const RegisterRoleView = () => {
   const { selectedRole, navigate, handleRoleSelect } = useAppContext();
   return (
   <div className="min-h-screen pt-32 pb-20 px-6 md:px-12 bg-white">
@@ -70,3 +70,5 @@ export default const RegisterRoleView = () => {
   </div>
   );
 };
+
+export default RegisterRoleView;

@@ -1,4 +1,4 @@
-import React(', {{ {', '.join(react_hooks)} }}') from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { X, ShieldCheck, Lock, Eye, Calendar, Info, CalendarDays, Plus, Save, History, AlertTriangle, Upload } from "lucide-react";
 import { MOCK_EDITIONS } from "@/data/mockData";

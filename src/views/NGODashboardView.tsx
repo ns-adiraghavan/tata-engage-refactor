@@ -1,11 +1,11 @@
-import React(', {{ {', '.join(react_hooks)} }}') from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronRight, User, Users, Mail, Search, MapPin, Clock, Check, Sparkles, MessageSquare, ArrowRight, Star, Plus, Edit2, Trash2, Copy, AlertTriangle, Download } from "lucide-react";
-import { View } from "@/types";
+import type { View } from "@/types";
 import { MOCK_APPLICANTS, ANJALI_MEHTA } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
 
-export default const NGODashboardView = () => {
+const NGODashboardView = () => {
   const { view, setClonedProject, setActiveProject, ngoData, navigate, triggerToast } = useAppContext();
   const [activeTab, setActiveTab] = useState<"projects" | "applications" | "coordinators">("projects");
   const [applicationTab, setApplicationTab] = useState<"shortlist" | "all">("shortlist");
@@ -865,3 +865,5 @@ export default const NGODashboardView = () => {
     </div>
   );
 };
+
+export default NGODashboardView;

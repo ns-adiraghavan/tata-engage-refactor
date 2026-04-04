@@ -1,6 +1,6 @@
 import { ChevronRight, Facebook, Twitter, Instagram, Linkedin, Youtube } from "lucide-react";
 
-export default const Footer = () => (
+const Footer = () => (
   <footer className="bg-slate-900 text-white pt-16 pb-8 px-6 md:px-12">
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
       <div>
@@ -63,3 +63,5 @@ export default const Footer = () => (
     </div>
   </footer>
 );
+
+export default Footer;

@@ -1,4 +1,4 @@
-import React(', {{ {', '.join(react_hooks)} }}') from "react";
+import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { X, Lock, Youtube, FileText, Upload } from "lucide-react";
 import { MOCK_MEDIA_ASSETS } from "@/data/mockData";

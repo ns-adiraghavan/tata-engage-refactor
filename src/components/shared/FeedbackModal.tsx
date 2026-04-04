@@ -1,9 +1,9 @@
-import React(', {{ {', '.join(react_hooks)} }}') from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, CheckCircle2, Send, Star } from "lucide-react";
 import { useAppContext } from "@/context/AppContext";
 
-export default const FeedbackModal = () => {
+const FeedbackModal = () => {
   const { showFeedbackForm, setShowFeedbackForm, feedbackSubmitted, setFeedbackSubmitted, triggerToast } = useAppContext();
   const [rating, setRating] = useState(0);
   const [ngoRatings, setNgoRatings] = useState({ quality: 0, comms: 0, clarity: 0 });
@@ -127,3 +127,5 @@ export default const FeedbackModal = () => {
     </AnimatePresence>
   );
 };
+
+export default FeedbackModal;

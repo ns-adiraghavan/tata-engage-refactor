@@ -1,4 +1,4 @@
-import React(', {{ {', '.join(react_hooks)} }}') from "react";
+import { useState } from "react";
 import { User, ShieldCheck, Search, Download } from "lucide-react";
 import { useAppContext } from "@/context/AppContext";
 

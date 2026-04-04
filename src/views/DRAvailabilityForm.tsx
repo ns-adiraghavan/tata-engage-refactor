@@ -1,8 +1,8 @@
-import React(', {{ {', '.join(react_hooks)} }}') from "react";
+import React, { useState } from "react";
 import { ArrowLeft, Search, Send, ShieldAlert } from "lucide-react";
 import { useAppContext } from "@/context/AppContext";
 
-export default const DRAvailabilityForm = () => {
+const DRAvailabilityForm = () => {
   const { user, formData, setFormData, setDrResponses, setHasSubmittedAvailability, navigate, triggerToast } = useAppContext();
   const [formData, setFormData] = useState({
     location: "Mumbai, Maharashtra",
@@ -166,3 +166,5 @@ export default const DRAvailabilityForm = () => {
     </div>
   );
 };
+
+export default DRAvailabilityForm;

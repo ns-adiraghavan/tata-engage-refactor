@@ -1,10 +1,10 @@
-import React(', {{ {', '.join(react_hooks)} }}') from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Building2, Heart, Search, Clock, Info, Check, Sparkles, Save } from "lucide-react";
 import { PROENGAGE_PROJECTS } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
 
-export default const ProEngageView = () => {
+const ProEngageView = () => {
   const { user, appliedProjects, setAppliedProjects, likedProjects, setLikedProjects, triggerToast } = useAppContext();
   const [activeTab, setActiveTab] = useState("All Projects");
   const [isApplying, setIsApplying] = useState(false);
@@ -205,3 +205,5 @@ export default const ProEngageView = () => {
     </div>
   );
 };
+
+export default ProEngageView;

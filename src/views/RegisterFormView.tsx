@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Info } from "lucide-react";
 import { useAppContext } from "@/context/AppContext";
 
-export default const RegisterFormView = () => {
+const RegisterFormView = () => {
   const { selectedRole, formData, setFormData, navigate, handleFormSubmit } = useAppContext();
   const renderFields = () => {
     switch (selectedRole) {
@@ -380,3 +380,5 @@ export default const RegisterFormView = () => {
     </div>
   );
 };
+
+export default RegisterFormView;

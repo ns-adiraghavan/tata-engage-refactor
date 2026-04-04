@@ -1,4 +1,4 @@
-import React(', {{ {', '.join(react_hooks)} }}') from "react";
+import { useState } from "react";
 import { User } from "lucide-react";
 import { MOCK_TESTIMONIALS, MOCK_FLAGGED_COMMENTS } from "@/data/mockData";
 

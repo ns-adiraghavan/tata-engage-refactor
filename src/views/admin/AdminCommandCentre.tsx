@@ -1,5 +1,5 @@
 import { Users, Briefcase, Heart, ShieldCheck, Bell, ExternalLink, Activity } from "lucide-react";
-import { View } from "@/types";
+import type { View } from "@/types";
 import { MOCK_NGO_APPLICATIONS } from "@/constants";
 import { MOCK_PROJECT_SUBMISSIONS, MOCK_BULK_EMAILS, MOCK_TESTIMONIALS } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";

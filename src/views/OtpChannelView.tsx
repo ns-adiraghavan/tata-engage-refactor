@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ShieldCheck, Mail, Globe, Send } from "lucide-react";
 import { useAppContext } from "@/context/AppContext";
 
-export default const OtpChannelView = () => {
+const OtpChannelView = () => {
   const { otpChannel, setOtpChannel, navigate, handleOtpChannelSelect } = useAppContext();
   return (
   <div className="min-h-screen pt-20 flex items-center justify-center p-6 bg-slate-100">
@@ -75,3 +75,5 @@ export default const OtpChannelView = () => {
   </div>
   );
 };
+
+export default OtpChannelView;

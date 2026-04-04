@@ -1,11 +1,11 @@
-import React(', {{ {', '.join(react_hooks)} }}') from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Building2, Eye, Award, Check, Sparkles, Star, ChevronLeft, Download, Upload, FileCheck } from "lucide-react";
-import { View } from "@/types";
+import type { View } from "@/types";
 import { MOCK_APPLICANTS, ANJALI_MEHTA } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
 
-export default const ProjectFeedbackView = ({ project }: { project: any }) => {
+const ProjectFeedbackView = ({ project }: { project: any }) => {
   const { setNgoData, navigate, triggerToast } = useAppContext();
   const [feedbackData, setFeedbackData] = useState<any>(
     MOCK_APPLICANTS.filter(a => a.projectId === project?.id).map(a => ({
@@ -333,3 +333,5 @@ export default const ProjectFeedbackView = ({ project }: { project: any }) => {
     </div>
   );
 };
+
+export default ProjectFeedbackView;

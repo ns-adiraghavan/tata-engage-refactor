@@ -1,9 +1,8 @@
-import React(', {{ {', '') from "react";
+import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
-import { View } from "@/types";
 
-export default const Drawer = ({ isOpen, onClose, title, children }: { isOpen: boolean, onClose: () => void, title: string, children: React.ReactNode }) => (
+const Drawer = ({ isOpen, onClose, title, children }: { isOpen: boolean, onClose: () => void, title: string, children: React.ReactNode }) => (
   <AnimatePresence>
     {isOpen && (
       <>
@@ -33,3 +32,5 @@ export default const Drawer = ({ isOpen, onClose, title, children }: { isOpen: b
     )}
   </AnimatePresence>
 );
+
+export default Drawer;

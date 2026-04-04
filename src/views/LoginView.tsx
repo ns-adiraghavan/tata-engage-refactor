@@ -3,7 +3,7 @@ import { Building2, ShieldCheck, Mail, Lock, Eye } from "lucide-react";
 import { VIKRAM_NAIR, ROHAN_DESAI } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
 
-export default const LoginView = () => {
+const LoginView = () => {
   const { setIsLoggedIn, setUser, navigate, triggerToast } = useAppContext();
   return (
   <div className="min-h-screen pt-20 flex items-center justify-center p-6 bg-slate-100 relative overflow-hidden">
@@ -101,3 +101,5 @@ export default const LoginView = () => {
   </div>
   );
 };
+
+export default LoginView;

@@ -1,11 +1,11 @@
-import React(', {{ {', '.join(react_hooks)} }}') from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Users, Search, Globe, Calendar, MapPin, Filter, CalendarDays, List, Check, MessageSquare } from "lucide-react";
-import { View } from "@/types";
+import type { View } from "@/types";
 import { TVW_EVENTS } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
 
-export default const TVWHubView = () => {
+const TVWHubView = () => {
   const { registeredEvents, setRegisteredEvents, triggerToast } = useAppContext();
   const [viewMode, setViewMode] = useState<"list" | "calendar">("list");
   const [filters, setFilters] = useState({ location: "All", theme: "All", mode: "All" });
@@ -277,3 +277,5 @@ export default const TVWHubView = () => {
     </div>
   );
 };
+
+export default TVWHubView;

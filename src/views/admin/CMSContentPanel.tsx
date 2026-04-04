@@ -1,4 +1,4 @@
-import React(', {{ {', '.join(react_hooks)} }}') from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Sparkles, Plus, Save, Activity } from "lucide-react";
 import { MOCK_CMS_ITEMS } from "@/data/mockData";

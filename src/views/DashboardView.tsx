@@ -1,10 +1,10 @@
-import React(', {{ {', '.join(react_hooks)} }}') from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronRight, Building2, Heart, Mail, CheckCircle2, Search, Globe, Calendar, MapPin, Award, FileText, Check, Sparkles, MessageSquare, ArrowRight, Save, ShieldAlert } from "lucide-react";
-import { View } from "@/types";
+import type { View } from "@/types";
 import { useAppContext } from "@/context/AppContext";
 
-export default const DashboardView = () => {
+const DashboardView = () => {
   const { user, projectStatus, setProjectStatus, showPulseCheck, setShowPulseCheck, pulseCheckSubmitted, setPulseCheckSubmitted, setShowFeedbackForm, referralCount, isDRActive, setDrResponses, hasSubmittedAvailability, setHasSubmittedAvailability, drDeploymentLog, isDRClosed, navigate, triggerToast } = useAppContext();
   const [pulseText, setPulseText] = useState("");
 
@@ -410,3 +410,5 @@ export default const DashboardView = () => {
     </div>
   );
 };
+
+export default DashboardView;

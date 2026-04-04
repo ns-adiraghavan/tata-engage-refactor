@@ -1,10 +1,10 @@
-import React(', {{ {', '.join(react_hooks)} }}') from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { User, Briefcase, ShieldCheck, ArrowLeft, Mail, Sparkles, MessageSquare, Activity, Download, FileSpreadsheet, ShieldAlert } from "lucide-react";
-import { View } from "@/types";
+import type { View } from "@/types";
 import { useAppContext } from "@/context/AppContext";
 
-export default const DRPrototypeView = () => {
+const DRPrototypeView = () => {
   const { user, isDRActive, setIsDRActive, navigate } = useAppContext();
   const [activeTab, setActiveTab] = useState<"volunteer" | "spoc" | "csr">("volunteer");
 
@@ -230,3 +230,5 @@ export default const DRPrototypeView = () => {
     </div>
   );
 };
+
+export default DRPrototypeView;

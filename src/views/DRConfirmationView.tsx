@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import { useAppContext } from "@/context/AppContext";
 
-export default const DRConfirmationView = () => {
+const DRConfirmationView = () => {
   const { user, navigate } = useAppContext();
   const refId = `DR-2026-AF-${Math.floor(1000 + Math.random() * 9000)}`;
   
@@ -39,3 +39,5 @@ export default const DRConfirmationView = () => {
     </div>
   );
 };
+
+export default DRConfirmationView;

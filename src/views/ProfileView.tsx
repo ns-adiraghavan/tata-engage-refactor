@@ -1,10 +1,10 @@
-import React(', {{ {', '.join(react_hooks)} }}') from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Linkedin, Award, Info, Star, Save, History, Download } from "lucide-react";
-import { View } from "@/types";
+import type { View } from "@/types";
 import { useAppContext } from "@/context/AppContext";
 
-export default const ProfileView = () => {
+const ProfileView = () => {
   const { user, setUser, userRole, projectStatus, feedbackSubmitted, supportHistory, ngoData, triggerToast } = useAppContext();
   const [isEditing, setIsEditing] = useState(false);
   const [profileData, setProfileData] = useState(userRole === 'ngo' ? {
@@ -330,3 +330,5 @@ export default const ProfileView = () => {
     </div>
   );
 };
+
+export default ProfileView;

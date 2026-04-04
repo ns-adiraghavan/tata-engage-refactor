@@ -1,8 +1,19 @@
 import { motion } from "framer-motion";
 import { Menu, User, Users, Briefcase, Heart, ShieldCheck, ArrowLeft, Mail, Search, Bell, Calendar, LayoutGrid, FileText, History, ShieldAlert } from "lucide-react";
 import { useAppContext } from "@/context/AppContext";
+import { EmailCertificatesPanel } from "@/views/admin/EmailCertificatesPanel";
+import { CMSContentPanel } from "@/views/admin/CMSContentPanel";
+import { DisasterResponsePanel } from "@/views/admin/DisasterResponsePanel";
+import { MediaLibraryPanel } from "@/views/admin/MediaLibraryPanel";
+import { ModerationPanel } from "@/views/admin/ModerationPanel";
+import { ProjectOversightPanel } from "@/views/admin/ProjectOversightPanel";
+import { EditionManagementPanel } from "@/views/admin/EditionManagementPanel";
+import { NGOApprovalsPanel } from "@/views/admin/NGOApprovalsPanel";
+import { UserManagementPanel } from "@/views/admin/UserManagementPanel";
+import { AuditLogPanel } from "@/views/admin/AuditLogPanel";
+import { AdminCommandCentre } from "@/views/admin/AdminCommandCentre";
 
-export default const AdminDashboardView = () => {
+const AdminDashboardView = () => {
   const { isDRActive, setIsDRActive, drResponses, drDeploymentLog, setDrDeploymentLog, isDRClosed, setIsDRClosed, adminActiveTab, setAdminActiveTab, addAuditLog, triggerToast, handleLogout } = useAppContext();
   const sidebarItems = [
     { id: "Dashboard", icon: LayoutGrid },
@@ -136,3 +147,5 @@ export default const AdminDashboardView = () => {
     </div>
   );
 };
+
+export default AdminDashboardView;

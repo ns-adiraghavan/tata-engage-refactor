@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { Heart, Globe, Award, LayoutGrid, ArrowRight, Zap, Activity, ShieldAlert } from "lucide-react";
-import { View } from "@/types";
+import type { View } from "@/types";
 import { useAppContext } from "@/context/AppContext";
 
-export default const DisasterResponseView = () => {
+const DisasterResponseView = () => {
   const { navigate } = useAppContext();
   return (
     <div className="pt-28 pb-20 px-6 md:px-12 bg-slate-50 min-h-screen">
@@ -191,3 +191,5 @@ export default const DisasterResponseView = () => {
     </div>
   );
 };
+
+export default DisasterResponseView;

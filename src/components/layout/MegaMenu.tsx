@@ -1,9 +1,9 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronRight } from "lucide-react";
-import { View } from "@/types";
-import { View } from "@/types";
+import type { View } from "@/types";
+import type { View } from "@/types";
 
-export default const MegaMenu = ({ isOpen, onClose, isLoggedIn, onNavigate, onLogout, user }: { 
+const MegaMenu = ({ isOpen, onClose, isLoggedIn, onNavigate, onLogout, user }: { 
   isOpen: boolean, 
   onClose: () => void,
   isLoggedIn: boolean,
@@ -130,3 +130,5 @@ export default const MegaMenu = ({ isOpen, onClose, isLoggedIn, onNavigate, onLo
     )}
   </AnimatePresence>
 );
+
+export default MegaMenu;

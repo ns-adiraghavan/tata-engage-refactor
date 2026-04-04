@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { ChevronRight, Heart, Award } from "lucide-react";
-import { View } from "@/types";
+import type { View } from "@/types";
 import { useAppContext } from "@/context/AppContext";
 
-export default const HomeView = () => {
+const HomeView = () => {
   const { navigate } = useAppContext();
   return (
   <div className="pt-20">
@@ -183,3 +183,5 @@ export default const HomeView = () => {
   </div>
   );
 };
+
+export default HomeView;

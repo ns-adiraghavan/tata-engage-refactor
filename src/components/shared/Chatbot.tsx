@@ -1,9 +1,9 @@
-import React(', {{ {', '.join(react_hooks)} }}') from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Send, MessageSquare, AlertTriangle } from "lucide-react";
 import { useAppContext } from "@/context/AppContext";
 
-export default const Chatbot = () => {
+const Chatbot = () => {
   const { user, userRole, isChatOpen, setIsChatOpen, isDRActive, chatMessages, setChatMessages, activeProject, setSupportHistory, setShowSupportModal, setSupportSubject, ngoData } = useAppContext();
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
@@ -210,3 +210,5 @@ export default const Chatbot = () => {
     </div>
   );
 };
+
+export default Chatbot;

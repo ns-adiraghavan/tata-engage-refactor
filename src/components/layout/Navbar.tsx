@@ -1,8 +1,8 @@
 import { Menu, Bell } from "lucide-react";
-import { View } from "@/types";
-import { View } from "@/types";
+import type { View } from "@/types";
+import type { View } from "@/types";
 
-export default const Navbar = ({ onNavigate, isLoggedIn, onToggleMenu, user }: { 
+const Navbar = ({ onNavigate, isLoggedIn, onToggleMenu, user }: { 
   onNavigate: (view: View) => void, 
   isLoggedIn: boolean,
   onToggleMenu: () => void,
@@ -75,3 +75,5 @@ export default const Navbar = ({ onNavigate, isLoggedIn, onToggleMenu, user }: {
     </div>
   </nav>
 );
+
+export default Navbar;
