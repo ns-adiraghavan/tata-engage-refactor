@@ -13,7 +13,7 @@ const Navbar = ({ onNavigate, isLoggedIn, onToggleMenu, user }: {
         src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Tata_logo.svg/1200px-Tata_logo.svg.png" 
         alt="TATA" 
         className="h-8 md:h-10 object-contain cursor-pointer"
-        onClick={() => onNavigate(isLoggedIn ? "dashboard" : "home")}
+        onClick={() => onNavigate("home")}
         referrerPolicy="no-referrer"
       />
     </div>
@@ -67,7 +67,6 @@ const Navbar = ({ onNavigate, isLoggedIn, onToggleMenu, user }: {
         </div>
       ) : (
         <div className="hidden md:flex items-center gap-3 ml-4">
-          <button onClick={() => onNavigate("login")} className="btn-outline py-2 px-6 text-sm cursor-pointer">Login</button>
           <button onClick={() => onNavigate("register-role")} className="btn-black py-2 px-6 text-sm cursor-pointer">Register</button>
         </div>
       )}
