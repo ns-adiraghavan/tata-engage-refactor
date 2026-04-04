@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Building2, ArrowLeft, CheckCircle2, MapPin, Info, List, Send, FileText, Check, Sparkles, ArrowRight, Save, Copy } from "lucide-react";
 import { useAppContext } from "@/context/AppContext";
@@ -22,16 +22,32 @@ const CreateProjectView = () => {
   const [qualityScore, setQualityScore] = useState(0);
   const [lastSaved, setLastSaved] = useState<Date | null>(null);
 
-  // AI Quality Score Calculation
+  // AI Quality Score Calculation (debounced 300ms)
+  const [scoreHint, setScoreHint] = useState("");
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   useEffect(() => {
-    let score = 0;
-    if (projectData.title.length > 10) score += 1;
-    if (projectData.skillArea) score += 1;
-    if (projectData.brief.length > 50) score += 2;
-    if (projectData.brief.length > 200) score += 2;
-    if (projectData.outcomes.length > 30) score += 2;
-    if (projectData.outcomes.length > 100) score += 2;
-    setQualityScore(score);
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => {
+      let score = 0;
+      const conditions: { met: boolean; hint: string }[] = [
+        { met: (projectData.brief || "").trim().split(/\s+/).filter(Boolean).length >= 50, hint: "Write at least 50 words in the description to improve your score." },
+        { met: (projectData.outcomes || "").trim().length > 0, hint: "Add text to the outcomes/impact section to improve your score." },
+        { met: (projectData.outcomes || "").trim().split(/\s+/).filter(Boolean).length >= 30, hint: "Add more detail to your outcome section to improve your score." },
+        { met: !!(projectData.duration || "").trim(), hint: "Select a project duration to improve your score." },
+        { met: !!(projectData.mode || "").trim(), hint: "Select a project mode to improve your score." },
+        { met: !!(projectData.skillArea || "").trim(), hint: "Select a skill area to improve your score." },
+        { met: (projectData.title || "").trim().split(/\s+/).filter(Boolean).length >= 4, hint: "Use at least 4 words in your project title." },
+        { met: projectData.volunteers > 0, hint: "Set a volunteer count to improve your score." },
+      ];
+      const points = [2, 2, 1, 1, 1, 1, 1, 1]; // max 10
+      conditions.forEach((c, i) => { if (c.met) score += points[i]; });
+      setQualityScore(Math.min(score, 10));
+
+      const firstUnmet = conditions.find(c => !c.met);
+      setScoreHint(firstUnmet ? firstUnmet.hint : "");
+    }, 300);
+    return () => { if (debounceRef.current) clearTimeout(debounceRef.current); };
   }, [projectData]);
 
   // Auto-save simulation
@@ -255,11 +271,23 @@ const CreateProjectView = () => {
                         <h2 className="text-3xl font-bold text-tata-blue mb-2">Project Brief</h2>
                         <p className="text-slate-500">Describe the project goals and volunteer responsibilities.</p>
                       </div>
-                      <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-center min-w-[120px]">
+                      <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-center min-w-[140px]">
                         <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">AI Quality Score</div>
-                        <div className={`text-2xl font-bold ${qualityScore > 7 ? 'text-green-500' : qualityScore > 4 ? 'text-amber-500' : 'text-red-500'}`}>
+                        <div
+                          className={`text-2xl font-bold ${qualityScore > 7 ? 'text-green-500' : qualityScore > 4 ? 'text-amber-500' : 'text-red-500'}`}
+                          style={{ transition: 'all 0.4s ease' }}
+                        >
                           {qualityScore}/10
                         </div>
+                        <div className="w-full h-1.5 bg-slate-200 rounded-full mt-2 overflow-hidden">
+                          <div
+                            className={`h-full rounded-full ${qualityScore > 7 ? 'bg-green-500' : qualityScore > 4 ? 'bg-amber-500' : 'bg-red-500'}`}
+                            style={{ width: `${qualityScore * 10}%`, transition: 'all 0.4s ease' }}
+                          />
+                        </div>
+                        {scoreHint && (
+                          <p className="text-[11px] text-muted-foreground mt-2 text-left leading-snug">{scoreHint}</p>
+                        )}
                       </div>
                     </div>
 
