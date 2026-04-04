@@ -454,6 +454,7 @@ const NGODashboardView = () => {
                         ))}
                       </div>
                     </div>
+                    )
                   ) : (
                     <div className="space-y-6">
                       {/* Filters */}
