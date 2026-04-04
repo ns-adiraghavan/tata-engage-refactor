@@ -227,7 +227,7 @@ export default function App() {
                 <Route path="/tvw/vibe" element={<TVWVibeView />} />
                 <Route path="/proengage" element={<ProtectedRoute><ProEngageView /></ProtectedRoute>} />
                 <Route path="/disaster-response" element={<DisasterResponseView />} />
-                <Route path="/disaster-response/prototype" element={<ProtectedRoute><DRPrototypeView /></ProtectedRoute>} />
+                
                 <Route path="/disaster-response/availability" element={<ProtectedRoute><DRAvailabilityForm /></ProtectedRoute>} />
                 <Route path="/disaster-response/confirmation" element={<ProtectedRoute><DRConfirmationView /></ProtectedRoute>} />
                 <Route path="/spoc/dashboard" element={<ProtectedRoute><SPOCDashboardView /></ProtectedRoute>} />
