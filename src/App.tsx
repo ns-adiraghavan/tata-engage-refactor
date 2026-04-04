@@ -180,11 +180,6 @@ export default function App() {
           onLogout={onLogout}
           user={user}
         />
-        <ConsentModal
-          isOpen={isConsentOpen}
-          onAccept={handleConsentAccept}
-          onCancel={() => setIsConsentOpen(false)}
-        />
 
         <main>
           <AnimatePresence mode="wait">
