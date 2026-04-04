@@ -401,7 +401,23 @@ const DashboardView = () => {
         {/* ═══ SECTION: Your history ═══ */}
         <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4">Your history</h3>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        <div className="space-y-8 mb-12">
+          {/* Application History */}
+          {user.history && user.history.length === 0 && (
+            <section className="bg-white rounded-3xl p-8 shadow-sm border border-zinc-100 flex flex-col items-center justify-center py-16 text-center">
+              <ClipboardList size={40} className="text-slate-300 mb-4" />
+              <h4 className="text-[15px] font-medium text-slate-700 mb-1">No applications yet</h4>
+              <p className="text-[13px] text-muted-foreground mb-4">Projects you apply to will be tracked here.</p>
+              <button
+                onClick={() => navigate("proengage")}
+                className="px-5 py-2 bg-tata-blue text-white text-sm font-semibold rounded-lg hover:bg-tata-blue/90 transition-colors cursor-pointer"
+              >
+                Browse projects →
+              </button>
+            </section>
+          )}
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Earned Badges */}
           <section className="bg-white rounded-3xl p-8 shadow-sm border border-zinc-100">
             <h2 className="text-xl font-bold text-zinc-900 mb-6">Earned Badges</h2>
