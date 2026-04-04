@@ -382,6 +382,13 @@ const NGODashboardView = () => {
                   </div>
 
                   {applicationTab === "shortlist" ? (
+                    shortlistedApplicants.length === 0 ? (
+                      <div className="flex flex-col items-center justify-center py-16 text-center">
+                        <Inbox size={40} className="text-slate-300 mb-4" />
+                        <h4 className="text-[15px] font-medium text-slate-700 mb-1">No applications yet</h4>
+                        <p className="text-[13px] text-muted-foreground">Volunteer applications will appear here once your project goes live.</p>
+                      </div>
+                    ) : (
                     <div className="space-y-6">
                       <div className="bg-tata-blue/5 border border-tata-blue/10 p-4 rounded-2xl flex items-center gap-3 text-tata-blue text-xs font-bold">
                         <Sparkles size={18} />
