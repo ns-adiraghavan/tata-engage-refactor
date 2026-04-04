@@ -62,7 +62,7 @@ const Navbar = ({ onNavigate, isLoggedIn, onToggleMenu, user }: {
             onClick={() => onNavigate("profile")}
             className="w-10 h-10 rounded-full bg-tata-blue text-white flex items-center justify-center font-bold cursor-pointer hover:ring-4 ring-tata-blue/10 transition-all"
           >
-            {user.firstName[0]}{user.lastName[0]}
+            {user?.firstName?.[0]}{user?.lastName?.[0]}
           </div>
         </div>
       ) : (
