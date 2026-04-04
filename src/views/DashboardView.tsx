@@ -207,6 +207,25 @@ const DashboardView = () => {
           </div>
         </div>
 
+        {/* ProEngage Edition CTA */}
+        {isProEngageActive ? (
+          <button
+            onClick={() => navigate("proengage")}
+            className="w-full mb-8 py-4 bg-tata-blue text-white text-sm font-bold rounded-2xl hover:bg-tata-blue/90 transition-colors cursor-pointer"
+          >
+            Apply to ProEngage projects
+          </button>
+        ) : (
+          <div className="w-full mb-8 p-5 border border-zinc-200 rounded-2xl flex items-center justify-between bg-white">
+            <p className="text-sm text-zinc-600">
+              Next ProEngage edition coming soon — keep your profile updated to get better matches
+            </p>
+            <button onClick={() => navigate("profile")} className="text-sm font-bold text-tata-blue hover:underline whitespace-nowrap cursor-pointer flex items-center gap-1">
+              Edit profile <ArrowRight size={14} />
+            </button>
+          </div>
+        )}
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left Column: Recommendations & Active App */}
           <div className="lg:col-span-2 space-y-8">
