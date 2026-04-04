@@ -1,4 +1,5 @@
-import { Users, Briefcase, Heart, ShieldCheck, Bell, ExternalLink, Activity } from "lucide-react";
+import React, { useState } from "react";
+import { Users, Briefcase, Heart, ShieldCheck, Bell, ExternalLink, Activity, Download, Plus, X } from "lucide-react";
 import type { View } from "@/types";
 import { MOCK_NGO_APPLICATIONS } from "@/constants";
 import { MOCK_PROJECT_SUBMISSIONS, MOCK_BULK_EMAILS, MOCK_TESTIMONIALS } from "@/data/mockData";
@@ -6,6 +7,16 @@ import { useAppContext } from "@/context/AppContext";
 
 export const AdminCommandCentre = () => {
   const { setAdminActiveTab, auditLogs } = useAppContext();
+
+  const [reportCards, setReportCards] = useState([
+    { id: 1, title: "ProEngage edition report", description: "Applications, matches, completions by company", lastGenerated: "12 Mar 2025" },
+    { id: 2, title: "TVW participation report", description: "Events, registrations, hours logged by region", lastGenerated: "5 Mar 2025" },
+    { id: 3, title: "Non-programme email log", description: "All bulk emails sent, open rates, bounce rates", lastGenerated: "1 Mar 2025" },
+    { id: 4, title: "Volunteer attrition report", description: "Drop-outs by stage, reason, and edition", lastGenerated: "20 Feb 2025" },
+  ]);
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [newReportName, setNewReportName] = useState("");
+  const [newReportDesc, setNewReportDesc] = useState("");
   const stats = [
     { label: "Total Registered Users", value: "12,540", icon: Users, color: "text-tata-blue", trend: "+12.5%", trendUp: true },
     { label: "Active NGOs", value: "450", icon: Heart, color: "text-red-500", trend: "+3.2%", trendUp: true },
