@@ -1,4 +1,5 @@
 import { Menu, Bell } from "lucide-react";
+import tataEngageLogo from "@/assets/tata-engage-logo.png";
 import type { View } from "@/types";
 
 const Navbar = ({ onNavigate, isLoggedIn, onToggleMenu, user }: { 
