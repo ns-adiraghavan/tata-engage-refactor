@@ -575,8 +575,8 @@ export const ProjectOversightPanel = ({ addAuditLog, triggerToast }: { addAuditL
 
       {/* Cap Confirmation Modal */}
       {showCapModal && (
-        <div className="fixed inset-0 z-[300] flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm">
-          <div className="bg-white p-8 w-full max-w-md border border-slate-200 shadow-2xl text-center">
+        <div className="fixed inset-0 z-[300] flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm" onClick={() => setShowCapModal(false)}>
+          <div className="bg-white p-8 w-full max-w-md border border-slate-200 shadow-2xl text-center" onClick={(e) => e.stopPropagation()}>
             <div className="w-16 h-16 bg-blue-50 text-tata-blue rounded-full flex items-center justify-center mx-auto mb-6">
               <ShieldCheck size={32} />
             </div>
