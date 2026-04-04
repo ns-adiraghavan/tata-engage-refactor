@@ -25,10 +25,9 @@ const LoginView = () => {
       <div className="text-center mb-10">
         <div className="flex justify-center mb-4">
           <img 
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRG2f-xo_Z2La9Y0SPnOLqZWBtorh4oXrzkVg&s" 
+            src={tataEngageLogoNoBg} 
             alt="TATA engage" 
             className="h-16 md:h-20 object-contain"
-            referrerPolicy="no-referrer"
           />
         </div>
         <h2 className="text-2xl font-bold text-slate-800">Welcome Back</h2>
