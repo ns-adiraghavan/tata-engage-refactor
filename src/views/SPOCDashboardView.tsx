@@ -719,6 +719,59 @@ const SPOCDashboardView = () => {
 
   const DashboardHome = () => (
     <div className="space-y-12">
+      {/* Stats Grid — moved to very top, before welcome banner */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {[
+          { label: "Total Volunteers", value: spoc.stats.totalVolunteers.toLocaleString(), sub: "TCS Global", icon: Users, color: "text-tata-blue", bg: "bg-blue-50", border: "border-blue-100" },
+          { label: "Active ProEngage", value: spoc.stats.activeProEngage, sub: "Ongoing Projects", icon: Briefcase, color: "text-tata-cyan", bg: "bg-cyan-50", border: "border-cyan-100" },
+          { label: "TVW Events", value: spoc.stats.tvwEvents, sub: "This Edition", icon: CalendarDays, color: "text-purple-600", bg: "bg-purple-50", border: "border-purple-100" },
+          { label: "Pending Approvals", value: approvals.filter(a => a.status === "Pending").length, sub: "Action Required", icon: ShieldCheck, color: "text-red-600", bg: "bg-red-50", border: "border-red-100", badge: true }
+        ].map((stat, i) => (
+          <motion.div 
+            key={i}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.1 }}
+            className={`p-8 rounded-3xl bg-white border ${stat.border} shadow-sm hover:shadow-xl transition-all group relative overflow-hidden`}
+          >
+            <div className="absolute -right-4 -top-4 w-24 h-24 bg-slate-50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className={`w-14 h-14 rounded-2xl ${stat.bg} ${stat.color} flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 relative z-10`}>
+              <stat.icon size={28} />
+            </div>
+            <div className="relative z-10">
+              <div className="flex items-center justify-between mb-1">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em]">{stat.label}</p>
+                {stat.badge && Number(stat.value) > 0 && (
+                  <div className="w-2 h-2 bg-red-500 rounded-full animate-ping" />
+                )}
+              </div>
+              <div className="flex items-baseline gap-2">
+                <h4 className="text-4xl font-black text-slate-900 tracking-tighter">{stat.value}</h4>
+                <span className="text-xs font-bold text-slate-400 uppercase">{stat.sub}</span>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Quick-action strip */}
+      <div className="flex gap-4">
+        {[
+          { label: "Download campaign kit", icon: Download, nav: "Reports & Certificates" },
+          { label: "Share project list", icon: Share2, nav: "ProEngage Oversight" },
+          { label: "View leaderboard", icon: Trophy, nav: "Reports & Certificates" },
+        ].map((action) => (
+          <button
+            key={action.label}
+            onClick={() => setActiveNav(action.nav)}
+            className="flex-1 flex items-center justify-center gap-3 px-6 py-4 bg-white border border-slate-200 rounded-2xl text-sm font-bold text-slate-700 hover:border-tata-blue hover:text-tata-blue transition-all cursor-pointer"
+          >
+            <action.icon size={18} />
+            {action.label}
+          </button>
+        ))}
+      </div>
+
       {/* Orientation Banner */}
       {!isOrientationDismissed && (
         <motion.div 
@@ -788,43 +841,6 @@ const SPOCDashboardView = () => {
           </div>
         </div>
       </section>
-
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {[
-          { label: "Total Volunteers", value: spoc.stats.totalVolunteers.toLocaleString(), sub: "TCS Global", icon: Users, color: "text-tata-blue", bg: "bg-blue-50", border: "border-blue-100" },
-          { label: "Active ProEngage", value: spoc.stats.activeProEngage, sub: "Ongoing Projects", icon: Briefcase, color: "text-tata-cyan", bg: "bg-cyan-50", border: "border-cyan-100" },
-          { label: "TVW Events", value: spoc.stats.tvwEvents, sub: "This Edition", icon: CalendarDays, color: "text-purple-600", bg: "bg-purple-50", border: "border-purple-100" },
-          { label: "Pending Approvals", value: approvals.filter(a => a.status === "Pending").length, sub: "Action Required", icon: ShieldCheck, color: "text-red-600", bg: "bg-red-50", border: "border-red-100", badge: true }
-        ].map((stat, i) => (
-          <motion.div 
-            key={i}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1 }}
-            className={`p-8 rounded-3xl bg-white border ${stat.border} shadow-sm hover:shadow-xl transition-all group relative overflow-hidden`}
-          >
-            <div className="absolute -right-4 -top-4 w-24 h-24 bg-slate-50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            
-            <div className={`w-14 h-14 rounded-2xl ${stat.bg} ${stat.color} flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 relative z-10`}>
-              <stat.icon size={28} />
-            </div>
-            
-            <div className="relative z-10">
-              <div className="flex items-center justify-between mb-1">
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em]">{stat.label}</p>
-                {stat.badge && Number(stat.value) > 0 && (
-                  <div className="w-2 h-2 bg-red-500 rounded-full animate-ping" />
-                )}
-              </div>
-              <div className="flex items-baseline gap-2">
-                <h4 className="text-4xl font-black text-slate-900 tracking-tighter">{stat.value}</h4>
-                <span className="text-xs font-bold text-slate-400 uppercase">{stat.sub}</span>
-              </div>
-            </div>
-          </motion.div>
-        ))}
-      </div>
 
       {/* Main Dashboard Content */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
