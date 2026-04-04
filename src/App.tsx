@@ -124,21 +124,10 @@ export default function App() {
       setUser(PRIYA_SHARMA);
       navigate("dashboard");
       triggerToast("Login Successful! Welcome back, Priya.");
-    } else if (selectedRole === "ngo") {
-      setIsLoggedIn(true);
-      setUser(ANJALI_MEHTA);
-      navigate("ngo-dashboard");
-      triggerToast("Login Successful! Welcome, Anjali Mehta.");
-    } else if (selectedRole === "corporate_spoc") {
-      setIsLoggedIn(true);
-      setUser(ROHAN_DESAI);
-      navigate("spoc-dashboard");
-      triggerToast("Login Successful! Welcome back, Rohan.");
     } else {
-      navigate("otp-channel");
+      navigate("otp");
     }
   };
-
   const handleOtpChannelSelect = () => { navigate("otp"); };
   const handleOtpVerify = () => { setIsLoggedIn(true); setUser(PRIYA_SHARMA); navigate("dashboard"); triggerToast("Registration Successful! Welcome to Tata Engage."); };
 
