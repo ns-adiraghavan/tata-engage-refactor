@@ -59,12 +59,12 @@ export const AdminCommandCentre = () => {
                 <button className="px-3 py-1 text-[10px] font-bold bg-slate-50 text-slate-600 rounded-lg hover:bg-slate-100 transition-colors">Monthly</button>
               </div>
             </div>
-            <div className="p-8 h-80 flex flex-col items-center justify-center text-slate-400 font-mono text-xs bg-slate-50/30">
-              <div className="w-full h-full flex items-end justify-around gap-2 px-4">
+            <div className="p-8 h-80 flex flex-col bg-slate-50/30">
+              <div className="w-full flex-1 flex items-end justify-around gap-4 px-4">
                 {[40, 70, 45, 90, 65, 85, 50].map((h, i) => (
-                  <div key={i} className="w-full bg-tata-blue/10 rounded-t-lg relative group">
+                  <div key={i} className="flex-1 flex items-end h-full">
                     <div 
-                      className="absolute bottom-0 w-full bg-tata-blue rounded-t-lg transition-all duration-1000 ease-out group-hover:bg-tata-cyan" 
+                      className="w-full bg-tata-blue rounded-t-lg transition-all duration-1000 ease-out hover:bg-tata-cyan" 
                       style={{ height: `${h}%` }}
                     />
                   </div>
