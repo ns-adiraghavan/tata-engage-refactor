@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Users, Building2, ShieldCheck, Eye, CheckCircle2, Globe, MapPin, Filter, List, Send, Check, Zap, Plus, History, AlertTriangle, Activity, ShieldAlert } from "lucide-react";
 import { TATA_COMPANIES, GEOGRAPHIES } from "@/constants";
 import { DR_TEMPLATES } from "@/data/mockData";
-import { useAppNavigate } from "@/hooks/useAppNavigate";
+
 
 export const DisasterResponsePanel = ({ addAuditLog, triggerToast, drResponses, setIsDRActive, isDRActive, drDeploymentLog, setDrDeploymentLog, isDRClosed, setIsDRClosed }: { 
   addAuditLog: (action: string, details: string) => void, 
@@ -16,7 +16,7 @@ export const DisasterResponsePanel = ({ addAuditLog, triggerToast, drResponses, 
   isDRClosed: boolean,
   setIsDRClosed: (val: boolean) => void
 }) => {
-  const navigate = useAppNavigate();
+  
   const [step, setStep] = useState<"initiate" | "status" | "dashboard">("initiate");
   const [audience, setAudience] = useState<"all" | "specific" | "geography">("all");
   const [selectedCompanies, setSelectedCompanies] = useState<string[]>([]);
@@ -303,9 +303,6 @@ export const DisasterResponsePanel = ({ addAuditLog, triggerToast, drResponses, 
             <div className="flex gap-4">
               <button onClick={() => setStep("dashboard")} className="flex-1 py-5 bg-zinc-900 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-tata-blue transition-all shadow-xl shadow-black/10 cursor-pointer">
                 Go to Response Dashboard
-              </button>
-              <button onClick={() => navigate("dr-prototype")} className="flex-1 py-5 bg-tata-blue text-white rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-blue-900 transition-all shadow-xl shadow-tata-blue/20 cursor-pointer">
-                View Simultaneous Flow
               </button>
             </div>
           </div>

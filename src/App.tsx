@@ -35,7 +35,7 @@ import TVWHubView from "@/views/TVWHubView";
 import TVWVibeView from "@/views/TVWVibeView";
 import ProEngageView from "@/views/ProEngageView";
 import DisasterResponseView from "@/views/DisasterResponseView";
-import DRPrototypeView from "@/views/DRPrototypeView";
+
 import DRAvailabilityForm from "@/views/DRAvailabilityForm";
 import DRConfirmationView from "@/views/DRConfirmationView";
 import SPOCDashboardView from "@/views/SPOCDashboardView";
@@ -227,7 +227,7 @@ export default function App() {
                 <Route path="/tvw/vibe" element={<TVWVibeView />} />
                 <Route path="/proengage" element={<ProtectedRoute><ProEngageView /></ProtectedRoute>} />
                 <Route path="/disaster-response" element={<DisasterResponseView />} />
-                <Route path="/disaster-response/prototype" element={<ProtectedRoute><DRPrototypeView /></ProtectedRoute>} />
+                
                 <Route path="/disaster-response/availability" element={<ProtectedRoute><DRAvailabilityForm /></ProtectedRoute>} />
                 <Route path="/disaster-response/confirmation" element={<ProtectedRoute><DRConfirmationView /></ProtectedRoute>} />
                 <Route path="/spoc/dashboard" element={<ProtectedRoute><SPOCDashboardView /></ProtectedRoute>} />

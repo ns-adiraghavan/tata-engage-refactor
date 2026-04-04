@@ -19,7 +19,7 @@ const PATH_TITLES: Record<string, string> = {
   "/tvw/vibe": "TVW Vibe",
   "/proengage": "ProEngage",
   "/disaster-response": "Disaster Response",
-  "/disaster-response/prototype": "DR Prototype",
+  
   "/disaster-response/availability": "DR Availability",
   "/disaster-response/confirmation": "DR Confirmation",
   "/spoc/dashboard": "SPOC Dashboard",
