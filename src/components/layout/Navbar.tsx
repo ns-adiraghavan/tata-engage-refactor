@@ -51,7 +51,7 @@ const Navbar = ({ onNavigate, isLoggedIn, onToggleMenu, user }: {
           <div className="hidden md:block text-right">
             <div className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Good Morning</div>
             <div className="text-sm font-bold text-tata-blue">
-              {user.role === 'ngo' ? `${user.firstName} (${user.organization})` : `${user.firstName} ☀`}
+              {user?.role === 'ngo' ? `${user.firstName} (${user.organization})` : `${user?.firstName} ☀`}
             </div>
           </div>
           <button className="p-2 hover:bg-zinc-100 rounded-full cursor-pointer relative">
