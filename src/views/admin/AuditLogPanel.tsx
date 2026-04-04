@@ -34,7 +34,7 @@ export const AuditLogPanel = () => {
             document.body.removeChild(link);
             triggerToast("Audit log exported as CSV.");
           }}
-          className="px-6 py-3 bg-zinc-900 text-white text-[10px] font-black uppercase tracking-widest rounded-xl shadow-lg shadow-zinc-900/20 hover:bg-black hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center gap-2"
+          className="px-6 py-3 bg-zinc-900 text-white text-xs font-semibold uppercase tracking-widest rounded-2xl shadow-lg shadow-zinc-900/20 hover:bg-black hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center gap-2"
         >
           <Download size={16} /> Export as CSV
         </button>
@@ -46,13 +46,13 @@ export const AuditLogPanel = () => {
           <input 
             type="text" 
             placeholder="Search by Admin or Details..." 
-            className="w-full pl-10 pr-4 py-2 border border-slate-100 text-[10px] font-black uppercase tracking-widest outline-none focus:border-tata-blue bg-slate-50"
+            className="w-full pl-10 pr-4 py-2 border border-slate-100 text-xs font-semibold uppercase tracking-widest outline-none focus:border-tata-blue bg-slate-50"
             value={search}
             onChange={e => setSearch(e.target.value)}
           />
         </div>
         <select 
-          className="px-4 py-2 border border-slate-100 text-[10px] font-black uppercase tracking-widest outline-none focus:border-tata-blue bg-slate-50"
+          className="px-4 py-2 border border-slate-100 text-xs font-semibold uppercase tracking-widest outline-none focus:border-tata-blue bg-slate-50"
           value={filterType}
           onChange={e => setFilterType(e.target.value)}
         >
@@ -69,7 +69,7 @@ export const AuditLogPanel = () => {
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-slate-50 border-b border-slate-200 text-[10px] font-black text-slate-400 uppercase tracking-widest">
+              <tr className="bg-slate-50 border-b border-slate-200 text-xs font-semibold text-slate-400 uppercase tracking-widest">
                 <th className="p-4">Timestamp</th>
                 <th className="p-4">Admin Name</th>
                 <th className="p-4">Action Type</th>
@@ -80,14 +80,14 @@ export const AuditLogPanel = () => {
             <tbody className="divide-y divide-slate-100">
               {filteredLogs.map((log) => (
                 <tr key={log.id} className="hover:bg-slate-50 transition-colors">
-                  <td className="p-4 text-[10px] font-mono text-slate-500">{new Date(log.timestamp).toLocaleString()}</td>
+                  <td className="p-4 text-xs font-mono text-slate-500">{new Date(log.timestamp).toLocaleString()}</td>
                   <td className="p-4 text-xs font-bold text-slate-900">{log.user}</td>
                   <td className="p-4">
-                    <span className="px-2 py-0.5 bg-slate-100 text-slate-600 text-[8px] font-black uppercase tracking-widest rounded">{log.action}</span>
+                    <span className="px-2 py-0.5 bg-slate-100 text-slate-600 text-[10px] font-semibold uppercase tracking-widest rounded">{log.action}</span>
                   </td>
-                  <td className="p-4 text-[10px] font-mono text-slate-400">{log.details}</td>
+                  <td className="p-4 text-xs font-mono text-slate-400">{log.details}</td>
                   <td className="p-4 text-right">
-                    <span className="px-2 py-0.5 bg-green-100 text-green-600 text-[8px] font-black uppercase tracking-widest rounded">Success</span>
+                    <span className="px-2 py-0.5 bg-green-100 text-green-600 text-[10px] font-semibold uppercase tracking-widest rounded">Success</span>
                   </td>
                 </tr>
               ))}
@@ -98,7 +98,7 @@ export const AuditLogPanel = () => {
 
       <div className="p-4 bg-slate-50 border border-slate-100 flex items-center gap-3 text-slate-400">
         <ShieldCheck size={16} />
-        <p className="text-[10px] font-bold uppercase tracking-widest">Audit log is tamper-proof and retained for 7 years per DPDP compliance.</p>
+        <p className="text-xs font-bold uppercase tracking-widest">Audit log is tamper-proof and retained for 7 years per DPDP compliance.</p>
       </div>
     </div>
   );

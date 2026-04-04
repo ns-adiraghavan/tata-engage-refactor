@@ -107,7 +107,7 @@ const Chatbot = () => {
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="w-80 md:w-96 h-[550px] bg-white rounded-[2.5rem] shadow-2xl border border-slate-100 flex flex-col overflow-hidden mb-4"
+            className="w-80 md:w-96 h-[550px] bg-white rounded-3xl shadow-2xl border border-slate-100 flex flex-col overflow-hidden mb-4"
           >
             <div className="p-6 bg-tata-blue text-white flex justify-between items-center">
               <div className="flex items-center gap-3">
@@ -118,14 +118,14 @@ const Chatbot = () => {
                   <div className="flex items-center gap-2">
                     <h4 className="font-bold text-sm">Engage AI Assistant</h4>
                     {isDRActive && (
-                      <span className="px-2 py-0.5 bg-red-600 text-white text-[8px] font-black uppercase tracking-widest rounded-full animate-bounce">
+                      <span className="px-2 py-0.5 bg-red-600 text-white text-[10px] font-semibold uppercase tracking-widest rounded-full animate-bounce">
                         DR Active
                       </span>
                     )}
                   </div>
                   <div className="flex items-center gap-1.5">
                     <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                    <span className="text-[10px] font-medium text-white/60 uppercase tracking-wider">Online</span>
+                    <span className="text-xs font-medium text-white/60 uppercase tracking-wider">Online</span>
                   </div>
                 </div>
               </div>
@@ -150,7 +150,7 @@ const Chatbot = () => {
                     <div className="flex justify-start pl-2">
                       <button 
                         onClick={handleEscalate}
-                        className="text-[10px] font-bold text-tata-blue hover:underline flex items-center gap-1 cursor-pointer"
+                        className="text-xs font-bold text-tata-blue hover:underline flex items-center gap-1 cursor-pointer"
                       >
                         <AlertTriangle size={10} /> Escalate to TSG Support
                       </button>
@@ -169,12 +169,12 @@ const Chatbot = () => {
               )}
               {chatMessages.length === 1 && (
                 <div className="pt-4 space-y-2">
-                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">Suggested Questions</p>
+                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Suggested Questions</p>
                   {suggestions.map(s => (
                     <button 
                       key={s} 
                       onClick={() => handleSend(s)}
-                      className="block w-full text-left p-3 rounded-xl bg-white border border-slate-100 text-xs text-slate-600 hover:border-tata-blue hover:text-tata-blue transition-all cursor-pointer"
+                      className="block w-full text-left p-3 rounded-2xl bg-white border border-slate-100 text-xs text-slate-600 hover:border-tata-blue hover:text-tata-blue transition-all cursor-pointer"
                     >
                       {s}
                     </button>
@@ -190,11 +190,11 @@ const Chatbot = () => {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleSend(input)}
                 placeholder="Type your message..."
-                className="flex-1 bg-slate-50 border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-tata-blue/20"
+                className="flex-1 bg-slate-50 border-none rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-tata-blue/20"
               />
               <button 
                 onClick={() => handleSend(input)}
-                className="w-12 h-12 bg-tata-blue text-white rounded-xl flex items-center justify-center hover:bg-tata-blue/90 transition-all cursor-pointer"
+                className="w-12 h-12 bg-tata-blue text-white rounded-lg flex items-center justify-center hover:bg-tata-blue/90 transition-all cursor-pointer"
               >
                 <Send size={20} />
               </button>

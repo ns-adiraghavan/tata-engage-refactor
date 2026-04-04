@@ -32,7 +32,7 @@ const SupportModal = () => {
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-lg bg-white rounded-[2.5rem] shadow-2xl overflow-hidden"
+            className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl overflow-hidden"
           >
             <div className="p-8 md:p-10">
               <div className="flex justify-between items-start mb-6">
@@ -47,7 +47,7 @@ const SupportModal = () => {
 
               <div className="space-y-6">
                 <div>
-                  <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2 block">Subject</label>
+                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 block">Subject</label>
                   <input 
                     type="text" 
                     value={supportSubject}
@@ -56,7 +56,7 @@ const SupportModal = () => {
                   />
                 </div>
                 <div>
-                  <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2 block">Message</label>
+                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 block">Message</label>
                   <textarea 
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}

@@ -25,19 +25,19 @@ export const AdminCommandCentre = () => {
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {stats.map((stat, i) => (
-          <div key={i} className="bg-white rounded-xl shadow-sm border border-slate-100 p-6 hover:shadow-md transition-all group">
+          <div key={i} className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 hover:shadow-md transition-all group">
             <div className="flex justify-between items-start mb-4">
               <div className={`w-12 h-12 rounded-lg bg-slate-50 flex items-center justify-center ${stat.color} group-hover:scale-110 transition-transform`}>
                 <stat.icon size={24} />
               </div>
-              <div className={`text-[10px] font-bold px-2 py-1 rounded-full ${
+              <div className={`text-xs font-bold px-2 py-1 rounded-full ${
                 stat.trendUp ? "bg-green-50 text-green-600" : "bg-slate-50 text-slate-500"
               }`}>
                 {stat.trend}
               </div>
             </div>
             <div>
-              <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">{stat.label}</div>
+              <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">{stat.label}</div>
               <div className="flex items-center gap-2">
                 <span className="text-2xl font-black text-slate-900 tracking-tight">{stat.value}</span>
                 {stat.badge && <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />}
@@ -50,13 +50,13 @@ export const AdminCommandCentre = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Main Feed */}
         <div className="lg:col-span-2 space-y-6">
-          <div className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden">
+          <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
             <div className="p-6 border-b border-slate-50 flex justify-between items-center">
-              <h3 className="font-black text-slate-900 uppercase tracking-widest text-xs">Platform Activity Overview</h3>
+              <h3 className="font-semibold text-slate-900 uppercase tracking-widest text-xs">Platform Activity Overview</h3>
               <div className="flex gap-2">
-                <button className="px-3 py-1 text-[10px] font-bold bg-slate-50 text-slate-600 rounded-lg hover:bg-slate-100 transition-colors">Daily</button>
-                <button className="px-3 py-1 text-[10px] font-bold bg-tata-blue text-white rounded-lg">Weekly</button>
-                <button className="px-3 py-1 text-[10px] font-bold bg-slate-50 text-slate-600 rounded-lg hover:bg-slate-100 transition-colors">Monthly</button>
+                <button className="px-3 py-1 text-xs font-bold bg-slate-50 text-slate-600 rounded-lg hover:bg-slate-100 transition-colors">Daily</button>
+                <button className="px-3 py-1 text-xs font-bold bg-tata-blue text-white rounded-lg">Weekly</button>
+                <button className="px-3 py-1 text-xs font-bold bg-slate-50 text-slate-600 rounded-lg hover:bg-slate-100 transition-colors">Monthly</button>
               </div>
             </div>
             <div className="p-8 h-80 flex flex-col bg-slate-50/30">
@@ -70,16 +70,16 @@ export const AdminCommandCentre = () => {
                   </div>
                 ))}
               </div>
-              <div className="mt-4 w-full flex justify-around text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+              <div className="mt-4 w-full flex justify-around text-xs font-bold text-slate-400 uppercase tracking-widest">
                 <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden">
+          <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
             <div className="p-6 border-b border-slate-50 flex justify-between items-center">
-              <h3 className="font-black text-slate-900 uppercase tracking-widest text-xs">Recent System Events</h3>
-              <button className="text-[10px] font-black text-tata-blue uppercase tracking-widest hover:underline">View All</button>
+              <h3 className="font-semibold text-slate-900 uppercase tracking-widest text-xs">Recent System Events</h3>
+              <button className="text-xs font-semibold text-tata-blue uppercase tracking-widest hover:underline">View All</button>
             </div>
             <div className="divide-y divide-slate-50">
               {auditLogs.slice(0, 5).map((log) => (
@@ -90,12 +90,12 @@ export const AdminCommandCentre = () => {
                     </div>
                     <div>
                       <div className="text-xs font-bold text-slate-900">{log.action}</div>
-                      <div className="text-[10px] text-slate-400 font-mono">{log.details}</div>
+                      <div className="text-xs text-slate-400 font-mono">{log.details}</div>
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-[10px] font-mono text-slate-400">{new Date(log.timestamp).toLocaleDateString()}</div>
-                    <div className="text-[10px] font-mono text-slate-300">{new Date(log.timestamp).toLocaleTimeString()}</div>
+                    <div className="text-xs font-mono text-slate-400">{new Date(log.timestamp).toLocaleDateString()}</div>
+                    <div className="text-xs font-mono text-slate-300">{new Date(log.timestamp).toLocaleTimeString()}</div>
                   </div>
                 </div>
               ))}
@@ -105,10 +105,10 @@ export const AdminCommandCentre = () => {
 
         {/* Pending Actions Feed */}
         <div className="space-y-6">
-          <div className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden">
+          <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
             <div className="p-6 border-b border-slate-50 flex items-center justify-between">
-              <h3 className="font-black text-slate-900 uppercase tracking-widest text-xs">Pending Actions</h3>
-              <span className="bg-red-600 text-white text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest">12 Alerts</span>
+              <h3 className="font-semibold text-slate-900 uppercase tracking-widest text-xs">Pending Actions</h3>
+              <span className="bg-red-600 text-white text-xs font-semibold px-2 py-0.5 rounded-full uppercase tracking-widest">12 Alerts</span>
             </div>
             <div className="p-4 space-y-3">
               {pendingActions.map((action) => (
@@ -119,29 +119,29 @@ export const AdminCommandCentre = () => {
                 >
                   <div className="absolute top-0 left-0 w-1 h-full bg-tata-blue opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex justify-between items-start mb-2">
-                    <span className={`text-[8px] font-black px-1.5 py-0.5 rounded uppercase tracking-widest ${
+                    <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded uppercase tracking-widest ${
                       action.priority === "High" ? "bg-red-100 text-red-600" : 
                       action.priority === "Medium" ? "bg-orange-100 text-orange-600" : "bg-blue-100 text-blue-600"
                     }`}>
                       {action.priority} Priority
                     </span>
-                    <span className="text-[10px] font-mono text-slate-400">{action.time}</span>
+                    <span className="text-xs font-mono text-slate-400">{action.time}</span>
                   </div>
                   <div className="text-xs font-bold text-slate-900 group-hover:text-tata-blue transition-colors">{action.title}</div>
-                  <div className="text-[10px] text-slate-400 mt-1 uppercase tracking-widest">{action.type}</div>
+                  <div className="text-xs text-slate-400 mt-1 uppercase tracking-widest">{action.type}</div>
                 </button>
               ))}
             </div>
             <div className="p-4 border-t border-slate-50">
-              <button className="w-full py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-tata-blue transition-colors">
+              <button className="w-full py-3 text-xs font-semibold text-slate-400 uppercase tracking-widest hover:text-tata-blue transition-colors">
                 View All Actions
               </button>
             </div>
           </div>
 
-          <div className="bg-slate-900 rounded-xl text-white p-6 shadow-xl relative overflow-hidden">
+          <div className="bg-slate-900 rounded-2xl text-white p-6 shadow-xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-tata-blue/20 rounded-full -mr-16 -mt-16 blur-3xl" />
-            <h4 className="text-[10px] font-black text-tata-cyan uppercase tracking-widest mb-4 relative z-10">Admin Quick Links</h4>
+            <h4 className="text-xs font-semibold text-tata-cyan uppercase tracking-widest mb-4 relative z-10">Admin Quick Links</h4>
             <div className="space-y-3 relative z-10">
               <button className="w-full flex items-center justify-between text-xs font-bold text-slate-300 hover:text-white transition-colors group">
                 Generate Edition Report <ExternalLink size={12} className="group-hover:translate-x-1 transition-transform" />

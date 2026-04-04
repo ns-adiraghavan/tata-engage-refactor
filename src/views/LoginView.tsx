@@ -19,7 +19,7 @@ const LoginView = () => {
     <motion.div 
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
-      className="w-full max-w-md glass rounded-[2.5rem] p-10 relative z-10"
+      className="w-full max-w-md glass rounded-3xl p-10 relative z-10"
     >
       <div className="text-center mb-10">
         <div className="flex justify-center mb-4">
@@ -41,7 +41,7 @@ const LoginView = () => {
           navigate("dashboard");
           triggerToast("Login Successful! Welcome back, Priya.");
         }}
-        className="w-full flex items-center justify-center gap-3 bg-[#003580] text-white py-4 rounded-xl font-bold hover:bg-[#002a66] transition-all mb-6 cursor-pointer shadow-lg shadow-blue-900/20"
+        className="w-full flex items-center justify-center gap-3 bg-[#003580] text-white py-4 rounded-2xl font-bold hover:bg-[#002a66] transition-all mb-6 cursor-pointer shadow-lg shadow-blue-900/20"
       >
         <ShieldCheck size={20} />
         Tata Employee SSO
@@ -54,7 +54,7 @@ const LoginView = () => {
           navigate("spoc-dashboard");
           triggerToast("Login Successful! Welcome back, Rohan.");
         }}
-        className="w-full flex items-center justify-center gap-3 bg-[#00b4d8] text-tata-blue py-4 rounded-xl font-bold hover:bg-[#00a0c2] transition-all mb-6 cursor-pointer shadow-lg shadow-cyan-500/20"
+        className="w-full flex items-center justify-center gap-3 bg-[#00b4d8] text-tata-blue py-4 rounded-2xl font-bold hover:bg-[#00a0c2] transition-all mb-6 cursor-pointer shadow-lg shadow-cyan-500/20"
       >
         <Building2 size={20} />
         Login as SPOC (Rohan Desai)
@@ -67,7 +67,7 @@ const LoginView = () => {
           navigate("admin-dashboard");
           triggerToast("Login Successful! Welcome, Vikram Nair.");
         }}
-        className="w-full flex items-center justify-center gap-3 bg-zinc-900 text-white py-4 rounded-xl font-bold hover:bg-zinc-800 transition-all mb-6 cursor-pointer shadow-lg shadow-zinc-900/20"
+        className="w-full flex items-center justify-center gap-3 bg-zinc-900 text-white py-4 rounded-2xl font-bold hover:bg-zinc-800 transition-all mb-6 cursor-pointer shadow-lg shadow-zinc-900/20"
       >
         <ShieldCheck size={20} />
         Login as Admin (Vikram Nair)

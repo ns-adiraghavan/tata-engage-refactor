@@ -156,7 +156,7 @@ const NGODashboardView = () => {
             <div className="flex gap-4">
               <button 
                 onClick={() => setShowCloneModal(true)}
-                className="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-xl font-bold transition-all flex items-center gap-2 backdrop-blur-md border border-white/10 cursor-pointer"
+                className="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-lg font-bold transition-all flex items-center gap-2 backdrop-blur-md border border-white/10 cursor-pointer"
               >
                 <Copy size={20} /> Create from Previous
               </button>
@@ -165,7 +165,7 @@ const NGODashboardView = () => {
                   setClonedProject(null);
                   navigate("create-project");
                 }}
-                className="bg-tata-cyan text-tata-blue px-6 py-3 rounded-xl font-bold hover:bg-white transition-all flex items-center gap-2 cursor-pointer"
+                className="bg-tata-cyan text-tata-blue px-6 py-3 rounded-lg font-bold hover:bg-white transition-all flex items-center gap-2 cursor-pointer"
               >
                 <Plus size={20} /> Create New Project
               </button>
@@ -203,7 +203,7 @@ const NGODashboardView = () => {
                       setActiveProject(project);
                       navigate("project-feedback");
                     }}
-                    className="bg-amber-600 text-white px-6 py-3 rounded-xl text-sm font-bold hover:bg-amber-700 transition-all cursor-pointer"
+                    className="bg-amber-600 text-white px-6 py-3 rounded-lg text-sm font-bold hover:bg-amber-700 transition-all cursor-pointer"
                   >
                     Complete Feedback
                   </button>
@@ -238,7 +238,7 @@ const NGODashboardView = () => {
                     navigate("active-project-management");
                   }
                 }}
-                className="px-4 py-2 bg-red-600 text-white text-xs font-bold rounded-xl hover:bg-red-700 transition-all cursor-pointer"
+                className="px-4 py-2 bg-red-600 text-white text-xs font-bold rounded-lg hover:bg-red-700 transition-all cursor-pointer"
               >
                 Review Now
               </button>
@@ -250,21 +250,21 @@ const NGODashboardView = () => {
           
           {/* Project Management Panel */}
           <div className="lg:col-span-2 space-y-8">
-            <div className="glass rounded-[2.5rem] p-8 shadow-xl">
+            <div className="glass rounded-3xl p-8 shadow-xl">
               <div className="flex justify-between items-center mb-8">
                 <h3 className="text-2xl font-bold text-tata-blue">Project Management</h3>
                 <div className="flex gap-2">
                   <button 
                     onClick={() => setActiveTab("projects")}
-                    className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${activeTab === "projects" ? "bg-tata-blue text-white" : "bg-slate-100 text-slate-500 hover:bg-slate-200"}`}
+                    className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${activeTab === "projects" ? "bg-tata-blue text-white" : "bg-slate-100 text-slate-500 hover:bg-slate-200"}`}
                   >
                     Projects
                   </button>
                   <button 
                     onClick={() => setActiveTab("applications")}
-                    className={`px-4 py-2 rounded-xl text-sm font-bold transition-all flex items-center gap-2 ${activeTab === "applications" ? "bg-tata-blue text-white" : "bg-slate-100 text-slate-500 hover:bg-slate-200"}`}
+                    className={`px-4 py-2 rounded-lg text-sm font-bold transition-all flex items-center gap-2 ${activeTab === "applications" ? "bg-tata-blue text-white" : "bg-slate-100 text-slate-500 hover:bg-slate-200"}`}
                   >
-                    Applications <span className="bg-red-500 text-white text-[10px] w-5 h-5 flex items-center justify-center rounded-full">{ANJALI_MEHTA.pendingApplications}</span>
+                    Applications <span className="bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">{ANJALI_MEHTA.pendingApplications}</span>
                   </button>
                 </div>
               </div>
@@ -276,7 +276,7 @@ const NGODashboardView = () => {
                       <div className="flex flex-col md:flex-row justify-between gap-4">
                         <div className="flex-1">
                           <div className="flex items-center gap-3 mb-2">
-                            <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
+                            <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
                               project.status === 'Active' ? 'bg-green-100 text-green-700' :
                               project.status === 'Under Review' ? 'bg-amber-100 text-amber-700' :
                               project.status === 'Draft' ? 'bg-slate-100 text-slate-600' :
@@ -294,7 +294,7 @@ const NGODashboardView = () => {
                           </div>
                         </div>
                         <div className="flex items-center gap-3">
-                          <button className="p-3 hover:bg-white rounded-xl text-slate-400 hover:text-tata-blue transition-all shadow-sm border border-transparent hover:border-slate-100 cursor-pointer">
+                          <button className="p-3 hover:bg-white rounded-lg text-slate-400 hover:text-tata-blue transition-all shadow-sm border border-transparent hover:border-slate-100 cursor-pointer">
                             <Edit2 size={18} />
                           </button>
                           <button 
@@ -318,8 +318,8 @@ const NGODashboardView = () => {
                       {/* Visual Pipeline */}
                       <div className="mt-6 pt-6 border-t border-slate-100">
                         <div className="flex justify-between items-center mb-2">
-                          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Project Lifecycle</span>
-                          <span className="text-[10px] font-bold text-tata-blue uppercase tracking-widest">
+                          <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Project Lifecycle</span>
+                          <span className="text-xs font-bold text-tata-blue uppercase tracking-widest">
                             {project.status === 'Closed – Certified' ? '100% Complete' : '75% Complete'}
                           </span>
                         </div>
@@ -331,7 +331,7 @@ const NGODashboardView = () => {
                         </div>
                         <div className="flex justify-between mt-2">
                           {["Draft", "Review", "Execution", "Closing"].map((stage, idx) => (
-                            <span key={idx} className={`text-[9px] font-bold uppercase ${
+                            <span key={idx} className={`text-xs font-bold uppercase ${
                               (project.status === 'Closed – Certified' && stage === 'Closing') || project.stage === stage ? 'text-tata-blue' : 'text-slate-400'
                             }`}>
                               {stage}
@@ -387,7 +387,7 @@ const NGODashboardView = () => {
                                   <div className="flex items-center gap-2 mb-1">
                                     <h4 className="font-bold text-slate-800">{applicant.name}</h4>
                                     {applicant.isReturning && (
-                                      <span className="bg-amber-100 text-amber-700 text-[9px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
+                                      <span className="bg-amber-100 text-amber-700 text-xs font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
                                         <Star size={10} fill="currentColor" /> Returning Volunteer
                                       </span>
                                     )}
@@ -395,14 +395,14 @@ const NGODashboardView = () => {
                                   <p className="text-xs text-slate-500 mb-3 line-clamp-1">{applicant.experience}</p>
                                   <div className="flex flex-wrap gap-1">
                                     {applicant.skills.map((skill, i) => (
-                                      <span key={i} className="text-[9px] font-bold bg-slate-100 text-slate-500 px-2 py-0.5 rounded uppercase tracking-wider">{skill}</span>
+                                      <span key={i} className="text-xs font-bold bg-slate-100 text-slate-500 px-2 py-0.5 rounded uppercase tracking-wider">{skill}</span>
                                     ))}
                                   </div>
                                 </div>
                               </div>
                               <div className="flex flex-col items-end justify-between gap-4">
                                 <div className="text-right">
-                                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Match Score</div>
+                                  <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Match Score</div>
                                   <div className="text-2xl font-black text-tata-blue">{applicant.matchPercentage}%</div>
                                 </div>
                                 <div className="flex gap-2">
@@ -417,7 +417,7 @@ const NGODashboardView = () => {
                                   </button>
                                   <button 
                                     onClick={() => handleAccept(applicant.id)}
-                                    className="bg-zinc-900 text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-tata-blue transition-all cursor-pointer"
+                                    className="bg-zinc-900 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-tata-blue transition-all cursor-pointer"
                                   >
                                     Accept
                                   </button>
@@ -439,13 +439,13 @@ const NGODashboardView = () => {
                             placeholder="Search by name or skill..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full pl-10 pr-4 py-2 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-tata-blue/20"
+                            className="w-full pl-10 pr-4 py-2 bg-white border border-slate-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-tata-blue/20"
                           />
                         </div>
                         <select 
                           value={filterSkill}
                           onChange={(e) => setFilterSkill(e.target.value)}
-                          className="px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none"
+                          className="px-4 py-2 bg-white border border-slate-200 rounded-2xl text-sm focus:outline-none"
                         >
                           <option value="">All Skills</option>
                           <option value="Finance">Finance</option>
@@ -456,7 +456,7 @@ const NGODashboardView = () => {
                         <select 
                           value={filterCity}
                           onChange={(e) => setFilterCity(e.target.value)}
-                          className="px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none"
+                          className="px-4 py-2 bg-white border border-slate-200 rounded-2xl text-sm focus:outline-none"
                         >
                           <option value="">All Cities</option>
                           <option value="Mumbai">Mumbai</option>
@@ -476,7 +476,7 @@ const NGODashboardView = () => {
                           <span className="text-sm font-bold">{selectedApplicants.length} volunteers selected</span>
                           <div className="flex gap-3">
                             <button onClick={() => setSelectedApplicants([])} className="text-xs font-bold hover:underline">Cancel</button>
-                            <button onClick={handleBulkAccept} className="bg-tata-cyan text-tata-blue px-6 py-2 rounded-xl text-xs font-bold">Bulk Accept</button>
+                            <button onClick={handleBulkAccept} className="bg-tata-cyan text-tata-blue px-6 py-2 rounded-lg text-xs font-bold">Bulk Accept</button>
                           </div>
                         </motion.div>
                       )}
@@ -499,7 +499,7 @@ const NGODashboardView = () => {
                               </div>
                               <div>
                                 <h4 className="font-bold text-slate-800 text-sm">{applicant.name}</h4>
-                                <div className="flex items-center gap-2 text-[10px] text-slate-500">
+                                <div className="flex items-center gap-2 text-xs text-slate-500">
                                   <span>{applicant.city}</span>
                                   <span>•</span>
                                   <span>{applicant.availability}</span>
@@ -507,7 +507,7 @@ const NGODashboardView = () => {
                               </div>
                             </div>
                             <div className="flex items-center gap-3">
-                              <span className={`px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider ${
+                              <span className={`px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider ${
                                 applicant.status === 'Matched' ? 'bg-green-100 text-green-700' :
                                 applicant.status === 'Rejected' ? 'bg-red-100 text-red-700' :
                                 applicant.status === 'Fulfilled' ? 'bg-slate-100 text-slate-500' :
@@ -545,7 +545,7 @@ const NGODashboardView = () => {
                         <p className="text-xs text-slate-400 italic">No decisions logged yet.</p>
                       ) : (
                         auditLog.map(log => (
-                          <div key={log.id} className="flex items-center justify-between text-xs p-3 bg-slate-50 rounded-xl border border-slate-100">
+                          <div key={log.id} className="flex items-center justify-between text-xs p-3 bg-slate-50 rounded-2xl border border-slate-100">
                             <div className="flex items-center gap-3">
                               <span className={`w-2 h-2 rounded-full ${log.action.includes('Accepted') ? 'bg-green-500' : 'bg-red-500'}`} />
                               <span className="font-bold text-slate-700">{log.volunteer}</span>
@@ -562,7 +562,7 @@ const NGODashboardView = () => {
             </div>
 
             {/* Coordinator Management Section */}
-            <div className="glass rounded-[2.5rem] p-8 shadow-xl">
+            <div className="glass rounded-3xl p-8 shadow-xl">
               <div className="flex justify-between items-center mb-8">
                 <div>
                   <h3 className="text-2xl font-bold text-tata-blue">Coordinator Management</h3>
@@ -580,14 +580,14 @@ const NGODashboardView = () => {
                 {coordinators.map(coord => (
                   <div key={coord.id} className="p-5 rounded-2xl bg-slate-50 border border-slate-100 flex justify-between items-center">
                     <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-tata-blue shadow-sm">
+                      <div className="w-10 h-10 rounded-2xl bg-white flex items-center justify-center text-tata-blue shadow-sm">
                         <User size={20} />
                       </div>
                       <div>
                         <h4 className="font-bold text-slate-800 text-sm">{coord.name}</h4>
                         <div className="flex items-center gap-2">
-                          <span className="text-[10px] font-bold uppercase text-tata-cyan">{coord.role}</span>
-                          <span className="text-[10px] text-slate-400">{coord.email}</span>
+                          <span className="text-xs font-bold uppercase text-tata-cyan">{coord.role}</span>
+                          <span className="text-xs text-slate-400">{coord.email}</span>
                         </div>
                       </div>
                     </div>
@@ -646,7 +646,7 @@ const NGODashboardView = () => {
           {/* Sidebar Stats & Shortlists */}
           <div className="space-y-8">
             {/* Application Queue Summary */}
-            <div className="bg-white rounded-[2.5rem] p-8 shadow-xl border border-slate-100">
+            <div className="bg-white rounded-3xl p-8 shadow-xl border border-slate-100">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="font-bold text-slate-800">Application Queue</h3>
                 <span className="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full">8 Pending</span>
@@ -663,28 +663,28 @@ const NGODashboardView = () => {
                 <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
                   <div className="h-full bg-tata-cyan w-2/3" />
                 </div>
-                <p className="text-[10px] text-slate-400 text-center">65% of applications reviewed this week</p>
+                <p className="text-xs text-slate-400 text-center">65% of applications reviewed this week</p>
               </div>
             </div>
 
             {/* Volunteer Shortlists */}
-            <div className="bg-white rounded-[2.5rem] p-8 shadow-xl border border-slate-100">
+            <div className="bg-white rounded-3xl p-8 shadow-xl border border-slate-100">
               <h3 className="font-bold text-slate-800 mb-6">Volunteer Shortlists</h3>
               <div className="space-y-6">
                 {ANJALI_MEHTA.projects.filter(p => p.volunteers > 0).map(project => (
                   <div key={project.id}>
                     <div className="flex justify-between items-center mb-3">
                       <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest truncate max-w-[150px]">{project.title}</h4>
-                      <button className="text-tata-blue text-[10px] font-bold hover:underline cursor-pointer">View All</button>
+                      <button className="text-tata-blue text-xs font-bold hover:underline cursor-pointer">View All</button>
                     </div>
                     <div className="flex -space-x-3">
                       {[1, 2, 3, 4].slice(0, project.volunteers).map(i => (
-                        <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-slate-100 flex items-center justify-center text-[10px] font-bold text-slate-600">
+                        <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-slate-100 flex items-center justify-center text-xs font-bold text-slate-600">
                           V{i}
                         </div>
                       ))}
                       {project.volunteers > 4 && (
-                        <div className="w-10 h-10 rounded-full border-2 border-white bg-tata-blue text-white flex items-center justify-center text-[10px] font-bold">
+                        <div className="w-10 h-10 rounded-full border-2 border-white bg-tata-blue text-white flex items-center justify-center text-xs font-bold">
                           +{project.volunteers - 4}
                         </div>
                       )}
@@ -695,16 +695,16 @@ const NGODashboardView = () => {
             </div>
 
             {/* Quick Actions */}
-            <div className="bg-gradient-to-br from-tata-blue to-blue-900 rounded-[2.5rem] p-8 text-white shadow-xl">
+            <div className="bg-gradient-to-br from-tata-blue to-blue-900 rounded-3xl p-8 text-white shadow-xl">
               <h3 className="font-bold mb-6">Quick Actions</h3>
               <div className="space-y-3">
-                <button className="w-full py-3 px-4 bg-white/10 hover:bg-white/20 rounded-xl text-sm font-bold flex items-center justify-between transition-all cursor-pointer">
+                <button className="w-full py-3 px-4 bg-white/10 hover:bg-white/20 rounded-lg text-sm font-bold flex items-center justify-between transition-all cursor-pointer">
                   Download All CVs <ArrowRight size={16} />
                 </button>
-                <button className="w-full py-3 px-4 bg-white/10 hover:bg-white/20 rounded-xl text-sm font-bold flex items-center justify-between transition-all cursor-pointer">
+                <button className="w-full py-3 px-4 bg-white/10 hover:bg-white/20 rounded-lg text-sm font-bold flex items-center justify-between transition-all cursor-pointer">
                   Email Selected Volunteers <ArrowRight size={16} />
                 </button>
-                <button className="w-full py-3 px-4 bg-white/10 hover:bg-white/20 rounded-xl text-sm font-bold flex items-center justify-between transition-all cursor-pointer">
+                <button className="w-full py-3 px-4 bg-white/10 hover:bg-white/20 rounded-lg text-sm font-bold flex items-center justify-between transition-all cursor-pointer">
                   Schedule Interviews <ArrowRight size={16} />
                 </button>
               </div>
@@ -729,7 +729,7 @@ const NGODashboardView = () => {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-2xl bg-white rounded-[3rem] shadow-2xl overflow-hidden"
+              className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl overflow-hidden"
             >
               <div className="p-8 bg-tata-blue text-white flex justify-between items-center">
                 <div>
@@ -750,8 +750,8 @@ const NGODashboardView = () => {
                     <div className="flex justify-between items-start">
                       <div>
                         <div className="flex items-center gap-2 mb-2">
-                          <span className="text-[10px] font-bold text-tata-blue bg-tata-blue/5 px-2 py-0.5 rounded uppercase tracking-wider">Edition 2025</span>
-                          <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${
+                          <span className="text-xs font-bold text-tata-blue bg-tata-blue/5 px-2 py-0.5 rounded uppercase tracking-wider">Edition 2025</span>
+                          <span className={`px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider ${
                             project.status === 'Active' ? 'bg-green-100 text-green-700' :
                             project.status === 'Under Review' ? 'bg-amber-100 text-amber-700' :
                             'bg-slate-100 text-slate-600'
@@ -790,11 +790,11 @@ const NGODashboardView = () => {
                 <h3 className="text-2xl font-bold text-slate-800 mb-1">{selectedApplicant.name}</h3>
                 <p className="text-slate-500 flex items-center gap-2 text-sm"><Mail size={14} /> {selectedApplicant.email}</p>
                 <div className="flex items-center gap-2 mt-3">
-                  <span className="bg-tata-cyan/10 text-tata-cyan text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                  <span className="bg-tata-cyan/10 text-tata-cyan text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
                     {selectedApplicant.matchPercentage}% Match
                   </span>
                   {selectedApplicant.isReturning && (
-                    <span className="bg-amber-100 text-amber-700 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                    <span className="bg-amber-100 text-amber-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
                       Returning
                     </span>
                   )}
@@ -804,27 +804,27 @@ const NGODashboardView = () => {
 
             <div className="grid grid-cols-2 gap-6">
               <div className="space-y-1">
-                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Location</label>
+                <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Location</label>
                 <p className="text-sm font-medium text-slate-700 flex items-center gap-2"><MapPin size={14} /> {selectedApplicant.city}</p>
               </div>
               <div className="space-y-1">
-                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Availability</label>
+                <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Availability</label>
                 <p className="text-sm font-medium text-slate-700 flex items-center gap-2"><Clock size={14} /> {selectedApplicant.availability}</p>
               </div>
             </div>
 
             <div className="space-y-4">
-              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block">Experience Summary</label>
+              <label className="text-xs font-bold text-slate-400 uppercase tracking-widest block">Experience Summary</label>
               <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 text-sm text-slate-600 leading-relaxed">
                 {selectedApplicant.experience}
               </div>
             </div>
 
             <div className="space-y-4">
-              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block">Skills & Expertise</label>
+              <label className="text-xs font-bold text-slate-400 uppercase tracking-widest block">Skills & Expertise</label>
               <div className="flex flex-wrap gap-2">
                 {selectedApplicant.skills.map((skill: string, i: number) => (
-                  <span key={i} className="px-4 py-2 bg-white border border-slate-200 rounded-xl text-xs font-bold text-slate-600">
+                  <span key={i} className="px-4 py-2 bg-white border border-slate-200 rounded-2xl text-xs font-bold text-slate-600">
                     {skill}
                   </span>
                 ))}
@@ -832,7 +832,7 @@ const NGODashboardView = () => {
             </div>
 
             <div className="space-y-4">
-              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block">Languages</label>
+              <label className="text-xs font-bold text-slate-400 uppercase tracking-widest block">Languages</label>
               <div className="flex flex-wrap gap-2">
                 {selectedApplicant.languages.map((lang: string, i: number) => (
                   <span key={i} className="px-3 py-1 bg-slate-100 text-slate-500 rounded-lg text-xs font-medium">

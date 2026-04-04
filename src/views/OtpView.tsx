@@ -9,7 +9,7 @@ const OtpView = () => {
     <motion.div 
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
-      className="w-full max-w-md bg-white rounded-[2.5rem] shadow-xl p-10 text-center"
+      className="w-full max-w-md bg-white rounded-3xl shadow-xl p-10 text-center"
     >
       <div className="w-20 h-20 bg-tata-cyan/10 text-tata-cyan rounded-full flex items-center justify-center mx-auto mb-8">
         {otpChannel === "email" ? <Mail size={40} /> : <Globe size={40} />}
@@ -35,7 +35,7 @@ const OtpView = () => {
                 next?.focus();
               }
             }}
-            className="w-12 h-16 text-center text-2xl font-bold bg-slate-50 border-2 border-slate-200 rounded-xl focus:border-tata-blue focus:outline-none transition-all"
+            className="w-12 h-16 text-center text-2xl font-bold bg-slate-50 border-2 border-slate-200 rounded-lg focus:border-tata-blue focus:outline-none transition-all"
           />
         ))}
       </div>

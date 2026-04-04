@@ -41,10 +41,10 @@ const ProfileView = () => {
               <h1 className="text-3xl font-bold text-zinc-900">{profileData.firstName} {profileData.lastName}</h1>
               <p className="text-slate-500">{profileData.designation} at {profileData.company}</p>
               <div className="flex gap-2 mt-2">
-                <span className="px-2 py-0.5 rounded bg-tata-blue/10 text-tata-blue text-[10px] font-bold uppercase tracking-wider">
+                <span className="px-2 py-0.5 rounded bg-tata-blue/10 text-tata-blue text-xs font-bold uppercase tracking-wider">
                   {userRole === 'ngo' ? 'NGO Partner' : 'Tata Employee'}
                 </span>
-                <span className="px-2 py-0.5 rounded bg-green-100 text-green-700 text-[10px] font-bold uppercase tracking-wider">Verified</span>
+                <span className="px-2 py-0.5 rounded bg-green-100 text-green-700 text-xs font-bold uppercase tracking-wider">Verified</span>
               </div>
             </div>
           </div>
@@ -87,7 +87,7 @@ const ProfileView = () => {
                   <div className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <label className="text-[10px] font-bold text-slate-400 uppercase">First Name</label>
+                        <label className="text-xs font-bold text-slate-400 uppercase">First Name</label>
                         {isEditing ? (
                           <input 
                             type="text" 
@@ -100,7 +100,7 @@ const ProfileView = () => {
                         )}
                       </div>
                       <div>
-                        <label className="text-[10px] font-bold text-slate-400 uppercase">Last Name</label>
+                        <label className="text-xs font-bold text-slate-400 uppercase">Last Name</label>
                         {isEditing ? (
                           <input 
                             type="text" 
@@ -114,7 +114,7 @@ const ProfileView = () => {
                       </div>
                     </div>
                     <div>
-                      <label className="text-[10px] font-bold text-slate-400 uppercase">Email Address</label>
+                      <label className="text-xs font-bold text-slate-400 uppercase">Email Address</label>
                       {isEditing ? (
                         <input 
                           type="email" 
@@ -128,7 +128,7 @@ const ProfileView = () => {
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <label className="text-[10px] font-bold text-slate-400 uppercase">Designation</label>
+                        <label className="text-xs font-bold text-slate-400 uppercase">Designation</label>
                         {isEditing ? (
                           <input 
                             type="text" 
@@ -141,7 +141,7 @@ const ProfileView = () => {
                         )}
                       </div>
                       <div>
-                        <label className="text-[10px] font-bold text-slate-400 uppercase">Organization</label>
+                        <label className="text-xs font-bold text-slate-400 uppercase">Organization</label>
                         {isEditing ? (
                           <input 
                             type="text" 
@@ -169,20 +169,20 @@ const ProfileView = () => {
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: i * 0.1 }}
-                            className="p-6 rounded-[2rem] bg-slate-50 border border-slate-100 flex flex-col items-center text-center group hover:bg-white hover:shadow-xl transition-all"
+                            className="p-6 rounded-3xl bg-slate-50 border border-slate-100 flex flex-col items-center text-center group hover:bg-white hover:shadow-xl transition-all"
                           >
                             <div className="w-16 h-16 rounded-2xl bg-white shadow-sm flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition-transform">
                               {badge.icon}
                             </div>
                             <h4 className="text-xs font-bold text-zinc-900 mb-1">{badge.name}</h4>
-                            <p className="text-[10px] text-slate-400 font-medium uppercase">{badge.date}</p>
+                            <p className="text-xs text-slate-400 font-medium uppercase">{badge.date}</p>
                           </motion.div>
                         ))}
                         {feedbackSubmitted && (
                           <motion.div 
                             initial={{ opacity: 0, scale: 0.5 }}
                             animate={{ opacity: 1, scale: 1 }}
-                            className="p-6 rounded-[2rem] bg-tata-cyan/5 border border-tata-cyan/20 flex flex-col items-center text-center relative overflow-hidden"
+                            className="p-6 rounded-3xl bg-tata-cyan/5 border border-tata-cyan/20 flex flex-col items-center text-center relative overflow-hidden"
                           >
                             <motion.div 
                               animate={{ opacity: [0, 1, 0], scale: [1, 1.5, 1] }}
@@ -193,7 +193,7 @@ const ProfileView = () => {
                               ⭐
                             </div>
                             <h4 className="text-xs font-bold text-tata-cyan mb-1 z-10">Feedback Star</h4>
-                            <p className="text-[10px] text-tata-cyan/60 font-medium uppercase z-10">April 2026</p>
+                            <p className="text-xs text-tata-cyan/60 font-medium uppercase z-10">April 2026</p>
                           </motion.div>
                         )}
                       </div>
@@ -206,20 +206,20 @@ const ProfileView = () => {
                         <motion.div 
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
-                          className="relative bg-zinc-900 rounded-[2.5rem] p-10 text-white overflow-hidden shadow-2xl"
+                          className="relative bg-zinc-900 rounded-3xl p-10 text-white overflow-hidden shadow-2xl"
                         >
                           <div className="absolute top-0 right-0 w-64 h-64 bg-tata-cyan/10 rounded-full -mr-32 -mt-32 blur-3xl" />
                           <div className="absolute bottom-0 left-0 w-64 h-64 bg-tata-purple/10 rounded-full -ml-32 -mb-32 blur-3xl" />
                           
                           <div className="relative z-10 flex flex-col md:flex-row gap-10 items-center">
-                            <div className="w-48 h-64 bg-white rounded-xl shadow-2xl flex flex-col p-4 text-zinc-900 shrink-0">
-                              <div className="text-[8px] font-bold text-tata-blue mb-4">TATA ENGAGE</div>
+                            <div className="w-48 h-64 bg-white rounded-2xl shadow-2xl flex flex-col p-4 text-zinc-900 shrink-0">
+                              <div className="text-[10px] font-bold text-tata-blue mb-4">TATA ENGAGE</div>
                               <div className="flex-1 flex flex-col items-center justify-center text-center">
                                 <div className="w-12 h-12 rounded-full bg-slate-50 flex items-center justify-center mb-4">
                                   <Award size={24} className="text-tata-blue" />
                                 </div>
-                                <div className="text-[10px] font-bold mb-1">CERTIFICATE OF COMPLETION</div>
-                                <div className="text-[8px] text-slate-400 mb-4">PROENGAGE EDITION 2025</div>
+                                <div className="text-xs font-bold mb-1">CERTIFICATE OF COMPLETION</div>
+                                <div className="text-[10px] text-slate-400 mb-4">PROENGAGE EDITION 2025</div>
                                 <div className="text-[12px] font-bold text-tata-blue mb-1">{user.firstName} {user.lastName}</div>
                                 <div className="text-[6px] text-slate-500 max-w-[100px]">For outstanding contribution to the Financial Literacy project.</div>
                               </div>
@@ -232,10 +232,10 @@ const ProfileView = () => {
                               <h4 className="text-2xl font-bold mb-4">Your Impact, Certified.</h4>
                               <p className="text-slate-400 text-sm mb-8 leading-relaxed">This certificate recognizes your commitment to social change and your contribution to the Tata Engage ecosystem.</p>
                               <div className="flex flex-wrap gap-4">
-                                <button className="bg-white text-zinc-900 py-3 px-8 rounded-xl font-bold text-sm flex items-center gap-2 hover:bg-tata-cyan transition-all cursor-pointer">
+                                <button className="bg-white text-zinc-900 py-3 px-8 rounded-lg font-bold text-sm flex items-center gap-2 hover:bg-tata-cyan transition-all cursor-pointer">
                                   <Download size={18} /> Download PDF
                                 </button>
-                                <button onClick={shareToLinkedIn} className="bg-white/10 hover:bg-white/20 text-white py-3 px-8 rounded-xl font-bold text-sm flex items-center gap-2 transition-all cursor-pointer">
+                                <button onClick={shareToLinkedIn} className="bg-white/10 hover:bg-white/20 text-white py-3 px-8 rounded-lg font-bold text-sm flex items-center gap-2 transition-all cursor-pointer">
                                   <Linkedin size={18} /> Share to LinkedIn
                                 </button>
                               </div>
@@ -261,8 +261,8 @@ const ProfileView = () => {
                       >
                         <div className="space-y-1">
                           <div className="flex items-center gap-2">
-                            <span className="text-[10px] font-bold text-tata-blue bg-tata-blue/10 px-2 py-0.5 rounded uppercase tracking-wider">AI Assistant</span>
-                            <span className="text-[10px] text-slate-400 font-medium">{log.timestamp}</span>
+                            <span className="text-xs font-bold text-tata-blue bg-tata-blue/10 px-2 py-0.5 rounded uppercase tracking-wider">AI Assistant</span>
+                            <span className="text-xs text-slate-400 font-medium">{log.timestamp}</span>
                           </div>
                           <h4 className="font-bold text-zinc-900 text-sm">Query: {log.query}</h4>
                           <p className="text-xs text-slate-500 italic">Summary: {log.summary}</p>
@@ -273,7 +273,7 @@ const ProfileView = () => {
                       </motion.div>
                     ))
                   ) : (
-                    <div className="text-center py-20 bg-slate-50 rounded-[2.5rem] border border-dashed border-slate-200">
+                    <div className="text-center py-20 bg-slate-50 rounded-3xl border border-dashed border-slate-200">
                       <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 text-slate-300">
                         <History size={32} />
                       </div>
@@ -288,40 +288,40 @@ const ProfileView = () => {
           <div className="space-y-12">
             {/* Stats/Sidebar */}
             {userRole === 'ngo' ? (
-              <section className="p-8 bg-zinc-900 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden">
+              <section className="p-8 bg-zinc-900 rounded-3xl text-white shadow-2xl relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-tata-blue/20 rounded-full -mr-16 -mt-16 blur-2xl" />
                 <h3 className="text-xs font-bold text-white/40 uppercase tracking-widest mb-8">Organization Stats</h3>
                 <div className="space-y-8">
                   <div>
                     <div className="text-3xl font-bold mb-1">{ngoData.projects.length}</div>
-                    <div className="text-[10px] text-white/60 font-bold uppercase tracking-wider">Total Projects</div>
+                    <div className="text-xs text-white/60 font-bold uppercase tracking-wider">Total Projects</div>
                   </div>
                   <div>
                     <div className="text-3xl font-bold mb-1">{ngoData.volunteers}</div>
-                    <div className="text-[10px] text-white/60 font-bold uppercase tracking-wider">Volunteers Engaged</div>
+                    <div className="text-xs text-white/60 font-bold uppercase tracking-wider">Volunteers Engaged</div>
                   </div>
                   <div>
                     <div className="text-3xl font-bold mb-1">{ngoData.tier}</div>
-                    <div className="text-[10px] text-white/60 font-bold uppercase tracking-wider">NGO Tier Status</div>
+                    <div className="text-xs text-white/60 font-bold uppercase tracking-wider">NGO Tier Status</div>
                   </div>
                 </div>
               </section>
             ) : (
-              <section className="p-8 bg-zinc-900 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden">
+              <section className="p-8 bg-zinc-900 rounded-3xl text-white shadow-2xl relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-tata-blue/20 rounded-full -mr-16 -mt-16 blur-2xl" />
                 <h3 className="text-xs font-bold text-white/40 uppercase tracking-widest mb-8">Engagement Stats</h3>
                 <div className="space-y-8">
                   <div>
                     <div className="text-3xl font-bold mb-1">128</div>
-                    <div className="text-[10px] text-white/60 font-bold uppercase tracking-wider">Volunteering Hours</div>
+                    <div className="text-xs text-white/60 font-bold uppercase tracking-wider">Volunteering Hours</div>
                   </div>
                   <div>
                     <div className="text-3xl font-bold mb-1">4</div>
-                    <div className="text-[10px] text-white/60 font-bold uppercase tracking-wider">Projects Completed</div>
+                    <div className="text-xs text-white/60 font-bold uppercase tracking-wider">Projects Completed</div>
                   </div>
                   <div>
                     <div className="text-3xl font-bold mb-1">2,450</div>
-                    <div className="text-[10px] text-white/60 font-bold uppercase tracking-wider">Impact Points</div>
+                    <div className="text-xs text-white/60 font-bold uppercase tracking-wider">Impact Points</div>
                   </div>
                 </div>
               </section>

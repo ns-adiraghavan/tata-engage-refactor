@@ -75,7 +75,7 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
             <button onClick={() => setShowConfirmModal("extend")} className="btn-outline py-3 px-6 flex items-center gap-2 cursor-pointer">
               <History size={18} /> Request Extension
             </button>
-            <button onClick={() => setShowConfirmModal("close")} className="bg-red-500 text-white py-3 px-6 rounded-xl font-bold hover:bg-red-600 transition-all flex items-center gap-2 cursor-pointer">
+            <button onClick={() => setShowConfirmModal("close")} className="bg-red-500 text-white py-3 px-6 rounded-lg font-bold hover:bg-red-600 transition-all flex items-center gap-2 cursor-pointer">
               <StopCircle size={18} /> Close Project
             </button>
           </div>
@@ -87,7 +87,7 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-[2.5rem] p-8 shadow-xl border border-slate-100 relative overflow-hidden"
+              className="bg-white rounded-3xl p-8 shadow-xl border border-slate-100 relative overflow-hidden"
             >
               <div className="absolute top-0 right-0 p-8 opacity-5">
                 <Mail size={120} />
@@ -111,7 +111,7 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
             </motion.div>
 
             {/* M&E Tracker */}
-            <div className="bg-white rounded-[2.5rem] p-8 shadow-xl border border-slate-100">
+            <div className="bg-white rounded-3xl p-8 shadow-xl border border-slate-100">
               <div className="flex justify-between items-center mb-8">
                 <div>
                   <h3 className="text-2xl font-bold text-tata-blue">M&E Tracker</h3>
@@ -132,7 +132,7 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
                 {healthUpdates.map((update, idx) => (
                   <div key={idx} className="p-6 rounded-2xl bg-slate-50 border border-slate-100 flex justify-between items-center group">
                     <div className="flex items-center gap-4">
-                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
+                      <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
                         update.status === 'Updated' ? 'bg-green-100 text-green-600' :
                         update.status === 'At Risk' ? 'bg-red-100 text-red-600' :
                         'bg-slate-200 text-slate-400'
@@ -145,7 +145,7 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
+                      <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
                         update.status === 'Updated' ? 'bg-green-100 text-green-700' :
                         update.status === 'At Risk' ? 'bg-red-100 text-red-700' :
                         'bg-slate-200 text-slate-500'
@@ -167,7 +167,7 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
             </div>
 
             {/* Audit Trail */}
-            <div className="bg-white rounded-[2.5rem] p-8 shadow-xl border border-slate-100">
+            <div className="bg-white rounded-3xl p-8 shadow-xl border border-slate-100">
               <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
                 <History size={20} className="text-tata-blue" /> Project Audit Trail
               </h3>
@@ -200,7 +200,7 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
               <motion.div 
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="bg-gradient-to-br from-red-500 to-red-700 rounded-[2.5rem] p-8 text-white shadow-xl relative overflow-hidden"
+                className="bg-gradient-to-br from-red-500 to-red-700 rounded-3xl p-8 text-white shadow-xl relative overflow-hidden"
               >
                 <div className="absolute top-0 right-0 p-4 opacity-20">
                   <AlertTriangle size={80} />
@@ -208,13 +208,13 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
                 <div className="relative z-10">
                   <div className="flex items-center gap-2 mb-4">
                     <Sparkles size={20} className="text-red-200" />
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-red-100">AI Risk Flag (AI-05)</span>
+                    <span className="text-xs font-bold uppercase tracking-widest text-red-100">AI Risk Flag (AI-05)</span>
                   </div>
                   <h3 className="text-2xl font-bold mb-4 leading-tight">Project health flagged – review recommended</h3>
                   <p className="text-red-100 text-sm mb-6 opacity-90">
                     Our AI has detected a potential risk due to {healthUpdates.some(h => h.status === "At Risk") ? "a monthly health update marked 'At Risk'" : "an overdue health update for April"}.
                   </p>
-                  <button className="w-full py-3 bg-white text-red-600 rounded-xl font-bold text-sm hover:bg-red-50 transition-all cursor-pointer">
+                  <button className="w-full py-3 bg-white text-red-600 rounded-lg font-bold text-sm hover:bg-red-50 transition-all cursor-pointer">
                     Review Details
                   </button>
                 </div>
@@ -222,10 +222,10 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
             )}
 
             {/* Simulated SPOC Dashboard Panel */}
-            <div className="bg-zinc-900 rounded-[2.5rem] p-8 text-white shadow-xl">
+            <div className="bg-zinc-900 rounded-3xl p-8 text-white shadow-xl">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="font-bold">SPOC Dashboard</h3>
-                <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Simulated View</span>
+                <span className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Simulated View</span>
               </div>
               <div className="space-y-4">
                 <div className="p-4 bg-white/5 rounded-2xl border border-white/10">
@@ -235,18 +235,18 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
                     </div>
                     <div>
                       <p className="text-xs font-bold">Rahul Singh</p>
-                      <p className="text-[10px] text-zinc-500">Corporate SPOC</p>
+                      <p className="text-xs text-zinc-500">Corporate SPOC</p>
                     </div>
                   </div>
                   {hasRisk ? (
-                    <div className="flex items-start gap-3 p-3 bg-red-500/10 border border-red-500/20 rounded-xl">
+                    <div className="flex items-start gap-3 p-3 bg-red-500/10 border border-red-500/20 rounded-lg">
                       <AlertTriangle size={16} className="text-red-500 shrink-0 mt-0.5" />
-                      <p className="text-[10px] text-red-200 leading-relaxed">
+                      <p className="text-xs text-red-200 leading-relaxed">
                         Alert: {project?.title} health flagged. Action required.
                       </p>
                     </div>
                   ) : (
-                    <p className="text-[10px] text-zinc-400 italic">No active alerts for your projects.</p>
+                    <p className="text-xs text-zinc-400 italic">No active alerts for your projects.</p>
                   )}
                 </div>
                 <button className="w-full py-3 text-xs font-bold text-zinc-400 hover:text-white transition-colors cursor-pointer">
@@ -256,7 +256,7 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
             </div>
 
             {/* Project Quick Stats */}
-            <div className="bg-white rounded-[2.5rem] p-8 shadow-xl border border-slate-100">
+            <div className="bg-white rounded-3xl p-8 shadow-xl border border-slate-100">
               <h3 className="font-bold text-slate-800 mb-6">Project Progress</h3>
               <div className="space-y-6">
                 <div>
@@ -270,12 +270,12 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Volunteers</p>
-                    <p className="text-xl font-black text-slate-800">4/5</p>
+                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Volunteers</p>
+                    <p className="text-xl font-semibold text-slate-800">4/5</p>
                   </div>
                   <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Duration</p>
-                    <p className="text-xl font-black text-slate-800">2m left</p>
+                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Duration</p>
+                    <p className="text-xl font-semibold text-slate-800">2m left</p>
                   </div>
                 </div>
               </div>
@@ -299,7 +299,7 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-md bg-white rounded-[3rem] shadow-2xl p-10 text-center"
+              className="relative w-full max-w-md bg-white rounded-3xl shadow-2xl p-10 text-center"
             >
               <div className={`w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-8 ${
                 showConfirmModal === 'close' ? 'bg-red-100 text-red-500' : 'bg-amber-100 text-amber-500'
@@ -324,7 +324,7 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
                     const action = showConfirmModal === 'pause' ? 'Paused' : showConfirmModal === 'close' ? 'Closed' : 'Extension Requested';
                     handleStatusChange(status, action);
                   }}
-                  className={`flex-1 py-4 rounded-xl font-bold text-white transition-all cursor-pointer ${
+                  className={`flex-1 py-4 rounded-lg font-bold text-white transition-all cursor-pointer ${
                     showConfirmModal === 'close' ? 'bg-red-500 hover:bg-red-600' : 'bg-zinc-900 hover:bg-tata-blue'
                   }`}
                 >

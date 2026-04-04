@@ -79,7 +79,7 @@ export const NGOApprovalsPanel = ({ addAuditLog, triggerToast }: { addAuditLog: 
           <div className="relative group">
             <Filter size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-tata-blue transition-colors" />
             <select 
-              className="pl-10 pr-8 py-2.5 bg-slate-50 border border-slate-100 rounded-xl text-[10px] font-black uppercase tracking-widest outline-none focus:border-tata-blue focus:bg-white transition-all appearance-none cursor-pointer"
+              className="pl-10 pr-8 py-2.5 bg-slate-50 border border-slate-100 rounded-2xl text-xs font-semibold uppercase tracking-widest outline-none focus:border-tata-blue focus:bg-white transition-all appearance-none cursor-pointer"
               value={filterStatus}
               onChange={(e) => setFilterStatus(e.target.value)}
             >
@@ -94,7 +94,7 @@ export const NGOApprovalsPanel = ({ addAuditLog, triggerToast }: { addAuditLog: 
           <div className="relative group">
             <LayoutGrid size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-tata-blue transition-colors" />
             <select 
-              className="pl-10 pr-8 py-2.5 bg-slate-50 border border-slate-100 rounded-xl text-[10px] font-black uppercase tracking-widest outline-none focus:border-tata-blue focus:bg-white transition-all appearance-none cursor-pointer"
+              className="pl-10 pr-8 py-2.5 bg-slate-50 border border-slate-100 rounded-2xl text-xs font-semibold uppercase tracking-widest outline-none focus:border-tata-blue focus:bg-white transition-all appearance-none cursor-pointer"
               value={filterArea}
               onChange={(e) => setFilterArea(e.target.value)}
             >
@@ -115,7 +115,7 @@ export const NGOApprovalsPanel = ({ addAuditLog, triggerToast }: { addAuditLog: 
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-slate-50/50 border-b border-slate-50 text-[10px] font-black text-slate-400 uppercase tracking-widest">
+              <tr className="bg-slate-50/50 border-b border-slate-50 text-xs font-semibold text-slate-400 uppercase tracking-widest">
                 <th className="p-6">NGO Name</th>
                 <th className="p-6">Focus Area</th>
                 <th className="p-6">State</th>
@@ -133,14 +133,14 @@ export const NGOApprovalsPanel = ({ addAuditLog, triggerToast }: { addAuditLog: 
                   onClick={() => setSelectedNgo(ngo)}
                 >
                   <td className="p-6">
-                    <div className="text-xs font-black text-slate-900 group-hover:text-tata-blue transition-colors uppercase tracking-tight">{ngo.name}</div>
-                    <div className="text-[10px] text-slate-400 font-mono mt-0.5">{ngo.regNumber}</div>
+                    <div className="text-xs font-semibold text-slate-900 group-hover:text-tata-blue transition-colors uppercase tracking-tight">{ngo.name}</div>
+                    <div className="text-xs text-slate-400 font-mono mt-0.5">{ngo.regNumber}</div>
                   </td>
                   <td className="p-6">
-                    <span className="text-[10px] font-bold text-slate-600 bg-slate-100 px-2 py-1 rounded-lg uppercase tracking-widest">{ngo.focusArea}</span>
+                    <span className="text-xs font-bold text-slate-600 bg-slate-100 px-2 py-1 rounded-lg uppercase tracking-widest">{ngo.focusArea}</span>
                   </td>
                   <td className="p-6 text-xs font-bold text-slate-700">{ngo.state}</td>
-                  <td className="p-6 text-[10px] font-mono text-slate-400">{ngo.registeredDate}</td>
+                  <td className="p-6 text-xs font-mono text-slate-400">{ngo.registeredDate}</td>
                   <td className="p-6">
                     <div className="flex items-center gap-3">
                       <div className="w-16 h-1.5 bg-slate-100 rounded-full overflow-hidden shadow-inner">
@@ -151,11 +151,11 @@ export const NGOApprovalsPanel = ({ addAuditLog, triggerToast }: { addAuditLog: 
                           className={`h-full rounded-full ${ngo.aiScore > 7 ? 'bg-green-500' : ngo.aiScore > 4 ? 'bg-amber-500' : 'bg-red-500'}`} 
                         />
                       </div>
-                      <span className="text-[10px] font-black text-slate-900">{ngo.aiScore}/10</span>
+                      <span className="text-xs font-semibold text-slate-900">{ngo.aiScore}/10</span>
                     </div>
                   </td>
                   <td className="p-6">
-                    <span className={`px-3 py-1 text-[9px] font-black uppercase tracking-widest rounded-full shadow-sm border ${
+                    <span className={`px-3 py-1 text-xs font-semibold uppercase tracking-widest rounded-full shadow-sm border ${
                       ngo.status === "Approved" ? "bg-green-50 text-green-600 border-green-100" : 
                       ngo.status === "Pending" ? "bg-blue-50 text-blue-600 border-blue-100" : 
                       ngo.status === "Flagged" ? "bg-red-50 text-red-600 border-red-100 animate-pulse" : 
@@ -181,7 +181,7 @@ export const NGOApprovalsPanel = ({ addAuditLog, triggerToast }: { addAuditLog: 
                         </button>
                       </div>
                     ) : (
-                      <button className="text-[10px] font-black text-tata-blue uppercase tracking-widest hover:underline">Review Application</button>
+                      <button className="text-xs font-semibold text-tata-blue uppercase tracking-widest hover:underline">Review Application</button>
                     )}
                   </td>
                 </tr>
@@ -203,10 +203,10 @@ export const NGOApprovalsPanel = ({ addAuditLog, triggerToast }: { addAuditLog: 
             >
               <div className="p-6 border-b border-slate-200 flex justify-between items-center bg-slate-50">
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 bg-tata-blue text-white flex items-center justify-center font-black">AI</div>
+                  <div className="w-10 h-10 bg-tata-blue text-white flex items-center justify-center font-semibold">AI</div>
                   <div>
-                    <h3 className="text-sm font-black text-slate-900 uppercase tracking-widest">AI-03 Pre-Screen Summary</h3>
-                    <p className="text-[10px] text-slate-400 font-mono">Reviewing: {selectedNgo.name}</p>
+                    <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-widest">AI-03 Pre-Screen Summary</h3>
+                    <p className="text-xs text-slate-400 font-mono">Reviewing: {selectedNgo.name}</p>
                   </div>
                 </div>
                 <button onClick={() => setSelectedNgo(null)} className="p-2 hover:bg-slate-200 rounded-full transition-colors"><X size={20} /></button>
@@ -216,39 +216,39 @@ export const NGOApprovalsPanel = ({ addAuditLog, triggerToast }: { addAuditLog: 
                 {/* Left Panel: NGO Details */}
                 <div className="w-1/2 border-r border-slate-200 overflow-y-auto p-10 space-y-10">
                   <section className="space-y-6">
-                    <h4 className="text-[10px] font-black text-tata-blue uppercase tracking-widest border-b border-tata-blue/10 pb-2">NGO Profile Details</h4>
+                    <h4 className="text-xs font-semibold text-tata-blue uppercase tracking-widest border-b border-tata-blue/10 pb-2">NGO Profile Details</h4>
                     <div className="grid grid-cols-2 gap-8">
                       <div>
-                        <label className="text-[8px] font-black text-slate-400 uppercase tracking-widest block mb-1">NGO Name</label>
+                        <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest block mb-1">NGO Name</label>
                         <p className="text-sm font-bold text-slate-900">{selectedNgo.name}</p>
                       </div>
                       <div>
-                        <label className="text-[8px] font-black text-slate-400 uppercase tracking-widest block mb-1">Registration Number</label>
+                        <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest block mb-1">Registration Number</label>
                         <p className="text-sm font-mono text-slate-700">{selectedNgo.regNumber}</p>
                       </div>
                       <div>
-                        <label className="text-[8px] font-black text-slate-400 uppercase tracking-widest block mb-1">Focus Areas</label>
+                        <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest block mb-1">Focus Areas</label>
                         <p className="text-sm font-bold text-slate-900">{selectedNgo.focusArea}</p>
                       </div>
                       <div>
-                        <label className="text-[8px] font-black text-slate-400 uppercase tracking-widest block mb-1">Website</label>
+                        <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest block mb-1">Website</label>
                         <a href="#" className="text-sm font-bold text-tata-blue hover:underline flex items-center gap-1">
                           {selectedNgo.website} <ExternalLink size={12} />
                         </a>
                       </div>
                       <div>
-                        <label className="text-[8px] font-black text-slate-400 uppercase tracking-widest block mb-1">Coordinator Name</label>
+                        <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest block mb-1">Coordinator Name</label>
                         <p className="text-sm font-bold text-slate-900">{selectedNgo.coordinator}</p>
                       </div>
                       <div>
-                        <label className="text-[8px] font-black text-slate-400 uppercase tracking-widest block mb-1">Registered Date</label>
+                        <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest block mb-1">Registered Date</label>
                         <p className="text-sm font-mono text-slate-700">{selectedNgo.registeredDate}</p>
                       </div>
                     </div>
                   </section>
 
                   <section className="space-y-6">
-                    <h4 className="text-[10px] font-black text-tata-blue uppercase tracking-widest border-b border-tata-blue/10 pb-2">Uploaded Documents</h4>
+                    <h4 className="text-xs font-semibold text-tata-blue uppercase tracking-widest border-b border-tata-blue/10 pb-2">Uploaded Documents</h4>
                     <div className="grid grid-cols-1 gap-3">
                       {selectedNgo.docs.map((doc: string, i: number) => (
                         <button key={i} className="flex items-center justify-between p-4 bg-slate-50 border border-slate-100 hover:border-tata-blue/30 transition-all group">
@@ -269,9 +269,9 @@ export const NGOApprovalsPanel = ({ addAuditLog, triggerToast }: { addAuditLog: 
                     <div className="flex justify-between items-center">
                       <div className="flex items-center gap-2">
                         <Sparkles size={18} className="text-tata-cyan" />
-                        <h4 className="text-[10px] font-black text-slate-900 uppercase tracking-widest">AI-03 Analysis</h4>
+                        <h4 className="text-xs font-semibold text-slate-900 uppercase tracking-widest">AI-03 Analysis</h4>
                       </div>
-                      <div className={`px-3 py-1 rounded-full text-[8px] font-black uppercase tracking-widest ${
+                      <div className={`px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-widest ${
                         selectedNgo.confidence === "High" ? "bg-green-100 text-green-600" : "bg-amber-100 text-amber-600"
                       }`}>
                         Confidence: {selectedNgo.confidence}
@@ -280,35 +280,35 @@ export const NGOApprovalsPanel = ({ addAuditLog, triggerToast }: { addAuditLog: 
 
                     <div className="grid grid-cols-2 gap-6">
                       <div className="p-4 bg-slate-50 border border-slate-100">
-                        <div className="text-[8px] font-black text-slate-400 uppercase tracking-widest mb-1">Completeness Score</div>
+                        <div className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest mb-1">Completeness Score</div>
                         <div className="text-2xl font-black text-slate-900">{selectedNgo.completeness}</div>
                       </div>
                       <div className="p-4 bg-slate-50 border border-slate-100">
-                        <div className="text-[8px] font-black text-slate-400 uppercase tracking-widest mb-1">AI Risk Score</div>
+                        <div className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest mb-1">AI Risk Score</div>
                         <div className="text-2xl font-black text-red-600">{(10 - selectedNgo.aiScore).toFixed(1)}/10</div>
                       </div>
                     </div>
 
                     <div className="space-y-4">
-                      <div className="text-[8px] font-black text-slate-400 uppercase tracking-widest">Risk Flags</div>
+                      <div className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest">Risk Flags</div>
                       {selectedNgo.riskFlags.length > 0 ? (
                         <div className="space-y-2">
                           {selectedNgo.riskFlags.map((flag: string, i: number) => (
-                            <div key={i} className="flex items-center gap-2 text-red-600 bg-red-50 p-2 text-[10px] font-bold">
+                            <div key={i} className="flex items-center gap-2 text-red-600 bg-red-50 p-2 text-xs font-bold">
                               <AlertTriangle size={12} />
                               {flag}
                             </div>
                           ))}
                         </div>
                       ) : (
-                        <div className="text-[10px] text-green-600 font-bold flex items-center gap-2">
+                        <div className="text-xs text-green-600 font-bold flex items-center gap-2">
                           <CheckCircle2 size={12} /> No critical risk flags detected
                         </div>
                       )}
                     </div>
 
                     <div className="space-y-4">
-                      <div className="text-[8px] font-black text-slate-400 uppercase tracking-widest">AI Profile Summary</div>
+                      <div className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest">AI Profile Summary</div>
                       <p className="text-xs text-slate-600 leading-relaxed font-medium italic">
                         "{selectedNgo.aiSummary}"
                       </p>
@@ -317,13 +317,13 @@ export const NGOApprovalsPanel = ({ addAuditLog, triggerToast }: { addAuditLog: 
                     <div className="pt-8 border-t border-slate-100 flex gap-4">
                       <button 
                         onClick={() => handleApprove(selectedNgo.id)}
-                        className="flex-1 py-4 bg-green-600 text-white text-[10px] font-black uppercase tracking-widest hover:bg-green-700 transition-all shadow-lg shadow-green-600/20"
+                        className="flex-1 py-4 bg-green-600 text-white text-xs font-semibold uppercase tracking-widest hover:bg-green-700 transition-all shadow-lg shadow-green-600/20"
                       >
                         Approve NGO
                       </button>
                       <button 
                         onClick={() => setShowRejectModal(true)}
-                        className="flex-1 py-4 bg-red-600 text-white text-[10px] font-black uppercase tracking-widest hover:bg-red-700 transition-all shadow-lg shadow-red-600/20"
+                        className="flex-1 py-4 bg-red-600 text-white text-xs font-semibold uppercase tracking-widest hover:bg-red-700 transition-all shadow-lg shadow-red-600/20"
                       >
                         Reject Application
                       </button>
@@ -332,7 +332,7 @@ export const NGOApprovalsPanel = ({ addAuditLog, triggerToast }: { addAuditLog: 
 
                   <div className="mt-8 p-6 bg-blue-50 border border-blue-100 flex items-center gap-4">
                     <Info size={24} className="text-tata-blue shrink-0" />
-                    <p className="text-[10px] text-tata-blue font-bold leading-relaxed uppercase tracking-tight">
+                    <p className="text-xs text-tata-blue font-bold leading-relaxed uppercase tracking-tight">
                       Reviewing an application will notify the NGO of the final decision. Ensure all documents are cross-verified manually before final approval.
                     </p>
                   </div>
@@ -347,10 +347,10 @@ export const NGOApprovalsPanel = ({ addAuditLog, triggerToast }: { addAuditLog: 
       {showRejectModal && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm">
           <div className="bg-white p-8 w-full max-w-md border border-slate-200 shadow-2xl">
-            <h3 className="text-sm font-black text-slate-900 uppercase tracking-widest mb-6">Reject NGO Application</h3>
+            <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-widest mb-6">Reject NGO Application</h3>
             <div className="space-y-4">
               <div>
-                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2">Rejection Reason*</label>
+                <label className="text-xs font-semibold text-slate-400 uppercase tracking-widest block mb-2">Rejection Reason*</label>
                 <select 
                   className="w-full p-3 border border-slate-200 outline-none focus:border-tata-blue text-sm bg-white"
                   value={rejectReason}
@@ -364,7 +364,7 @@ export const NGOApprovalsPanel = ({ addAuditLog, triggerToast }: { addAuditLog: 
                 </select>
               </div>
               <div>
-                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2">Admin Note (Sent to NGO)*</label>
+                <label className="text-xs font-semibold text-slate-400 uppercase tracking-widest block mb-2">Admin Note (Sent to NGO)*</label>
                 <textarea 
                   className="w-full p-3 border border-slate-200 outline-none focus:border-tata-blue text-sm min-h-[120px]" 
                   placeholder="Explain the reason for rejection..."
@@ -373,11 +373,11 @@ export const NGOApprovalsPanel = ({ addAuditLog, triggerToast }: { addAuditLog: 
                 />
               </div>
               <div className="flex gap-4 pt-4">
-                <button onClick={() => setShowRejectModal(false)} className="flex-1 py-3 border border-slate-200 text-[10px] font-black uppercase tracking-widest hover:bg-slate-50 transition-all">Cancel</button>
+                <button onClick={() => setShowRejectModal(false)} className="flex-1 py-3 border border-slate-200 text-xs font-semibold uppercase tracking-widest hover:bg-slate-50 transition-all">Cancel</button>
                 <button 
                   onClick={handleReject}
                   disabled={!rejectReason || !rejectNote}
-                  className="flex-1 py-3 bg-red-600 text-white text-[10px] font-black uppercase tracking-widest hover:bg-red-700 transition-all disabled:opacity-50"
+                  className="flex-1 py-3 bg-red-600 text-white text-xs font-semibold uppercase tracking-widest hover:bg-red-700 transition-all disabled:opacity-50"
                 >
                   Confirm Reject
                 </button>
@@ -391,10 +391,10 @@ export const NGOApprovalsPanel = ({ addAuditLog, triggerToast }: { addAuditLog: 
       {editingNgo && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm">
           <div className="bg-white p-8 w-full max-w-md border border-slate-200 shadow-2xl">
-            <h3 className="text-sm font-black text-slate-900 uppercase tracking-widest mb-6">Edit NGO Account</h3>
+            <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-widest mb-6">Edit NGO Account</h3>
             <form onSubmit={handleUpdateNgo} className="space-y-4">
               <div>
-                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2">Coordinator Name</label>
+                <label className="text-xs font-semibold text-slate-400 uppercase tracking-widest block mb-2">Coordinator Name</label>
                 <input 
                   type="text" 
                   className="w-full p-3 border border-slate-200 outline-none focus:border-tata-blue text-sm" 
@@ -403,7 +403,7 @@ export const NGOApprovalsPanel = ({ addAuditLog, triggerToast }: { addAuditLog: 
                 />
               </div>
               <div>
-                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2">Focus Area</label>
+                <label className="text-xs font-semibold text-slate-400 uppercase tracking-widest block mb-2">Focus Area</label>
                 <select 
                   className="w-full p-3 border border-slate-200 outline-none focus:border-tata-blue text-sm bg-white"
                   value={editingNgo.focusArea}
@@ -417,7 +417,7 @@ export const NGOApprovalsPanel = ({ addAuditLog, triggerToast }: { addAuditLog: 
                 </select>
               </div>
               <div>
-                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2">Partnership Tier</label>
+                <label className="text-xs font-semibold text-slate-400 uppercase tracking-widest block mb-2">Partnership Tier</label>
                 <select className="w-full p-3 border border-slate-200 outline-none focus:border-tata-blue text-sm bg-white">
                   <option>Standard</option>
                   <option>Strategic Partner</option>
@@ -425,8 +425,8 @@ export const NGOApprovalsPanel = ({ addAuditLog, triggerToast }: { addAuditLog: 
                 </select>
               </div>
               <div className="flex gap-4 pt-4">
-                <button type="button" onClick={() => setEditingNgo(null)} className="flex-1 py-3 border border-slate-200 text-[10px] font-black uppercase tracking-widest hover:bg-slate-50 transition-all">Cancel</button>
-                <button type="submit" className="flex-1 py-3 bg-tata-blue text-white text-[10px] font-black uppercase tracking-widest hover:bg-blue-900 transition-all">Save Changes</button>
+                <button type="button" onClick={() => setEditingNgo(null)} className="flex-1 py-3 border border-slate-200 text-xs font-semibold uppercase tracking-widest hover:bg-slate-50 transition-all">Cancel</button>
+                <button type="submit" className="flex-1 py-3 bg-tata-blue text-white text-xs font-semibold uppercase tracking-widest hover:bg-blue-900 transition-all">Save Changes</button>
               </div>
             </form>
           </div>
@@ -437,8 +437,8 @@ export const NGOApprovalsPanel = ({ addAuditLog, triggerToast }: { addAuditLog: 
       {assigningNgo && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm">
           <div className="bg-white p-8 w-full max-w-lg border border-slate-200 shadow-2xl">
-            <h3 className="text-sm font-black text-slate-900 uppercase tracking-widest mb-2">Assign to Companies</h3>
-            <p className="text-[10px] text-slate-400 font-mono mb-6">Restrict which Tata companies' employees can apply to {assigningNgo.name}'s projects.</p>
+            <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-widest mb-2">Assign to Companies</h3>
+            <p className="text-xs text-slate-400 font-mono mb-6">Restrict which Tata companies' employees can apply to {assigningNgo.name}'s projects.</p>
             
             <div className="grid grid-cols-2 gap-3 mb-8">
               {COMPANY_DOMAINS.map((c) => (
@@ -458,8 +458,8 @@ export const NGOApprovalsPanel = ({ addAuditLog, triggerToast }: { addAuditLog: 
             </div>
 
             <div className="flex gap-4">
-              <button onClick={() => setAssigningNgo(null)} className="flex-1 py-3 border border-slate-200 text-[10px] font-black uppercase tracking-widest hover:bg-slate-50 transition-all">Cancel</button>
-              <button onClick={saveCompanyAssignment} className="flex-1 py-3 bg-tata-blue text-white text-[10px] font-black uppercase tracking-widest hover:bg-blue-900 transition-all">Save Assignment</button>
+              <button onClick={() => setAssigningNgo(null)} className="flex-1 py-3 border border-slate-200 text-xs font-semibold uppercase tracking-widest hover:bg-slate-50 transition-all">Cancel</button>
+              <button onClick={saveCompanyAssignment} className="flex-1 py-3 bg-tata-blue text-white text-xs font-semibold uppercase tracking-widest hover:bg-blue-900 transition-all">Save Assignment</button>
             </div>
           </div>
         </div>

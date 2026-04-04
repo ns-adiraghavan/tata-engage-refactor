@@ -34,7 +34,7 @@ const RegisterFormView = () => {
             <div>
               <label className="form-label">Date of Birth*</label>
               <input type="date" required className="form-input" />
-              <p className="text-[10px] text-zinc-400 mt-1">Must be 18+ for volunteer eligibility</p>
+              <p className="text-xs text-zinc-400 mt-1">Must be 18+ for volunteer eligibility</p>
             </div>
             <div>
               <label className="form-label">Areas of Interest*</label>

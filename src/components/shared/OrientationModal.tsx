@@ -25,7 +25,7 @@ const OrientationModal = () => {
         initial={{ opacity: 0, scale: 0.9, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.9, y: 20 }}
-        className="relative w-full max-w-4xl bg-white rounded-[3rem] shadow-2xl overflow-hidden"
+        className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl overflow-hidden"
       >
         <div className="p-10 md:p-16">
           <div className="flex justify-between items-start mb-12">
@@ -49,7 +49,7 @@ const OrientationModal = () => {
                   {m.status === "Completed" ? <Check size={20} /> : <Lock size={20} />}
                 </div>
                 <h4 className="text-xs font-bold text-slate-800 leading-tight">{m.title}</h4>
-                <p className="text-[10px] mt-2 font-bold uppercase tracking-widest text-slate-400">{m.status}</p>
+                <p className="text-xs mt-2 font-bold uppercase tracking-widest text-slate-400">{m.status}</p>
               </div>
             ))}
           </div>

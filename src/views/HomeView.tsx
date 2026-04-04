@@ -73,7 +73,7 @@ const HomeView = () => {
           </p>
           <div className="grid grid-cols-2 gap-8">
             <div className="flex gap-4">
-              <div className="w-12 h-12 rounded-xl bg-tata-cyan/10 flex items-center justify-center text-tata-cyan shrink-0">
+              <div className="w-12 h-12 rounded-lg bg-tata-cyan/10 flex items-center justify-center text-tata-cyan shrink-0">
                 <Award size={24} />
               </div>
               <div>
@@ -82,7 +82,7 @@ const HomeView = () => {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="w-12 h-12 rounded-xl bg-tata-purple/10 flex items-center justify-center text-tata-purple shrink-0">
+              <div className="w-12 h-12 rounded-lg bg-tata-purple/10 flex items-center justify-center text-tata-purple shrink-0">
                 <Heart size={24} />
               </div>
               <div>
@@ -156,7 +156,7 @@ const HomeView = () => {
 
     {/* Stay Connected */}
     <section className="py-24 px-6 md:px-12">
-      <div className="max-w-5xl mx-auto bg-tata-blue rounded-[3rem] p-12 md:p-20 text-center text-white relative overflow-hidden">
+      <div className="max-w-5xl mx-auto bg-tata-blue rounded-3xl p-12 md:p-20 text-center text-white relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-tata-cyan/20 rounded-full blur-3xl -mr-32 -mt-32" />
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-tata-purple/20 rounded-full blur-3xl -ml-32 -mb-32" />
         

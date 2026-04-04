@@ -30,7 +30,7 @@ const FeedbackModal = () => {
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-2xl bg-white rounded-[2.5rem] shadow-2xl overflow-hidden"
+            className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl overflow-hidden"
           >
             <div className="p-8 md:p-12">
               <div className="flex justify-between items-start mb-8">
@@ -84,7 +84,7 @@ const FeedbackModal = () => {
                   <section className="p-6 bg-slate-50 rounded-3xl border border-slate-100">
                     <div className="flex justify-between items-center mb-4">
                       <h4 className="text-sm font-bold text-zinc-900 uppercase tracking-wider">Section 2: NGO Rating (Optional)</h4>
-                      <span className="text-[10px] font-bold text-slate-400 bg-white px-2 py-1 rounded border border-slate-100">ADMIN ONLY</span>
+                      <span className="text-xs font-bold text-slate-400 bg-white px-2 py-1 rounded border border-slate-100">ADMIN ONLY</span>
                     </div>
                     <div className="space-y-4">
                       {[
@@ -108,7 +108,7 @@ const FeedbackModal = () => {
                         </div>
                       ))}
                     </div>
-                    <p className="text-[10px] text-slate-400 mt-4 italic">Note: NGO ratings are only visible to TSG Admin</p>
+                    <p className="text-xs text-slate-400 mt-4 italic">Note: NGO ratings are only visible to TSG Admin</p>
                   </section>
 
                   <button 

@@ -12,7 +12,7 @@ const DisasterResponseView = () => {
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-red-50 text-red-600 rounded-full text-xs font-black uppercase tracking-widest mb-6 border border-red-100"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-red-50 text-red-600 rounded-full text-xs font-semibold uppercase tracking-widest mb-6 border border-red-100"
           >
             <ShieldAlert size={14} /> One Tata Response Framework
           </motion.div>
@@ -25,10 +25,10 @@ const DisasterResponseView = () => {
             to communities affected by natural calamities.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button onClick={() => navigate("register-role")} className="w-full sm:w-auto px-10 py-5 bg-zinc-900 text-white rounded-[2rem] font-black uppercase tracking-widest hover:bg-red-600 transition-all shadow-xl shadow-black/10 flex items-center justify-center gap-2 group cursor-pointer">
+            <button onClick={() => navigate("register-role")} className="w-full sm:w-auto px-10 py-5 bg-zinc-900 text-white rounded-3xl font-semibold uppercase tracking-widest hover:bg-red-600 transition-all shadow-xl shadow-black/10 flex items-center justify-center gap-2 group cursor-pointer">
               Register as Volunteer <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </button>
-            <button className="w-full sm:w-auto px-10 py-5 bg-white text-slate-900 border border-slate-200 rounded-[2rem] font-black uppercase tracking-widest hover:bg-slate-50 transition-all cursor-pointer">
+            <button className="w-full sm:w-auto px-10 py-5 bg-white text-slate-900 border border-slate-200 rounded-3xl font-semibold uppercase tracking-widest hover:bg-slate-50 transition-all cursor-pointer">
               View Framework
             </button>
           </div>
@@ -55,7 +55,7 @@ const DisasterResponseView = () => {
                     <item.icon size={24} />
                   </div>
                   <div>
-                    <h4 className="font-black text-slate-900 uppercase tracking-wide mb-1">{item.phase}</h4>
+                    <h4 className="font-semibold text-slate-900 uppercase tracking-wide mb-1">{item.phase}</h4>
                     <p className="text-sm text-slate-500">{item.desc}</p>
                   </div>
                 </div>
@@ -63,7 +63,7 @@ const DisasterResponseView = () => {
             </div>
           </div>
           <div className="relative">
-            <div className="aspect-square bg-slate-200 rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white relative z-10">
+            <div className="aspect-square bg-slate-200 rounded-3xl overflow-hidden shadow-2xl border-8 border-white relative z-10">
               <img 
                 src="https://picsum.photos/seed/disaster/800/800" 
                 alt="Disaster Response" 
@@ -71,7 +71,7 @@ const DisasterResponseView = () => {
                 referrerPolicy="no-referrer"
               />
             </div>
-            <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-tata-blue rounded-[3rem] -z-10 opacity-10 animate-pulse" />
+            <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-tata-blue rounded-3xl -z-10 opacity-10 animate-pulse" />
             <div className="absolute -top-10 -left-10 w-40 h-40 bg-red-600 rounded-full -z-10 opacity-5" />
           </div>
         </section>
@@ -88,12 +88,12 @@ const DisasterResponseView = () => {
               { title: "Remote Support", skills: "Data, Tech, Coordination", icon: LayoutGrid, desc: "Supporting operations from your location through information management and technical aid." },
               { title: "Specialized Skills", skills: "Engineering, Psychosocial, Legal", icon: Award, desc: "Providing professional expertise for infrastructure assessment or trauma counseling." }
             ].map((type, i) => (
-              <div key={i} className="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all group">
+              <div key={i} className="bg-white p-10 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all group">
                 <div className="w-16 h-16 rounded-2xl bg-slate-50 text-slate-400 flex items-center justify-center mb-8 group-hover:bg-tata-blue group-hover:text-white transition-all shadow-inner">
                   <type.icon size={32} />
                 </div>
-                <h3 className="text-xl font-black text-slate-900 mb-2">{type.title}</h3>
-                <div className="text-[10px] font-black text-tata-cyan uppercase tracking-widest mb-4">{type.skills}</div>
+                <h3 className="text-xl font-semibold text-slate-900 mb-2">{type.title}</h3>
+                <div className="text-xs font-semibold text-tata-cyan uppercase tracking-widest mb-4">{type.skills}</div>
                 <p className="text-sm text-slate-500 leading-relaxed">{type.desc}</p>
               </div>
             ))}
@@ -101,7 +101,7 @@ const DisasterResponseView = () => {
         </section>
 
         {/* Deployment Process */}
-        <section className="bg-zinc-900 rounded-[3rem] p-12 md:p-20 text-white mb-32 relative overflow-hidden">
+        <section className="bg-zinc-900 rounded-3xl p-12 md:p-20 text-white mb-32 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-tata-blue/10 rounded-full -mr-48 -mt-48 blur-3xl" />
           <div className="relative z-10">
             <h2 className="text-3xl font-black uppercase tracking-tight mb-16 text-center">The Deployment Journey</h2>
@@ -117,7 +117,7 @@ const DisasterResponseView = () => {
                   <div className="w-20 h-20 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-8 text-2xl font-black text-tata-cyan shadow-2xl backdrop-blur-md">
                     {item.step}
                   </div>
-                  <h4 className="font-black uppercase tracking-widest mb-4">{item.title}</h4>
+                  <h4 className="font-semibold uppercase tracking-widest mb-4">{item.title}</h4>
                   <p className="text-xs text-white/50 leading-relaxed">{item.desc}</p>
                 </div>
               ))}
@@ -132,7 +132,7 @@ const DisasterResponseView = () => {
               <h2 className="text-3xl font-black text-slate-900 uppercase tracking-tight mb-4">Past Case Studies</h2>
               <p className="text-slate-500 max-w-xl">A legacy of standing with the nation during its most challenging times.</p>
             </div>
-            <button className="text-sm font-black text-tata-blue uppercase tracking-widest flex items-center gap-2 hover:gap-4 transition-all cursor-pointer">
+            <button className="text-sm font-semibold text-tata-blue uppercase tracking-widest flex items-center gap-2 hover:gap-4 transition-all cursor-pointer">
               View All Impact Reports <ArrowRight size={18} />
             </button>
           </div>
@@ -152,7 +152,7 @@ const DisasterResponseView = () => {
               }
             ].map((caseStudy, i) => (
               <div key={i} className="group cursor-pointer">
-                <div className="aspect-video rounded-[2.5rem] overflow-hidden mb-8 shadow-lg border border-slate-100 relative">
+                <div className="aspect-video rounded-3xl overflow-hidden mb-8 shadow-lg border border-slate-100 relative">
                   <img 
                     src={caseStudy.img} 
                     alt={caseStudy.title} 
@@ -161,8 +161,8 @@ const DisasterResponseView = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="absolute bottom-8 left-8 right-8 text-white translate-y-4 group-hover:translate-y-0 transition-transform opacity-0 group-hover:opacity-100">
-                    <div className="text-[10px] font-black uppercase tracking-widest text-tata-cyan mb-2">Impact Highlight</div>
-                    <div className="text-xl font-black">{caseStudy.impact}</div>
+                    <div className="text-xs font-semibold uppercase tracking-widest text-tata-cyan mb-2">Impact Highlight</div>
+                    <div className="text-xl font-semibold">{caseStudy.impact}</div>
                   </div>
                 </div>
                 <h3 className="text-2xl font-black text-slate-900 mb-3 group-hover:text-tata-blue transition-colors">{caseStudy.title}</h3>
@@ -173,7 +173,7 @@ const DisasterResponseView = () => {
         </section>
 
         {/* Final CTA */}
-        <section className="bg-tata-blue rounded-[3rem] p-12 md:p-20 text-white text-center relative overflow-hidden shadow-2xl">
+        <section className="bg-tata-blue rounded-3xl p-12 md:p-20 text-white text-center relative overflow-hidden shadow-2xl">
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10" />
           <div className="relative z-10">
             <h2 className="text-4xl md:text-5xl font-black mb-8 tracking-tighter">Ready to make a difference?</h2>
@@ -181,7 +181,7 @@ const DisasterResponseView = () => {
               Join our pool of dedicated disaster response volunteers. Your skills could be 
               the lifeline someone needs in their darkest hour.
             </p>
-            <button onClick={() => navigate("register-role")} className="px-12 py-6 bg-white text-tata-blue rounded-[2rem] font-black uppercase tracking-widest hover:bg-tata-cyan hover:text-white transition-all shadow-2xl cursor-pointer">
+            <button onClick={() => navigate("register-role")} className="px-12 py-6 bg-white text-tata-blue rounded-3xl font-semibold uppercase tracking-widest hover:bg-tata-cyan hover:text-white transition-all shadow-2xl cursor-pointer">
               Join the Response Pool
             </button>
           </div>

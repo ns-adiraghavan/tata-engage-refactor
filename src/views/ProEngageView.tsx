@@ -85,7 +85,7 @@ const ProEngageView = () => {
               layout
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="bg-white rounded-[2.5rem] p-8 border border-zinc-100 shadow-sm hover:shadow-2xl transition-all relative group flex flex-col"
+              className="bg-white rounded-3xl p-8 border border-zinc-100 shadow-sm hover:shadow-2xl transition-all relative group flex flex-col"
             >
               {project.matched && (
                 <div className="absolute top-6 right-6 w-8 h-8 rounded-full bg-tata-cyan/10 flex items-center justify-center text-tata-cyan" title="Skill Match">
@@ -94,13 +94,13 @@ const ProEngageView = () => {
               )}
               
               <div className="mb-6">
-                <div className="text-[10px] font-bold text-tata-blue uppercase tracking-widest mb-2 flex items-center gap-2">
+                <div className="text-xs font-bold text-tata-blue uppercase tracking-widest mb-2 flex items-center gap-2">
                   <Building2 size={12} /> {project.ngo}
                 </div>
                 <h3 className="text-xl font-bold text-zinc-900 mb-3 group-hover:text-tata-blue transition-colors leading-tight">{project.title}</h3>
                 <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 rounded-full bg-slate-50 text-slate-500 text-[10px] font-bold uppercase tracking-wider">{project.area}</span>
-                  <span className="px-3 py-1 rounded-full bg-slate-50 text-slate-500 text-[10px] font-bold uppercase tracking-wider">{project.mode}</span>
+                  <span className="px-3 py-1 rounded-full bg-slate-50 text-slate-500 text-xs font-bold uppercase tracking-wider">{project.area}</span>
+                  <span className="px-3 py-1 rounded-full bg-slate-50 text-slate-500 text-xs font-bold uppercase tracking-wider">{project.mode}</span>
                 </div>
               </div>
 
@@ -112,7 +112,7 @@ const ProEngageView = () => {
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {project.skills.map((skill, i) => (
-                    <span key={i} className="text-[10px] font-bold text-tata-cyan bg-tata-cyan/5 px-2 py-0.5 rounded uppercase tracking-wider">{skill}</span>
+                    <span key={i} className="text-xs font-bold text-tata-cyan bg-tata-cyan/5 px-2 py-0.5 rounded uppercase tracking-wider">{skill}</span>
                   ))}
                 </div>
               </div>
@@ -161,20 +161,20 @@ const ProEngageView = () => {
 
               <div className="space-y-6">
                 <div>
-                  <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Your Profile Summary</label>
+                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-2">Your Profile Summary</label>
                   <div className="p-4 bg-white border border-zinc-100 rounded-2xl">
                     <div className="font-bold text-sm text-zinc-900">{user.firstName} {user.lastName}</div>
                     <div className="text-xs text-slate-500">{user.designation} at {user.company}</div>
                     <div className="flex flex-wrap gap-1 mt-3">
                       {user.skills.map((s, i) => (
-                        <span key={i} className="text-[9px] font-bold bg-slate-100 text-slate-500 px-2 py-0.5 rounded uppercase tracking-wider">{s}</span>
+                        <span key={i} className="text-xs font-bold bg-slate-100 text-slate-500 px-2 py-0.5 rounded uppercase tracking-wider">{s}</span>
                       ))}
                     </div>
                   </div>
                 </div>
 
                 <div>
-                  <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Why do you want to volunteer?*</label>
+                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-2">Why do you want to volunteer?*</label>
                   <textarea 
                     value={motivation}
                     onChange={(e) => setMotivation(e.target.value)}
@@ -185,7 +185,7 @@ const ProEngageView = () => {
 
                 <div className="flex items-center gap-3 p-4 bg-tata-cyan/5 rounded-2xl border border-tata-cyan/10">
                   <Info size={18} className="text-tata-cyan shrink-0" />
-                  <p className="text-[11px] text-slate-600 leading-relaxed">
+                  <p className="text-xs text-slate-600 leading-relaxed">
                     By submitting, you agree to share your professional profile and contact details with {selectedProject.ngo}.
                   </p>
                 </div>
