@@ -113,10 +113,7 @@ export default function App() {
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (selectedRole === "corporate_spoc") {
-      triggerToast("SPOC roles are assigned by TSG Admin. Your request has been submitted for review.");
-      return;
-    }
+    // Consent is now handled inside RegisterFormView
     setIsConsentOpen(true);
   };
 
