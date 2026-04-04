@@ -138,8 +138,8 @@ export const ProjectOversightPanel = ({ addAuditLog, triggerToast }: { addAuditL
   );
 
   const BulkImportTool = () => (
-    <div className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm">
-      <div className="bg-white w-full max-w-4xl border border-slate-200 shadow-2xl flex flex-col max-h-[90vh]">
+    <div className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm" onClick={() => setShowImportModal(false)}>
+      <div className="bg-white w-full max-w-4xl border border-slate-200 shadow-2xl flex flex-col max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
         <div className="p-6 border-b border-slate-200 flex justify-between items-center bg-slate-50">
           <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-widest">Excel Bulk Import Tool</h3>
           <button onClick={() => setShowImportModal(false)} className="p-2 hover:bg-slate-200 rounded-full"><X size={20} /></button>
@@ -346,12 +346,13 @@ export const ProjectOversightPanel = ({ addAuditLog, triggerToast }: { addAuditL
       {/* Review Drawer */}
       <AnimatePresence>
         {selectedProject && (
-          <div className="fixed inset-0 z-[100] flex justify-end bg-black/50 backdrop-blur-sm">
+          <div className="fixed inset-0 z-[100] flex justify-end bg-black/50 backdrop-blur-sm" onClick={() => { setSelectedProject(null); setIsEditing(false); }}>
             <motion.div 
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               className="w-full max-w-4xl bg-white h-full shadow-2xl flex flex-col"
+              onClick={(e) => e.stopPropagation()}
             >
               <div className="p-6 border-b border-slate-200 flex justify-between items-center bg-slate-50">
                 <div>
@@ -508,8 +509,8 @@ export const ProjectOversightPanel = ({ addAuditLog, triggerToast }: { addAuditL
 
       {/* Return Modal */}
       {showReturnModal && (
-        <div className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm">
-          <div className="bg-white p-8 w-full max-w-md border border-slate-200 shadow-2xl">
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm" onClick={() => setShowReturnModal(false)}>
+          <div className="bg-white p-8 w-full max-w-md border border-slate-200 shadow-2xl" onClick={(e) => e.stopPropagation()}>
             <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-widest mb-6">Return Project with Comments</h3>
             <div className="space-y-4">
               <div>
@@ -538,8 +539,8 @@ export const ProjectOversightPanel = ({ addAuditLog, triggerToast }: { addAuditL
 
       {/* Reject Modal */}
       {showRejectModal && (
-        <div className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm">
-          <div className="bg-white p-8 w-full max-w-md border border-slate-200 shadow-2xl">
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm" onClick={() => setShowRejectModal(false)}>
+          <div className="bg-white p-8 w-full max-w-md border border-slate-200 shadow-2xl" onClick={(e) => e.stopPropagation()}>
             <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-widest mb-6">Reject Project Submission</h3>
             <div className="space-y-4">
               <div>
@@ -574,8 +575,8 @@ export const ProjectOversightPanel = ({ addAuditLog, triggerToast }: { addAuditL
 
       {/* Cap Confirmation Modal */}
       {showCapModal && (
-        <div className="fixed inset-0 z-[300] flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm">
-          <div className="bg-white p-8 w-full max-w-md border border-slate-200 shadow-2xl text-center">
+        <div className="fixed inset-0 z-[300] flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm" onClick={() => setShowCapModal(false)}>
+          <div className="bg-white p-8 w-full max-w-md border border-slate-200 shadow-2xl text-center" onClick={(e) => e.stopPropagation()}>
             <div className="w-16 h-16 bg-blue-50 text-tata-blue rounded-full flex items-center justify-center mx-auto mb-6">
               <ShieldCheck size={32} />
             </div>
@@ -602,8 +603,8 @@ export const ProjectOversightPanel = ({ addAuditLog, triggerToast }: { addAuditL
 
       {/* Company Restriction Modal */}
       {showCompanyModal && selectedProject && (
-        <div className="fixed inset-0 z-[300] flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm">
-          <div className="bg-white p-8 w-full max-w-lg border border-slate-200 shadow-2xl">
+        <div className="fixed inset-0 z-[300] flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm" onClick={() => setShowCompanyModal(false)}>
+          <div className="bg-white p-8 w-full max-w-lg border border-slate-200 shadow-2xl" onClick={(e) => e.stopPropagation()}>
             <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-widest mb-2">Assign to Companies</h3>
             <p className="text-xs text-slate-400 font-mono mb-6">Restrict which Tata companies' employees can apply to this project.</p>
             
