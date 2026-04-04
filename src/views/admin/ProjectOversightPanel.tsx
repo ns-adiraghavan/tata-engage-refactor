@@ -509,8 +509,8 @@ export const ProjectOversightPanel = ({ addAuditLog, triggerToast }: { addAuditL
 
       {/* Return Modal */}
       {showReturnModal && (
-        <div className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm">
-          <div className="bg-white p-8 w-full max-w-md border border-slate-200 shadow-2xl">
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm" onClick={() => setShowReturnModal(false)}>
+          <div className="bg-white p-8 w-full max-w-md border border-slate-200 shadow-2xl" onClick={(e) => e.stopPropagation()}>
             <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-widest mb-6">Return Project with Comments</h3>
             <div className="space-y-4">
               <div>
