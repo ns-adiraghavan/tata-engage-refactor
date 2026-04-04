@@ -167,6 +167,85 @@ export const AdminCommandCentre = () => {
           </div>
         </div>
       </div>
+
+      {/* Report Library */}
+      <div className="space-y-4">
+        <h3 className="text-lg font-bold text-slate-900 tracking-tight">Report Library</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {reportCards.map((report) => (
+            <div key={report.id} className="bg-white rounded-2xl border border-slate-100 p-6 shadow-sm hover:shadow-md transition-all">
+              <h4 className="text-base font-medium text-slate-900 mb-1">{report.title}</h4>
+              <p className="text-[13px] text-muted-foreground mb-3">{report.description}</p>
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-muted-foreground">Last generated: {report.lastGenerated}</span>
+                <button className="px-4 py-1.5 border border-slate-200 rounded-lg text-xs font-semibold text-slate-700 hover:border-tata-blue hover:text-tata-blue transition-colors cursor-pointer flex items-center gap-1.5">
+                  <Download size={13} /> Generate &amp; download
+                </button>
+              </div>
+            </div>
+          ))}
+
+          {/* Add report type card */}
+          <button
+            onClick={() => setShowAddModal(true)}
+            className="border-2 border-dashed border-slate-200 rounded-2xl p-6 flex items-center justify-center gap-2 text-sm font-semibold text-slate-400 hover:border-tata-blue hover:text-tata-blue transition-colors cursor-pointer min-h-[140px]"
+          >
+            <Plus size={16} /> Add report type
+          </button>
+        </div>
+      </div>
+
+      {/* Add Report Modal */}
+      {showAddModal && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center">
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setShowAddModal(false)} />
+          <div className="relative bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md space-y-5">
+            <div className="flex justify-between items-center">
+              <h3 className="text-lg font-bold text-slate-900">Add report type</h3>
+              <button onClick={() => setShowAddModal(false)} className="p-1 hover:bg-slate-100 rounded-lg cursor-pointer"><X size={18} /></button>
+            </div>
+            <div className="space-y-4">
+              <div>
+                <label className="text-xs font-semibold text-slate-500 uppercase tracking-widest block mb-1.5">Report name</label>
+                <input
+                  type="text"
+                  value={newReportName}
+                  onChange={(e) => setNewReportName(e.target.value)}
+                  placeholder="e.g. Monthly impact summary"
+                  className="w-full px-4 py-2.5 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-tata-blue/20"
+                />
+              </div>
+              <div>
+                <label className="text-xs font-semibold text-slate-500 uppercase tracking-widest block mb-1.5">Description</label>
+                <input
+                  type="text"
+                  value={newReportDesc}
+                  onChange={(e) => setNewReportDesc(e.target.value)}
+                  placeholder="One-line description of the report"
+                  className="w-full px-4 py-2.5 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-tata-blue/20"
+                />
+              </div>
+            </div>
+            <button
+              onClick={() => {
+                if (!newReportName.trim()) return;
+                setReportCards(prev => [...prev, {
+                  id: Date.now(),
+                  title: newReportName.trim(),
+                  description: newReportDesc.trim() || "Custom report",
+                  lastGenerated: "Not yet generated"
+                }]);
+                setNewReportName("");
+                setNewReportDesc("");
+                setShowAddModal(false);
+              }}
+              className="w-full py-3 bg-tata-blue text-white rounded-lg text-sm font-bold hover:bg-tata-blue/90 transition-colors cursor-pointer"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
