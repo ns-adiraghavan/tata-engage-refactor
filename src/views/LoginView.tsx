@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Building2, ShieldCheck, Mail, Lock, Eye } from "lucide-react";
+import tataEngageLogoNoBg from "@/assets/tata-engage-logo-nobg.png";
 import { VIKRAM_NAIR, ROHAN_DESAI, PRIYA_SHARMA } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
 import { useAuth } from "@/context/AuthContext";
