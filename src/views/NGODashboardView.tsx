@@ -246,6 +246,25 @@ const NGODashboardView = () => {
           )}
         </AnimatePresence>
 
+        {/* Stat Tiles */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 relative z-10">
+          {[
+            { label: "Active Projects", value: ANJALI_MEHTA.projects.filter(p => p.status === "Active").length, icon: Sparkles, color: "text-green-600", bg: "bg-green-50" },
+            { label: "Volunteers matched this edition", value: ANJALI_MEHTA.projects.filter(p => p.status === "Active" || p.status === "Closed").reduce((sum, p) => sum + p.volunteers, 0), icon: Users, color: "text-tata-blue", bg: "bg-blue-50" },
+            { label: "Pending Applications", value: ANJALI_MEHTA.pendingApplications, icon: Clock, color: "text-amber-600", bg: "bg-amber-50" },
+          ].map((stat, i) => (
+            <div key={i} className="p-6 rounded-2xl bg-white border border-slate-100 shadow-sm flex items-center gap-4">
+              <div className={`w-12 h-12 rounded-2xl ${stat.bg} ${stat.color} flex items-center justify-center shrink-0`}>
+                <stat.icon size={22} />
+              </div>
+              <div>
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.15em]">{stat.label}</p>
+                <h4 className="text-2xl font-black text-slate-900 tracking-tight">{stat.value}</h4>
+              </div>
+            </div>
+          ))}
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           
           {/* Project Management Panel */}
