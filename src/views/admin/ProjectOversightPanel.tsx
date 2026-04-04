@@ -138,8 +138,8 @@ export const ProjectOversightPanel = ({ addAuditLog, triggerToast }: { addAuditL
   );
 
   const BulkImportTool = () => (
-    <div className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm">
-      <div className="bg-white w-full max-w-4xl border border-slate-200 shadow-2xl flex flex-col max-h-[90vh]">
+    <div className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm" onClick={() => setShowImportModal(false)}>
+      <div className="bg-white w-full max-w-4xl border border-slate-200 shadow-2xl flex flex-col max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
         <div className="p-6 border-b border-slate-200 flex justify-between items-center bg-slate-50">
           <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-widest">Excel Bulk Import Tool</h3>
           <button onClick={() => setShowImportModal(false)} className="p-2 hover:bg-slate-200 rounded-full"><X size={20} /></button>
