@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Users, Building2, ShieldCheck, Eye, CheckCircle2, Globe, MapPin, Filter, List, Send, Check, Zap, Plus, History, AlertTriangle, Activity, ShieldAlert } from "lucide-react";
 import { TATA_COMPANIES, GEOGRAPHIES } from "@/constants";
 import { DR_TEMPLATES } from "@/data/mockData";
-import { useAppNavigate } from "@/hooks/useAppNavigate";
+
 
 export const DisasterResponsePanel = ({ addAuditLog, triggerToast, drResponses, setIsDRActive, isDRActive, drDeploymentLog, setDrDeploymentLog, isDRClosed, setIsDRClosed }: { 
   addAuditLog: (action: string, details: string) => void, 
