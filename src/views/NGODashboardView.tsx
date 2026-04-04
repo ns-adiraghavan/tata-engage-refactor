@@ -185,14 +185,14 @@ const NGODashboardView = () => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="mb-4 p-6 bg-amber-50 border border-amber-100 rounded-[2rem] flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm"
+                className="mb-4 p-6 bg-amber-50 border border-amber-100 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm relative z-10"
               >
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center">
                     <Clock size={24} />
                   </div>
                   <div>
-                    <h4 className="font-bold text-amber-900">Feedback due in {daysLeft} {daysLeft === 1 ? 'day' : 'days'}</h4>
+                    <h4 className="font-bold text-amber-900">Feedback due {daysLeft <= 0 ? 'today' : `in ${daysLeft} ${daysLeft === 1 ? 'day' : 'days'}`}</h4>
                     <p className="text-sm text-amber-700 opacity-80">Please complete the volunteer assessments for <span className="font-bold">"{project.title}"</span> to trigger certificate generation.</p>
                   </div>
                 </div>
