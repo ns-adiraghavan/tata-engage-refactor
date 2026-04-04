@@ -1,0 +1,334 @@
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Linkedin, Award, Info, Star, Save, History, Download } from "lucide-react";
+import type { View } from "@/types";
+import { useAppContext } from "@/context/AppContext";
+
+const ProfileView = () => {
+  const { user, setUser, userRole, projectStatus, feedbackSubmitted, supportHistory, ngoData, triggerToast } = useAppContext();
+  const [isEditing, setIsEditing] = useState(false);
+  const [profileData, setProfileData] = useState(userRole === 'ngo' ? {
+    firstName: "Anjali",
+    lastName: "Mehta",
+    email: "anjali.mehta@pratham.org",
+    designation: "Program Director",
+    company: "Pratham NGO"
+  } : user);
+  const [activeTab, setActiveTab] = useState<'info' | 'history'>('info');
+
+  const handleSave = () => {
+    if (userRole !== 'ngo') setUser(profileData as any);
+    setIsEditing(false);
+    triggerToast("Profile updated successfully!");
+  };
+
+  const shareToLinkedIn = () => {
+    const text = `Proud to have volunteered with Pratham NGO on the Financial Literacy for Rural Women project through Tata Engage! #TataEngage #BeTheChange`;
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?text=${encodeURIComponent(text)}`, '_blank');
+  };
+
+  return (
+    <div className="pt-28 pb-20 px-6 md:px-12 bg-white min-h-screen">
+      <div className="max-w-5xl mx-auto">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+          <div className="flex items-center gap-6">
+            <div className="w-24 h-24 rounded-3xl bg-tata-blue text-white flex items-center justify-center text-3xl font-bold shadow-xl">
+              {profileData.firstName[0]}{profileData.lastName[0]}
+            </div>
+            <div>
+              <h1 className="text-3xl font-bold text-zinc-900">{profileData.firstName} {profileData.lastName}</h1>
+              <p className="text-slate-500">{profileData.designation} at {profileData.company}</p>
+              <div className="flex gap-2 mt-2">
+                <span className="px-2 py-0.5 rounded bg-tata-blue/10 text-tata-blue text-[10px] font-bold uppercase tracking-wider">
+                  {userRole === 'ngo' ? 'NGO Partner' : 'Tata Employee'}
+                </span>
+                <span className="px-2 py-0.5 rounded bg-green-100 text-green-700 text-[10px] font-bold uppercase tracking-wider">Verified</span>
+              </div>
+            </div>
+          </div>
+          <div className="flex gap-3">
+            <button 
+              onClick={() => isEditing ? handleSave() : setIsEditing(true)}
+              className={`btn-${isEditing ? 'black' : 'outline'} py-2 px-8 cursor-pointer`}
+            >
+              {isEditing ? "Save Changes" : "Edit Profile"}
+            </button>
+          </div>
+        </div>
+
+        {userRole === 'ngo' && (
+          <div className="flex gap-8 border-b border-slate-100 mb-8">
+            <button 
+              onClick={() => setActiveTab('info')}
+              className={`pb-4 text-xs font-bold uppercase tracking-widest transition-all relative ${activeTab === 'info' ? 'text-tata-blue' : 'text-slate-400 hover:text-slate-600'}`}
+            >
+              Profile Info
+              {activeTab === 'info' && <motion.div layoutId="profileTab" className="absolute bottom-0 left-0 right-0 h-0.5 bg-tata-blue" />}
+            </button>
+            <button 
+              onClick={() => setActiveTab('history')}
+              className={`pb-4 text-xs font-bold uppercase tracking-widest transition-all relative ${activeTab === 'history' ? 'text-tata-blue' : 'text-slate-400 hover:text-slate-600'}`}
+            >
+              Support History
+              {activeTab === 'history' && <motion.div layoutId="profileTab" className="absolute bottom-0 left-0 right-0 h-0.5 bg-tata-blue" />}
+            </button>
+          </div>
+        )}
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          <div className="lg:col-span-2 space-y-12">
+            {activeTab === 'info' ? (
+              <>
+                {/* Personal Info */}
+                <section>
+                  <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6 pb-2 border-b border-slate-100">Personal Information</h3>
+                  <div className="space-y-4">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className="text-[10px] font-bold text-slate-400 uppercase">First Name</label>
+                        {isEditing ? (
+                          <input 
+                            type="text" 
+                            value={profileData.firstName} 
+                            onChange={(e) => setProfileData({...profileData, firstName: e.target.value})}
+                            className="w-full py-2 border-b border-tata-blue focus:outline-none font-medium"
+                          />
+                        ) : (
+                          <div className="py-2 text-zinc-900 border-b border-zinc-50 font-medium">{profileData.firstName}</div>
+                        )}
+                      </div>
+                      <div>
+                        <label className="text-[10px] font-bold text-slate-400 uppercase">Last Name</label>
+                        {isEditing ? (
+                          <input 
+                            type="text" 
+                            value={profileData.lastName} 
+                            onChange={(e) => setProfileData({...profileData, lastName: e.target.value})}
+                            className="w-full py-2 border-b border-tata-blue focus:outline-none font-medium"
+                          />
+                        ) : (
+                          <div className="py-2 text-zinc-900 border-b border-zinc-50 font-medium">{profileData.lastName}</div>
+                        )}
+                      </div>
+                    </div>
+                    <div>
+                      <label className="text-[10px] font-bold text-slate-400 uppercase">Email Address</label>
+                      {isEditing ? (
+                        <input 
+                          type="email" 
+                          value={profileData.email} 
+                          onChange={(e) => setProfileData({...profileData, email: e.target.value})}
+                          className="w-full py-2 border-b border-tata-blue focus:outline-none font-medium"
+                        />
+                      ) : (
+                        <div className="py-2 text-zinc-900 border-b border-zinc-50 font-medium">{profileData.email}</div>
+                      )}
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className="text-[10px] font-bold text-slate-400 uppercase">Designation</label>
+                        {isEditing ? (
+                          <input 
+                            type="text" 
+                            value={profileData.designation} 
+                            onChange={(e) => setProfileData({...profileData, designation: e.target.value})}
+                            className="w-full py-2 border-b border-tata-blue focus:outline-none font-medium"
+                          />
+                        ) : (
+                          <div className="py-2 text-zinc-900 border-b border-zinc-50 font-medium">{profileData.designation}</div>
+                        )}
+                      </div>
+                      <div>
+                        <label className="text-[10px] font-bold text-slate-400 uppercase">Organization</label>
+                        {isEditing ? (
+                          <input 
+                            type="text" 
+                            value={profileData.company} 
+                            onChange={(e) => setProfileData({...profileData, company: e.target.value})}
+                            className="w-full py-2 border-b border-tata-blue focus:outline-none font-medium"
+                          />
+                        ) : (
+                          <div className="py-2 text-zinc-900 border-b border-zinc-50 font-medium">{profileData.company}</div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                {userRole !== 'ngo' && (
+                  <>
+                    {/* Badge Wall */}
+                    <section>
+                      <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6 pb-2 border-b border-slate-100">Badge Wall</h3>
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        {user.badges.map((badge, i) => (
+                          <motion.div 
+                            key={badge.id}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: i * 0.1 }}
+                            className="p-6 rounded-[2rem] bg-slate-50 border border-slate-100 flex flex-col items-center text-center group hover:bg-white hover:shadow-xl transition-all"
+                          >
+                            <div className="w-16 h-16 rounded-2xl bg-white shadow-sm flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition-transform">
+                              {badge.icon}
+                            </div>
+                            <h4 className="text-xs font-bold text-zinc-900 mb-1">{badge.name}</h4>
+                            <p className="text-[10px] text-slate-400 font-medium uppercase">{badge.date}</p>
+                          </motion.div>
+                        ))}
+                        {feedbackSubmitted && (
+                          <motion.div 
+                            initial={{ opacity: 0, scale: 0.5 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            className="p-6 rounded-[2rem] bg-tata-cyan/5 border border-tata-cyan/20 flex flex-col items-center text-center relative overflow-hidden"
+                          >
+                            <motion.div 
+                              animate={{ opacity: [0, 1, 0], scale: [1, 1.5, 1] }}
+                              transition={{ duration: 2, repeat: Infinity }}
+                              className="absolute inset-0 bg-tata-cyan/10"
+                            />
+                            <div className="w-16 h-16 rounded-2xl bg-white shadow-sm flex items-center justify-center text-3xl mb-4 z-10">
+                              ⭐
+                            </div>
+                            <h4 className="text-xs font-bold text-tata-cyan mb-1 z-10">Feedback Star</h4>
+                            <p className="text-[10px] text-tata-cyan/60 font-medium uppercase z-10">April 2026</p>
+                          </motion.div>
+                        )}
+                      </div>
+                    </section>
+
+                    {/* Certificates */}
+                    {projectStatus === "completed" && (
+                      <section>
+                        <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6 pb-2 border-b border-slate-100">Completion Certificates</h3>
+                        <motion.div 
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="relative bg-zinc-900 rounded-[2.5rem] p-10 text-white overflow-hidden shadow-2xl"
+                        >
+                          <div className="absolute top-0 right-0 w-64 h-64 bg-tata-cyan/10 rounded-full -mr-32 -mt-32 blur-3xl" />
+                          <div className="absolute bottom-0 left-0 w-64 h-64 bg-tata-purple/10 rounded-full -ml-32 -mb-32 blur-3xl" />
+                          
+                          <div className="relative z-10 flex flex-col md:flex-row gap-10 items-center">
+                            <div className="w-48 h-64 bg-white rounded-xl shadow-2xl flex flex-col p-4 text-zinc-900 shrink-0">
+                              <div className="text-[8px] font-bold text-tata-blue mb-4">TATA ENGAGE</div>
+                              <div className="flex-1 flex flex-col items-center justify-center text-center">
+                                <div className="w-12 h-12 rounded-full bg-slate-50 flex items-center justify-center mb-4">
+                                  <Award size={24} className="text-tata-blue" />
+                                </div>
+                                <div className="text-[10px] font-bold mb-1">CERTIFICATE OF COMPLETION</div>
+                                <div className="text-[8px] text-slate-400 mb-4">PROENGAGE EDITION 2025</div>
+                                <div className="text-[12px] font-bold text-tata-blue mb-1">{user.firstName} {user.lastName}</div>
+                                <div className="text-[6px] text-slate-500 max-w-[100px]">For outstanding contribution to the Financial Literacy project.</div>
+                              </div>
+                              <div className="mt-4 pt-4 border-t border-slate-100 flex justify-between items-end">
+                                <div className="text-[6px] font-bold">PRATHAM NGO</div>
+                                <div className="w-8 h-8 bg-slate-100 rounded" />
+                              </div>
+                            </div>
+                            <div>
+                              <h4 className="text-2xl font-bold mb-4">Your Impact, Certified.</h4>
+                              <p className="text-slate-400 text-sm mb-8 leading-relaxed">This certificate recognizes your commitment to social change and your contribution to the Tata Engage ecosystem.</p>
+                              <div className="flex flex-wrap gap-4">
+                                <button className="bg-white text-zinc-900 py-3 px-8 rounded-xl font-bold text-sm flex items-center gap-2 hover:bg-tata-cyan transition-all cursor-pointer">
+                                  <Download size={18} /> Download PDF
+                                </button>
+                                <button onClick={shareToLinkedIn} className="bg-white/10 hover:bg-white/20 text-white py-3 px-8 rounded-xl font-bold text-sm flex items-center gap-2 transition-all cursor-pointer">
+                                  <Linkedin size={18} /> Share to LinkedIn
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </motion.div>
+                      </section>
+                    )}
+                  </>
+                )}
+              </>
+            ) : (
+              <section>
+                <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6 pb-2 border-b border-slate-100">Support Interaction History</h3>
+                <div className="space-y-4">
+                  {supportHistory.length > 0 ? (
+                    supportHistory.map((log) => (
+                      <motion.div 
+                        key={log.id}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        className="p-6 bg-slate-50 rounded-3xl border border-slate-100 flex flex-col md:flex-row justify-between gap-4"
+                      >
+                        <div className="space-y-1">
+                          <div className="flex items-center gap-2">
+                            <span className="text-[10px] font-bold text-tata-blue bg-tata-blue/10 px-2 py-0.5 rounded uppercase tracking-wider">AI Assistant</span>
+                            <span className="text-[10px] text-slate-400 font-medium">{log.timestamp}</span>
+                          </div>
+                          <h4 className="font-bold text-zinc-900 text-sm">Query: {log.query}</h4>
+                          <p className="text-xs text-slate-500 italic">Summary: {log.summary}</p>
+                        </div>
+                        <div className="flex items-center">
+                          <button className="text-xs font-bold text-tata-blue hover:underline cursor-pointer">View Full Transcript</button>
+                        </div>
+                      </motion.div>
+                    ))
+                  ) : (
+                    <div className="text-center py-20 bg-slate-50 rounded-[2.5rem] border border-dashed border-slate-200">
+                      <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 text-slate-300">
+                        <History size={32} />
+                      </div>
+                      <p className="text-slate-400 font-medium">No support history found.</p>
+                    </div>
+                  )}
+                </div>
+              </section>
+            )}
+          </div>
+
+          <div className="space-y-12">
+            {/* Stats/Sidebar */}
+            {userRole === 'ngo' ? (
+              <section className="p-8 bg-zinc-900 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-tata-blue/20 rounded-full -mr-16 -mt-16 blur-2xl" />
+                <h3 className="text-xs font-bold text-white/40 uppercase tracking-widest mb-8">Organization Stats</h3>
+                <div className="space-y-8">
+                  <div>
+                    <div className="text-3xl font-bold mb-1">{ngoData.projects.length}</div>
+                    <div className="text-[10px] text-white/60 font-bold uppercase tracking-wider">Total Projects</div>
+                  </div>
+                  <div>
+                    <div className="text-3xl font-bold mb-1">{ngoData.volunteers}</div>
+                    <div className="text-[10px] text-white/60 font-bold uppercase tracking-wider">Volunteers Engaged</div>
+                  </div>
+                  <div>
+                    <div className="text-3xl font-bold mb-1">{ngoData.tier}</div>
+                    <div className="text-[10px] text-white/60 font-bold uppercase tracking-wider">NGO Tier Status</div>
+                  </div>
+                </div>
+              </section>
+            ) : (
+              <section className="p-8 bg-zinc-900 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-tata-blue/20 rounded-full -mr-16 -mt-16 blur-2xl" />
+                <h3 className="text-xs font-bold text-white/40 uppercase tracking-widest mb-8">Engagement Stats</h3>
+                <div className="space-y-8">
+                  <div>
+                    <div className="text-3xl font-bold mb-1">128</div>
+                    <div className="text-[10px] text-white/60 font-bold uppercase tracking-wider">Volunteering Hours</div>
+                  </div>
+                  <div>
+                    <div className="text-3xl font-bold mb-1">4</div>
+                    <div className="text-[10px] text-white/60 font-bold uppercase tracking-wider">Projects Completed</div>
+                  </div>
+                  <div>
+                    <div className="text-3xl font-bold mb-1">2,450</div>
+                    <div className="text-[10px] text-white/60 font-bold uppercase tracking-wider">Impact Points</div>
+                  </div>
+                </div>
+              </section>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ProfileView;
