@@ -603,8 +603,8 @@ export const ProjectOversightPanel = ({ addAuditLog, triggerToast }: { addAuditL
 
       {/* Company Restriction Modal */}
       {showCompanyModal && selectedProject && (
-        <div className="fixed inset-0 z-[300] flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm">
-          <div className="bg-white p-8 w-full max-w-lg border border-slate-200 shadow-2xl">
+        <div className="fixed inset-0 z-[300] flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm" onClick={() => setShowCompanyModal(false)}>
+          <div className="bg-white p-8 w-full max-w-lg border border-slate-200 shadow-2xl" onClick={(e) => e.stopPropagation()}>
             <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-widest mb-2">Assign to Companies</h3>
             <p className="text-xs text-slate-400 font-mono mb-6">Restrict which Tata companies' employees can apply to this project.</p>
             
