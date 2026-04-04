@@ -35,7 +35,7 @@ import TVWHubView from "@/views/TVWHubView";
 import TVWVibeView from "@/views/TVWVibeView";
 import ProEngageView from "@/views/ProEngageView";
 import DisasterResponseView from "@/views/DisasterResponseView";
-import DRPrototypeView from "@/views/DRPrototypeView";
+
 import DRAvailabilityForm from "@/views/DRAvailabilityForm";
 import DRConfirmationView from "@/views/DRConfirmationView";
 import SPOCDashboardView from "@/views/SPOCDashboardView";

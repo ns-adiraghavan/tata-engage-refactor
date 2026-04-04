@@ -304,9 +304,6 @@ export const DisasterResponsePanel = ({ addAuditLog, triggerToast, drResponses, 
               <button onClick={() => setStep("dashboard")} className="flex-1 py-5 bg-zinc-900 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-tata-blue transition-all shadow-xl shadow-black/10 cursor-pointer">
                 Go to Response Dashboard
               </button>
-              <button onClick={() => navigate("dr-prototype")} className="flex-1 py-5 bg-tata-blue text-white rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-blue-900 transition-all shadow-xl shadow-tata-blue/20 cursor-pointer">
-                View Simultaneous Flow
-              </button>
             </div>
           </div>
         </motion.div>
