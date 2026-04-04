@@ -22,7 +22,7 @@ import HomeView from "@/views/HomeView";
 import LoginView from "@/views/LoginView";
 import RegisterRoleView from "@/views/RegisterRoleView";
 import RegisterFormView from "@/views/RegisterFormView";
-import OtpChannelView from "@/views/OtpChannelView";
+
 import OtpView from "@/views/OtpView";
 import ForgotPasswordView from "@/views/ForgotPasswordView";
 import DashboardView from "@/views/DashboardView";
