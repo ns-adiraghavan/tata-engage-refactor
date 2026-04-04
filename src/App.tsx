@@ -7,11 +7,11 @@ import { useAuth } from "@/context/AuthContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
 import { usePageTitle } from "@/hooks/usePageTitle";
 import type { Role } from "@/types";
-import { PRIYA_SHARMA, ANJALI_MEHTA, ROHAN_DESAI } from "@/data/mockData";
+import { PRIYA_SHARMA, ANJALI_MEHTA } from "@/data/mockData";
 
 import Navbar from "@/components/layout/Navbar";
 import MegaMenu from "@/components/layout/MegaMenu";
-import ConsentModal from "@/components/shared/ConsentModal";
+
 import OrientationModal from "@/components/shared/OrientationModal";
 import Chatbot from "@/components/shared/Chatbot";
 import FeedbackModal from "@/components/shared/FeedbackModal";
@@ -22,7 +22,7 @@ import HomeView from "@/views/HomeView";
 import LoginView from "@/views/LoginView";
 import RegisterRoleView from "@/views/RegisterRoleView";
 import RegisterFormView from "@/views/RegisterFormView";
-import OtpChannelView from "@/views/OtpChannelView";
+
 import OtpView from "@/views/OtpView";
 import ForgotPasswordView from "@/views/ForgotPasswordView";
 import DashboardView from "@/views/DashboardView";
@@ -113,10 +113,7 @@ export default function App() {
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (selectedRole === "corporate_spoc") {
-      triggerToast("SPOC roles are assigned by TSG Admin. Your request has been submitted for review.");
-      return;
-    }
+    // Consent is now handled inside RegisterFormView
     setIsConsentOpen(true);
   };
 
@@ -127,21 +124,10 @@ export default function App() {
       setUser(PRIYA_SHARMA);
       navigate("dashboard");
       triggerToast("Login Successful! Welcome back, Priya.");
-    } else if (selectedRole === "ngo") {
-      setIsLoggedIn(true);
-      setUser(ANJALI_MEHTA);
-      navigate("ngo-dashboard");
-      triggerToast("Login Successful! Welcome, Anjali Mehta.");
-    } else if (selectedRole === "corporate_spoc") {
-      setIsLoggedIn(true);
-      setUser(ROHAN_DESAI);
-      navigate("spoc-dashboard");
-      triggerToast("Login Successful! Welcome back, Rohan.");
     } else {
-      navigate("otp-channel");
+      navigate("otp");
     }
   };
-
   const handleOtpChannelSelect = () => { navigate("otp"); };
   const handleOtpVerify = () => { setIsLoggedIn(true); setUser(PRIYA_SHARMA); navigate("dashboard"); triggerToast("Registration Successful! Welcome to Tata Engage."); };
 
@@ -194,11 +180,6 @@ export default function App() {
           onLogout={onLogout}
           user={user}
         />
-        <ConsentModal
-          isOpen={isConsentOpen}
-          onAccept={handleConsentAccept}
-          onCancel={() => setIsConsentOpen(false)}
-        />
 
         <main>
           <AnimatePresence mode="wait">
@@ -214,7 +195,7 @@ export default function App() {
                 <Route path="/login" element={<LoginView />} />
                 <Route path="/register" element={<RegisterRoleView />} />
                 <Route path="/register/form" element={<RegisterFormView />} />
-                <Route path="/otp/channel" element={<OtpChannelView />} />
+                <Route path="/admin-login" element={<LoginView />} />
                 <Route path="/otp/verify" element={<OtpView />} />
                 <Route path="/forgot-password" element={<ForgotPasswordView />} />
                 <Route path="/dashboard" element={<ProtectedRoute><DashboardView /></ProtectedRoute>} />

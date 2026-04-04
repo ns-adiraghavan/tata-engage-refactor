@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { User, Users, Building2, Briefcase, Heart, ShieldCheck } from "lucide-react";
+import { Users, Building2, Briefcase, Heart } from "lucide-react";
 import tataEngageLogoNoBg from "@/assets/tata-engage-logo-nobg.png";
 import type { Role } from "@/types";
 import { useAppContext } from "@/context/AppContext";
@@ -30,12 +30,10 @@ const RegisterRoleView = () => {
         
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {[
-            { id: "volunteer", title: "Individual Volunteer", icon: User, desc: "For citizens who want to volunteer" },
-            { id: "ngo", title: "NGO Representative", icon: Heart, desc: "For non-profits looking for support" },
-            { id: "tata_employee", title: "Tata Employee", icon: Briefcase, desc: "Exclusive for Tata Group employees" },
-            { id: "family_member", title: "Family Member", icon: Users, desc: "For family of Tata employees" },
-            { id: "corporate_spoc", title: "Corporate SPOC", icon: Building2, desc: "For company volunteering leads" },
-            { id: "platform_admin", title: "Platform Admin", icon: ShieldCheck, desc: "For platform managers" }
+            { id: "tata_employee", title: "Tata Employee", icon: Briefcase, desc: "Current Tata Group employees with or without official Tata email" },
+            { id: "family_member", title: "Family Member", icon: Users, desc: "Spouse, child, parent, or sibling of a Tata employee" },
+            { id: "retired_employee", title: "Retired Employee", icon: Heart, desc: "Former Tata Group employees who have retired" },
+            { id: "ngo", title: "Partner Organisation", icon: Building2, desc: "NGOs and non-profits seeking volunteer support" },
           ].map((role, i) => (
             <motion.div 
               key={role.id}
