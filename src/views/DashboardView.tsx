@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronRight, Building2, Heart, Mail, CheckCircle2, Search, Globe, Calendar, MapPin, Award, FileText, Sparkles, MessageSquare, ArrowRight, ShieldAlert } from "lucide-react";
+import { ChevronRight, Building2, Heart, Mail, CheckCircle2, Search, Globe, Calendar, MapPin, Award, FileText, Sparkles, MessageSquare, ArrowRight, ShieldAlert, ClipboardList } from "lucide-react";
 import { useAppContext } from "@/context/AppContext";
 import { useAuth } from "@/context/AuthContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
