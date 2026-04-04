@@ -31,7 +31,7 @@ const DashboardView = () => {
           <motion.div 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-8 p-8 bg-tata-blue rounded-[2.5rem] shadow-2xl shadow-tata-blue/20 text-white relative overflow-hidden"
+            className="mb-8 p-8 bg-tata-blue rounded-3xl shadow-2xl shadow-tata-blue/20 text-white relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32 blur-3xl" />
             <div className="relative z-10">
@@ -51,13 +51,13 @@ const DashboardView = () => {
                     triggerToast("Thank you for your feedback!");
                     setHasSubmittedAvailability(false);
                   }}
-                  className="px-8 py-4 bg-tata-cyan text-tata-blue rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-white transition-all cursor-pointer"
+                  className="px-8 py-4 bg-tata-cyan text-tata-blue rounded-2xl font-semibold text-xs uppercase tracking-widest hover:bg-white transition-all cursor-pointer"
                 >
                   Complete Feedback Form
                 </button>
                 <button 
                   onClick={() => setHasSubmittedAvailability(false)}
-                  className="px-8 py-4 bg-white/10 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-white/20 transition-all cursor-pointer"
+                  className="px-8 py-4 bg-white/10 text-white rounded-2xl font-semibold text-xs uppercase tracking-widest hover:bg-white/20 transition-all cursor-pointer"
                 >
                   Dismiss
                 </button>
@@ -71,7 +71,7 @@ const DashboardView = () => {
           <motion.div 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-8 p-6 bg-red-600 rounded-[2rem] shadow-2xl shadow-red-600/20 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden group"
+            className="mb-8 p-6 bg-red-600 rounded-3xl shadow-2xl shadow-red-600/20 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden group"
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 blur-3xl group-hover:scale-110 transition-transform duration-700" />
             <div className="flex items-center gap-6 relative z-10">
@@ -80,7 +80,7 @@ const DashboardView = () => {
               </div>
               <div>
                 <div className="flex items-center gap-3 mb-1">
-                  <span className="px-2 py-0.5 bg-white text-red-600 text-[9px] font-black uppercase rounded tracking-widest">Emergency Alert</span>
+                  <span className="px-2 py-0.5 bg-white text-red-600 text-xs font-semibold uppercase rounded tracking-widest">Emergency Alert</span>
                   <h3 className="text-xl font-black text-white uppercase tracking-tight">Assam Flood Relief: Volunteer Call</h3>
                 </div>
                 <p className="text-white/80 text-sm font-medium">Urgent deployment needed for on-ground relief operations. Please share your availability.</p>
@@ -88,7 +88,7 @@ const DashboardView = () => {
             </div>
             <button 
               onClick={() => navigate("dr-availability-form")}
-              className="px-8 py-4 bg-white text-red-600 rounded-2xl font-black text-[10px] uppercase tracking-widest shadow-xl hover:bg-slate-50 transition-all relative z-10 cursor-pointer"
+              className="px-8 py-4 bg-white text-red-600 rounded-2xl font-semibold text-xs uppercase tracking-widest shadow-xl hover:bg-slate-50 transition-all relative z-10 cursor-pointer"
             >
               Submit Availability
             </button>
@@ -100,7 +100,7 @@ const DashboardView = () => {
           <motion.div 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-8 p-6 bg-green-50 border border-green-100 rounded-[2rem] flex items-center justify-between gap-6 shadow-sm"
+            className="mb-8 p-6 bg-green-50 border border-green-100 rounded-3xl flex items-center justify-between gap-6 shadow-sm"
           >
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-2xl bg-green-500 text-white flex items-center justify-center">
@@ -117,7 +117,7 @@ const DashboardView = () => {
                 setDrResponses(prev => prev.filter(r => r.email !== user.email));
                 triggerToast("Availability withdrawn successfully.");
               }}
-              className="text-[10px] font-black text-red-600 uppercase tracking-widest hover:underline cursor-pointer"
+              className="text-xs font-semibold text-red-600 uppercase tracking-widest hover:underline cursor-pointer"
             >
               Withdraw Availability
             </button>
@@ -129,7 +129,7 @@ const DashboardView = () => {
           <motion.div 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-8 p-6 bg-green-50 border border-green-100 rounded-[2rem] flex items-center gap-6 shadow-sm"
+            className="mb-8 p-6 bg-green-50 border border-green-100 rounded-3xl flex items-center gap-6 shadow-sm"
           >
             <div className="w-12 h-12 rounded-2xl bg-green-500 text-white flex items-center justify-center shrink-0">
               <Sparkles size={24} />
@@ -150,8 +150,8 @@ const DashboardView = () => {
         {/* In-System Notifications */}
         <div className="mb-10 space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest">Recent Notifications</h3>
-            <button className="text-[10px] font-black text-tata-blue uppercase tracking-widest hover:underline">Mark all as read</button>
+            <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-widest">Recent Notifications</h3>
+            <button className="text-xs font-semibold text-tata-blue uppercase tracking-widest hover:underline">Mark all as read</button>
           </div>
           <div className="space-y-3">
             {isDRActive && (
@@ -161,12 +161,12 @@ const DashboardView = () => {
                 className="p-4 bg-white rounded-2xl border-l-4 border-l-red-600 border-slate-100 shadow-sm flex items-center justify-between group"
               >
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-lg bg-red-50 text-red-600 flex items-center justify-center">
                     <ShieldAlert size={18} />
                   </div>
                   <div>
                     <p className="text-sm font-bold text-slate-900">Urgent: Assam Flood Relief Volunteer Call</p>
-                    <p className="text-[10px] text-slate-500">Tata Group is mobilizing for emergency relief. Your skills are needed.</p>
+                    <p className="text-xs text-slate-500">Tata Group is mobilizing for emergency relief. Your skills are needed.</p>
                   </div>
                 </div>
                 <button onClick={() => navigate("dr-availability-form")} className="p-2 text-slate-400 hover:text-tata-blue hover:bg-slate-50 rounded-lg transition-all">
@@ -176,12 +176,12 @@ const DashboardView = () => {
             )}
             <div className="p-4 bg-white rounded-2xl border-l-4 border-l-tata-blue border-slate-100 shadow-sm flex items-center justify-between group">
               <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-xl bg-blue-50 text-tata-blue flex items-center justify-center">
+                <div className="w-10 h-10 rounded-lg bg-blue-50 text-tata-blue flex items-center justify-center">
                   <Award size={18} />
                 </div>
                 <div>
                   <p className="text-sm font-bold text-slate-900">Certificate Issued: Digital Literacy</p>
-                  <p className="text-[10px] text-slate-500">Your certificate for the Digital Literacy project is now available for download.</p>
+                  <p className="text-xs text-slate-500">Your certificate for the Digital Literacy project is now available for download.</p>
                 </div>
               </div>
               <button className="p-2 text-slate-400 hover:text-tata-blue hover:bg-slate-50 rounded-lg transition-all">
@@ -223,7 +223,7 @@ const DashboardView = () => {
                   { title: "Career Mentorship", org: "Udaan Foundation", match: "85% Match" }
                 ].map((item, i) => (
                   <div key={i} className="p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:border-tata-cyan transition-colors cursor-pointer group">
-                    <div className="text-[10px] font-bold text-tata-cyan uppercase tracking-widest mb-2">{item.match}</div>
+                    <div className="text-xs font-bold text-tata-cyan uppercase tracking-widest mb-2">{item.match}</div>
                     <h4 className="font-bold text-sm mb-1 group-hover:text-tata-blue transition-colors">{item.title}</h4>
                     <p className="text-xs text-slate-500">{item.org}</p>
                   </div>
@@ -254,7 +254,7 @@ const DashboardView = () => {
                       <div className="flex items-center gap-1"><Building2 size={14} /> {user.activeApplication.ngo}</div>
                     </div>
                     {projectStatus === "matched" && (
-                      <button className="bg-white text-tata-blue px-4 py-2 rounded-xl text-xs font-bold hover:bg-slate-50 transition-colors flex items-center gap-2">
+                      <button className="bg-white text-tata-blue px-4 py-2 rounded-lg text-xs font-bold hover:bg-slate-50 transition-colors flex items-center gap-2">
                         Access Orientation Materials <ArrowRight size={14} />
                       </button>
                     )}
@@ -264,7 +264,7 @@ const DashboardView = () => {
                           setProjectStatus("completed");
                           setShowFeedbackForm(true);
                         }}
-                        className="bg-tata-cyan text-tata-blue px-4 py-2 rounded-xl text-xs font-bold hover:bg-tata-cyan/90 transition-colors"
+                        className="bg-tata-cyan text-tata-blue px-4 py-2 rounded-lg text-xs font-bold hover:bg-tata-cyan/90 transition-colors"
                       >
                         Mark as Completed
                       </button>
@@ -326,8 +326,8 @@ const DashboardView = () => {
                 ].map((event, i) => (
                   <div key={i} className="flex items-center justify-between p-5 bg-white rounded-2xl border border-zinc-100 hover:shadow-md transition-all cursor-pointer">
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-slate-50 flex flex-col items-center justify-center text-tata-blue">
-                        <span className="text-[10px] font-bold uppercase">{event.date.split(' ')[0]}</span>
+                      <div className="w-12 h-12 rounded-lg bg-slate-50 flex flex-col items-center justify-center text-tata-blue">
+                        <span className="text-xs font-bold uppercase">{event.date.split(' ')[0]}</span>
                         <span className="text-lg font-bold">{event.date.split(' ')[1].replace(',', '')}</span>
                       </div>
                       <div>
@@ -353,7 +353,7 @@ const DashboardView = () => {
               <h2 className="text-xl font-bold text-zinc-900 mb-2">Refer a Colleague</h2>
               <p className="text-sm text-slate-500 mb-6">Invite someone to Tata Engage and help grow our community.</p>
               <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 mb-6">
-                <div className="text-[10px] font-bold text-slate-400 uppercase mb-2">Your Referral Link</div>
+                <div className="text-xs font-bold text-slate-400 uppercase mb-2">Your Referral Link</div>
                 <div className="flex items-center justify-between gap-2">
                   <code className="text-xs text-tata-blue font-mono truncate">tataengage.com/refer/priya123</code>
                   <button onClick={copyReferralLink} className="p-2 hover:bg-white rounded-lg text-slate-400 hover:text-tata-blue transition-colors">
@@ -381,7 +381,7 @@ const DashboardView = () => {
                     <div className="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center text-3xl hover:scale-110 transition-transform cursor-pointer border border-slate-100">
                       {badge.icon}
                     </div>
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1 bg-zinc-900 text-white text-[10px] rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-20">
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1 bg-zinc-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-20">
                       {badge.name} • {badge.date}
                     </div>
                   </div>
@@ -403,7 +403,7 @@ const DashboardView = () => {
                 ].map((news, i) => (
                   <div key={i} className="border-l-2 border-tata-cyan pl-4 cursor-pointer hover:bg-slate-50 transition-colors py-1">
                     <h4 className="text-sm font-bold text-zinc-900 mb-1">{news.title}</h4>
-                    <span className="text-[10px] text-slate-400 font-medium uppercase">{news.time}</span>
+                    <span className="text-xs text-slate-400 font-medium uppercase">{news.time}</span>
                   </div>
                 ))}
               </div>

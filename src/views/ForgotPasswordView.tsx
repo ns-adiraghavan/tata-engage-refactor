@@ -9,7 +9,7 @@ const ForgotPasswordView = () => {
     <motion.div 
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
-      className="w-full max-w-md bg-white rounded-[2.5rem] shadow-xl p-10"
+      className="w-full max-w-md bg-white rounded-3xl shadow-xl p-10"
     >
       <button onClick={() => navigate("login")} className="flex items-center gap-2 text-slate-500 hover:text-tata-blue font-medium mb-8 transition-colors cursor-pointer">
         <ArrowLeft size={18} /> Back to Login

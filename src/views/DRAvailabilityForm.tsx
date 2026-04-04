@@ -44,11 +44,11 @@ const DRAvailabilityForm = () => {
   return (
     <div className="pt-28 pb-20 px-6 md:px-12 bg-slate-50 min-h-screen">
       <div className="max-w-3xl mx-auto">
-        <button onClick={() => navigate("dashboard")} className="flex items-center gap-2 text-[10px] font-black text-slate-400 uppercase tracking-widest mb-8 hover:text-tata-blue transition-colors">
+        <button onClick={() => navigate("dashboard")} className="flex items-center gap-2 text-xs font-semibold text-slate-400 uppercase tracking-widest mb-8 hover:text-tata-blue transition-colors">
           <ArrowLeft size={16} /> Back to Dashboard
         </button>
 
-        <div className="glass rounded-[3rem] p-10 md:p-12 shadow-2xl border border-white/20">
+        <div className="glass rounded-3xl p-10 md:p-12 shadow-2xl border border-white/20">
           <div className="flex items-center gap-6 mb-10">
             <div className="w-16 h-16 bg-red-600 text-white rounded-2xl flex items-center justify-center shadow-xl shadow-red-600/20">
               <ShieldAlert size={32} />
@@ -62,7 +62,7 @@ const DRAvailabilityForm = () => {
           <form onSubmit={handleSubmit} className="space-y-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-2">
-                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block">Current Location</label>
+                <label className="text-xs font-semibold text-slate-400 uppercase tracking-widest block">Current Location</label>
                 <input 
                   type="text" 
                   required
@@ -72,7 +72,7 @@ const DRAvailabilityForm = () => {
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block">Willing to Travel To</label>
+                <label className="text-xs font-semibold text-slate-400 uppercase tracking-widest block">Willing to Travel To</label>
                 <input 
                   type="text" 
                   required
@@ -85,7 +85,7 @@ const DRAvailabilityForm = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-2">
-                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block">Available From</label>
+                <label className="text-xs font-semibold text-slate-400 uppercase tracking-widest block">Available From</label>
                 <input 
                   type="date" 
                   required
@@ -95,7 +95,7 @@ const DRAvailabilityForm = () => {
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block">Available Until</label>
+                <label className="text-xs font-semibold text-slate-400 uppercase tracking-widest block">Available Until</label>
                 <input 
                   type="date" 
                   required
@@ -107,10 +107,10 @@ const DRAvailabilityForm = () => {
             </div>
 
             <div className="space-y-4">
-              <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block">Relevant Skills & Certifications</label>
+              <label className="text-xs font-semibold text-slate-400 uppercase tracking-widest block">Relevant Skills & Certifications</label>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {availableSkills.map(skill => (
-                  <label key={skill} className={`p-3 rounded-xl border transition-all cursor-pointer flex items-center gap-3 ${
+                  <label key={skill} className={`p-3 rounded-lg border transition-all cursor-pointer flex items-center gap-3 ${
                     formData.skills.includes(skill) ? "bg-tata-blue/5 border-tata-blue/20" : "bg-white border-slate-100 hover:border-slate-200"
                   }`}>
                     <input 
@@ -122,21 +122,21 @@ const DRAvailabilityForm = () => {
                       }}
                       className="w-4 h-4 rounded border-slate-300 text-tata-blue focus:ring-tata-blue"
                     />
-                    <span className="text-[11px] font-bold text-slate-600">{skill}</span>
+                    <span className="text-xs font-bold text-slate-600">{skill}</span>
                   </label>
                 ))}
               </div>
             </div>
 
             <div className="space-y-4">
-              <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block">Travel Willingness</label>
+              <label className="text-xs font-semibold text-slate-400 uppercase tracking-widest block">Travel Willingness</label>
               <div className="flex bg-slate-100 p-1 rounded-2xl">
                 {["local", "national", "international"].map(mode => (
                   <button
                     key={mode}
                     type="button"
                     onClick={() => setFormData({...formData, travelWillingness: mode as any})}
-                    className={`flex-1 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
+                    className={`flex-1 py-3 rounded-lg text-xs font-semibold uppercase tracking-widest transition-all ${
                       formData.travelWillingness === mode ? "bg-white text-tata-blue shadow-sm" : "text-slate-400 hover:text-slate-600"
                     }`}
                   >
@@ -147,7 +147,7 @@ const DRAvailabilityForm = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block">Medical Notes / Allergies (Optional)</label>
+              <label className="text-xs font-semibold text-slate-400 uppercase tracking-widest block">Medical Notes / Allergies (Optional)</label>
               <textarea 
                 value={formData.medicalNotes}
                 onChange={e => setFormData({...formData, medicalNotes: e.target.value})}
@@ -159,7 +159,7 @@ const DRAvailabilityForm = () => {
             <div className="pt-6">
               <button 
                 type="submit"
-                className="w-full py-5 bg-red-600 text-white rounded-[2rem] font-black text-xs uppercase tracking-widest hover:bg-red-700 transition-all shadow-xl shadow-red-600/20 flex items-center justify-center gap-3 cursor-pointer"
+                className="w-full py-5 bg-red-600 text-white rounded-3xl font-semibold text-xs uppercase tracking-widest hover:bg-red-700 transition-all shadow-xl shadow-red-600/20 flex items-center justify-center gap-3 cursor-pointer"
               >
                 <Send size={18} /> Submit Availability
               </button>

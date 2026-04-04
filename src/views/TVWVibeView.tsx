@@ -32,7 +32,7 @@ const TVWVibeView = () => (
             transition={{ delay: i * 0.1 }}
             className="group cursor-pointer"
           >
-            <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden mb-4 shadow-lg group-hover:shadow-2xl transition-all">
+            <div className="relative aspect-[4/3] rounded-3xl overflow-hidden mb-4 shadow-lg group-hover:shadow-2xl transition-all">
               <img src={item.img} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt={item.title} referrerPolicy="no-referrer" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
                 <span className="text-white font-bold flex items-center gap-2">Read Story <ArrowRight size={16} /></span>

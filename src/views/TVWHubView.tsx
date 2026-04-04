@@ -38,7 +38,7 @@ const TVWHubView = () => {
     <div className="pt-28 pb-20 px-6 md:px-12 bg-slate-50 min-h-screen">
       <div className="max-w-7xl mx-auto">
         {/* Header Banner */}
-        <div className="relative h-64 rounded-[3rem] overflow-hidden mb-12 shadow-2xl">
+        <div className="relative h-64 rounded-3xl overflow-hidden mb-12 shadow-2xl">
           <img 
             src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&q=80&w=2000" 
             className="w-full h-full object-cover brightness-50"
@@ -71,7 +71,7 @@ const TVWHubView = () => {
                 <div className="w-8 h-8 rounded-full bg-slate-200" />
                 <div>
                   <div className="text-xs font-bold text-zinc-900">Siddharth Sharma</div>
-                  <div className="text-[10px] text-slate-400 uppercase">Group CEO, Tata Trusts</div>
+                  <div className="text-xs text-slate-400 uppercase">Group CEO, Tata Trusts</div>
                 </div>
               </div>
             </section>
@@ -104,13 +104,13 @@ const TVWHubView = () => {
               <div className="flex items-center gap-4 bg-white p-1 rounded-2xl border border-zinc-100 shadow-sm">
                 <button 
                   onClick={() => setViewMode("list")}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all ${viewMode === "list" ? "bg-zinc-900 text-white shadow-lg" : "text-slate-400 hover:text-zinc-900"}`}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-2xl text-sm font-bold transition-all ${viewMode === "list" ? "bg-zinc-900 text-white shadow-lg" : "text-slate-400 hover:text-zinc-900"}`}
                 >
                   <List size={18} /> List View
                 </button>
                 <button 
                   onClick={() => setViewMode("calendar")}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all ${viewMode === "calendar" ? "bg-zinc-900 text-white shadow-lg" : "text-slate-400 hover:text-zinc-900"}`}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-2xl text-sm font-bold transition-all ${viewMode === "calendar" ? "bg-zinc-900 text-white shadow-lg" : "text-slate-400 hover:text-zinc-900"}`}
                 >
                   <CalendarDays size={18} /> Calendar
                 </button>
@@ -153,10 +153,10 @@ const TVWHubView = () => {
                     key={event.id}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="bg-white rounded-[2rem] p-8 border border-zinc-100 shadow-sm hover:shadow-xl transition-all group"
+                    className="bg-white rounded-3xl p-8 border border-zinc-100 shadow-sm hover:shadow-xl transition-all group"
                   >
                     <div className="flex justify-between items-start mb-6">
-                      <div className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${event.mode === 'Virtual' ? 'bg-tata-cyan/10 text-tata-cyan' : 'bg-tata-purple/10 text-tata-purple'}`}>
+                      <div className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest ${event.mode === 'Virtual' ? 'bg-tata-cyan/10 text-tata-cyan' : 'bg-tata-purple/10 text-tata-purple'}`}>
                         {event.mode}
                       </div>
                       <div className="text-xs font-bold text-slate-400 uppercase">{event.company}</div>
@@ -202,10 +202,10 @@ const TVWHubView = () => {
                 ))}
               </div>
             ) : (
-              <div className="bg-white rounded-[2rem] p-8 border border-zinc-100 shadow-sm">
+              <div className="bg-white rounded-3xl p-8 border border-zinc-100 shadow-sm">
                 <div className="grid grid-cols-7 gap-px bg-slate-100 rounded-2xl overflow-hidden border border-slate-100">
                   {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
-                    <div key={day} className="bg-slate-50 p-4 text-center text-[10px] font-bold text-slate-400 uppercase tracking-widest">{day}</div>
+                    <div key={day} className="bg-slate-50 p-4 text-center text-xs font-bold text-slate-400 uppercase tracking-widest">{day}</div>
                   ))}
                   {Array.from({ length: 30 }).map((_, i) => {
                     const day = i + 1;
@@ -218,8 +218,8 @@ const TVWHubView = () => {
                             onClick={() => handleRegisterClick(hasEvent)}
                             className="mt-2 p-2 bg-tata-blue/5 border border-tata-blue/10 rounded-lg cursor-pointer hover:bg-tata-blue/10 transition-all"
                           >
-                            <div className="text-[9px] font-bold text-tata-blue line-clamp-2 leading-tight">{hasEvent.title}</div>
-                            <div className="text-[8px] text-slate-400 mt-1">{hasEvent.mode}</div>
+                            <div className="text-xs font-bold text-tata-blue line-clamp-2 leading-tight">{hasEvent.title}</div>
+                            <div className="text-[10px] text-slate-400 mt-1">{hasEvent.mode}</div>
                           </div>
                         )}
                       </div>
@@ -247,7 +247,7 @@ const TVWHubView = () => {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-md bg-white rounded-[2.5rem] shadow-2xl p-10 overflow-hidden"
+              className="relative w-full max-w-md bg-white rounded-3xl shadow-2xl p-10 overflow-hidden"
             >
               <div className="absolute top-0 left-0 w-full h-2 bg-tata-blue" />
               <h3 className="text-2xl font-bold text-zinc-900 mb-4">Confirm Registration</h3>

@@ -32,7 +32,7 @@ const ConsentModal = ({ isOpen, onAccept, onCancel }: { isOpen: boolean, onAccep
                 </p>
               </div>
 
-              <div className="flex items-start gap-3 mb-8 bg-zinc-50 p-4 rounded-xl">
+              <div className="flex items-start gap-3 mb-8 bg-zinc-50 p-4 rounded-lg">
                 <input 
                   type="checkbox" 
                   id="consent" 

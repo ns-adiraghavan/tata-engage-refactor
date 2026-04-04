@@ -109,7 +109,7 @@ const ProjectFeedbackView = ({ project }: { project: any }) => {
         </div>
 
         {isBulkMode ? (
-          <div className="glass rounded-[2.5rem] p-10 shadow-xl bg-white text-center">
+          <div className="glass rounded-3xl p-10 shadow-xl bg-white text-center">
             <div className="w-20 h-20 bg-tata-blue/5 text-tata-blue rounded-full flex items-center justify-center mx-auto mb-6">
               <Upload size={40} />
             </div>
@@ -121,7 +121,7 @@ const ProjectFeedbackView = ({ project }: { project: any }) => {
               <button className="btn-outline py-3 px-8 flex items-center gap-2 cursor-pointer">
                 <Download size={18} /> Download Template
               </button>
-              <label className="bg-zinc-900 text-white py-3 px-8 rounded-xl font-bold hover:bg-tata-blue transition-all flex items-center gap-2 cursor-pointer">
+              <label className="bg-zinc-900 text-white py-3 px-8 rounded-lg font-bold hover:bg-tata-blue transition-all flex items-center gap-2 cursor-pointer">
                 <Upload size={18} /> Upload Completed File
                 <input type="file" className="hidden" onChange={() => triggerToast("File uploaded and processed!")} />
               </label>
@@ -130,7 +130,7 @@ const ProjectFeedbackView = ({ project }: { project: any }) => {
         ) : (
           <div className="space-y-8">
             {feedbackData.map((volunteer: any) => (
-              <div key={volunteer.volunteerId} className="glass rounded-[2.5rem] p-8 shadow-xl bg-white border border-slate-100">
+              <div key={volunteer.volunteerId} className="glass rounded-3xl p-8 shadow-xl bg-white border border-slate-100">
                 <div className="flex justify-between items-start mb-8">
                   <div className="flex items-center gap-4">
                     <div className="w-14 h-14 rounded-2xl bg-tata-blue text-white flex items-center justify-center text-xl font-bold">
@@ -142,7 +142,7 @@ const ProjectFeedbackView = ({ project }: { project: any }) => {
                     </div>
                   </div>
                   {volunteer.submitted && (
-                    <span className="bg-green-100 text-green-700 px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">
+                    <span className="bg-green-100 text-green-700 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
                       Submitted
                     </span>
                   )}
@@ -188,7 +188,7 @@ const ProjectFeedbackView = ({ project }: { project: any }) => {
                   <div className="mt-8 pt-8 border-t border-slate-100 flex justify-end">
                     <button 
                       onClick={() => submitFeedback(volunteer.volunteerId)}
-                      className="bg-zinc-900 text-white py-3 px-10 rounded-xl font-bold hover:bg-tata-blue transition-all shadow-xl shadow-black/10 cursor-pointer"
+                      className="bg-zinc-900 text-white py-3 px-10 rounded-2xl font-bold hover:bg-tata-blue transition-all shadow-xl shadow-black/10 cursor-pointer"
                     >
                       Submit Feedback
                     </button>
@@ -207,7 +207,7 @@ const ProjectFeedbackView = ({ project }: { project: any }) => {
               animate={{ opacity: 1, y: 0 }}
               className="mt-12 space-y-8"
             >
-              <div className="bg-gradient-to-br from-tata-blue to-blue-900 rounded-[3rem] p-10 text-white shadow-2xl relative overflow-hidden">
+              <div className="bg-gradient-to-br from-tata-blue to-blue-900 rounded-3xl p-10 text-white shadow-2xl relative overflow-hidden">
                 <div className="absolute top-0 right-0 p-10 opacity-10">
                   <Sparkles size={150} />
                 </div>
@@ -235,7 +235,7 @@ const ProjectFeedbackView = ({ project }: { project: any }) => {
                     </div>
                     <div className="space-y-4">
                       <p className="text-xs font-bold text-white/40 uppercase tracking-widest">NGO Quality Signal</p>
-                      <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-sm ${
+                      <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg font-bold text-sm ${
                         aiSummary.qualitySignal === 'High' ? 'bg-green-500/20 text-green-400 border border-green-500/30' :
                         'bg-amber-500/20 text-amber-400 border border-amber-500/30'
                       }`}>
@@ -247,7 +247,7 @@ const ProjectFeedbackView = ({ project }: { project: any }) => {
               </div>
 
               {/* Certificate Trigger Card */}
-              <div className="bg-white rounded-[3rem] p-10 shadow-xl border border-slate-100 flex flex-col md:flex-row items-center justify-between gap-8">
+              <div className="bg-white rounded-3xl p-10 shadow-xl border border-slate-100 flex flex-col md:flex-row items-center justify-between gap-8">
                 <div className="flex items-center gap-6">
                   <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center shrink-0">
                     <FileCheck size={40} />

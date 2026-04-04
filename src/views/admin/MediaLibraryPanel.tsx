@@ -14,14 +14,14 @@ export const MediaLibraryPanel = ({ triggerToast }: { triggerToast: any }) => {
           <h2 className="text-xl font-black text-slate-900 uppercase tracking-widest">Media Library</h2>
           <p className="text-xs text-slate-400 font-mono mt-1">Manage all uploaded images, documents, and videos.</p>
         </div>
-        <button onClick={() => triggerToast("Upload triggered...")} className="px-6 py-3 bg-zinc-900 text-white text-[10px] font-black uppercase tracking-widest hover:bg-black transition-all flex items-center gap-2">
+        <button onClick={() => triggerToast("Upload triggered...")} className="px-6 py-3 bg-zinc-900 text-white text-xs font-semibold uppercase tracking-widest hover:bg-black transition-all flex items-center gap-2">
           <Upload size={16} /> Upload Asset
         </button>
       </div>
 
       <div className="flex gap-4 border-b border-slate-200 pb-4">
         {["All", "TVW", "ProEngage", "General"].map(f => (
-          <button key={f} onClick={() => setFilter(f)} className={`text-[10px] font-black uppercase tracking-widest transition-all ${filter === f ? 'text-tata-blue' : 'text-slate-400 hover:text-slate-600'}`}>
+          <button key={f} onClick={() => setFilter(f)} className={`text-xs font-semibold uppercase tracking-widest transition-all ${filter === f ? 'text-tata-blue' : 'text-slate-400 hover:text-slate-600'}`}>
             {f}
           </button>
         ))}
@@ -45,8 +45,8 @@ export const MediaLibraryPanel = ({ triggerToast }: { triggerToast: any }) => {
               )}
             </div>
             <div className="p-3">
-              <div className="text-[10px] font-bold text-slate-900 truncate">{asset.name}</div>
-              <div className="text-[8px] text-slate-400 font-mono mt-1 uppercase">{asset.programme} • {asset.date}</div>
+              <div className="text-xs font-bold text-slate-900 truncate">{asset.name}</div>
+              <div className="text-[10px] text-slate-400 font-mono mt-1 uppercase">{asset.programme} • {asset.date}</div>
             </div>
           </div>
         ))}
@@ -57,7 +57,7 @@ export const MediaLibraryPanel = ({ triggerToast }: { triggerToast: any }) => {
           <div className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm">
             <div className="bg-white w-full max-w-md border border-slate-200 shadow-2xl p-8 space-y-6">
               <div className="flex justify-between items-start">
-                <h3 className="text-sm font-black text-slate-900 uppercase tracking-widest">Asset Details</h3>
+                <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-widest">Asset Details</h3>
                 <button onClick={() => setSelectedAsset(null)} className="p-2 hover:bg-slate-100 rounded-full"><X size={20} /></button>
               </div>
               <div className="aspect-video bg-slate-100 border border-slate-100 flex items-center justify-center">
@@ -65,27 +65,27 @@ export const MediaLibraryPanel = ({ triggerToast }: { triggerToast: any }) => {
               </div>
               <div className="space-y-4">
                 <div>
-                  <label className="text-[8px] font-black text-slate-400 uppercase tracking-widest block mb-1">File Name</label>
+                  <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest block mb-1">File Name</label>
                   <p className="text-xs font-bold text-slate-900">{selectedAsset.name}</p>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="text-[8px] font-black text-slate-400 uppercase tracking-widest block mb-1">Programme</label>
+                    <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest block mb-1">Programme</label>
                     <p className="text-xs font-bold text-slate-900">{selectedAsset.programme}</p>
                   </div>
                   <div>
-                    <label className="text-[8px] font-black text-slate-400 uppercase tracking-widest block mb-1">Privacy</label>
+                    <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest block mb-1">Privacy</label>
                     <p className="text-xs font-bold text-slate-900">{selectedAsset.privacy}</p>
                   </div>
                 </div>
                 <div>
-                  <label className="text-[8px] font-black text-slate-400 uppercase tracking-widest block mb-1">Usage</label>
-                  <p className="text-[10px] text-slate-500 italic">Appears on: TVW Hub Hero, News Feed</p>
+                  <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest block mb-1">Usage</label>
+                  <p className="text-xs text-slate-500 italic">Appears on: TVW Hub Hero, News Feed</p>
                 </div>
               </div>
               <div className="pt-6 border-t border-slate-100 flex gap-4">
-                <button className="flex-1 py-3 border border-slate-200 text-[10px] font-black uppercase tracking-widest hover:bg-slate-50 transition-all">Delete Asset</button>
-                <button onClick={() => triggerToast("Asset settings updated.")} className="flex-1 py-3 bg-tata-blue text-white text-[10px] font-black uppercase tracking-widest hover:bg-blue-900 transition-all">Update Privacy</button>
+                <button className="flex-1 py-3 border border-slate-200 text-xs font-semibold uppercase tracking-widest hover:bg-slate-50 transition-all">Delete Asset</button>
+                <button onClick={() => triggerToast("Asset settings updated.")} className="flex-1 py-3 bg-tata-blue text-white text-xs font-semibold uppercase tracking-widest hover:bg-blue-900 transition-all">Update Privacy</button>
               </div>
             </div>
           </div>

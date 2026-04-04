@@ -22,7 +22,7 @@ const Navbar = ({ onNavigate, isLoggedIn, onToggleMenu, user }: {
       <div className="flex items-center gap-4">
         <div className="flex flex-col items-center cursor-pointer group" onClick={onToggleMenu}>
           <Menu size={24} className="text-[#003580]" />
-          <span className="text-[#003580] font-bold text-[10px] uppercase tracking-tight">Menu</span>
+          <span className="text-[#003580] font-bold text-xs uppercase tracking-tight">Menu</span>
         </div>
         <div className="h-10 w-px bg-zinc-200 mx-2 hidden md:block" />
         <div className="flex items-center cursor-pointer" onClick={() => onNavigate(user?.role === 'ngo' ? 'ngo-dashboard' : (isLoggedIn ? "dashboard" : "home"))}>

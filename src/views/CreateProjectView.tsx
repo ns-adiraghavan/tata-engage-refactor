@@ -125,7 +125,7 @@ const CreateProjectView = () => {
           </div>
         )}
 
-        <div className="glass rounded-[3rem] shadow-2xl overflow-hidden bg-white">
+        <div className="glass rounded-3xl shadow-2xl overflow-hidden bg-white">
           {/* Stepper */}
           <div className="bg-tata-blue p-8 text-white">
             <div className="flex justify-between items-center relative">
@@ -137,7 +137,7 @@ const CreateProjectView = () => {
                   }`}>
                     {step > s.id ? <Check size={24} /> : s.icon}
                   </div>
-                  <span className={`text-[10px] font-bold uppercase tracking-widest ${step >= s.id ? "text-white" : "text-white/40"}`}>
+                  <span className={`text-xs font-bold uppercase tracking-widest ${step >= s.id ? "text-white" : "text-white/40"}`}>
                     {s.title}
                   </span>
                 </div>
@@ -197,7 +197,7 @@ const CreateProjectView = () => {
                             <button
                               key={m}
                               onClick={() => setProjectData({...projectData, mode: m})}
-                              className={`flex-1 py-3 rounded-xl text-sm font-bold border-2 transition-all ${
+                              className={`flex-1 py-3 rounded-lg text-sm font-bold border-2 transition-all ${
                                 projectData.mode === m ? "border-tata-blue bg-tata-blue/5 text-tata-blue" : "border-slate-100 text-slate-400 hover:border-slate-200"
                               }`}
                             >
@@ -256,7 +256,7 @@ const CreateProjectView = () => {
                         <p className="text-slate-500">Describe the project goals and volunteer responsibilities.</p>
                       </div>
                       <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-center min-w-[120px]">
-                        <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">AI Quality Score</div>
+                        <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">AI Quality Score</div>
                         <div className={`text-2xl font-bold ${qualityScore > 7 ? 'text-green-500' : qualityScore > 4 ? 'text-amber-500' : 'text-red-500'}`}>
                           {qualityScore}/10
                         </div>
@@ -304,7 +304,7 @@ const CreateProjectView = () => {
                         <label className="form-label mb-0">Expected Outcomes*</label>
                         <div className="relative">
                           <Info size={14} className="text-slate-400 cursor-help" />
-                          <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 bg-zinc-900 text-white text-[10px] rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20">
+                          <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 bg-zinc-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20">
                             Be specific about the impact. e.g., "100 women trained in basic bookkeeping."
                           </div>
                         </div>
@@ -369,7 +369,7 @@ const CreateProjectView = () => {
                   <button 
                     onClick={handleSubmit}
                     disabled={!projectData.outcomes}
-                    className="bg-tata-cyan text-tata-blue py-3 px-10 rounded-xl font-bold hover:bg-tata-blue hover:text-white transition-all flex items-center gap-2 cursor-pointer disabled:opacity-50"
+                    className="bg-tata-cyan text-tata-blue py-3 px-10 rounded-lg font-bold hover:bg-tata-blue hover:text-white transition-all flex items-center gap-2 cursor-pointer disabled:opacity-50"
                   >
                     <Send size={18} /> Submit for Review
                   </button>
