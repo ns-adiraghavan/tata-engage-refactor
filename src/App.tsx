@@ -7,7 +7,7 @@ import { useAuth } from "@/context/AuthContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
 import { usePageTitle } from "@/hooks/usePageTitle";
 import type { Role } from "@/types";
-import { PRIYA_SHARMA, ANJALI_MEHTA, ROHAN_DESAI } from "@/data/mockData";
+import { PRIYA_SHARMA, ANJALI_MEHTA } from "@/data/mockData";
 
 import Navbar from "@/components/layout/Navbar";
 import MegaMenu from "@/components/layout/MegaMenu";
