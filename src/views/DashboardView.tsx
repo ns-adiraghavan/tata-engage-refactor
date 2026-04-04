@@ -455,6 +455,7 @@ const DashboardView = () => {
             </div>
           </section>
         </div>
+        </div>
 
         {/* ═══ SECTION: More (collapsed) ═══ */}
         <details className="mb-8">
