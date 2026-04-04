@@ -6,6 +6,12 @@ import { useAppContext } from "@/context/AppContext";
 
 const ActiveProjectManagementView = ({ project }: { project: any }) => {
   const { user, navigate, triggerToast } = useAppContext();
+  const MOCK_HEALTH_UPDATES = [
+    { month: "January", status: "Updated", date: "2026-01-15" },
+    { month: "February", status: "Updated", date: "2026-02-14" },
+    { month: "March", status: "At Risk", date: "2026-03-20" },
+    { month: "April", status: "Pending", date: null },
+  ];
   const [healthUpdates, setHealthUpdates] = useState(MOCK_HEALTH_UPDATES);
   const [projectStatus, setProjectStatus] = useState(project?.status || "Active");
   const [showConfirmModal, setShowConfirmModal] = useState<"pause" | "close" | "extend" | null>(null);

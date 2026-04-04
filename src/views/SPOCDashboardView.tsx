@@ -221,16 +221,16 @@ const SPOCDashboardView = () => {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2 text-[10px] font-black text-slate-400 uppercase tracking-widest">
                       <History size={14} />
-                      {v.nudged ? "Nudge sent today" : "No recent action"}
+                      {v?.nudged ? "Nudge sent today" : "No recent action"}
                     </div>
                     <button 
                       onClick={() => handleSendNudge(v.id)}
-                      disabled={v.nudged}
+                      disabled={v?.nudged}
                       className={`px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] transition-all cursor-pointer active:scale-95 ${
-                        v.nudged ? "bg-slate-100 text-slate-400" : "bg-zinc-900 text-white hover:bg-tata-blue shadow-lg hover:shadow-tata-blue/20"
+                        v?.nudged ? "bg-slate-100 text-slate-400" : "bg-zinc-900 text-white hover:bg-tata-blue shadow-lg hover:shadow-tata-blue/20"
                       }`}
                     >
-                      {v.nudged ? "Nudge Sent" : "Send Nudge"}
+                      {v?.nudged ? "Nudge Sent" : "Send Nudge"}
                     </button>
                   </div>
                 </div>
@@ -809,7 +809,7 @@ const SPOCDashboardView = () => {
             <div className="relative z-10">
               <div className="flex items-center justify-between mb-1">
                 <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">{stat.label}</p>
-                {stat.badge && stat.value > 0 && (
+                {stat.badge && stat.value > 0 as any && (
                   <div className="w-2 h-2 bg-red-500 rounded-full animate-ping" />
                 )}
               </div>
