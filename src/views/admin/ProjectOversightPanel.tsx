@@ -346,12 +346,13 @@ export const ProjectOversightPanel = ({ addAuditLog, triggerToast }: { addAuditL
       {/* Review Drawer */}
       <AnimatePresence>
         {selectedProject && (
-          <div className="fixed inset-0 z-[100] flex justify-end bg-black/50 backdrop-blur-sm">
+          <div className="fixed inset-0 z-[100] flex justify-end bg-black/50 backdrop-blur-sm" onClick={() => { setSelectedProject(null); setIsEditing(false); }}>
             <motion.div 
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               className="w-full max-w-4xl bg-white h-full shadow-2xl flex flex-col"
+              onClick={(e) => e.stopPropagation()}
             >
               <div className="p-6 border-b border-slate-200 flex justify-between items-center bg-slate-50">
                 <div>
