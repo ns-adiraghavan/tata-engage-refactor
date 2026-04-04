@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ShieldCheck, Lock, Filter, Check, Save, Download, Upload, FileSpreadsheet, Edit3 } from "lucide-react";
+import { X, ShieldCheck, Lock, Filter, Check, Save, Download, Upload, FileSpreadsheet, Edit3, FolderOpen } from "lucide-react";
 import { COMPANY_DOMAINS, MOCK_PROJECT_SUBMISSIONS } from "@/data/mockData";
 
 export const ProjectOversightPanel = ({ addAuditLog, triggerToast }: { addAuditLog: any, triggerToast: any }) => {
