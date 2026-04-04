@@ -4,6 +4,7 @@ import { X, Building2, Eye, Award, Check, Sparkles, Star, ChevronLeft, Download,
 import type { View } from "@/types";
 import { MOCK_APPLICANTS, ANJALI_MEHTA } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
+import { useAppNavigate } from "@/hooks/useAppNavigate";
 
 const ProjectFeedbackView = ({ project }: { project: any }) => {
   const { setNgoData, triggerToast } = useAppContext();

@@ -4,9 +4,13 @@ import { Menu, X, ChevronRight, User, Users, Briefcase, ShieldCheck, Lock, Eye, 
 import type { View, Role } from "@/types";
 import { ROHAN_DESAI, SPOC_DIRECTORY, PENDING_APPROVALS_DATA, TCS_TVW_EVENTS, PROENGAGE_PIPELINE, AT_RISK_VOLUNTEERS, OPEN_PROENGAGE_PROJECTS, COMPANY_LEADERBOARD, VOLUNTEER_CERTIFICATES, FEEDBACK_MONITOR_DATA } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
+import { useAuth } from "@/context/AuthContext";
+import { useLocation } from "react-router-dom";
 
 const SPOCDashboardView = () => {
-  const { view, user, isOrientationDismissed, setIsOrientationDismissed, setShowOrientationModal, setShowToast, setToastMessage, formData, drResponses } = useAppContext();
+  const { user } = useAuth();
+  const location = useLocation();
+  const { isOrientationDismissed, setIsOrientationDismissed, setShowOrientationModal, setShowToast, setToastMessage, formData, drResponses } = useAppContext();
   const spoc = ROHAN_DESAI;
   const [activeNav, setActiveNav] = useState("Dashboard");
   const [spocs, setSpocs] = useState(SPOC_DIRECTORY);

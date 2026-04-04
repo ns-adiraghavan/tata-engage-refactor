@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Building2, Heart, Search, Clock, Info, Check, Sparkles, Save } from "lucide-react";
 import { PROENGAGE_PROJECTS } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
+import { useAuth } from "@/context/AuthContext";
 
 const ProEngageView = () => {
   const { appliedProjects, setAppliedProjects, likedProjects, setLikedProjects, triggerToast } = useAppContext();

@@ -1,10 +1,9 @@
-import { useAppContext } from "@/context/AppContext";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Users, Building2, ShieldCheck, Eye, CheckCircle2, Globe, MapPin, Filter, List, Send, Check, Zap, Plus, History, AlertTriangle, Activity, ShieldAlert } from "lucide-react";
-import type { View } from "@/types";
 import { TATA_COMPANIES, GEOGRAPHIES } from "@/constants";
 import { DR_TEMPLATES } from "@/data/mockData";
+import { useAppNavigate } from "@/hooks/useAppNavigate";
 
 export const DisasterResponsePanel = ({ addAuditLog, triggerToast, drResponses, setIsDRActive, isDRActive, drDeploymentLog, setDrDeploymentLog, isDRClosed, setIsDRClosed }: { 
   addAuditLog: (action: string, details: string) => void, 
@@ -17,7 +16,7 @@ export const DisasterResponsePanel = ({ addAuditLog, triggerToast, drResponses, 
   isDRClosed: boolean,
   setIsDRClosed: (val: boolean) => void
 }) => {
-  const { navigate } = useAppContext();
+  const navigate = useAppNavigate();
   const [step, setStep] = useState<"initiate" | "status" | "dashboard">("initiate");
   const [audience, setAudience] = useState<"all" | "specific" | "geography">("all");
   const [selectedCompanies, setSelectedCompanies] = useState<string[]>([]);
