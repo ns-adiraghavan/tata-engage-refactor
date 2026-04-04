@@ -1083,6 +1083,13 @@ const SPOCDashboardView = () => {
           </div>
         </div>
 
+        {filteredApprovals.length === 0 ? (
+          <div className="bg-white rounded-3xl p-10 shadow-sm border border-slate-100 flex flex-col items-center justify-center py-16 text-center">
+            <CheckCircle2 size={40} className="text-slate-300 mb-4" />
+            <h4 className="text-[15px] font-medium text-slate-700 mb-1">All caught up</h4>
+            <p className="text-[13px] text-muted-foreground">No registrations pending your approval.</p>
+          </div>
+        ) : (
         <div className="bg-white rounded-3xl p-10 shadow-sm border border-slate-100 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-left">
@@ -1166,6 +1173,7 @@ const SPOCDashboardView = () => {
             </table>
           </div>
         </div>
+        )}
       </div>
     );
   };

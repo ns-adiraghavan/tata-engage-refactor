@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ShieldCheck, Lock, Filter, Check, Save, Download, Upload, FileSpreadsheet, Edit3 } from "lucide-react";
+import { X, ShieldCheck, Lock, Filter, Check, Save, Download, Upload, FileSpreadsheet, Edit3, FolderOpen } from "lucide-react";
 import { COMPANY_DOMAINS, MOCK_PROJECT_SUBMISSIONS } from "@/data/mockData";
 
 export const ProjectOversightPanel = ({ addAuditLog, triggerToast }: { addAuditLog: any, triggerToast: any }) => {
@@ -274,6 +274,13 @@ export const ProjectOversightPanel = ({ addAuditLog, triggerToast }: { addAuditL
           </div>
 
           {/* Project Table */}
+          {filteredProjects.length === 0 ? (
+            <div className="bg-white border border-slate-200 flex flex-col items-center justify-center py-16 text-center">
+              <FolderOpen size={40} className="text-slate-300 mb-4" />
+              <h4 className="text-[15px] font-medium text-slate-700 mb-1">No projects awaiting review</h4>
+              <p className="text-[13px] text-muted-foreground">Submitted NGO projects will appear here.</p>
+            </div>
+          ) : (
           <div className="bg-white border border-slate-200">
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
@@ -327,6 +334,7 @@ export const ProjectOversightPanel = ({ addAuditLog, triggerToast }: { addAuditL
               </table>
             </div>
           </div>
+          )}
         </div>
 
         {/* Sidebar Config */}
