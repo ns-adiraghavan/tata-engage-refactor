@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronRight } from "lucide-react";
+import tataEngageLogoNoBg from "@/assets/tata-engage-logo-nobg.png";
+import { X, ChevronRight } from "lucide-react";
 import type { View } from "@/types";
 
 const MegaMenu = ({ isOpen, onClose, isLoggedIn, onNavigate, onLogout, user }: { 
@@ -31,10 +32,9 @@ const MegaMenu = ({ isOpen, onClose, isLoggedIn, onNavigate, onLogout, user }: {
             <div className="flex justify-between items-center mb-12">
               <div>
                 <img 
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRG2f-xo_Z2La9Y0SPnOLqZWBtorh4oXrzkVg&s" 
+                  src={tataEngageLogoNoBg} 
                   alt="TATA engage" 
-                  className="h-12 md:h-14 object-contain"
-                  referrerPolicy="no-referrer"
+                  className="h-14 md:h-16 object-contain"
                 />
               </div>
               <button onClick={onClose} className="p-2 hover:bg-slate-100 rounded-full cursor-pointer"><X size={24} /></button>

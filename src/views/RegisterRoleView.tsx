@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { User, Users, Building2, Briefcase, Heart, ShieldCheck } from "lucide-react";
+import tataEngageLogoNoBg from "@/assets/tata-engage-logo-nobg.png";
 import type { Role } from "@/types";
 import { useAppContext } from "@/context/AppContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
@@ -14,10 +15,9 @@ const RegisterRoleView = () => {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
           <div className="flex justify-center mb-6">
             <img 
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRG2f-xo_Z2La9Y0SPnOLqZWBtorh4oXrzkVg&s" 
+              src={tataEngageLogoNoBg} 
               alt="TATA engage" 
               className="h-16 md:h-20 object-contain"
-              referrerPolicy="no-referrer"
             />
           </div>
           <h2 className="text-4xl font-bold text-zinc-900 mb-2">Create Your Account</h2>

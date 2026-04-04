@@ -1,4 +1,5 @@
 import { Menu, Bell } from "lucide-react";
+import tataEngageLogo from "@/assets/tata-engage-logo.png";
 import type { View } from "@/types";
 
 const Navbar = ({ onNavigate, isLoggedIn, onToggleMenu, user }: { 
@@ -27,21 +28,9 @@ const Navbar = ({ onNavigate, isLoggedIn, onToggleMenu, user }: {
         <div className="h-10 w-px bg-zinc-200 mx-2 hidden md:block" />
         <div className="flex items-center cursor-pointer" onClick={() => onNavigate(user?.role === 'ngo' ? 'ngo-dashboard' : (isLoggedIn ? "dashboard" : "home"))}>
           <img 
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRG2f-xo_Z2La9Y0SPnOLqZWBtorh4oXrzkVg&s" 
+            src={tataEngageLogo} 
             alt="TATA engage" 
-            className="h-12 md:h-14 object-contain"
-            referrerPolicy="no-referrer"
-            onError={(e) => {
-              // Fallback to text logo if image fails
-              e.currentTarget.style.display = 'none';
-              const parent = e.currentTarget.parentElement;
-              if (parent && !parent.querySelector('.text-logo-fallback')) {
-                const fallback = document.createElement('div');
-                fallback.className = 'text-logo-fallback flex items-center gap-1 text-xl font-bold tracking-tighter';
-                fallback.innerHTML = '<span class="text-[#003580]">TATA</span><span class="text-[#00b4d8]">engage</span>';
-                parent.appendChild(fallback);
-              }
-            }}
+            className="h-14 md:h-16 object-contain"
           />
         </div>
       </div>
