@@ -274,6 +274,13 @@ export const ProjectOversightPanel = ({ addAuditLog, triggerToast }: { addAuditL
           </div>
 
           {/* Project Table */}
+          {filteredProjects.length === 0 ? (
+            <div className="bg-white border border-slate-200 flex flex-col items-center justify-center py-16 text-center">
+              <FolderOpen size={40} className="text-slate-300 mb-4" />
+              <h4 className="text-[15px] font-medium text-slate-700 mb-1">No projects awaiting review</h4>
+              <p className="text-[13px] text-muted-foreground">Submitted NGO projects will appear here.</p>
+            </div>
+          ) : (
           <div className="bg-white border border-slate-200">
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">

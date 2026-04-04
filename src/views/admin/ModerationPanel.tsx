@@ -62,9 +62,11 @@ export const ModerationPanel = ({ addAuditLog, triggerToast }: { addAuditLog: an
       </div>
 
       {items.length === 0 ? (
-        <p className="text-xs text-muted-foreground py-4 text-center bg-slate-50 rounded-xl border border-slate-100">
-          No items pending review.
-        </p>
+        <div className="flex flex-col items-center justify-center py-16 text-center bg-slate-50 rounded-xl border border-slate-100">
+          <ThumbsUp size={40} className="text-slate-300 mb-4" />
+          <h4 className="text-[15px] font-medium text-slate-700 mb-1">Nothing to moderate</h4>
+          <p className="text-[13px] text-muted-foreground">Approved content will publish automatically.</p>
+        </div>
       ) : (
         <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
           <table className="w-full text-left border-collapse">

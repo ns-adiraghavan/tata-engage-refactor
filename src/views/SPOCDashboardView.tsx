@@ -1173,6 +1173,7 @@ const SPOCDashboardView = () => {
             </table>
           </div>
         </div>
+        )}
       </div>
     );
   };
