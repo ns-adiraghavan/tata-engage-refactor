@@ -334,36 +334,48 @@ const DashboardView = () => {
               </motion.section>
             )}
 
-            {/* Upcoming Events */}
-            <section>
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-xl font-bold text-zinc-900">Upcoming TVW Events</h2>
-                <button onClick={() => navigate("tvw")} className="text-sm font-bold text-tata-blue hover:underline cursor-pointer">View Calendar</button>
-              </div>
-              <div className="space-y-4">
-                {[
-                  { title: "Global Tree Plantation Day", date: "April 15, 2026", loc: "Mumbai Hub", type: "On-field" },
-                  { title: "Virtual Mentoring Kickoff", date: "April 18, 2026", loc: "Online", type: "Virtual" }
-                ].map((event, i) => (
-                  <div key={i} className="flex items-center justify-between p-5 bg-white rounded-2xl border border-zinc-100 hover:shadow-md transition-all cursor-pointer">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-lg bg-slate-50 flex flex-col items-center justify-center text-tata-blue">
-                        <span className="text-xs font-bold uppercase">{event.date.split(' ')[0]}</span>
-                        <span className="text-lg font-bold">{event.date.split(' ')[1].replace(',', '')}</span>
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-zinc-900">{event.title}</h4>
-                        <div className="flex items-center gap-3 text-xs text-slate-500 mt-1">
-                          <span className="flex items-center gap-1"><MapPin size={12} /> {event.loc}</span>
-                          <span className="flex items-center gap-1"><Globe size={12} /> {event.type}</span>
+            {/* TVW Section */}
+            {isTVWActive ? (
+              <section>
+                <div className="flex justify-between items-center mb-6">
+                  <h2 className="text-xl font-bold text-zinc-900">Upcoming TVW Events</h2>
+                  <button onClick={() => navigate("tvw")} className="text-sm font-bold text-tata-blue hover:underline cursor-pointer">View Calendar</button>
+                </div>
+                <div className="space-y-4">
+                  {[
+                    { title: "Global Tree Plantation Day", date: "April 15, 2026", loc: "Mumbai Hub", type: "On-field" },
+                    { title: "Virtual Mentoring Kickoff", date: "April 18, 2026", loc: "Online", type: "Virtual" }
+                  ].map((event, i) => (
+                    <div key={i} className="flex items-center justify-between p-5 bg-white rounded-2xl border border-zinc-100 hover:shadow-md transition-all cursor-pointer">
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 rounded-lg bg-slate-50 flex flex-col items-center justify-center text-tata-blue">
+                          <span className="text-xs font-bold uppercase">{event.date.split(' ')[0]}</span>
+                          <span className="text-lg font-bold">{event.date.split(' ')[1].replace(',', '')}</span>
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-zinc-900">{event.title}</h4>
+                          <div className="flex items-center gap-3 text-xs text-slate-500 mt-1">
+                            <span className="flex items-center gap-1"><MapPin size={12} /> {event.loc}</span>
+                            <span className="flex items-center gap-1"><Globe size={12} /> {event.type}</span>
+                          </div>
                         </div>
                       </div>
+                      <ChevronRight size={20} className="text-slate-300" />
                     </div>
-                    <ChevronRight size={20} className="text-slate-300" />
-                  </div>
-                ))}
-              </div>
-            </section>
+                  ))}
+                </div>
+              </section>
+            ) : (
+              <section className="bg-slate-100 rounded-2xl p-6 flex items-center justify-between">
+                <div>
+                  <h3 className="font-bold text-zinc-700 mb-1">TVW 2024 highlights</h3>
+                  <p className="text-sm text-zinc-500">View photos and stories from the last edition</p>
+                </div>
+                <button onClick={() => navigate("tvw-vibe")} className="text-sm font-bold text-tata-blue hover:underline cursor-pointer flex items-center gap-1">
+                  View highlights <ChevronRight size={16} />
+                </button>
+              </section>
+            )}
           </div>
 
           {/* Right Column: Badges & Updates */}
