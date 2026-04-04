@@ -46,6 +46,7 @@ export default function App() {
   const { user, setUser, isLoggedIn, setIsLoggedIn, handleLogout: authLogout } = useAuth();
   const navigate = useAppNavigate();
   const location = useLocation();
+  usePageTitle();
 
   const [selectedRole, setSelectedRole] = useState<Role | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
