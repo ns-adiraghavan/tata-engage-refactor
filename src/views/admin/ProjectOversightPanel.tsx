@@ -334,6 +334,7 @@ export const ProjectOversightPanel = ({ addAuditLog, triggerToast }: { addAuditL
               </table>
             </div>
           </div>
+          )}
         </div>
 
         {/* Sidebar Config */}
