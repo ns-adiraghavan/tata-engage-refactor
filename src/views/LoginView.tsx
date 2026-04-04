@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Building2, ShieldCheck, Mail, Lock, Eye } from "lucide-react";
-import { VIKRAM_NAIR, ROHAN_DESAI } from "@/data/mockData";
+import { VIKRAM_NAIR, ROHAN_DESAI, PRIYA_SHARMA } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
 import { useAuth } from "@/context/AuthContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
