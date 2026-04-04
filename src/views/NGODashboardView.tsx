@@ -192,7 +192,7 @@ const NGODashboardView = () => {
                     <Clock size={24} />
                   </div>
                   <div>
-                    <h4 className="font-bold text-amber-900">Feedback due in {daysLeft} {daysLeft === 1 ? 'day' : 'days'}</h4>
+                    <h4 className="font-bold text-amber-900">Feedback due {daysLeft <= 0 ? 'today' : `in ${daysLeft} ${daysLeft === 1 ? 'day' : 'days'}`}</h4>
                     <p className="text-sm text-amber-700 opacity-80">Please complete the volunteer assessments for <span className="font-bold">"{project.title}"</span> to trigger certificate generation.</p>
                   </div>
                 </div>
