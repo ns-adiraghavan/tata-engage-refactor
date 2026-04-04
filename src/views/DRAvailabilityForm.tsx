@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { ArrowLeft, Search, Send, ShieldAlert } from "lucide-react";
 import { useAppContext } from "@/context/AppContext";
+import { useAuth } from "@/context/AuthContext";
+import { useAppNavigate } from "@/hooks/useAppNavigate";
 
 const DRAvailabilityForm = () => {
-  const { user, setDrResponses, setHasSubmittedAvailability, navigate, triggerToast } = useAppContext();
+  const { user } = useAuth();
+  const navigate = useAppNavigate();
+  const { setDrResponses, setHasSubmittedAvailability, triggerToast } = useAppContext();
   const [formData, setFormData] = useState({
     location: "Mumbai, Maharashtra",
     willingToTravel: "Assam, North East India",

@@ -4,9 +4,11 @@ import { motion } from "framer-motion";
 import { Building2, Heart, Search, Clock, Info, Check, Sparkles, Save } from "lucide-react";
 import { PROENGAGE_PROJECTS } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
+import { useAuth } from "@/context/AuthContext";
 
 const ProEngageView = () => {
-  const { user, appliedProjects, setAppliedProjects, likedProjects, setLikedProjects, triggerToast } = useAppContext();
+  const { appliedProjects, setAppliedProjects, likedProjects, setLikedProjects, triggerToast } = useAppContext();
+  const { user } = useAuth();
   const [activeTab, setActiveTab] = useState("All Projects");
   const [isApplying, setIsApplying] = useState(false);
   const [selectedProject, setSelectedProject] = useState<any>(null);

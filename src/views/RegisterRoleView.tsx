@@ -2,9 +2,11 @@ import { motion } from "framer-motion";
 import { User, Users, Building2, Briefcase, Heart, ShieldCheck } from "lucide-react";
 import type { Role } from "@/types";
 import { useAppContext } from "@/context/AppContext";
+import { useAppNavigate } from "@/hooks/useAppNavigate";
 
 const RegisterRoleView = () => {
-  const { selectedRole, navigate, handleRoleSelect } = useAppContext();
+  const { selectedRole, handleRoleSelect } = useAppContext();
+  const navigate = useAppNavigate();
   return (
   <div className="min-h-screen pt-32 pb-20 px-6 md:px-12 bg-white">
     <div className="max-w-4xl mx-auto">

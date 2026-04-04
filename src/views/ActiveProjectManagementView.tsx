@@ -3,9 +3,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { User, Mail, CheckCircle2, Sparkles, Edit2, Pause, StopCircle, History, AlertTriangle, Activity, ChevronLeft } from "lucide-react";
 import type { View } from "@/types";
 import { useAppContext } from "@/context/AppContext";
+import { useAuth } from "@/context/AuthContext";
+import { useAppNavigate } from "@/hooks/useAppNavigate";
 
 const ActiveProjectManagementView = ({ project }: { project: any }) => {
-  const { user, navigate, triggerToast } = useAppContext();
+  const { user } = useAuth();
+  const navigate = useAppNavigate();
+  const { triggerToast } = useAppContext();
   const MOCK_HEALTH_UPDATES = [
     { month: "January", status: "Updated", date: "2026-01-15" },
     { month: "February", status: "Updated", date: "2026-02-14" },

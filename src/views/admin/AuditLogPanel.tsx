@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { User, ShieldCheck, Search, Download } from "lucide-react";
 import { useAppContext } from "@/context/AppContext";
+import { useAuth } from "@/context/AuthContext";
 
 export const AuditLogPanel = () => {
-  const { user, auditLogs, triggerToast } = useAppContext();
+  const { user } = useAuth();
+  const { auditLogs, triggerToast } = useAppContext();
   const [filterType, setFilterType] = useState("All");
   const [search, setSearch] = useState("");
 

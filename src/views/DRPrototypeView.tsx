@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { User, Briefcase, ShieldCheck, ArrowLeft, Mail, Sparkles, MessageSquare, Activity, Download, FileSpreadsheet, ShieldAlert } from "lucide-react";
-import type { View } from "@/types";
 import { useAppContext } from "@/context/AppContext";
+import { useAuth } from "@/context/AuthContext";
+import { useAppNavigate } from "@/hooks/useAppNavigate";
 
 const DRPrototypeView = () => {
-  const { user, isDRActive, setIsDRActive, navigate } = useAppContext();
+  const { user } = useAuth();
+  const navigate = useAppNavigate();
+  const { isDRActive, setIsDRActive } = useAppContext();
   const [activeTab, setActiveTab] = useState<"volunteer" | "spoc" | "csr">("volunteer");
 
   return (

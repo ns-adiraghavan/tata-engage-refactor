@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 import { AppContext } from "@/context/AppContext";
-import type { View, Role } from "@/types";
+import { useAuth } from "@/context/AuthContext";
+import { useAppNavigate } from "@/hooks/useAppNavigate";
+import type { Role } from "@/types";
 import { PRIYA_SHARMA, ANJALI_MEHTA, ROHAN_DESAI } from "@/data/mockData";
 
 import Navbar from "@/components/layout/Navbar";
@@ -12,6 +15,7 @@ import OrientationModal from "@/components/shared/OrientationModal";
 import Chatbot from "@/components/shared/Chatbot";
 import FeedbackModal from "@/components/shared/FeedbackModal";
 import SupportModal from "@/components/shared/SupportModal";
+import ProtectedRoute from "@/components/shared/ProtectedRoute";
 
 import HomeView from "@/views/HomeView";
 import LoginView from "@/views/LoginView";
@@ -35,16 +39,16 @@ import DRAvailabilityForm from "@/views/DRAvailabilityForm";
 import DRConfirmationView from "@/views/DRConfirmationView";
 import SPOCDashboardView from "@/views/SPOCDashboardView";
 import AdminDashboardView from "@/views/AdminDashboardView";
+import NotFound from "@/pages/NotFound";
 
 export default function App() {
-  const [view, setView] = useState<View>("home");
-  const [prevView, setPrevView] = useState<View>("home");
+  const { user, setUser, isLoggedIn, setIsLoggedIn, handleLogout: authLogout } = useAuth();
+  const navigate = useAppNavigate();
+  const location = useLocation();
+
   const [selectedRole, setSelectedRole] = useState<Role | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isConsentOpen, setIsConsentOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState<any>(PRIYA_SHARMA);
-  const userRole = user.role;
   const [isOrientationDismissed, setIsOrientationDismissed] = useState(false);
   const [showOrientationModal, setShowOrientationModal] = useState(false);
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
@@ -69,7 +73,7 @@ export default function App() {
   const [drDeploymentLog, setDrDeploymentLog] = useState<any[]>([]);
   const [isDRClosed, setIsDRClosed] = useState(false);
   const [chatMessages, setChatMessages] = useState<any[]>([
-    { role: "bot", text: "Hi Priya! I'm your Tata Engage assistant. Ask me anything about programmes, applications, or deadlines." }
+    { role: "bot", text: "Hi! I'm your Tata Engage assistant. Ask me anything about programmes, applications, or deadlines." }
   ]);
   const [clonedProject, setClonedProject] = useState<any>(null);
   const [activeProject, setActiveProject] = useState<any>(null);
@@ -81,13 +85,6 @@ export default function App() {
   const [auditLogs, setAuditLogs] = useState<any[]>([
     { id: 1, timestamp: new Date().toISOString(), action: "User Login", user: "Vikram Nair", details: "Admin session started" }
   ]);
-
-  const navigate = (newView: View) => {
-    setPrevView(view);
-    setView(newView);
-    if (newView === "register-role") setFormStep(1);
-    window.scrollTo(0, 0);
-  };
 
   const addAuditLog = (action: string, details: string) => {
     const newLog = {
@@ -145,12 +142,16 @@ export default function App() {
 
   const handleOtpChannelSelect = () => { navigate("otp"); };
   const handleOtpVerify = () => { setIsLoggedIn(true); navigate("dashboard"); triggerToast("Registration Successful! Welcome to Tata Engage."); };
-  const handleLogout = () => { setIsLoggedIn(false); setUser(PRIYA_SHARMA); navigate("home"); triggerToast("Logged out successfully."); };
+
+  const onLogout = () => {
+    authLogout();
+    navigate("home");
+    triggerToast("Logged out successfully.");
+  };
 
   const ctx = {
-    view, setView, prevView, setPrevView, selectedRole, setSelectedRole,
+    selectedRole, setSelectedRole,
     isMenuOpen, setIsMenuOpen, isConsentOpen, setIsConsentOpen,
-    isLoggedIn, setIsLoggedIn, user, setUser, userRole,
     isOrientationDismissed, setIsOrientationDismissed,
     showOrientationModal, setShowOrientationModal,
     otp, setOtp, showToast, setShowToast, toastMessage, setToastMessage,
@@ -169,9 +170,9 @@ export default function App() {
     showSupportModal, setShowSupportModal, supportSubject, setSupportSubject,
     ngoData, setNgoData, adminActiveTab, setAdminActiveTab,
     auditLogs, setAuditLogs,
-    navigate, addAuditLog, triggerToast,
+    addAuditLog, triggerToast,
     handleRoleSelect, handleFormSubmit, handleConsentAccept,
-    handleOtpChannelSelect, handleOtpVerify, handleLogout,
+    handleOtpChannelSelect, handleOtpVerify,
   };
 
   return (
@@ -188,7 +189,7 @@ export default function App() {
           onClose={() => setIsMenuOpen(false)}
           isLoggedIn={isLoggedIn}
           onNavigate={navigate}
-          onLogout={handleLogout}
+          onLogout={onLogout}
           user={user}
         />
         <ConsentModal
@@ -200,34 +201,37 @@ export default function App() {
         <main>
           <AnimatePresence mode="wait">
             <motion.div
-              key={view}
+              key={location.pathname}
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.3 }}
             >
-              {view === "home" && <HomeView />}
-              {view === "login" && <LoginView />}
-              {view === "register-role" && <RegisterRoleView />}
-              {view === "register-form" && <RegisterFormView />}
-              {view === "otp-channel" && <OtpChannelView />}
-              {view === "otp" && <OtpView />}
-              {view === "forgot-password" && <ForgotPasswordView />}
-              {view === "dashboard" && <DashboardView />}
-              {view === "ngo-dashboard" && <NGODashboardView />}
-              {view === "create-project" && <CreateProjectView />}
-              {view === "active-project-management" && <ActiveProjectManagementView project={activeProject} />}
-              {view === "project-feedback" && <ProjectFeedbackView project={activeProject} />}
-              {view === "profile" && <ProfileView />}
-              {view === "tvw" && <TVWHubView />}
-              {view === "tvw-vibe" && <TVWVibeView />}
-              {view === "proengage" && <ProEngageView />}
-              {view === "disaster-response" && <DisasterResponseView />}
-              {view === "dr-prototype" && <DRPrototypeView />}
-              {view === "dr-availability-form" && <DRAvailabilityForm />}
-              {view === "dr-confirmation" && <DRConfirmationView />}
-              {view === "spoc-dashboard" && <SPOCDashboardView />}
-              {view === "admin-dashboard" && <AdminDashboardView />}
+              <Routes location={location}>
+                <Route path="/" element={<HomeView />} />
+                <Route path="/login" element={<LoginView />} />
+                <Route path="/register" element={<RegisterRoleView />} />
+                <Route path="/register/form" element={<RegisterFormView />} />
+                <Route path="/otp/channel" element={<OtpChannelView />} />
+                <Route path="/otp/verify" element={<OtpView />} />
+                <Route path="/forgot-password" element={<ForgotPasswordView />} />
+                <Route path="/dashboard" element={<ProtectedRoute><DashboardView /></ProtectedRoute>} />
+                <Route path="/ngo/dashboard" element={<ProtectedRoute><NGODashboardView /></ProtectedRoute>} />
+                <Route path="/projects/create" element={<ProtectedRoute><CreateProjectView /></ProtectedRoute>} />
+                <Route path="/projects/active" element={<ProtectedRoute><ActiveProjectManagementView project={activeProject} /></ProtectedRoute>} />
+                <Route path="/projects/feedback" element={<ProtectedRoute><ProjectFeedbackView project={activeProject} /></ProtectedRoute>} />
+                <Route path="/profile" element={<ProtectedRoute><ProfileView /></ProtectedRoute>} />
+                <Route path="/tvw" element={<ProtectedRoute><TVWHubView /></ProtectedRoute>} />
+                <Route path="/tvw/vibe" element={<TVWVibeView />} />
+                <Route path="/proengage" element={<ProtectedRoute><ProEngageView /></ProtectedRoute>} />
+                <Route path="/disaster-response" element={<DisasterResponseView />} />
+                <Route path="/disaster-response/prototype" element={<ProtectedRoute><DRPrototypeView /></ProtectedRoute>} />
+                <Route path="/disaster-response/availability" element={<ProtectedRoute><DRAvailabilityForm /></ProtectedRoute>} />
+                <Route path="/disaster-response/confirmation" element={<ProtectedRoute><DRConfirmationView /></ProtectedRoute>} />
+                <Route path="/spoc/dashboard" element={<ProtectedRoute><SPOCDashboardView /></ProtectedRoute>} />
+                <Route path="/admin/dashboard" element={<ProtectedRoute><AdminDashboardView /></ProtectedRoute>} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
             </motion.div>
           </AnimatePresence>
         </main>

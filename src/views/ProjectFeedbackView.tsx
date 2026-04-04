@@ -4,9 +4,11 @@ import { X, Building2, Eye, Award, Check, Sparkles, Star, ChevronLeft, Download,
 import type { View } from "@/types";
 import { MOCK_APPLICANTS, ANJALI_MEHTA } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
+import { useAppNavigate } from "@/hooks/useAppNavigate";
 
 const ProjectFeedbackView = ({ project }: { project: any }) => {
-  const { setNgoData, navigate, triggerToast } = useAppContext();
+  const { setNgoData, triggerToast } = useAppContext();
+  const navigate = useAppNavigate();
   const [feedbackData, setFeedbackData] = useState<any>(
     MOCK_APPLICANTS.filter(a => a.projectId === project?.id).map(a => ({
       volunteerId: a.id,

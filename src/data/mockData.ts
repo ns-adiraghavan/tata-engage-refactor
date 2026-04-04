@@ -144,9 +144,9 @@ export const PROENGAGE_PIPELINE = [
   { id: 7, name: "Karan Malhotra", project: "Healthcare Support", ngo: "HelpAge India", status: "Paused", match: 85, lastUpdated: "4 days ago", email: "karan.m@tata.com", skills: ["Operations"], experience: "6 years" },
 ];
 
-export const AT_RISK_VOLUNTEERS = [
-  { id: 1, name: "Rajesh Kumar", project: "Digital Literacy", reason: "No activity in 14 days", daysInactive: 14, severity: "high" },
-  { id: 2, name: "Meena Gupta", project: "Financial Literacy", reason: "Missed mandatory orientation", daysInactive: 3, severity: "medium" },
+export const AT_RISK_VOLUNTEERS: { id: number; name: string; project: string; reason: string; daysInactive: number; severity: string; nudged?: boolean }[] = [
+  { id: 1, name: "Rajesh Kumar", project: "Digital Literacy", reason: "No activity in 14 days", daysInactive: 14, severity: "high", nudged: false },
+  { id: 2, name: "Meena Gupta", project: "Financial Literacy", reason: "Missed mandatory orientation", daysInactive: 3, severity: "medium", nudged: false },
 ];
 
 export const OPEN_PROENGAGE_PROJECTS = [

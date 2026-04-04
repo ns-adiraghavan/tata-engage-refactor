@@ -2,9 +2,13 @@ import { motion } from "framer-motion";
 import { Building2, ShieldCheck, Mail, Lock, Eye } from "lucide-react";
 import { VIKRAM_NAIR, ROHAN_DESAI } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
+import { useAuth } from "@/context/AuthContext";
+import { useAppNavigate } from "@/hooks/useAppNavigate";
 
 const LoginView = () => {
-  const { setIsLoggedIn, setUser, navigate, triggerToast } = useAppContext();
+  const { setIsLoggedIn, setUser } = useAuth();
+  const navigate = useAppNavigate();
+  const { triggerToast } = useAppContext();
   return (
   <div className="min-h-screen pt-20 flex items-center justify-center p-6 bg-slate-100 relative overflow-hidden">
     <div className="absolute top-0 left-0 w-full h-full z-0">

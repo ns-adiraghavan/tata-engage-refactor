@@ -1,22 +1,13 @@
 import React, { createContext, useContext } from "react";
-import { View, Role } from "@/types";
+import type { Role } from "@/types";
 
 export interface AppContextType {
-  view: View;
-  setView: React.Dispatch<React.SetStateAction<View>>;
-  prevView: View;
-  setPrevView: React.Dispatch<React.SetStateAction<View>>;
   selectedRole: Role | null;
   setSelectedRole: React.Dispatch<React.SetStateAction<Role | null>>;
   isMenuOpen: boolean;
   setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isConsentOpen: boolean;
   setIsConsentOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  isLoggedIn: boolean;
-  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
-  user: any;
-  setUser: React.Dispatch<React.SetStateAction<any>>;
-  userRole: string;
   isOrientationDismissed: boolean;
   setIsOrientationDismissed: React.Dispatch<React.SetStateAction<boolean>>;
   showOrientationModal: boolean;
@@ -81,7 +72,6 @@ export interface AppContextType {
   setAdminActiveTab: React.Dispatch<React.SetStateAction<string>>;
   auditLogs: any[];
   setAuditLogs: React.Dispatch<React.SetStateAction<any[]>>;
-  navigate: (view: View) => void;
   addAuditLog: (action: string, details: string) => void;
   triggerToast: (message: string) => void;
   handleRoleSelect: (role: Role) => void;
@@ -89,7 +79,6 @@ export interface AppContextType {
   handleConsentAccept: () => void;
   handleOtpChannelSelect: () => void;
   handleOtpVerify: () => void;
-  handleLogout: () => void;
 }
 
 export const AppContext = createContext<AppContextType | null>(null);

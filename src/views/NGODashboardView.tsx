@@ -5,9 +5,13 @@ import { X, ChevronRight, User, Users, Mail, Search, MapPin, Clock, Check, Spark
 import type { View } from "@/types";
 import { MOCK_APPLICANTS, ANJALI_MEHTA } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
+import { useAppNavigate } from "@/hooks/useAppNavigate";
+import { useLocation } from "react-router-dom";
 
 const NGODashboardView = () => {
-  const { view, setClonedProject, setActiveProject, ngoData, navigate, triggerToast } = useAppContext();
+  const { setClonedProject, setActiveProject, ngoData, triggerToast } = useAppContext();
+  const navigate = useAppNavigate();
+  const location = useLocation();
   const [activeTab, setActiveTab] = useState<"projects" | "applications" | "coordinators">("projects");
   const [applicationTab, setApplicationTab] = useState<"shortlist" | "all">("shortlist");
   const [coordinators, setCoordinators] = useState(ngoData.coordinators);

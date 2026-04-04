@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { ArrowLeft, Send } from "lucide-react";
-import { useAppContext } from "@/context/AppContext";
+import { useAppNavigate } from "@/hooks/useAppNavigate";
 
 const ForgotPasswordView = () => {
-  const { navigate } = useAppContext();
+  const navigate = useAppNavigate();
   return (
   <div className="min-h-screen pt-20 flex items-center justify-center p-6 bg-slate-100">
     <motion.div 

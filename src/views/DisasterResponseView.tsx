@@ -1,10 +1,9 @@
 import { motion } from "framer-motion";
 import { Heart, Globe, Award, LayoutGrid, ArrowRight, Zap, Activity, ShieldAlert } from "lucide-react";
-import type { View } from "@/types";
-import { useAppContext } from "@/context/AppContext";
+import { useAppNavigate } from "@/hooks/useAppNavigate";
 
 const DisasterResponseView = () => {
-  const { navigate } = useAppContext();
+  const navigate = useAppNavigate();
   return (
     <div className="pt-28 pb-20 px-6 md:px-12 bg-slate-50 min-h-screen">
       <div className="max-w-7xl mx-auto">

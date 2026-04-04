@@ -25,7 +25,7 @@ const Navbar = ({ onNavigate, isLoggedIn, onToggleMenu, user }: {
           <span className="text-[#003580] font-bold text-[10px] uppercase tracking-tight">Menu</span>
         </div>
         <div className="h-10 w-px bg-zinc-200 mx-2 hidden md:block" />
-        <div className="flex items-center cursor-pointer" onClick={() => onNavigate(user.role === 'ngo' ? 'ngo-dashboard' : (isLoggedIn ? "dashboard" : "home"))}>
+        <div className="flex items-center cursor-pointer" onClick={() => onNavigate(user?.role === 'ngo' ? 'ngo-dashboard' : (isLoggedIn ? "dashboard" : "home"))}>
           <img 
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRG2f-xo_Z2La9Y0SPnOLqZWBtorh4oXrzkVg&s" 
             alt="TATA engage" 
@@ -51,7 +51,7 @@ const Navbar = ({ onNavigate, isLoggedIn, onToggleMenu, user }: {
           <div className="hidden md:block text-right">
             <div className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Good Morning</div>
             <div className="text-sm font-bold text-tata-blue">
-              {user.role === 'ngo' ? `${user.firstName} (${user.organization})` : `${user.firstName} ☀`}
+              {user?.role === 'ngo' ? `${user.firstName} (${user.organization})` : `${user?.firstName} ☀`}
             </div>
           </div>
           <button className="p-2 hover:bg-zinc-100 rounded-full cursor-pointer relative">
@@ -62,7 +62,7 @@ const Navbar = ({ onNavigate, isLoggedIn, onToggleMenu, user }: {
             onClick={() => onNavigate("profile")}
             className="w-10 h-10 rounded-full bg-tata-blue text-white flex items-center justify-center font-bold cursor-pointer hover:ring-4 ring-tata-blue/10 transition-all"
           >
-            {user.firstName[0]}{user.lastName[0]}
+            {user?.firstName?.[0]}{user?.lastName?.[0]}
           </div>
         </div>
       ) : (

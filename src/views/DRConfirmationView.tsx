@@ -1,9 +1,11 @@
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
-import { useAppContext } from "@/context/AppContext";
+import { useAuth } from "@/context/AuthContext";
+import { useAppNavigate } from "@/hooks/useAppNavigate";
 
 const DRConfirmationView = () => {
-  const { user, navigate } = useAppContext();
+  const { user } = useAuth();
+  const navigate = useAppNavigate();
   const refId = `DR-2026-AF-${Math.floor(1000 + Math.random() * 9000)}`;
   
   return (
