@@ -195,7 +195,7 @@ export default function App() {
                 <Route path="/login" element={<LoginView />} />
                 <Route path="/register" element={<RegisterRoleView />} />
                 <Route path="/register/form" element={<RegisterFormView />} />
-                <Route path="/otp/channel" element={<OtpChannelView />} />
+                <Route path="/admin-login" element={<LoginView />} />
                 <Route path="/otp/verify" element={<OtpView />} />
                 <Route path="/forgot-password" element={<ForgotPasswordView />} />
                 <Route path="/dashboard" element={<ProtectedRoute><DashboardView /></ProtectedRoute>} />
