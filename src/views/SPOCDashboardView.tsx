@@ -758,7 +758,7 @@ const SPOCDashboardView = () => {
       {/* Quick-action strip */}
       <div className="flex gap-4">
         {[
-          { label: "Download campaign kit", icon: Download, nav: "Reports & Certificates" },
+          { label: "Download campaign kit", icon: Download, nav: "Campaign Kit" },
           { label: "Share project list", icon: Share2, nav: "ProEngage Oversight" },
           { label: "View leaderboard", icon: Trophy, nav: "Reports & Certificates" },
         ].map((action) => (
