@@ -1,21 +1,60 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Linkedin, Award, Info, Star, Save, History, Download } from "lucide-react";
+import { Linkedin, Award, Info, Star, Save, History, Download, X, Plus } from "lucide-react";
 import type { View } from "@/types";
 import { useAppContext } from "@/context/AppContext";
 import { useAuth } from "@/context/AuthContext";
+
+const TagInput = ({ tags, onChange, placeholder, disabled }: { tags: string[]; onChange: (t: string[]) => void; placeholder?: string; disabled?: boolean }) => {
+  const [input, setInput] = useState("");
+  const addTag = () => {
+    const val = input.trim();
+    if (val && !tags.includes(val)) { onChange([...tags, val]); }
+    setInput("");
+  };
+  return (
+    <div className="flex flex-wrap gap-2 items-center">
+      {tags.map(tag => (
+        <span key={tag} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 text-slate-700 text-xs font-bold">
+          {tag}
+          {!disabled && (
+            <button type="button" onClick={() => onChange(tags.filter(t => t !== tag))} className="text-slate-400 hover:text-red-500 cursor-pointer"><X size={12} /></button>
+          )}
+        </span>
+      ))}
+      {!disabled && (
+        <input
+          value={input}
+          onChange={e => setInput(e.target.value)}
+          onKeyDown={e => { if (e.key === "Enter") { e.preventDefault(); addTag(); } }}
+          onBlur={addTag}
+          placeholder={placeholder}
+          className="text-sm py-1 px-2 border-b border-slate-200 focus:border-tata-blue outline-none min-w-[120px]"
+        />
+      )}
+    </div>
+  );
+};
 
 const ProfileView = () => {
   const { user, setUser, userRole } = useAuth();
   const { projectStatus, feedbackSubmitted, supportHistory, ngoData, triggerToast } = useAppContext();
   const [isEditing, setIsEditing] = useState(false);
-  const [profileData, setProfileData] = useState(userRole === 'ngo' ? {
+  const [profileData, setProfileData] = useState<any>(userRole === 'ngo' ? {
     firstName: "Anjali",
     lastName: "Mehta",
     email: "anjali.mehta@pratham.org",
     designation: "Program Director",
     company: "Pratham NGO"
-  } : user);
+  } : {
+    ...user,
+    languages: user.languages || ["English", "Hindi", "Marathi"],
+    linkedinUrl: user.linkedinUrl || "",
+    disasterResponseInterest: user.disasterResponseInterest ?? true,
+    preferredMode: user.preferredMode || "Either",
+    notifyProEngage: user.notifyProEngage ?? true,
+    notifyTVW: user.notifyTVW ?? true,
+  });
   const [activeTab, setActiveTab] = useState<'info' | 'history'>('info');
 
   const handleSave = () => {
@@ -81,61 +120,39 @@ const ProfileView = () => {
           <div className="lg:col-span-2 space-y-12">
             {activeTab === 'info' ? (
               <>
-                {/* Personal Info */}
+                {/* Personal Info — locked fields */}
                 <section>
                   <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6 pb-2 border-b border-slate-100">Personal Information</h3>
                   <div className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <label className="text-xs font-bold text-slate-400 uppercase">First Name</label>
-                        {isEditing ? (
-                          <input 
-                            type="text" 
-                            value={profileData.firstName} 
-                            onChange={(e) => setProfileData({...profileData, firstName: e.target.value})}
-                            className="w-full py-2 border-b border-tata-blue focus:outline-none font-medium"
-                          />
-                        ) : (
-                          <div className="py-2 text-zinc-900 border-b border-zinc-50 font-medium">{profileData.firstName}</div>
-                        )}
+                        <div className="py-2 text-zinc-900 border-b border-zinc-50 font-medium">{profileData.firstName}</div>
                       </div>
                       <div>
                         <label className="text-xs font-bold text-slate-400 uppercase">Last Name</label>
-                        {isEditing ? (
-                          <input 
-                            type="text" 
-                            value={profileData.lastName} 
-                            onChange={(e) => setProfileData({...profileData, lastName: e.target.value})}
-                            className="w-full py-2 border-b border-tata-blue focus:outline-none font-medium"
-                          />
-                        ) : (
-                          <div className="py-2 text-zinc-900 border-b border-zinc-50 font-medium">{profileData.lastName}</div>
-                        )}
+                        <div className="py-2 text-zinc-900 border-b border-zinc-50 font-medium">{profileData.lastName}</div>
                       </div>
                     </div>
                     <div>
                       <label className="text-xs font-bold text-slate-400 uppercase">Email Address</label>
-                      {isEditing ? (
-                        <input 
-                          type="email" 
-                          value={profileData.email} 
-                          onChange={(e) => setProfileData({...profileData, email: e.target.value})}
-                          className="w-full py-2 border-b border-tata-blue focus:outline-none font-medium"
-                        />
-                      ) : (
-                        <div className="py-2 text-zinc-900 border-b border-zinc-50 font-medium">{profileData.email}</div>
-                      )}
+                      <div className="py-2 text-zinc-900 border-b border-zinc-50 font-medium">{profileData.email}</div>
                     </div>
+                    {isEditing && (
+                      <p className="text-xs text-slate-400 italic">Name and email are locked. Contact Admin to update.</p>
+                    )}
+                  </div>
+                </section>
+
+                {/* Professional Details */}
+                <section>
+                  <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6 pb-2 border-b border-slate-100">Professional Details</h3>
+                  <div className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <label className="text-xs font-bold text-slate-400 uppercase">Designation</label>
                         {isEditing ? (
-                          <input 
-                            type="text" 
-                            value={profileData.designation} 
-                            onChange={(e) => setProfileData({...profileData, designation: e.target.value})}
-                            className="w-full py-2 border-b border-tata-blue focus:outline-none font-medium"
-                          />
+                          <input type="text" value={profileData.designation} onChange={(e) => setProfileData({...profileData, designation: e.target.value})} className="w-full py-2 border-b border-tata-blue focus:outline-none font-medium" />
                         ) : (
                           <div className="py-2 text-zinc-900 border-b border-zinc-50 font-medium">{profileData.designation}</div>
                         )}
@@ -143,19 +160,105 @@ const ProfileView = () => {
                       <div>
                         <label className="text-xs font-bold text-slate-400 uppercase">Organization</label>
                         {isEditing ? (
-                          <input 
-                            type="text" 
-                            value={profileData.company} 
-                            onChange={(e) => setProfileData({...profileData, company: e.target.value})}
-                            className="w-full py-2 border-b border-tata-blue focus:outline-none font-medium"
-                          />
+                          <input type="text" value={profileData.company} onChange={(e) => setProfileData({...profileData, company: e.target.value})} className="w-full py-2 border-b border-tata-blue focus:outline-none font-medium" />
                         ) : (
                           <div className="py-2 text-zinc-900 border-b border-zinc-50 font-medium">{profileData.company}</div>
                         )}
                       </div>
                     </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className="text-xs font-bold text-slate-400 uppercase">City</label>
+                        {isEditing ? (
+                          <input type="text" value={profileData.city || ""} onChange={(e) => setProfileData({...profileData, city: e.target.value})} className="w-full py-2 border-b border-tata-blue focus:outline-none font-medium" />
+                        ) : (
+                          <div className="py-2 text-zinc-900 border-b border-zinc-50 font-medium">{profileData.city || "—"}</div>
+                        )}
+                      </div>
+                      <div>
+                        <label className="text-xs font-bold text-slate-400 uppercase">LinkedIn Profile</label>
+                        {isEditing ? (
+                          <input type="url" value={profileData.linkedinUrl || ""} onChange={(e) => setProfileData({...profileData, linkedinUrl: e.target.value})} placeholder="https://linkedin.com/in/..." className="w-full py-2 border-b border-tata-blue focus:outline-none font-medium" />
+                        ) : (
+                          <div className="py-2 text-zinc-900 border-b border-zinc-50 font-medium">{profileData.linkedinUrl || "—"}</div>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </section>
+
+                {/* Volunteering Preferences */}
+                {userRole !== 'ngo' && (
+                  <section>
+                    <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6 pb-2 border-b border-slate-100">Volunteering Preferences</h3>
+                    <div className="space-y-6">
+                      <div>
+                        <label className="text-xs font-bold text-slate-400 uppercase mb-2 block">Skills</label>
+                        <TagInput tags={profileData.skills || []} onChange={(t) => setProfileData({...profileData, skills: t})} placeholder="Add skill…" disabled={!isEditing} />
+                      </div>
+                      <div>
+                        <label className="text-xs font-bold text-slate-400 uppercase mb-2 block">Areas of Interest</label>
+                        <TagInput tags={profileData.interests || []} onChange={(t) => setProfileData({...profileData, interests: t})} placeholder="Add interest…" disabled={!isEditing} />
+                      </div>
+                      <div>
+                        <label className="text-xs font-bold text-slate-400 uppercase mb-2 block">Languages Spoken</label>
+                        <TagInput tags={profileData.languages || []} onChange={(t) => setProfileData({...profileData, languages: t})} placeholder="Add language…" disabled={!isEditing} />
+                      </div>
+                      <div>
+                        <label className="text-xs font-bold text-slate-400 uppercase mb-3 block">Preferred Volunteering Mode</label>
+                        <div className="flex gap-4">
+                          {["Remote", "In-Person", "Either"].map(mode => (
+                            <label key={mode} className="flex items-center gap-2 cursor-pointer">
+                              <input
+                                type="radio"
+                                name="preferredMode"
+                                value={mode}
+                                checked={profileData.preferredMode === mode}
+                                onChange={() => isEditing && setProfileData({...profileData, preferredMode: mode})}
+                                disabled={!isEditing}
+                                className="accent-tata-blue"
+                              />
+                              <span className="text-sm font-medium text-slate-700">{mode}</span>
+                            </label>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between py-3 border-b border-slate-50">
+                        <span className="text-sm font-medium text-slate-700">Available for disaster response volunteering</span>
+                        <button
+                          type="button"
+                          onClick={() => isEditing && setProfileData({...profileData, disasterResponseInterest: !profileData.disasterResponseInterest})}
+                          className={`w-11 h-6 rounded-full relative transition-colors ${profileData.disasterResponseInterest ? 'bg-tata-blue' : 'bg-slate-300'} ${!isEditing ? 'opacity-60' : 'cursor-pointer'}`}
+                        >
+                          <span className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform ${profileData.disasterResponseInterest ? 'translate-x-5' : ''}`} />
+                        </button>
+                      </div>
+                      <div className="space-y-3">
+                        <label className="text-xs font-bold text-slate-400 uppercase block">Notification Preferences</label>
+                        <div className="flex items-center justify-between py-3 border-b border-slate-50">
+                          <span className="text-sm font-medium text-slate-700">Email me about new ProEngage projects</span>
+                          <button
+                            type="button"
+                            onClick={() => isEditing && setProfileData({...profileData, notifyProEngage: !profileData.notifyProEngage})}
+                            className={`w-11 h-6 rounded-full relative transition-colors ${profileData.notifyProEngage ? 'bg-tata-blue' : 'bg-slate-300'} ${!isEditing ? 'opacity-60' : 'cursor-pointer'}`}
+                          >
+                            <span className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform ${profileData.notifyProEngage ? 'translate-x-5' : ''}`} />
+                          </button>
+                        </div>
+                        <div className="flex items-center justify-between py-3 border-b border-slate-50">
+                          <span className="text-sm font-medium text-slate-700">Email me about TVW events in my city</span>
+                          <button
+                            type="button"
+                            onClick={() => isEditing && setProfileData({...profileData, notifyTVW: !profileData.notifyTVW})}
+                            className={`w-11 h-6 rounded-full relative transition-colors ${profileData.notifyTVW ? 'bg-tata-blue' : 'bg-slate-300'} ${!isEditing ? 'opacity-60' : 'cursor-pointer'}`}
+                          >
+                            <span className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform ${profileData.notifyTVW ? 'translate-x-5' : ''}`} />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                )}
 
                 {userRole !== 'ngo' && (
                   <>
