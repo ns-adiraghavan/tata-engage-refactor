@@ -418,7 +418,7 @@ const DashboardView = () => {
         </div>
 
         {/* ═══ SECTION: Your history ═══ */}
-        <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4">Your history</h3>
+        <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4 flex items-center gap-2"><Clock size={16} /> Your history</h3>
 
         <div className="space-y-8 mb-12">
           {/* Application History */}
