@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Building2, ShieldCheck, Mail, Lock, Eye } from "lucide-react";
+import { Building2, ShieldCheck, Mail, Lock, Eye, Landmark } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import tataEngageLogoNoBg from "@/assets/tata-engage-logo-nobg.png";
 import { VIKRAM_NAIR, ROHAN_DESAI, PRIYA_SHARMA, ANJALI_MEHTA } from "@/data/mockData";
