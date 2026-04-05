@@ -90,12 +90,6 @@ const MegaMenu = ({ isOpen, onClose, isLoggedIn, onNavigate, onLogout, user }: {
                       </li>
                     </>
                   )}
-                  <li 
-                    onClick={() => { onNavigate("proengage"); onClose(); }}
-                    className="hover:text-tata-blue cursor-pointer flex items-center justify-between group"
-                  >
-                    <span className="flex items-center gap-3"><Briefcase size={16} /> Volunteering Opportunities</span> <ChevronRight size={20} className="opacity-0 group-hover:opacity-100 transition-all" />
-                  </li>
                   <li className="hover:text-tata-blue cursor-pointer flex items-center justify-between group">
                     Our Programmes <ChevronRight size={20} className="opacity-0 group-hover:opacity-100 transition-all" />
                   </li>
