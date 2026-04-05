@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronRight, Building2, Heart, Mail, CheckCircle2, Search, Globe, Calendar, MapPin, Award, FileText, Sparkles, MessageSquare, ArrowRight, ShieldAlert, ClipboardList } from "lucide-react";
+import { ChevronRight, Building2, Heart, Mail, CheckCircle2, Search, Globe, Calendar, MapPin, Award, FileText, Sparkles, MessageSquare, ArrowRight, ShieldAlert, ClipboardList, Activity, Compass, Clock } from "lucide-react";
 import { useAppContext } from "@/context/AppContext";
 import { useAuth } from "@/context/AuthContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
@@ -245,7 +245,7 @@ const DashboardView = () => {
         )}
 
         {/* ═══ SECTION: Active programmes ═══ */}
-        <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4">Active programmes</h3>
+        <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4 flex items-center gap-2"><Activity size={16} /> Active programmes</h3>
 
         <div className="space-y-8 mb-12">
           {/* Active Application */}
@@ -332,7 +332,7 @@ const DashboardView = () => {
         </div>
 
         {/* ═══ SECTION: Explore ═══ */}
-        <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4">Explore</h3>
+        <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4 flex items-center gap-2"><Compass size={16} /> Explore</h3>
 
         <div className="space-y-8 mb-12">
           {/* AI Recommendations */}
@@ -418,7 +418,7 @@ const DashboardView = () => {
         </div>
 
         {/* ═══ SECTION: Your history ═══ */}
-        <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4">Your history</h3>
+        <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4 flex items-center gap-2"><Clock size={16} /> Your history</h3>
 
         <div className="space-y-8 mb-12">
           {/* Application History */}

@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import tataEngageLogoNoBg from "@/assets/tata-engage-logo-nobg.png";
-import { X, ChevronRight } from "lucide-react";
+import { X, ChevronRight, LayoutDashboard, Briefcase, Calendar, ClipboardList, User, Shield, Compass } from "lucide-react";
 import type { View } from "@/types";
 
 const MegaMenu = ({ isOpen, onClose, isLoggedIn, onNavigate, onLogout, user }: { 
@@ -48,45 +48,45 @@ const MegaMenu = ({ isOpen, onClose, isLoggedIn, onNavigate, onLogout, user }: {
                     onClick={() => { onNavigate(user?.role === 'ngo' ? 'ngo-dashboard' : (isLoggedIn ? "dashboard" : "home")); onClose(); }}
                     className="hover:text-tata-blue cursor-pointer flex items-center justify-between group"
                   >
-                    {isLoggedIn ? (user?.role === 'ngo' ? "NGO Dashboard" : "Dashboard") : "Home"} <ChevronRight size={20} className="opacity-0 group-hover:opacity-100 transition-all" />
+                    <span className="flex items-center gap-3"><LayoutDashboard size={16} /> {isLoggedIn ? (user?.role === 'ngo' ? "NGO Dashboard" : "Dashboard") : "Home"}</span> <ChevronRight size={20} className="opacity-0 group-hover:opacity-100 transition-all" />
                   </li>
                   {isLoggedIn && (
                     <>
                       <li 
-                        onClick={() => { onNavigate("my-applications"); onClose(); }}
+                        onClick={() => { onNavigate("proengage"); onClose(); }}
                         className="hover:text-tata-blue cursor-pointer flex items-center justify-between group"
                       >
-                        My Applications <ChevronRight size={20} className="opacity-0 group-hover:opacity-100 transition-all" />
-                      </li>
-                      <li 
-                        onClick={() => { onNavigate("profile"); onClose(); }}
-                        className="hover:text-tata-blue cursor-pointer flex items-center justify-between group"
-                      >
-                        My Profile <ChevronRight size={20} className="opacity-0 group-hover:opacity-100 transition-all" />
+                        <span className="flex items-center gap-3"><Briefcase size={16} /> ProEngage Projects</span> <ChevronRight size={20} className="opacity-0 group-hover:opacity-100 transition-all" />
                       </li>
                       <li 
                         onClick={() => { onNavigate("tvw"); onClose(); }}
                         className="hover:text-tata-blue cursor-pointer flex items-center justify-between group"
                       >
-                        TVW Hub <ChevronRight size={20} className="opacity-0 group-hover:opacity-100 transition-all" />
+                        <span className="flex items-center gap-3"><Calendar size={16} /> TVW Hub</span> <ChevronRight size={20} className="opacity-0 group-hover:opacity-100 transition-all" />
+                      </li>
+                      <li 
+                        onClick={() => { onNavigate("my-applications"); onClose(); }}
+                        className="hover:text-tata-blue cursor-pointer flex items-center justify-between group"
+                      >
+                        <span className="flex items-center gap-3"><ClipboardList size={16} /> My Applications</span> <ChevronRight size={20} className="opacity-0 group-hover:opacity-100 transition-all" />
+                      </li>
+                      <li 
+                        onClick={() => { onNavigate("profile"); onClose(); }}
+                        className="hover:text-tata-blue cursor-pointer flex items-center justify-between group"
+                      >
+                        <span className="flex items-center gap-3"><User size={16} /> My Profile</span> <ChevronRight size={20} className="opacity-0 group-hover:opacity-100 transition-all" />
                       </li>
                       <li 
                         onClick={() => { onNavigate("tvw-vibe"); onClose(); }}
                         className="hover:text-tata-blue cursor-pointer flex items-center justify-between group"
                       >
-                        TVW Vibe Highlights <ChevronRight size={20} className="opacity-0 group-hover:opacity-100 transition-all" />
-                      </li>
-                      <li 
-                        onClick={() => { onNavigate("proengage"); onClose(); }}
-                        className="hover:text-tata-blue cursor-pointer flex items-center justify-between group"
-                      >
-                        ProEngage Projects <ChevronRight size={20} className="opacity-0 group-hover:opacity-100 transition-all" />
+                        <span className="flex items-center gap-3"><Compass size={16} /> TVW Vibe Highlights</span> <ChevronRight size={20} className="opacity-0 group-hover:opacity-100 transition-all" />
                       </li>
                       <li 
                         onClick={() => { onNavigate("disaster-response"); onClose(); }}
                         className="hover:text-tata-blue cursor-pointer flex items-center justify-between group"
                       >
-                        Disaster Response <ChevronRight size={20} className="opacity-0 group-hover:opacity-100 transition-all" />
+                        <span className="flex items-center gap-3"><Shield size={16} /> Disaster Response</span> <ChevronRight size={20} className="opacity-0 group-hover:opacity-100 transition-all" />
                       </li>
                     </>
                   )}
@@ -94,7 +94,7 @@ const MegaMenu = ({ isOpen, onClose, isLoggedIn, onNavigate, onLogout, user }: {
                     onClick={() => { onNavigate("proengage"); onClose(); }}
                     className="hover:text-tata-blue cursor-pointer flex items-center justify-between group"
                   >
-                    Volunteering Opportunities <ChevronRight size={20} className="opacity-0 group-hover:opacity-100 transition-all" />
+                    <span className="flex items-center gap-3"><Briefcase size={16} /> Volunteering Opportunities</span> <ChevronRight size={20} className="opacity-0 group-hover:opacity-100 transition-all" />
                   </li>
                   <li className="hover:text-tata-blue cursor-pointer flex items-center justify-between group">
                     Our Programmes <ChevronRight size={20} className="opacity-0 group-hover:opacity-100 transition-all" />
