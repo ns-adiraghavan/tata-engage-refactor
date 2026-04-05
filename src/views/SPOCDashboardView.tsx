@@ -466,6 +466,12 @@ const SPOCDashboardView = () => {
 
         {reportsTab === "Leaderboard" && (
           <div className="space-y-10">
+            <div className="px-5 py-3 bg-slate-50 rounded-2xl border border-slate-100 inline-flex items-center gap-2 mb-2">
+              <div className="w-2 h-2 rounded-full bg-tata-cyan" />
+              <span className="text-xs font-bold text-slate-500 uppercase tracking-widest">
+                {spoc.tier === "Corporate SPOC" ? "Group-wide view — all Tata subsidiaries" : "TCS only"}
+              </span>
+            </div>
             <div className="p-6 bg-blue-50 rounded-3xl border border-blue-100 flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="flex items-center gap-4">
                 <div className="w-10 h-10 rounded-2xl bg-tata-blue text-white flex items-center justify-center shadow-lg shadow-blue-900/20">
