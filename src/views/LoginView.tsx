@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Building2, ShieldCheck, Mail, Lock, Eye } from "lucide-react";
+import { Building2, ShieldCheck, Mail, Lock, Eye, Landmark } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import tataEngageLogoNoBg from "@/assets/tata-engage-logo-nobg.png";
 import { VIKRAM_NAIR, ROHAN_DESAI, PRIYA_SHARMA, ANJALI_MEHTA } from "@/data/mockData";
@@ -67,6 +67,19 @@ const LoginView = () => {
             <Building2 size={20} />
             Login as SPOC
           </button>
+
+          <button 
+            onClick={() => {
+              setIsLoggedIn(true);
+              setUser(ANJALI_MEHTA);
+              navigate("ngo-dashboard");
+              triggerToast("Login Successful! Welcome back, Anjali.");
+            }}
+            className="w-full flex items-center justify-center gap-3 bg-emerald-600 text-white py-4 rounded-2xl font-bold hover:bg-emerald-700 transition-all mb-6 cursor-pointer shadow-lg shadow-emerald-600/20"
+          >
+            <Landmark size={20} />
+            Login as NGO
+          </button>
         </>
       )}
 
@@ -113,19 +126,9 @@ const LoginView = () => {
       </form>
 
       {!isAdminLogin && (
-        <div className="text-center text-sm text-slate-500 mt-8 space-y-2">
-          <p>
-            Don't have an account? <button onClick={() => navigate("register-role")} className="font-bold text-tata-blue hover:underline cursor-pointer">Register Now</button>
-          </p>
-          <p>
-            Demo: <button onClick={() => {
-              setIsLoggedIn(true);
-              setUser(ANJALI_MEHTA);
-              navigate("ngo-dashboard");
-              triggerToast("Login Successful! Welcome back, Anjali.");
-            }} className="font-bold text-tata-blue hover:underline cursor-pointer">Login as Anjali (NGO)</button>
-          </p>
-        </div>
+        <p className="text-center text-sm text-slate-500 mt-8">
+          Don't have an account? <button onClick={() => navigate("register-role")} className="font-bold text-tata-blue hover:underline cursor-pointer">Register Now</button>
+        </p>
       )}
     </motion.div>
   </div>
