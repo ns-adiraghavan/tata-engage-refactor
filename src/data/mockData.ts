@@ -341,6 +341,12 @@ export const PRIYA_SHARMA = {
   country: "India",
   interests: ["Education", "Environment", "Health"],
   skills: ["Finance", "Project Management", "Strategic Planning"],
+  languages: ["English", "Hindi", "Marathi"],
+  linkedinUrl: "https://linkedin.com/in/priyasharma-tcs",
+  disasterResponseInterest: true,
+  preferredMode: "Either",
+  notifyProEngage: true,
+  notifyTVW: true,
   badges: [
     { id: 1, name: "Early Bird", icon: "🐦", date: "Jan 2026" },
     { id: 2, name: "Community Hero", icon: "🦸‍♀️", date: "Feb 2026" }

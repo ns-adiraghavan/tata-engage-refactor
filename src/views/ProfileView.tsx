@@ -1,21 +1,60 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Linkedin, Award, Info, Star, Save, History, Download } from "lucide-react";
+import { Linkedin, Award, Info, Star, Save, History, Download, X, Plus } from "lucide-react";
 import type { View } from "@/types";
 import { useAppContext } from "@/context/AppContext";
 import { useAuth } from "@/context/AuthContext";
+
+const TagInput = ({ tags, onChange, placeholder, disabled }: { tags: string[]; onChange: (t: string[]) => void; placeholder?: string; disabled?: boolean }) => {
+  const [input, setInput] = useState("");
+  const addTag = () => {
+    const val = input.trim();
+    if (val && !tags.includes(val)) { onChange([...tags, val]); }
+    setInput("");
+  };
+  return (
+    <div className="flex flex-wrap gap-2 items-center">
+      {tags.map(tag => (
+        <span key={tag} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 text-slate-700 text-xs font-bold">
+          {tag}
+          {!disabled && (
+            <button type="button" onClick={() => onChange(tags.filter(t => t !== tag))} className="text-slate-400 hover:text-red-500 cursor-pointer"><X size={12} /></button>
+          )}
+        </span>
+      ))}
+      {!disabled && (
+        <input
+          value={input}
+          onChange={e => setInput(e.target.value)}
+          onKeyDown={e => { if (e.key === "Enter") { e.preventDefault(); addTag(); } }}
+          onBlur={addTag}
+          placeholder={placeholder}
+          className="text-sm py-1 px-2 border-b border-slate-200 focus:border-tata-blue outline-none min-w-[120px]"
+        />
+      )}
+    </div>
+  );
+};
 
 const ProfileView = () => {
   const { user, setUser, userRole } = useAuth();
   const { projectStatus, feedbackSubmitted, supportHistory, ngoData, triggerToast } = useAppContext();
   const [isEditing, setIsEditing] = useState(false);
-  const [profileData, setProfileData] = useState(userRole === 'ngo' ? {
+  const [profileData, setProfileData] = useState<any>(userRole === 'ngo' ? {
     firstName: "Anjali",
     lastName: "Mehta",
     email: "anjali.mehta@pratham.org",
     designation: "Program Director",
     company: "Pratham NGO"
-  } : user);
+  } : {
+    ...user,
+    languages: user.languages || ["English", "Hindi", "Marathi"],
+    linkedinUrl: user.linkedinUrl || "",
+    disasterResponseInterest: user.disasterResponseInterest ?? true,
+    preferredMode: user.preferredMode || "Either",
+    notifyProEngage: user.notifyProEngage ?? true,
+    notifyTVW: user.notifyTVW ?? true,
+  });
   const [activeTab, setActiveTab] = useState<'info' | 'history'>('info');
 
   const handleSave = () => {
