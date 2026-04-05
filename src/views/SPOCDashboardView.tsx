@@ -1125,7 +1125,13 @@ const SPOCDashboardView = () => {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
           <div>
             <h2 className="text-4xl font-black text-slate-900 tracking-tight mb-2">Pending Approvals</h2>
-            <p className="text-slate-500 font-medium">Review and approve volunteers from TCS who registered via personal email.</p>
+            <p className="text-slate-500 font-medium">Review and approve volunteers who registered via personal email.</p>
+            <div className="mt-3 px-4 py-2 bg-slate-50 rounded-xl border border-slate-100 inline-flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-tata-cyan" />
+              <span className="text-xs font-bold text-slate-500 uppercase tracking-widest">
+                {spoc.tier === "Corporate SPOC" ? "Showing approvals from: All group companies" : "Showing approvals from: West India"}
+              </span>
+            </div>
           </div>
           <div className="flex gap-2 p-1.5 bg-slate-100 rounded-2xl shadow-inner">
             {["Pending", "Approved", "Rejected"].map((tab) => (
