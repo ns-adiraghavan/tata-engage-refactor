@@ -352,7 +352,11 @@ const SPOCDashboardView = () => {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-10 mb-12 relative z-10">
             <div>
               <h3 className="text-3xl font-black text-slate-900 tracking-tight mb-2">Share with Employees</h3>
-              <p className="text-slate-500 font-medium">Promote open ProEngage projects to TCS employees.</p>
+              <p className="text-slate-500 font-medium">
+                {spoc.tier === "Corporate SPOC" 
+                  ? "Promote open ProEngage projects across all Tata subsidiaries." 
+                  : "Promote open ProEngage projects to TCS employees."}
+              </p>
             </div>
             <div className="flex gap-4">
               <button 
