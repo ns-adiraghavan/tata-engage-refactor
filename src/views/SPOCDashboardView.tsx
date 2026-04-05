@@ -1465,6 +1465,7 @@ const SPOCDashboardView = () => {
               {activeNav === "TVW Management" && <TVWManagementPanel />}
               {activeNav === "ProEngage Oversight" && <ProEngageOversightPanel />}
               {activeNav === "Reports & Certificates" && <ReportsAndCertificatesPanel />}
+              {activeNav === "Campaign Kit" && <CampaignKitPanel />}
             </motion.div>
           </AnimatePresence>
         </div>
