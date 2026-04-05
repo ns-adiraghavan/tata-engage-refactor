@@ -471,6 +471,94 @@ export const PROENGAGE_PROJECTS = [
     description: "Lead heritage walks and create awareness about historical monuments in Old Delhi.",
     skills: ["History", "Communication"],
     matched: false
+  },
+  {
+    id: 7,
+    title: "Cloud Migration Advisory for NGOs",
+    ngo: "Digital Empowerment Foundation",
+    area: "IT",
+    mode: "Remote",
+    commitment: "8 hrs/week",
+    description: "Help small NGOs migrate their data and workflows from legacy systems to cloud-based platforms like Google Workspace and AWS.",
+    skills: ["Cloud Computing", "IT Infrastructure"],
+    matched: true
+  },
+  {
+    id: 8,
+    title: "Cybersecurity Awareness Programme",
+    ngo: "CyberPeace Foundation",
+    area: "IT",
+    mode: "Hybrid",
+    commitment: "6 hrs/week",
+    description: "Conduct cybersecurity awareness workshops for rural banking correspondents and SHG leaders to prevent digital fraud.",
+    skills: ["Cybersecurity", "Training"],
+    matched: false
+  },
+  {
+    id: 9,
+    title: "STEM Lab Setup for Government Schools",
+    ngo: "Agastya International Foundation",
+    area: "Education",
+    mode: "On-site Bangalore",
+    commitment: "10 hrs/week",
+    description: "Design and set up low-cost STEM experiment labs in 5 government schools across rural Karnataka.",
+    skills: ["Science Education", "Lab Design"],
+    matched: false
+  },
+  {
+    id: 10,
+    title: "English Communication Bootcamp",
+    ngo: "Pratham Education Foundation",
+    area: "Education",
+    mode: "Remote",
+    commitment: "6 hrs/week",
+    description: "Run a 12-week spoken English and presentation skills bootcamp for first-generation college students.",
+    skills: ["Communication", "Teaching"],
+    matched: true
+  },
+  {
+    id: 11,
+    title: "Legal Aid Clinic for Migrant Workers",
+    ngo: "Aajeevika Bureau",
+    area: "Legal",
+    mode: "On-site Mumbai",
+    commitment: "4 hrs/week",
+    description: "Provide pro-bono legal advice on wage disputes, housing rights, and identity documentation for migrant labourers.",
+    skills: ["Labour Law", "Legal Drafting"],
+    matched: false
+  },
+  {
+    id: 12,
+    title: "HR Policy Framework for Social Enterprises",
+    ngo: "Villgro Innovations",
+    area: "HR",
+    mode: "Remote",
+    commitment: "6 hrs/week",
+    description: "Help early-stage social enterprises draft employee handbooks, appraisal frameworks, and POSH policies.",
+    skills: ["HR Policy", "Compliance"],
+    matched: false
+  },
+  {
+    id: 13,
+    title: "Last-Mile Vaccine Delivery Optimisation",
+    ngo: "Gavi Alliance India",
+    area: "Operations",
+    mode: "Hybrid",
+    commitment: "8 hrs/week",
+    description: "Optimise cold-chain logistics and delivery routes for vaccine distribution in tribal districts of Jharkhand.",
+    skills: ["Supply Chain", "Data Analysis"],
+    matched: true
+  },
+  {
+    id: 14,
+    title: "Telemedicine Platform for Rural PHCs",
+    ngo: "AMRIT Foundation",
+    area: "Healthcare",
+    mode: "Remote",
+    commitment: "10 hrs/week",
+    description: "Support the rollout of a telemedicine platform connecting rural primary health centres with specialist doctors in cities.",
+    skills: ["Healthcare IT", "Project Management"],
+    matched: false
   }
 ];
 
