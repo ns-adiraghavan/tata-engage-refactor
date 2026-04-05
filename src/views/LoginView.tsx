@@ -126,19 +126,9 @@ const LoginView = () => {
       </form>
 
       {!isAdminLogin && (
-        <div className="text-center text-sm text-slate-500 mt-8 space-y-2">
-          <p>
-            Don't have an account? <button onClick={() => navigate("register-role")} className="font-bold text-tata-blue hover:underline cursor-pointer">Register Now</button>
-          </p>
-          <p>
-            Demo: <button onClick={() => {
-              setIsLoggedIn(true);
-              setUser(ANJALI_MEHTA);
-              navigate("ngo-dashboard");
-              triggerToast("Login Successful! Welcome back, Anjali.");
-            }} className="font-bold text-tata-blue hover:underline cursor-pointer">Login as Anjali (NGO)</button>
-          </p>
-        </div>
+        <p className="text-center text-sm text-slate-500 mt-8">
+          Don't have an account? <button onClick={() => navigate("register-role")} className="font-bold text-tata-blue hover:underline cursor-pointer">Register Now</button>
+        </p>
       )}
     </motion.div>
   </div>
