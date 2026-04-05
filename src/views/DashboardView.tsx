@@ -332,7 +332,7 @@ const DashboardView = () => {
         </div>
 
         {/* ═══ SECTION: Explore ═══ */}
-        <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4">Explore</h3>
+        <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4 flex items-center gap-2"><Compass size={16} /> Explore</h3>
 
         <div className="space-y-8 mb-12">
           {/* AI Recommendations */}
