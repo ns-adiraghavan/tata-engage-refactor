@@ -803,6 +803,9 @@ const SPOCDashboardView = () => {
             className={`p-8 rounded-3xl bg-white border ${stat.border} shadow-sm hover:shadow-xl transition-all group relative overflow-hidden`}
           >
             <div className="absolute -right-4 -top-4 w-24 h-24 bg-slate-50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute top-6 right-6 text-slate-200">
+              <stat.icon size={24} />
+            </div>
             <div className={`w-14 h-14 rounded-2xl ${stat.bg} ${stat.color} flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 relative z-10`}>
               <stat.icon size={28} />
             </div>

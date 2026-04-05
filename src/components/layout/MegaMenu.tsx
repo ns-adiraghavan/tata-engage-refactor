@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import tataEngageLogoNoBg from "@/assets/tata-engage-logo-nobg.png";
-import { X, ChevronRight, LayoutDashboard, Briefcase, Calendar, ClipboardList, User, Building2, BarChart2, Settings, Shield, Compass } from "lucide-react";
+import { X, ChevronRight, LayoutDashboard, Briefcase, Calendar, ClipboardList, User, Shield, Compass } from "lucide-react";
 import type { View } from "@/types";
 
 const MegaMenu = ({ isOpen, onClose, isLoggedIn, onNavigate, onLogout, user }: { 
