@@ -53,6 +53,12 @@ const MegaMenu = ({ isOpen, onClose, isLoggedIn, onNavigate, onLogout, user }: {
                   {isLoggedIn && (
                     <>
                       <li 
+                        onClick={() => { onNavigate("my-applications"); onClose(); }}
+                        className="hover:text-tata-blue cursor-pointer flex items-center justify-between group"
+                      >
+                        My Applications <ChevronRight size={20} className="opacity-0 group-hover:opacity-100 transition-all" />
+                      </li>
+                      <li 
                         onClick={() => { onNavigate("profile"); onClose(); }}
                         className="hover:text-tata-blue cursor-pointer flex items-center justify-between group"
                       >

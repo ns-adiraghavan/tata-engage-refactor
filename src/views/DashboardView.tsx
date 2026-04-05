@@ -198,6 +198,7 @@ const DashboardView = () => {
             <p className="text-slate-500">Here's what's happening in your volunteering journey.</p>
           </div>
           <div className="flex gap-3">
+            <button onClick={() => navigate("my-applications")} className="btn-outline py-2 px-6 text-sm cursor-pointer">My Applications</button>
             <button onClick={() => navigate("profile")} className="btn-outline py-2 px-6 text-sm cursor-pointer">View Profile</button>
             <button onClick={() => navigate("disaster-response")} className="btn-outline py-2 px-6 text-sm cursor-pointer flex items-center gap-2">
               <ShieldAlert size={14} className="text-red-600" /> Disaster Response
