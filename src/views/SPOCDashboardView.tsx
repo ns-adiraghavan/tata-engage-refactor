@@ -163,10 +163,16 @@ const SPOCDashboardView = () => {
           <div>
             <div className="flex items-center gap-3 mb-2">
               <div className="w-2 h-2 rounded-full bg-tata-cyan animate-pulse" />
-              <span className="text-xs font-semibold text-tata-blue uppercase tracking-[0.3em]">Corporate SPOC View — All TCS Data</span>
+              <span className="text-xs font-semibold text-tata-blue uppercase tracking-[0.3em]">
+                {spoc.tier === "Corporate SPOC" ? "Group-wide · 4,520 volunteers" : "West India · 1,240 volunteers"}
+              </span>
             </div>
             <h2 className="text-4xl font-black text-slate-900 tracking-tight mb-2">ProEngage Oversight</h2>
-            <p className="text-slate-500 font-medium">Monitoring TCS's volunteer pipeline across Tata ProEngage.</p>
+            <p className="text-slate-500 font-medium">
+              {spoc.tier === "Corporate SPOC" 
+                ? "Monitoring volunteer pipeline across all Tata subsidiaries." 
+                : "Monitoring TCS's volunteer pipeline across Tata ProEngage."}
+            </p>
           </div>
           <div className="flex gap-2 p-1.5 bg-slate-100 rounded-2xl shadow-inner">
             {["2025", "All Time"].map((edition) => (
