@@ -65,7 +65,7 @@ const LoginView = () => {
             className="w-full flex items-center justify-center gap-3 bg-[#00b4d8] text-tata-blue py-4 rounded-2xl font-bold hover:bg-[#00a0c2] transition-all mb-6 cursor-pointer shadow-lg shadow-cyan-500/20"
           >
             <Building2 size={20} />
-            Login as SPOC (Rohan Desai)
+            Login as SPOC
           </button>
         </>
       )}
