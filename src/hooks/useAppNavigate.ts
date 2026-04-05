@@ -17,6 +17,7 @@ const VIEW_TO_PATH: Record<string, string> = {
   tvw: "/tvw",
   "tvw-vibe": "/tvw/vibe",
   proengage: "/proengage",
+  "my-applications": "/my-applications",
   "disaster-response": "/disaster-response",
   
   "dr-availability-form": "/disaster-response/availability",
