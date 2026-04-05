@@ -34,6 +34,7 @@ import ProfileView from "@/views/ProfileView";
 import TVWHubView from "@/views/TVWHubView";
 import TVWVibeView from "@/views/TVWVibeView";
 import ProEngageView from "@/views/ProEngageView";
+import MyApplicationsView from "@/views/MyApplicationsView";
 import DisasterResponseView from "@/views/DisasterResponseView";
 
 import DRAvailabilityForm from "@/views/DRAvailabilityForm";
@@ -207,6 +208,7 @@ export default function App() {
                 <Route path="/tvw" element={<ProtectedRoute><TVWHubView /></ProtectedRoute>} />
                 <Route path="/tvw/vibe" element={<TVWVibeView />} />
                 <Route path="/proengage" element={<ProtectedRoute><ProEngageView /></ProtectedRoute>} />
+                <Route path="/my-applications" element={<ProtectedRoute><MyApplicationsView /></ProtectedRoute>} />
                 <Route path="/disaster-response" element={<DisasterResponseView />} />
                 
                 <Route path="/disaster-response/availability" element={<ProtectedRoute><DRAvailabilityForm /></ProtectedRoute>} />
