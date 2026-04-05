@@ -718,6 +718,57 @@ const SPOCDashboardView = () => {
     );
   };
 
+  const campaignKitItems = [
+    { title: "TVW 2025 Poster Pack", type: "PDF", description: "Print-ready A3 posters for office noticeboards", icon: FileText },
+    { title: "ProEngage Volunteer Recruitment Email", type: "DOCX", description: "Template email to send to your company's employees", icon: File },
+    { title: "TVW Social Media Kit", type: "ZIP", description: "LinkedIn and WhatsApp graphics with 'Be The Change' theme", icon: Archive },
+    { title: "SPOC Orientation Handbook", type: "PDF", description: "Your guide to TVW and ProEngage coordination", icon: FileText },
+    { title: "ProEngage Project List — April 2025", type: "PDF", description: "Shareable list of all open projects with apply links", icon: FileText },
+    { title: "Volunteering Policy Reference", type: "PDF", description: "Tata Group volunteering policy and leave entitlements", icon: FileText },
+  ];
+
+  const CampaignKitPanel = () => (
+    <div className="space-y-10">
+      <div>
+        <h2 className="text-4xl font-black text-slate-900 tracking-tight mb-2">Campaign Kit</h2>
+        <p className="text-slate-500 font-medium">Downloadable collateral to promote volunteering across your company.</p>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {campaignKitItems.map((item) => (
+          <div key={item.title} className="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-lg transition-all group">
+            <div className="flex items-start gap-5">
+              <div className="w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-tata-blue/5 group-hover:text-tata-blue transition-colors shrink-0">
+                <item.icon size={24} />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-1">
+                  <h4 className="font-bold text-slate-900 tracking-tight">{item.title}</h4>
+                  <span className={`text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full ${
+                    item.type === "PDF" ? "bg-red-50 text-red-600" :
+                    item.type === "DOCX" ? "bg-blue-50 text-blue-600" :
+                    "bg-amber-50 text-amber-600"
+                  }`}>{item.type}</span>
+                </div>
+                <p className="text-sm text-slate-500 mb-5">{item.description}</p>
+                <button
+                  onClick={() => {
+                    setToastMessage(`${item.title}.${item.type.toLowerCase()} downloaded`);
+                    setShowToast(true);
+                    setTimeout(() => setShowToast(false), 3000);
+                  }}
+                  className="flex items-center gap-2 px-5 py-2.5 bg-zinc-900 text-white rounded-xl text-xs font-bold uppercase tracking-widest hover:bg-tata-blue transition-all cursor-pointer"
+                >
+                  <Download size={14} />
+                  Download
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
   const DashboardHome = () => (
     <div className="space-y-12">
       {/* Stats Grid — moved to very top, before welcome banner */}
