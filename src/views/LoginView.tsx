@@ -94,7 +94,7 @@ const LoginView = () => {
           className="w-full flex items-center justify-center gap-3 bg-zinc-900 text-white py-4 rounded-2xl font-bold hover:bg-zinc-800 transition-all mb-6 cursor-pointer shadow-lg shadow-zinc-900/20"
         >
           <ShieldCheck size={20} />
-          Login as Admin (Vikram Nair)
+          Login as Admin
         </button>
       )}
 
