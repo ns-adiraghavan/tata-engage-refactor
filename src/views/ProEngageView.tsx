@@ -35,6 +35,19 @@ const CATEGORIES = [
 
 const getCategory = (area: string) => SKILL_AREA_TO_CATEGORY[area] || "Others";
 
+const AREA_IMAGES: Record<string, string> = {
+  Finance: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&q=60",
+  IT: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=60",
+  Education: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&q=60",
+  Legal: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&q=60",
+  Healthcare: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&q=60",
+  Environment: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&q=60",
+  HR: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=400&q=60",
+  Operations: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&q=60",
+  Communication: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&q=60",
+};
+const DEFAULT_IMAGE = "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=400&q=60";
+
 const ProEngageView = () => {
   const { appliedProjects, setAppliedProjects, likedProjects, setLikedProjects, triggerToast } = useAppContext();
   const { user } = useAuth();
