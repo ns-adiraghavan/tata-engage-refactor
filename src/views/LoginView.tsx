@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Building2, ShieldCheck, Mail, Lock, Eye } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import tataEngageLogoNoBg from "@/assets/tata-engage-logo-nobg.png";
-import { VIKRAM_NAIR, ROHAN_DESAI, PRIYA_SHARMA } from "@/data/mockData";
+import { VIKRAM_NAIR, ROHAN_DESAI, PRIYA_SHARMA, ANJALI_MEHTA } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
 import { useAuth } from "@/context/AuthContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
@@ -113,9 +113,19 @@ const LoginView = () => {
       </form>
 
       {!isAdminLogin && (
-        <p className="text-center text-sm text-slate-500 mt-8">
-          Don't have an account? <button onClick={() => navigate("register-role")} className="font-bold text-tata-blue hover:underline cursor-pointer">Register Now</button>
-        </p>
+        <div className="text-center text-sm text-slate-500 mt-8 space-y-2">
+          <p>
+            Don't have an account? <button onClick={() => navigate("register-role")} className="font-bold text-tata-blue hover:underline cursor-pointer">Register Now</button>
+          </p>
+          <p>
+            Demo: <button onClick={() => {
+              setIsLoggedIn(true);
+              setUser(ANJALI_MEHTA);
+              navigate("ngo-dashboard");
+              triggerToast("Login Successful! Welcome back, Anjali.");
+            }} className="font-bold text-tata-blue hover:underline cursor-pointer">Login as Anjali (NGO)</button>
+          </p>
+        </div>
       )}
     </motion.div>
   </div>
