@@ -208,12 +208,30 @@ const DashboardView = () => {
 
         {/* ProEngage Edition CTA */}
         {isProEngageActive ? (
-          <button
-            onClick={() => navigate("proengage")}
-            className="w-full mb-8 py-4 bg-tata-blue text-white text-sm font-bold rounded-2xl hover:bg-tata-blue/90 transition-colors cursor-pointer"
-          >
-            Apply to ProEngage projects
-          </button>
+          user.activeApplication?.status === "Matched" ? (
+            <div className="w-full mb-8 p-6 bg-white border border-green-200 rounded-2xl shadow-sm">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h4 className="text-sm font-bold text-slate-900">{user.activeApplication.title}</h4>
+                  <p className="text-xs text-slate-500 mt-1">{user.activeApplication.ngo}</p>
+                </div>
+                <span className="px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700">Matched</span>
+              </div>
+              <button
+                onClick={() => navigate("active-project")}
+                className="mt-4 text-sm font-bold text-tata-blue hover:underline cursor-pointer flex items-center gap-1"
+              >
+                View project <ArrowRight size={14} />
+              </button>
+            </div>
+          ) : (
+            <button
+              onClick={() => navigate("proengage")}
+              className="w-full mb-8 py-4 bg-tata-blue text-white text-sm font-bold rounded-2xl hover:bg-tata-blue/90 transition-colors cursor-pointer"
+            >
+              Apply to ProEngage projects
+            </button>
+          )
         ) : (
           <div className="w-full mb-8 p-5 border border-zinc-200 rounded-2xl flex items-center justify-between bg-white">
             <p className="text-sm text-zinc-600">
