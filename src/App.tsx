@@ -34,6 +34,7 @@ import ProfileView from "@/views/ProfileView";
 import TVWHubView from "@/views/TVWHubView";
 import TVWVibeView from "@/views/TVWVibeView";
 import ProEngageView from "@/views/ProEngageView";
+import MyApplicationsView from "@/views/MyApplicationsView";
 import DisasterResponseView from "@/views/DisasterResponseView";
 
 import DRAvailabilityForm from "@/views/DRAvailabilityForm";
