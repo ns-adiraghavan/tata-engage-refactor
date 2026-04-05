@@ -51,6 +51,7 @@ export const ROHAN_DESAI = {
     tvwEvents: 45,
     pendingApprovals: 18
   },
+  subsidiaries: ["Tata Power", "Tata Power Western", "Tata Power Central", "Tata Power Eastern", "Tata Steel", "Tata Motors", "TCS", "Titan", "IHCL", "Tata Consumer Products", "Tata Communications"],
   orientationProgress: 2,
   totalOrientationModules: 5
 };
