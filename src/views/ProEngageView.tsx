@@ -35,6 +35,19 @@ const CATEGORIES = [
 
 const getCategory = (area: string) => SKILL_AREA_TO_CATEGORY[area] || "Others";
 
+const AREA_IMAGES: Record<string, string> = {
+  Finance: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&q=60",
+  IT: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=60",
+  Education: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&q=60",
+  Legal: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&q=60",
+  Healthcare: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&q=60",
+  Environment: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&q=60",
+  HR: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=400&q=60",
+  Operations: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&q=60",
+  Communication: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&q=60",
+};
+const DEFAULT_IMAGE = "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=400&q=60";
+
 const ProEngageView = () => {
   const { appliedProjects, setAppliedProjects, likedProjects, setLikedProjects, triggerToast } = useAppContext();
   const { user } = useAuth();
@@ -98,76 +111,85 @@ const ProEngageView = () => {
       layout
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
-      className="bg-white rounded-3xl p-8 border border-zinc-100 shadow-sm hover:shadow-2xl transition-all relative group flex flex-col"
+      className="bg-white rounded-3xl border border-zinc-100 shadow-sm hover:shadow-2xl transition-all relative group flex flex-col overflow-hidden"
     >
+      <img
+        src={AREA_IMAGES[project.area] || DEFAULT_IMAGE}
+        alt={project.area}
+        className="w-full h-[120px] object-cover"
+        loading="lazy"
+        referrerPolicy="no-referrer"
+      />
       {project.matched && (
-        <div className="absolute top-6 right-6 w-8 h-8 rounded-full bg-tata-cyan/10 flex items-center justify-center text-tata-cyan" title="Skill Match">
+        <div className="absolute top-[132px] right-6 w-8 h-8 rounded-full bg-tata-cyan/10 flex items-center justify-center text-tata-cyan" title="Skill Match">
           <Sparkles size={16} />
         </div>
       )}
 
-      <div className="mb-6">
-        <div className="text-xs font-bold text-tata-blue uppercase tracking-widest mb-2 flex items-center gap-2">
-          <Building2 size={12} /> {project.ngo}
+      <div className="p-8 flex flex-col flex-grow">
+        <div className="mb-6">
+          <div className="text-xs font-bold text-tata-blue uppercase tracking-widest mb-2 flex items-center gap-2">
+            <Building2 size={12} /> {project.ngo}
+          </div>
+          <h3 className="text-xl font-bold text-zinc-900 mb-2 group-hover:text-tata-blue transition-colors leading-tight">{project.title}</h3>
+          {project.matched && (() => {
+            const skillArea = project.area;
+            const location = project.mode.includes("Mumbai") ? "Mumbai" : project.mode.includes("Delhi") ? "Delhi" : "";
+            const chip = user.skills?.some((s: string) => s.toLowerCase() === skillArea.toLowerCase())
+              ? `Matches your ${skillArea} skills`
+              : location === user.city
+                ? `Near you · ${location}`
+                : "Recommended for you";
+            return (
+              <span className="inline-block px-2.5 py-0.5 rounded-full bg-purple-50 text-purple-700 text-xs mb-2">
+                {chip}
+              </span>
+            );
+          })()}
+          <div className="flex flex-wrap gap-2">
+            <span className="px-3 py-1 rounded-full bg-slate-50 text-slate-500 text-xs font-bold uppercase tracking-wider">{project.area}</span>
+            <span className="px-3 py-1 rounded-full bg-slate-50 text-slate-500 text-xs font-bold uppercase tracking-wider">{project.mode}</span>
+          </div>
         </div>
-        <h3 className="text-xl font-bold text-zinc-900 mb-2 group-hover:text-tata-blue transition-colors leading-tight">{project.title}</h3>
-        {project.matched && (() => {
-          const skillArea = project.area;
-          const location = project.mode.includes("Mumbai") ? "Mumbai" : project.mode.includes("Delhi") ? "Delhi" : "";
-          const chip = user.skills?.some((s: string) => s.toLowerCase() === skillArea.toLowerCase())
-            ? `Matches your ${skillArea} skills`
-            : location === user.city
-              ? `Near you · ${location}`
-              : "Recommended for you";
-          return (
-            <span className="inline-block px-2.5 py-0.5 rounded-full bg-purple-50 text-purple-700 text-xs mb-2">
-              {chip}
-            </span>
-          );
-        })()}
-        <div className="flex flex-wrap gap-2">
-          <span className="px-3 py-1 rounded-full bg-slate-50 text-slate-500 text-xs font-bold uppercase tracking-wider">{project.area}</span>
-          <span className="px-3 py-1 rounded-full bg-slate-50 text-slate-500 text-xs font-bold uppercase tracking-wider">{project.mode}</span>
-        </div>
-      </div>
 
-      <p className="text-sm text-slate-500 mb-6 line-clamp-3 flex-grow">{project.description}</p>
+        <p className="text-sm text-slate-500 mb-6 line-clamp-3 flex-grow">{project.description}</p>
 
-      <div className="space-y-4 mb-8">
-        <div className="flex items-center gap-3 text-sm text-slate-600">
-          <Clock size={16} className="text-slate-400" /> {project.commitment}
+        <div className="space-y-4 mb-8">
+          <div className="flex items-center gap-3 text-sm text-slate-600">
+            <Clock size={16} className="text-slate-400" /> {project.commitment}
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {project.skills.map((skill: string, i: number) => (
+              <span key={i} className="text-xs font-bold text-tata-cyan bg-tata-cyan/5 px-2 py-0.5 rounded uppercase tracking-wider">{skill}</span>
+            ))}
+          </div>
         </div>
-        <div className="flex flex-wrap gap-2">
-          {project.skills.map((skill: string, i: number) => (
-            <span key={i} className="text-xs font-bold text-tata-cyan bg-tata-cyan/5 px-2 py-0.5 rounded uppercase tracking-wider">{skill}</span>
-          ))}
-        </div>
-      </div>
 
-      <div className="flex gap-3">
-        <button
-          disabled={appliedProjects.includes(project.id)}
-          onClick={() => handleApply(project)}
-          className={`flex-1 py-4 rounded-2xl font-bold transition-all flex items-center justify-center gap-2 ${
-            appliedProjects.includes(project.id)
-              ? "bg-green-50 text-green-600 cursor-default"
-              : "bg-zinc-900 text-white hover:bg-tata-blue shadow-lg shadow-black/10 cursor-pointer"
-          }`}
-        >
-          {appliedProjects.includes(project.id) ? (
-            <><Check size={20} /> Applied</>
-          ) : "Apply Now"}
-        </button>
-        <button
-          onClick={() => toggleLike(project.id)}
-          className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all border ${
-            likedProjects.includes(project.id)
-              ? "bg-red-50 border-red-100 text-red-500"
-              : "bg-white border-zinc-100 text-slate-300 hover:text-red-500 hover:border-red-100"
-          }`}
-        >
-          <Heart size={24} fill={likedProjects.includes(project.id) ? "currentColor" : "none"} />
-        </button>
+        <div className="flex gap-3">
+          <button
+            disabled={appliedProjects.includes(project.id)}
+            onClick={() => handleApply(project)}
+            className={`flex-1 py-4 rounded-2xl font-bold transition-all flex items-center justify-center gap-2 ${
+              appliedProjects.includes(project.id)
+                ? "bg-green-50 text-green-600 cursor-default"
+                : "bg-zinc-900 text-white hover:bg-tata-blue shadow-lg shadow-black/10 cursor-pointer"
+            }`}
+          >
+            {appliedProjects.includes(project.id) ? (
+              <><Check size={20} /> Applied</>
+            ) : "Apply Now"}
+          </button>
+          <button
+            onClick={() => toggleLike(project.id)}
+            className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all border ${
+              likedProjects.includes(project.id)
+                ? "bg-red-50 border-red-100 text-red-500"
+                : "bg-white border-zinc-100 text-slate-300 hover:text-red-500 hover:border-red-100"
+            }`}
+          >
+            <Heart size={24} fill={likedProjects.includes(project.id) ? "currentColor" : "none"} />
+          </button>
+        </div>
       </div>
     </motion.div>
   );
