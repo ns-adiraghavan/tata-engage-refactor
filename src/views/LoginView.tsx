@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Building2, ShieldCheck, Landmark } from "lucide-react";
+import { Building2, ShieldCheck, Landmark, Mail, Lock, Eye } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import tataEngageLogoNoBg from "@/assets/tata-engage-logo-nobg.png";
 import { VIKRAM_NAIR, ROHAN_DESAI, PRIYA_SHARMA, ANJALI_MEHTA } from "@/data/mockData";
@@ -98,13 +98,32 @@ const LoginView = () => {
         </button>
       )}
 
-      <p className="text-center text-sm text-slate-400 mb-6">
-        This prototype uses demo accounts — select one above.
-      </p>
-
-      <div className="text-center">
-        <button onClick={() => navigate("forgot-password")} type="button" className="text-xs font-bold text-zinc-900 hover:underline cursor-pointer">Forgot Password?</button>
+      <div className="relative mb-8">
+        <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-slate-200"></div></div>
+        <div className="relative flex justify-center text-xs uppercase"><span className="bg-white px-2 text-slate-400 font-bold tracking-widest">Or Login With</span></div>
       </div>
+
+      <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+        <div>
+          <label className="form-label">Email Address / Phone Number</label>
+          <div className="relative">
+            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400" size={18} />
+            <input type="text" placeholder="Enter email or phone" className="form-input pl-12" />
+          </div>
+        </div>
+        <div>
+          <div className="flex justify-between items-center mb-1.5">
+            <label className="form-label mb-0">Password</label>
+            <button onClick={() => navigate("forgot-password")} type="button" className="text-xs font-bold text-zinc-900 hover:underline cursor-pointer">Forgot Password?</button>
+          </div>
+          <div className="relative">
+            <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400" size={18} />
+            <input type="password" placeholder="••••••••" className="form-input pl-12 pr-12" />
+            <button type="button" className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-900 cursor-pointer"><Eye size={18} /></button>
+          </div>
+        </div>
+        <button type="button" disabled className="w-full btn-black py-4 text-lg mt-4 opacity-50 cursor-not-allowed">Log In</button>
+      </form>
 
       {!isAdminLogin && (
         <p className="text-center text-sm text-slate-500 mt-8">
