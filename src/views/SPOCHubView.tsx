@@ -3,7 +3,9 @@ import { Users, Briefcase, CalendarDays, ShieldCheck } from "lucide-react";
 import { ROHAN_DESAI, COMMUNITY_TESTIMONIALS } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
+import { useAuth } from "@/context/AuthContext";
 import { PENDING_APPROVALS_DATA } from "@/data/mockData";
+import RoleToggle from "@/components/shared/RoleToggle";
 
 const SPOCHubView = () => {
   const spoc = ROHAN_DESAI;
