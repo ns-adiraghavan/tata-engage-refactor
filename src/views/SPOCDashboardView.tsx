@@ -764,7 +764,7 @@ const SPOCDashboardView = () => {
   ];
 
   const CampaignKitPanel = () => (
-    <div className="space-y-10">
+    <div id="spoc-section-Campaign-Kit" className="space-y-10">
       <div>
         <h2 className="text-4xl font-black text-slate-900 tracking-tight mb-2">Campaign Kit</h2>
         <p className="text-slate-500 font-medium">Downloadable collateral to promote volunteering across your company.</p>
