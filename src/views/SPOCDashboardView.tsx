@@ -807,6 +807,16 @@ const SPOCDashboardView = () => {
 
   const DashboardHome = () => (
     <div id="spoc-section-Dashboard" className="space-y-12">
+      {/* My Hub Hero */}
+      <div className="rounded-3xl bg-gradient-to-br from-[#003580] to-[#001d4a] text-white p-8 md:p-12 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32 blur-3xl" />
+        <div className="relative z-10">
+          <p className="text-xs font-bold text-white/50 uppercase tracking-[0.3em] mb-2">Corporate SPOC Dashboard</p>
+          <h1 className="text-3xl md:text-4xl font-black tracking-tight">Welcome, {spoc.firstName}</h1>
+          <p className="text-white/60 text-sm mt-1">{spoc.company} · Corporate SPOC</p>
+        </div>
+      </div>
+
       {/* Stats Grid — moved to very top, before welcome banner */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {[
