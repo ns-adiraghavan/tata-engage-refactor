@@ -1488,7 +1488,7 @@ const SPOCDashboardView = () => {
   return (
     <div className="min-h-screen pt-24 bg-[#F8FAFC] flex">
       {/* Sidebar */}
-      <aside className="w-80 bg-white border-r border-slate-100 hidden lg:flex flex-col p-8 fixed h-[calc(100vh-80px)] z-20">
+      <aside className="w-80 bg-white border-r border-slate-100 hidden lg:flex flex-col p-8 fixed h-[calc(100vh-96px)] z-20">
         <div className="mb-10 px-2">
           <div className="flex items-center gap-4 p-4 bg-slate-50 rounded-[1.5rem] border border-slate-100">
             <div className="w-12 h-12 rounded-2xl bg-tata-blue flex items-center justify-center text-white font-semibold text-lg shadow-lg shadow-blue-900/20">
