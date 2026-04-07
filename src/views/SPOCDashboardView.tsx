@@ -1614,8 +1614,8 @@ const SPOCDashboardView = () => {
                 </button>
               </div>
 
-              {/* Leaderboard Preview (PE only) */}
-              {IS_PE_SEASON && (
+              {/* Leaderboard Preview (PE only, Corporate only) */}
+              {IS_PE_SEASON && !isRegionalSPOC && (
                 <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 md:p-8">
                   <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Rankings</p>
                   <h3 className="text-xl font-black text-slate-900 tracking-tight mb-6">Leaderboard</h3>
