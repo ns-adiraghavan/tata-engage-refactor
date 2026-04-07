@@ -62,111 +62,6 @@ const HomeView = () => {
         </div>
       </section>
 
-      {/* ═══ HOW IT WORKS ═══ */}
-      <section className="bg-white py-16 px-6 md:px-12">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-xs font-semibold tracking-widest uppercase text-zinc-400 text-center mb-3">
-            How It Works
-          </p>
-          <h2 className="text-3xl font-bold text-zinc-900 text-center mb-16">
-            Three steps to start volunteering
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-            {[
-              {
-                icon: UserPlus,
-                title: "Register",
-                desc: "Create your profile in minutes using your Tata email or personal account.",
-                cardClass: "bg-blue-50 border border-blue-100",
-                iconClass: "text-tata-blue",
-              },
-              {
-                icon: Search,
-                title: "Find a Project",
-                desc: "Browse ProEngage skill-based projects or sign up for TVW events near you.",
-                cardClass: "bg-violet-50 border border-violet-100",
-                iconClass: "text-violet-600",
-              },
-              {
-                icon: Award,
-                title: "Make an Impact",
-                desc: "Complete the project, earn a certificate, and track your volunteering journey.",
-                cardClass: "bg-emerald-50 border border-emerald-100",
-                iconClass: "text-emerald-600",
-              },
-            ].map((s, i) => (
-              <div key={i} className={`${s.cardClass} rounded-2xl p-6 text-center h-full`}>
-                <div className={`flex justify-center mb-4 ${s.iconClass}`}>
-                  <s.icon size={28} />
-                </div>
-                <h3 className="text-lg font-bold text-zinc-900 mb-2">{s.title}</h3>
-                <p className="text-sm text-zinc-500 leading-relaxed">{s.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ OUR PROGRAMMES ═══ */}
-      <section className="bg-slate-50 py-16 px-6 md:px-12">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-zinc-900 mb-12">Our Programmes</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "TVW",
-                subtitle: "Tata Volunteering Week",
-                desc: "A bi-annual celebration of volunteering where employees across the globe come together.",
-                img: "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&q=80&w=600",
-                accentBar: "bg-tata-cyan",
-                subtitleColor: "text-tata-cyan",
-              },
-              {
-                title: "ProEngage",
-                subtitle: "Skill-based Volunteering",
-                desc: "Project-based volunteering that allows employees to use their professional expertise.",
-                img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=600",
-                accentBar: "bg-violet-500",
-                subtitleColor: "text-violet-600",
-              },
-              {
-                title: "Disaster Response",
-                subtitle: "Rapid Action",
-                desc: "Coordinated efforts to provide immediate relief and long-term rehabilitation during disasters.",
-img: "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?auto=format&fit=crop&q=80&w=600",
-                accentBar: "bg-red-500",
-                subtitleColor: "text-red-600",
-              },
-            ].map((p, i) => (
-              <div
-                key={i}
-                className="bg-white rounded-2xl overflow-hidden border border-zinc-100 shadow-sm"
-              >
-                <div className="h-44 overflow-hidden">
-                  <img
-                    src={p.img}
-                    alt={p.title}
-                    className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
-                <div className="p-6">
-                  <div className={`h-0.5 w-12 rounded-full mb-4 ${p.accentBar}`} />
-                  <div className={`text-xs font-bold uppercase tracking-widest ${p.subtitleColor} mb-2`}>
-                    {p.subtitle}
-                  </div>
-                  <h3 className="text-xl font-bold text-zinc-900 mb-3">{p.title}</h3>
-                  <p className="text-sm text-zinc-500 leading-relaxed mb-4">{p.desc}</p>
-                  <button className="flex items-center gap-1 font-semibold text-sm text-tata-blue cursor-pointer">
-                    Learn More <ChevronRight size={16} />
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ═══ IMPACT STORIES ═══ */}
       <section className="bg-[#0f1118] py-16 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
@@ -198,7 +93,6 @@ img: "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?auto=format&f
 
             {/* RIGHT: 2×2 grid of smaller cards */}
             <div className="grid grid-cols-2 gap-4">
-              {/* Card 2 — Environment */}
               <div className="relative rounded-2xl overflow-hidden bg-[#0d2b1f] min-h-[200px] flex flex-col justify-end p-5 group cursor-pointer hover:brightness-125 transition-all duration-300">
                 <div className="absolute inset-0">
                   <svg width="100%" height="100%" viewBox="0 0 300 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
@@ -213,7 +107,6 @@ img: "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?auto=format&f
                 </div>
               </div>
 
-              {/* Card 3 — Health */}
               <div className="relative rounded-2xl overflow-hidden bg-[#003580] min-h-[200px] flex flex-col justify-end p-5 group cursor-pointer hover:brightness-125 transition-all duration-300">
                 <div className="absolute inset-0">
                   <svg width="100%" height="100%" viewBox="0 0 300 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
@@ -228,7 +121,6 @@ img: "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?auto=format&f
                 </div>
               </div>
 
-              {/* Card 4 — Skills */}
               <div className="relative rounded-2xl overflow-hidden bg-[#2d1040] min-h-[200px] flex flex-col justify-end p-5 group cursor-pointer hover:brightness-125 transition-all duration-300">
                 <div className="absolute inset-0">
                   <svg width="100%" height="100%" viewBox="0 0 300 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
@@ -243,7 +135,6 @@ img: "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?auto=format&f
                 </div>
               </div>
 
-              {/* Card 5 — Disaster Response */}
               <div className="relative rounded-2xl overflow-hidden bg-[#2d1a00] min-h-[200px] flex flex-col justify-end p-5 group cursor-pointer hover:brightness-125 transition-all duration-300">
                 <div className="absolute inset-0">
                   <svg width="100%" height="100%" viewBox="0 0 300 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
@@ -255,6 +146,155 @@ img: "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?auto=format&f
                 <div className="relative z-10">
                   <span className="inline-block bg-amber-400 text-zinc-900 text-xs font-bold px-2.5 py-0.5 rounded-full tracking-wide mb-3">Disaster Response</span>
                   <h3 className="text-sm font-bold text-white leading-snug">Tata volunteers deployed within 48 hours of Kerala floods</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ HOW IT WORKS ═══ */}
+      <section className="bg-zinc-900 py-16 px-6 md:px-12">
+        <div className="max-w-7xl mx-auto">
+          <p className="text-xs font-semibold tracking-widest uppercase text-zinc-500 mb-3">
+            How It Works
+          </p>
+          <h2 className="text-3xl font-bold text-white mb-10">Three steps to get started</h2>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            {/* Step 1 */}
+            <div className="relative rounded-2xl overflow-hidden bg-[#0f2d4a] p-8 flex flex-col justify-between min-h-[360px] lg:row-span-1">
+              <div className="absolute inset-0">
+                <svg width="100%" height="100%" viewBox="0 0 400 360" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="350" cy="50" r="200" fill="none" stroke="white" strokeWidth="0.5" opacity="0.08"/>
+                  <circle cx="350" cy="50" r="120" fill="none" stroke="white" strokeWidth="0.5" opacity="0.06"/>
+                  <line x1="0" y1="300" x2="400" y2="80" stroke="white" strokeWidth="0.5" opacity="0.07"/>
+                </svg>
+              </div>
+              <div className="relative z-10">
+                <span className="text-[80px] font-black text-white/10 leading-none select-none">01</span>
+              </div>
+              <div className="relative z-10">
+                <div className="w-10 h-10 rounded-xl bg-tata-blue flex items-center justify-center mb-4">
+                  <UserPlus size={20} className="text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">Register</h3>
+                <p className="text-sm text-zinc-400 leading-relaxed">Create your profile using your Tata email or personal account. Takes under 3 minutes.</p>
+              </div>
+            </div>
+
+            {/* Step 2 */}
+            <div className="relative rounded-2xl overflow-hidden bg-[#1a0d2e] p-8 flex flex-col justify-between min-h-[172px] lg:col-span-2">
+              <div className="absolute inset-0">
+                <svg width="100%" height="100%" viewBox="0 0 600 172" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="500" cy="86" r="160" fill="none" stroke="white" strokeWidth="0.5" opacity="0.08"/>
+                  <line x1="0" y1="140" x2="600" y2="30" stroke="white" strokeWidth="0.5" opacity="0.07"/>
+                  <circle cx="80" cy="20" r="50" fill="none" stroke="white" strokeWidth="0.5" opacity="0.06"/>
+                </svg>
+              </div>
+              <div className="relative z-10 flex items-center justify-between h-full">
+                <div className="flex-1">
+                  <span className="text-[56px] font-black text-white/10 leading-none select-none block mb-2">02</span>
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-violet-700 flex items-center justify-center shrink-0">
+                      <Search size={20} className="text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-white">Find a Project</h3>
+                      <p className="text-sm text-zinc-400 mt-1">Browse ProEngage skill-based projects or sign up for TVW events near you.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Step 3 */}
+            <div className="relative rounded-2xl overflow-hidden bg-[#0d2b1f] p-8 flex flex-col justify-between min-h-[172px] lg:col-span-2">
+              <div className="absolute inset-0">
+                <svg width="100%" height="100%" viewBox="0 0 600 172" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="100" cy="86" r="160" fill="none" stroke="white" strokeWidth="0.5" opacity="0.08"/>
+                  <line x1="0" y1="30" x2="600" y2="140" stroke="white" strokeWidth="0.5" opacity="0.07"/>
+                  <circle cx="520" cy="160" r="60" fill="none" stroke="white" strokeWidth="0.5" opacity="0.06"/>
+                </svg>
+              </div>
+              <div className="relative z-10 flex items-center justify-between h-full">
+                <div className="flex-1">
+                  <span className="text-[56px] font-black text-white/10 leading-none select-none block mb-2">03</span>
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-emerald-700 flex items-center justify-center shrink-0">
+                      <Award size={20} className="text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-white">Make an Impact</h3>
+                      <p className="text-sm text-zinc-400 mt-1">Complete the project, earn a certificate, and build your volunteering record.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ OUR PROGRAMMES ═══ */}
+      <section className="bg-[#fafaf8] py-16 px-6 md:px-12">
+        <div className="max-w-7xl mx-auto">
+          <p className="text-xs font-semibold tracking-widest uppercase text-zinc-400 mb-3">
+            Our Programmes
+          </p>
+          <h2 className="text-3xl font-bold text-zinc-900 mb-10">Ways to volunteer</h2>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            {/* TVW — featured wide card */}
+            <div className="relative rounded-2xl overflow-hidden min-h-[340px] flex flex-col justify-end lg:col-span-2 group cursor-pointer">
+              <div className="absolute inset-0">
+                <img
+                  src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&q=80&w=900"
+                  alt="Tata Volunteering Week"
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+              </div>
+              <div className="relative z-10 p-8">
+                <span className="inline-block bg-tata-cyan text-zinc-900 text-xs font-bold px-3 py-1 rounded-full tracking-wide mb-4">Bi-annual · Global</span>
+                <h3 className="text-2xl font-bold text-white mb-2">Tata Volunteering Week</h3>
+                <p className="text-sm text-white/70 mb-4 max-w-md">A celebration of volunteering where employees across the globe come together for a week of collective action.</p>
+                <button className="flex items-center gap-1 text-tata-cyan text-sm font-semibold group-hover:gap-2 transition-all cursor-pointer">
+                  Learn more <ChevronRight size={14} />
+                </button>
+              </div>
+            </div>
+
+            {/* ProEngage + Disaster Response — stacked right column */}
+            <div className="flex flex-col gap-4">
+              <div className="relative rounded-2xl overflow-hidden min-h-[162px] flex flex-col justify-end group cursor-pointer">
+                <div className="absolute inset-0">
+                  <img
+                    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=600"
+                    alt="ProEngage"
+                    className="w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+                </div>
+                <div className="relative z-10 p-5">
+                  <span className="inline-block bg-violet-400 text-zinc-900 text-xs font-bold px-2.5 py-0.5 rounded-full tracking-wide mb-2">Skill-based</span>
+                  <h3 className="text-base font-bold text-white">ProEngage</h3>
+                </div>
+              </div>
+
+              <div className="relative rounded-2xl overflow-hidden min-h-[162px] flex flex-col justify-end group cursor-pointer">
+                <div className="absolute inset-0">
+                  <img
+                    src="https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?auto=format&fit=crop&q=80&w=600"
+                    alt="Disaster Response"
+                    className="w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+                </div>
+                <div className="relative z-10 p-5">
+                  <span className="inline-block bg-red-400 text-white text-xs font-bold px-2.5 py-0.5 rounded-full tracking-wide mb-2">Rapid Action</span>
+                  <h3 className="text-base font-bold text-white">Disaster Response</h3>
                 </div>
               </div>
             </div>
