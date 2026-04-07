@@ -61,7 +61,7 @@ const HomeView = () => {
       </section>
 
       {/* ═══ HOW IT WORKS ═══ */}
-      <section className="bg-white py-24 px-6 md:px-12">
+      <section className="bg-zinc-50 py-24 px-6 md:px-12">
         <div className="max-w-5xl mx-auto">
           <p className="text-xs font-semibold tracking-widest uppercase text-zinc-400 text-center mb-3">
             How It Works
@@ -76,25 +76,34 @@ const HomeView = () => {
                 icon: UserPlus,
                 title: "Register",
                 desc: "Create your profile in minutes using your Tata email or personal account.",
+                cardClass: "bg-blue-50 border border-blue-100",
+                circleClass: "bg-tata-blue text-white",
+                iconClass: "text-tata-blue",
               },
               {
                 step: 2,
                 icon: Search,
                 title: "Find a Project",
                 desc: "Browse ProEngage skill-based projects or sign up for TVW events near you.",
+                cardClass: "bg-violet-50 border border-violet-100",
+                circleClass: "bg-violet-600 text-white",
+                iconClass: "text-violet-600",
               },
               {
                 step: 3,
                 icon: Award,
                 title: "Make an Impact",
                 desc: "Complete the project, earn a certificate, and track your volunteering journey.",
+                cardClass: "bg-emerald-50 border border-emerald-100",
+                circleClass: "bg-emerald-600 text-white",
+                iconClass: "text-emerald-600",
               },
             ].map((s) => (
-              <div key={s.step} className="bg-slate-50 rounded-2xl p-8 text-center">
-                <div className="w-8 h-8 bg-tata-blue text-white rounded-full text-sm font-bold flex items-center justify-center mb-4 mx-auto">
+              <div key={s.step} className={`${s.cardClass} rounded-2xl p-8 text-center`}>
+                <div className={`w-8 h-8 ${s.circleClass} rounded-full text-sm font-bold flex items-center justify-center mb-4 mx-auto`}>
                   {s.step}
                 </div>
-                <div className="flex justify-center mb-4 text-tata-blue">
+                <div className={`flex justify-center mb-4 ${s.iconClass}`}>
                   <s.icon size={28} />
                 </div>
                 <h3 className="text-lg font-bold text-zinc-900 mb-2">{s.title}</h3>
