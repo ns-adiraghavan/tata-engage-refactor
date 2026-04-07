@@ -455,6 +455,25 @@ const DashboardView = () => {
         </div>
 
       </div>
+
+      {/* ═══ Refer a Colleague ═══ */}
+      <div className="bg-slate-50 border-t border-slate-200 py-8 px-6 md:px-12">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+          <div>
+            <h3 className="text-sm font-bold text-slate-900">Know someone who'd love to volunteer?</h3>
+            <p className="text-xs text-slate-500 mt-1">Refer a Tata colleague and grow the community.</p>
+          </div>
+          <button
+            onClick={() => {
+              navigator.clipboard.writeText("https://tatavolunteers.org/join?ref=" + user.email);
+              toast({ title: "Referral link copied!", description: "Share it with your colleagues." });
+            }}
+            className="px-5 py-2.5 bg-tata-blue text-white text-sm font-semibold rounded-lg hover:bg-tata-blue/90 transition-colors cursor-pointer"
+          >
+            Copy referral link
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

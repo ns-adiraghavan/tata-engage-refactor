@@ -1,3 +1,5 @@
+export const IS_PE_SEASON = true; // toggle to false to preview non-PE state
+
 export const VIKRAM_NAIR = {
   firstName: "Vikram",
   lastName: "Nair",
