@@ -418,7 +418,7 @@ const DashboardView = () => {
                   { title: "Global Tree Plantation Day", date: "April 15, 2026", loc: "Mumbai Hub", type: "On-field" },
                   { title: "Virtual Mentoring Kickoff", date: "April 18, 2026", loc: "Online", type: "Virtual" }
                 ].map((event, i) => (
-                  <div key={i} className="flex items-center justify-between p-5 bg-white rounded-2xl border border-zinc-100 hover:shadow-md transition-all cursor-pointer">
+                  <div key={i} className="flex items-center justify-between p-5 bg-white rounded-2xl border border-zinc-100 border-l-4 border-l-tata-cyan hover:shadow-md transition-all cursor-pointer">
                     <div className="flex items-center gap-4">
                       <div className="w-12 h-12 rounded-lg bg-slate-50 flex flex-col items-center justify-center text-tata-blue">
                         <span className="text-xs font-bold uppercase">{event.date.split(' ')[0]}</span>
