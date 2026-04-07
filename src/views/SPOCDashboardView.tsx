@@ -806,7 +806,7 @@ const SPOCDashboardView = () => {
   );
 
   const DashboardHome = () => (
-    <div className="space-y-12">
+    <div id="spoc-section-Dashboard" className="space-y-12">
       {/* Stats Grid — moved to very top, before welcome banner */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {[
