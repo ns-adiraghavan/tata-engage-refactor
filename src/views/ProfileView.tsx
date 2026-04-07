@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Linkedin, Award, Info, Star, Save, History, Download, X, Plus } from "lucide-react";
 import type { View } from "@/types";
+import { MOCK_FAMILY_MEMBERS } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
 import { useAuth } from "@/context/AuthContext";
 
@@ -431,6 +432,60 @@ const ProfileView = () => {
             )}
           </div>
         </div>
+
+        {/* ═══ Your SPOC ═══ */}
+        <div className="mt-12">
+          <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4 flex items-center">
+            <div className="w-1 h-5 bg-tata-blue rounded-full mr-3" />
+            Your SPOC
+          </h3>
+          <div className="bg-white border border-zinc-100 rounded-2xl p-5 shadow-sm">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-12 h-12 rounded-full bg-tata-blue/10 text-tata-blue font-bold flex items-center justify-center">
+                RD
+              </div>
+              <div>
+                <p className="font-semibold text-slate-900">Rohan Desai</p>
+                <p className="text-sm text-slate-500">Corporate SPOC · Tata Consultancy Services</p>
+                <p className="text-xs text-slate-400 mt-1">Covers your region and company volunteering</p>
+              </div>
+            </div>
+            <button
+              onClick={() => triggerToast("Message sent to Rohan Desai. He'll respond within 24 hours.")}
+              className="text-sm text-tata-blue font-semibold border border-tata-blue/30 rounded-lg px-4 py-2 hover:bg-tata-blue/5 cursor-pointer"
+            >
+              Contact SPOC
+            </button>
+          </div>
+        </div>
+
+        {/* ═══ Family Members ═══ */}
+        <div className="mt-12">
+          <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4 flex items-center">
+            <div className="w-1 h-5 bg-tata-blue rounded-full mr-3" />
+            Family Members registered under you
+          </h3>
+          <div className="bg-white border border-zinc-100 rounded-2xl shadow-sm p-5">
+            {MOCK_FAMILY_MEMBERS.map((member, i) => (
+              <div key={member.id} className={`flex justify-between items-center py-3 ${i < MOCK_FAMILY_MEMBERS.length - 1 ? 'border-b border-zinc-100' : ''}`}>
+                <div>
+                  <p className="font-semibold text-sm text-slate-900">{member.name}</p>
+                  <p className="text-xs text-slate-400">{member.relationship}</p>
+                </div>
+                <span className={`text-xs font-semibold px-2 py-1 rounded-full ${member.status === 'Active' ? 'bg-green-50 text-green-700' : 'bg-amber-50 text-amber-700'}`}>
+                  {member.status}
+                </span>
+              </div>
+            ))}
+          </div>
+          <button
+            onClick={() => triggerToast("Invite link copied. Share it with your family member to register.")}
+            className="mt-3 text-sm text-tata-blue font-semibold cursor-pointer"
+          >
+            + Invite a family member
+          </button>
+        </div>
+
       </div>
     </div>
   );
