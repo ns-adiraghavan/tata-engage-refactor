@@ -136,7 +136,7 @@ const NGODashboardView = () => {
     .sort((a, b) => b.matchPercentage - a.matchPercentage);
 
   return (
-    <div className="min-h-screen pt-20 bg-slate-50">
+    <div className="min-h-screen pt-24 bg-slate-50">
       {/* NGO Welcome Banner */}
       <section className="bg-tata-blue text-white pt-16 pb-24 px-6 md:px-12 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/3 h-full opacity-10 pointer-events-none">

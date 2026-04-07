@@ -10,7 +10,7 @@ import type { Role } from "@/types";
 import { PRIYA_SHARMA, ANJALI_MEHTA } from "@/data/mockData";
 
 import Navbar from "@/components/layout/Navbar";
-import MegaMenu from "@/components/layout/MegaMenu";
+
 
 import OrientationModal from "@/components/shared/OrientationModal";
 import Chatbot from "@/components/shared/Chatbot";
@@ -50,7 +50,7 @@ export default function App() {
   usePageTitle();
 
   const [selectedRole, setSelectedRole] = useState<Role | null>(null);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
   const [isConsentOpen, setIsConsentOpen] = useState(false);
   const [isOrientationDismissed, setIsOrientationDismissed] = useState(false);
   const [showOrientationModal, setShowOrientationModal] = useState(false);
@@ -140,7 +140,7 @@ export default function App() {
 
   const ctx = {
     selectedRole, setSelectedRole,
-    isMenuOpen, setIsMenuOpen, isConsentOpen, setIsConsentOpen,
+    isConsentOpen, setIsConsentOpen,
     isOrientationDismissed, setIsOrientationDismissed,
     showOrientationModal, setShowOrientationModal,
     otp, setOtp, showToast, setShowToast, toastMessage, setToastMessage,
@@ -170,14 +170,6 @@ export default function App() {
         <Navbar
           onNavigate={navigate}
           isLoggedIn={isLoggedIn}
-          onToggleMenu={() => setIsMenuOpen(!isMenuOpen)}
-          user={user}
-        />
-        <MegaMenu
-          isOpen={isMenuOpen}
-          onClose={() => setIsMenuOpen(false)}
-          isLoggedIn={isLoggedIn}
-          onNavigate={navigate}
           onLogout={onLogout}
           user={user}
         />
