@@ -44,13 +44,6 @@ const Footer = () => (
           <Linkedin size={20} className="text-slate-400 hover:text-white cursor-pointer" />
           <Youtube size={20} className="text-slate-400 hover:text-white cursor-pointer" />
         </div>
-        <div className="bg-slate-800 p-4 rounded-lg">
-          <p className="text-xs text-slate-400 mb-2">Subscribe to our newsletter</p>
-          <div className="flex gap-2">
-            <input type="email" placeholder="Email address" className="bg-transparent border-b border-slate-600 text-sm py-1 focus:outline-none flex-1" />
-            <button className="text-tata-cyan cursor-pointer"><ChevronRight size={20} /></button>
-          </div>
-        </div>
       </div>
     </div>
     <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
