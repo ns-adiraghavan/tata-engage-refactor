@@ -1958,17 +1958,68 @@ const SPOCDashboardView = () => {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl p-10"
+              className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl p-10 max-h-[90vh] overflow-y-auto"
             >
               <h3 className="text-2xl font-bold text-slate-800 mb-6">
                 {editingSpoc ? "Edit Regional SPOC" : "Add Regional SPOC"}
               </h3>
-              <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-                <div>
-                  <label className="form-label">Search Tata Employee*</label>
-                  <div className="relative">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-                    <input type="text" placeholder="Enter name or email" className="form-input pl-12" defaultValue={editingSpoc?.name} />
+              <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div>
+                    <label className="form-label">Email*</label>
+                    <input type="email" placeholder="name@tata.com" className="form-input" defaultValue={editingSpoc?.email} />
+                  </div>
+                  <div>
+                    <label className="form-label">SPOC Name*</label>
+                    <input type="text" placeholder="Full name" className="form-input" defaultValue={editingSpoc?.name} />
+                  </div>
+                  <div>
+                    <label className="form-label">Entity Name*</label>
+                    <input type="text" placeholder="e.g. Tata Consultancy Services" className="form-input" defaultValue="" />
+                  </div>
+                  <div>
+                    <label className="form-label">Company Name*</label>
+                    <input type="text" placeholder="e.g. TCS" className="form-input" defaultValue={editingSpoc?.company} />
+                  </div>
+                  <div>
+                    <label className="form-label">City*</label>
+                    <input type="text" placeholder="e.g. Mumbai" className="form-input" defaultValue="" />
+                  </div>
+                  <div>
+                    <label className="form-label">Country*</label>
+                    <input type="text" placeholder="e.g. India" className="form-input" defaultValue="" />
+                  </div>
+                  <div>
+                    <label className="form-label">Contact No*</label>
+                    <input type="tel" placeholder="+91 XXXXX XXXXX" className="form-input" defaultValue="" />
+                  </div>
+                  <div>
+                    <label className="form-label">Designation*</label>
+                    <input type="text" placeholder="e.g. Regional Manager" className="form-input" defaultValue="" />
+                  </div>
+                  <div>
+                    <label className="form-label">Function</label>
+                    <select className="form-input" defaultValue="">
+                      <option value="">Select Function</option>
+                      <option>HR</option>
+                      <option>CSR</option>
+                      <option>Operations</option>
+                      <option>IT</option>
+                      <option>Finance</option>
+                      <option>Marketing</option>
+                      <option>Administration</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="form-label">Gender</label>
+                    <select className="form-input" defaultValue="">
+                      <option value="">Select Gender</option>
+                      <option>Male</option>
+                      <option>Female</option>
+                      <option>Non-binary</option>
+                      <option>Prefer not to say</option>
+                    </select>
                   </div>
                 </div>
                 <div>
@@ -1983,7 +2034,8 @@ const SPOCDashboardView = () => {
                     <option>North America</option>
                   </select>
                 </div>
-                <div className="pt-4 flex gap-4">
+                <p className="text-xs text-slate-400 italic leading-relaxed">Only registered Tata employees can be added as SPOCs. Family members and retired employees are not eligible.</p>
+                <div className="pt-2 flex gap-4">
                   <button type="button" onClick={() => { setShowAddSpoc(false); setEditingSpoc(null); }} className="flex-1 btn-outline cursor-pointer">Cancel</button>
                   <button type="button" onClick={() => { setShowAddSpoc(false); setEditingSpoc(null); }} className="flex-1 btn-black cursor-pointer">
                     {editingSpoc ? "Save Changes" : "Assign Role"}
