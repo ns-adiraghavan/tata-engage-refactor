@@ -26,7 +26,7 @@ const DashboardView = () => {
   };
 
   return (
-    <div className="pt-24 pb-20 bg-white min-h-screen">
+    <div className="pt-24 pb-20 bg-slate-50 min-h-screen">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Disaster Response Feedback Form */}
         {isDRClosed && hasSubmittedAvailability && drDeploymentLog.some(log => log.volunteers.some((v: any) => v.email === user.email)) && (
@@ -127,7 +127,7 @@ const DashboardView = () => {
         )}
 
         {/* ═══ MY HUB HERO ═══ */}
-        <div className="mb-10 rounded-3xl bg-gradient-to-br from-[#003580] to-[#001d4a] text-white p-8 md:p-12 relative overflow-hidden">
+        <div className="mb-10 rounded-3xl bg-gradient-to-br from-[#003580] via-[#0046b8] to-[#00b4d8] text-white p-8 md:p-12 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32 blur-3xl" />
           <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
             <div>

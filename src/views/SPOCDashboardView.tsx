@@ -59,25 +59,6 @@ const SPOCDashboardView = () => {
     { name: "Campaign Kit", icon: Download }
   ];
 
-  // Scroll-spy: update activeNav when sections scroll into view
-  useEffect(() => {
-    const mainEl = document.getElementById("spoc-main-content");
-    if (!mainEl) return;
-    const handler = () => {
-      const sectionEls = navItems.map((item) => ({
-        name: item.name,
-        el: document.getElementById(`spoc-section-${item.name.replace(/\s+/g, "-")}`),
-      }));
-      for (const { name, el } of [...sectionEls].reverse()) {
-        if (el && el.getBoundingClientRect().top <= 160) {
-          setActiveNav(name);
-          break;
-        }
-      }
-    };
-    mainEl.addEventListener("scroll", handler);
-    return () => mainEl.removeEventListener("scroll", handler);
-  }, [navItems]);
 
   const handleApprove = (id: number) => {
     setApprovals(prev => prev.map(a => a.id === id ? { ...a, status: "Approved" } : a));
@@ -1583,7 +1564,7 @@ const SPOCDashboardView = () => {
       </aside>
 
       {/* Main Content */}
-      <main id="spoc-main-content" className="flex-1 lg:ml-80 p-8 md:p-16 overflow-y-auto h-[calc(100vh-96px)]">
+      <main id="spoc-main-content" className="flex-1 lg:ml-80 p-8 md:p-16">
         <div className="max-w-7xl mx-auto">
           <AnimatePresence mode="wait">
             <motion.div
