@@ -1283,7 +1283,7 @@ const SPOCDashboardView = () => {
     });
 
     return (
-      <div className="space-y-12">
+      <div id="spoc-section-TVW-Management" className="space-y-12">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
           <div>
             <h2 className="text-4xl font-black text-slate-900 tracking-tight mb-2">TVW Management</h2>
