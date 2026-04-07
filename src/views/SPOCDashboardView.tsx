@@ -809,7 +809,7 @@ const SPOCDashboardView = () => {
           { label: "Total Volunteers", value: spoc.stats.totalVolunteers.toLocaleString(), sub: "TCS Global", icon: Users, color: "text-tata-blue", bg: "bg-blue-50", border: "border-blue-100" },
           { label: "Active ProEngage", value: spoc.stats.activeProEngage, sub: "Ongoing Projects", icon: Briefcase, color: "text-tata-cyan", bg: "bg-cyan-50", border: "border-cyan-100" },
           { label: "TVW Events", value: spoc.stats.tvwEvents, sub: "This Edition", icon: CalendarDays, color: "text-purple-600", bg: "bg-purple-50", border: "border-purple-100" },
-          { label: "Pending Approvals", value: approvals.filter(a => a.status === "Pending").length, sub: "Action Required", icon: ShieldCheck, color: "text-red-600", bg: "bg-red-50", border: "border-red-100", badge: true }
+          { label: "Verification", value: approvals.filter(a => a.status === "Pending").length, sub: "Action Required", icon: ShieldCheck, color: "text-red-600", bg: "bg-red-50", border: "border-red-100", badge: true }
         ].map((stat, i) => (
           <motion.div 
             key={i}
