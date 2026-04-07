@@ -8,6 +8,7 @@ import { useAuth } from "@/context/AuthContext";
 import { useLocation } from "react-router-dom";
 import { IS_PE_SEASON } from "@/data/mockData";
 import RoleToggle from "@/components/shared/RoleToggle";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 const SPOCDashboardView = () => {
   const { user } = useAuth();
