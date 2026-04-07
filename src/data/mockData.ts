@@ -1,5 +1,11 @@
 export const IS_PE_SEASON = true; // toggle to false to preview non-PE state
 
+export const MOCK_NOTIFICATIONS = [
+  { id: 1, type: "match", title: "You've been matched!", body: "Pratham NGO selected you for Financial Literacy for Rural Women.", time: "2h ago", read: false },
+  { id: 2, type: "certificate", title: "Certificate ready", body: "Your Digital Literacy certificate is available to download from your profile.", time: "1d ago", read: false },
+  { id: 3, type: "feedback", title: "Feedback reminder", body: "Please submit your feedback for the Rural Education project before the deadline.", time: "2d ago", read: true },
+];
+
 export const VIKRAM_NAIR = {
   firstName: "Vikram",
   lastName: "Nair",
