@@ -1,26 +1,18 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Building2, CheckCircle2, Search, Calendar, MapPin, Award, Sparkles, MessageSquare, ArrowRight, ShieldAlert, ClipboardList, Compass, Clock, Users } from "lucide-react";
+import { CheckCircle2, Search, Calendar, MapPin, Award, Sparkles, MessageSquare, ArrowRight, ShieldAlert, ClipboardList, Compass, Clock, Users } from "lucide-react";
 import { useAppContext } from "@/context/AppContext";
 import { useAuth } from "@/context/AuthContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
-import { IS_PE_SEASON, TVW_EVENTS } from "@/data/mockData";
+import { IS_PE_SEASON } from "@/data/mockData";
 import { toast } from "@/hooks/use-toast";
 
 
 const DashboardView = () => {
   const { user } = useAuth();
   const navigate = useAppNavigate();
-  const { projectStatus, setProjectStatus, showPulseCheck, setShowPulseCheck, pulseCheckSubmitted, setPulseCheckSubmitted, setShowFeedbackForm, isDRActive, setDrResponses, hasSubmittedAvailability, setHasSubmittedAvailability, drDeploymentLog, isDRClosed, triggerToast } = useAppContext();
-  const [pulseText, setPulseText] = useState("");
+  const { projectStatus, setProjectStatus, isDRActive, setDrResponses, hasSubmittedAvailability, setHasSubmittedAvailability, drDeploymentLog, isDRClosed, triggerToast } = useAppContext();
   const [appTab, setAppTab] = useState<"current" | "past">("current");
-  const firstTvwEvent = TVW_EVENTS[0];
-
-  const handlePulseSubmit = () => {
-    setPulseCheckSubmitted(true);
-    triggerToast("Your thoughts have been saved — only visible to you");
-    setTimeout(() => setShowPulseCheck(false), 2000);
-  };
 
 
   return (
