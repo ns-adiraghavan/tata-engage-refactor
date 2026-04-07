@@ -44,6 +44,13 @@ const Navbar = ({
       ? "admin-dashboard"
       : "dashboard";
 
+  const hubView = (): View =>
+    user?.role === "ngo"
+      ? "ngo-hub"
+      : user?.role === "corporate_spoc"
+      ? "spoc-hub"
+      : "volunteer-hub";
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50">
       {/* Top strip — ProEngage teal accent */}
