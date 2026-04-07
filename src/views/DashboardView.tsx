@@ -4,6 +4,7 @@ import { ChevronRight, Building2, Heart, Mail, CheckCircle2, Search, Globe, Cale
 import { useAppContext } from "@/context/AppContext";
 import { useAuth } from "@/context/AuthContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
+import { COMMUNITY_TESTIMONIALS } from "@/data/mockData";
 
 const DashboardView = () => {
   const { user } = useAuth();
@@ -25,8 +26,8 @@ const DashboardView = () => {
   };
 
   return (
-    <div className="pt-24 pb-20 px-6 md:px-12 bg-slate-50 min-h-screen">
-      <div className="max-w-7xl mx-auto">
+    <div className="pt-24 pb-20 bg-white min-h-screen">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Disaster Response Feedback Form */}
         {isDRClosed && hasSubmittedAvailability && drDeploymentLog.some(log => log.volunteers.some((v: any) => v.email === user.email)) && (
           <motion.div 
@@ -125,6 +126,42 @@ const DashboardView = () => {
           </motion.div>
         )}
 
+        {/* ═══ MY HUB HERO ═══ */}
+        <div className="mb-10 rounded-3xl bg-gradient-to-br from-[#003580] to-[#001d4a] text-white p-8 md:p-12 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32 blur-3xl" />
+          <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+            <div>
+              <p className="text-xs font-bold text-white/50 uppercase tracking-[0.3em] mb-2">
+                {new Date().getHours() < 12 ? "Good Morning" : new Date().getHours() < 17 ? "Good Afternoon" : "Good Evening"}
+              </p>
+              <h1 className="text-3xl md:text-4xl font-black tracking-tight">{user.firstName} 👋</h1>
+              <p className="text-white/60 text-sm mt-1">{user.company} · {user.designation}</p>
+            </div>
+
+            <div className="flex flex-wrap gap-3">
+              <button onClick={() => navigate("my-applications")} className="px-5 py-2.5 bg-white/10 hover:bg-white/20 rounded-xl text-sm font-semibold border border-white/10 transition-all cursor-pointer">My Applications</button>
+              <button onClick={() => navigate("profile")} className="px-5 py-2.5 bg-white/10 hover:bg-white/20 rounded-xl text-sm font-semibold border border-white/10 transition-all cursor-pointer">Profile</button>
+              {isProEngageActive && (
+                <button onClick={() => navigate("proengage")} className="px-5 py-2.5 bg-white text-[#003580] hover:bg-white/90 rounded-xl text-sm font-bold transition-all cursor-pointer shadow-lg">Find Projects</button>
+              )}
+            </div>
+          </div>
+
+          {/* Impact strip */}
+          <div className="mt-8 pt-6 border-t border-white/10 flex gap-8">
+            {[
+              { num: user.history?.length ?? 0, label: "Projects completed" },
+              { num: "48h", label: "Hours volunteered" },
+              { num: user.badges?.length ?? 0, label: "Badges earned" },
+            ].map((stat) => (
+              <div key={stat.label} className="text-center">
+                <p className="text-2xl font-black">{stat.num}</p>
+                <p className="text-xs text-white/50 uppercase tracking-widest">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Match Banner */}
         {projectStatus === "matched" && (
           <motion.div 
@@ -189,21 +226,6 @@ const DashboardView = () => {
                 <ArrowRight size={16} />
               </button>
             </div>
-          </div>
-        </div>
-
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
-          <div>
-            <h1 className="text-3xl font-bold text-tata-blue">Welcome back, {user.firstName}!</h1>
-            <p className="text-slate-500">Here's what's happening in your volunteering journey.</p>
-          </div>
-          <div className="flex gap-3">
-            <button onClick={() => navigate("my-applications")} className="btn-outline py-2 px-6 text-sm cursor-pointer">My Applications</button>
-            <button onClick={() => navigate("profile")} className="btn-outline py-2 px-6 text-sm cursor-pointer">View Profile</button>
-            <button onClick={() => navigate("disaster-response")} className="btn-outline py-2 px-6 text-sm cursor-pointer flex items-center gap-2">
-              <ShieldAlert size={14} className="text-red-600" /> Disaster Response
-            </button>
-            <button onClick={() => navigate("proengage")} className="btn-black py-2 px-6 text-sm cursor-pointer">Find Projects</button>
           </div>
         </div>
 
@@ -335,43 +357,45 @@ const DashboardView = () => {
         <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4 flex items-center gap-2"><Compass size={16} /> Explore</h3>
 
         <div className="space-y-8 mb-12">
-          {/* AI Recommendations */}
-          <section className="bg-white rounded-3xl p-8 shadow-sm border border-zinc-100">
-            <div className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-8 rounded-lg bg-tata-cyan/10 flex items-center justify-center text-tata-cyan">
-                <Search size={18} />
+          {/* AI Recommendations — PE season only */}
+          {isProEngageActive && (
+            <section className="bg-white rounded-3xl p-8 shadow-sm border border-zinc-100">
+              <div className="flex items-center gap-2 mb-6">
+                <div className="w-8 h-8 rounded-lg bg-tata-cyan/10 flex items-center justify-center text-tata-cyan">
+                  <Search size={18} />
+                </div>
+                <h2 className="text-xl font-bold text-zinc-900">AI Recommended For You</h2>
               </div>
-              <h2 className="text-xl font-bold text-zinc-900">AI Recommended For You</h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {[
-                { title: "Digital Literacy for Seniors", org: "HelpAge India", match: "98% Match", skillArea: "Education", location: "Delhi", applicantCount: 25, isNew: false },
-                { title: "Sustainability Audit", org: "Green Earth NGO", match: "92% Match", skillArea: "Finance", location: "Pune", applicantCount: 10, isNew: false },
-                { title: "Career Mentorship", org: "Udaan Foundation", match: "85% Match", skillArea: "Strategic Planning", location: "Mumbai", applicantCount: 8, isNew: true }
-              ].map((item, i) => {
-                const chip = user.skills?.some((s: string) => s.toLowerCase() === item.skillArea.toLowerCase())
-                  ? `Matches your ${item.skillArea} skills`
-                  : item.location === user.city
-                    ? `Near you · ${item.location}`
-                    : item.applicantCount > 20
-                      ? "Trending this edition"
-                      : item.isNew
-                        ? "New NGO partner"
-                        : "Recommended for you";
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {[
+                  { title: "Digital Literacy for Seniors", org: "HelpAge India", match: "98% Match", skillArea: "Education", location: "Delhi", applicantCount: 25, isNew: false },
+                  { title: "Sustainability Audit", org: "Green Earth NGO", match: "92% Match", skillArea: "Finance", location: "Pune", applicantCount: 10, isNew: false },
+                  { title: "Career Mentorship", org: "Udaan Foundation", match: "85% Match", skillArea: "Strategic Planning", location: "Mumbai", applicantCount: 8, isNew: true }
+                ].map((item, i) => {
+                  const chip = user.skills?.some((s: string) => s.toLowerCase() === item.skillArea.toLowerCase())
+                    ? `Matches your ${item.skillArea} skills`
+                    : item.location === user.city
+                      ? `Near you · ${item.location}`
+                      : item.applicantCount > 20
+                        ? "Trending this edition"
+                        : item.isNew
+                          ? "New NGO partner"
+                          : "Recommended for you";
 
-                return (
-                  <div key={i} className="p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:border-tata-cyan transition-colors cursor-pointer group">
-                    <div className="text-xs font-bold text-tata-cyan uppercase tracking-widest mb-2">{item.match}</div>
-                    <h4 className="font-bold text-sm mb-1 group-hover:text-tata-blue transition-colors">{item.title}</h4>
-                    <p className="text-xs text-slate-500 mb-2">{item.org}</p>
-                    <span className="inline-block px-2.5 py-0.5 rounded-full bg-purple-50 text-purple-700 text-xs">
-                      {chip}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-          </section>
+                  return (
+                    <div key={i} className="p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:border-tata-cyan transition-colors cursor-pointer group">
+                      <div className="text-xs font-bold text-tata-cyan uppercase tracking-widest mb-2">{item.match}</div>
+                      <h4 className="font-bold text-sm mb-1 group-hover:text-tata-blue transition-colors">{item.title}</h4>
+                      <p className="text-xs text-slate-500 mb-2">{item.org}</p>
+                      <span className="inline-block px-2.5 py-0.5 rounded-full bg-purple-50 text-purple-700 text-xs">
+                        {chip}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+          )}
 
           {/* TVW Section */}
           {isTVWActive ? (
@@ -417,6 +441,23 @@ const DashboardView = () => {
           )}
         </div>
 
+        {/* ═══ SECTION: Voices from the community ═══ */}
+        <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4">Voices from the community</h3>
+        <div className="flex gap-6 overflow-x-auto pb-4 mb-12">
+          {COMMUNITY_TESTIMONIALS.map((t) => (
+            <div key={t.id} className="min-w-[320px] max-w-sm p-6 bg-slate-50 rounded-2xl border border-slate-100 flex-shrink-0">
+              <p className="text-sm text-slate-700 italic mb-4">"{t.quote}"</p>
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-full bg-[#003580] text-white flex items-center justify-center text-xs font-bold">{t.avatar}</div>
+                <div>
+                  <p className="text-sm font-bold text-slate-900">{t.author}</p>
+                  <p className="text-xs text-slate-500">{t.role}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
         {/* ═══ SECTION: Your history ═══ */}
         <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4 flex items-center gap-2"><Clock size={16} /> Your history</h3>
 
@@ -436,12 +477,11 @@ const DashboardView = () => {
             </section>
           )}
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Earned Badges */}
           <section className="bg-white rounded-3xl p-8 shadow-sm border border-zinc-100">
             <h2 className="text-xl font-bold text-zinc-900 mb-6">Earned Badges</h2>
             <div className="flex flex-wrap gap-4">
-              {user.badges.map(badge => (
+              {user.badges.map((badge: any) => (
                 <div key={badge.id} className="group relative">
                   <div className="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center text-3xl hover:scale-110 transition-transform cursor-pointer border border-slate-100">
                     {badge.icon}
@@ -456,55 +496,32 @@ const DashboardView = () => {
               </div>
             </div>
           </section>
+        </div>
 
-          {/* What's New */}
-          <section className="bg-white rounded-3xl p-8 shadow-sm border border-zinc-100">
-            <h2 className="text-xl font-bold text-zinc-900 mb-6">What's New</h2>
-            <div className="space-y-6">
-              {[
-                { title: "New ProEngage projects listed for Q2", time: "2 hours ago" },
-                { title: "Tata Steel volunteers reach 50k hours milestone", time: "1 day ago" },
-                { title: "Updated Volunteering Policy for 2026", time: "3 days ago" }
-              ].map((news, i) => (
-                <div key={i} className="border-l-2 border-tata-cyan pl-4 cursor-pointer hover:bg-slate-50 transition-colors py-1">
-                  <h4 className="text-sm font-bold text-zinc-900 mb-1">{news.title}</h4>
-                  <span className="text-xs text-slate-400 font-medium uppercase">{news.time}</span>
-                </div>
-              ))}
+        {/* ═══ Refer a Colleague ═══ */}
+        <section className="bg-white rounded-3xl p-8 shadow-sm border border-zinc-100 overflow-hidden relative max-w-xl mb-8">
+          <div className="absolute top-0 right-0 w-24 h-24 bg-tata-cyan/5 rounded-full -mr-12 -mt-12" />
+          <h2 className="text-xl font-bold text-zinc-900 mb-2">Refer a Colleague</h2>
+          <p className="text-sm text-slate-500 mb-6">Invite someone to Tata Engage and help grow our community.</p>
+          <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 mb-6">
+            <div className="text-xs font-bold text-slate-400 uppercase mb-2">Your Referral Link</div>
+            <div className="flex items-center justify-between gap-2">
+              <code className="text-xs text-tata-blue font-mono truncate">tataengage.com/refer/priya123</code>
+              <button onClick={copyReferralLink} className="p-2 hover:bg-white rounded-lg text-slate-400 hover:text-tata-blue transition-colors">
+                <FileText size={16} />
+              </button>
             </div>
-          </section>
-        </div>
-        </div>
-
-        {/* ═══ SECTION: More (collapsed) ═══ */}
-        <details className="mb-8">
-          <summary className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold cursor-pointer select-none mb-4">More</summary>
-          <div className="mt-4">
-            <section className="bg-white rounded-3xl p-8 shadow-sm border border-zinc-100 overflow-hidden relative max-w-xl">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-tata-cyan/5 rounded-full -mr-12 -mt-12" />
-              <h2 className="text-xl font-bold text-zinc-900 mb-2">Refer a Colleague</h2>
-              <p className="text-sm text-slate-500 mb-6">Invite someone to Tata Engage and help grow our community.</p>
-              <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 mb-6">
-                <div className="text-xs font-bold text-slate-400 uppercase mb-2">Your Referral Link</div>
-                <div className="flex items-center justify-between gap-2">
-                  <code className="text-xs text-tata-blue font-mono truncate">tataengage.com/refer/priya123</code>
-                  <button onClick={copyReferralLink} className="p-2 hover:bg-white rounded-lg text-slate-400 hover:text-tata-blue transition-colors">
-                    <FileText size={16} />
-                  </button>
-                </div>
-              </div>
-              <div className="flex items-center justify-between">
-                <div className="text-xs text-slate-500">
-                  You've referred <span className="font-bold text-zinc-900">{referralCount} person</span> so far
-                </div>
-                <div className="flex gap-2">
-                  <button className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 hover:bg-tata-blue hover:text-white transition-all"><Mail size={14} /></button>
-                  <button className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 hover:bg-green-500 hover:text-white transition-all"><MessageSquare size={14} /></button>
-                </div>
-              </div>
-            </section>
           </div>
-        </details>
+          <div className="flex items-center justify-between">
+            <div className="text-xs text-slate-500">
+              You've referred <span className="font-bold text-zinc-900">{referralCount} person</span> so far
+            </div>
+            <div className="flex gap-2">
+              <button className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 hover:bg-tata-blue hover:text-white transition-all"><Mail size={14} /></button>
+              <button className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 hover:bg-green-500 hover:text-white transition-all"><MessageSquare size={14} /></button>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   );
