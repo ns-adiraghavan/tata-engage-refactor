@@ -61,7 +61,7 @@ const HomeView = () => {
       </section>
 
       {/* ═══ HOW IT WORKS ═══ */}
-      <section className="bg-white py-24 px-6 md:px-12">
+      <section className="bg-zinc-50 py-24 px-6 md:px-12">
         <div className="max-w-5xl mx-auto">
           <p className="text-xs font-semibold tracking-widest uppercase text-zinc-400 text-center mb-3">
             How It Works
@@ -76,25 +76,34 @@ const HomeView = () => {
                 icon: UserPlus,
                 title: "Register",
                 desc: "Create your profile in minutes using your Tata email or personal account.",
+                cardClass: "bg-blue-50 border border-blue-100",
+                circleClass: "bg-tata-blue text-white",
+                iconClass: "text-tata-blue",
               },
               {
                 step: 2,
                 icon: Search,
                 title: "Find a Project",
                 desc: "Browse ProEngage skill-based projects or sign up for TVW events near you.",
+                cardClass: "bg-violet-50 border border-violet-100",
+                circleClass: "bg-violet-600 text-white",
+                iconClass: "text-violet-600",
               },
               {
                 step: 3,
                 icon: Award,
                 title: "Make an Impact",
                 desc: "Complete the project, earn a certificate, and track your volunteering journey.",
+                cardClass: "bg-emerald-50 border border-emerald-100",
+                circleClass: "bg-emerald-600 text-white",
+                iconClass: "text-emerald-600",
               },
             ].map((s) => (
-              <div key={s.step} className="bg-slate-50 rounded-2xl p-8 text-center">
-                <div className="w-8 h-8 bg-tata-blue text-white rounded-full text-sm font-bold flex items-center justify-center mb-4 mx-auto">
+              <div key={s.step} className={`${s.cardClass} rounded-2xl p-8 text-center`}>
+                <div className={`w-8 h-8 ${s.circleClass} rounded-full text-sm font-bold flex items-center justify-center mb-4 mx-auto`}>
                   {s.step}
                 </div>
-                <div className="flex justify-center mb-4 text-tata-blue">
+                <div className={`flex justify-center mb-4 ${s.iconClass}`}>
                   <s.icon size={28} />
                 </div>
                 <h3 className="text-lg font-bold text-zinc-900 mb-2">{s.title}</h3>
@@ -116,24 +125,31 @@ const HomeView = () => {
                 subtitle: "Tata Volunteering Week",
                 desc: "A bi-annual celebration of volunteering where employees across the globe come together.",
                 img: "https://picsum.photos/seed/tata-volunteering/600/400",
+                accentBar: "bg-tata-cyan",
+                subtitleColor: "text-tata-cyan",
               },
               {
                 title: "ProEngage",
                 subtitle: "Skill-based Volunteering",
                 desc: "Project-based volunteering that allows employees to use their professional expertise.",
                 img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=600",
+                accentBar: "bg-violet-500",
+                subtitleColor: "text-violet-600",
               },
               {
                 title: "Disaster Response",
                 subtitle: "Rapid Action",
                 desc: "Coordinated efforts to provide immediate relief and long-term rehabilitation during disasters.",
                 img: "https://picsum.photos/seed/disaster-relief/600/400",
+                accentBar: "bg-red-500",
+                subtitleColor: "text-red-600",
               },
             ].map((p, i) => (
               <div
                 key={i}
                 className="bg-white rounded-2xl overflow-hidden border border-zinc-100 shadow-sm"
               >
+                <div className={`h-1 w-full ${p.accentBar}`} />
                 <div className="h-44 overflow-hidden">
                   <img
                     src={p.img}
@@ -143,7 +159,7 @@ const HomeView = () => {
                   />
                 </div>
                 <div className="p-6">
-                  <div className="text-xs font-bold uppercase tracking-widest text-tata-blue mb-2">
+                  <div className={`text-xs font-bold uppercase tracking-widest ${p.subtitleColor} mb-2`}>
                     {p.subtitle}
                   </div>
                   <h3 className="text-xl font-bold text-zinc-900 mb-3">{p.title}</h3>
@@ -159,12 +175,12 @@ const HomeView = () => {
       </section>
 
       {/* ═══ IMPACT STORIES ═══ */}
-      <section className="bg-white py-24 px-6 md:px-12">
+      <section className="bg-slate-900 py-24 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
           <p className="text-xs font-semibold tracking-widest uppercase text-zinc-400 mb-3">
             Impact Stories
           </p>
-          <h2 className="text-3xl font-bold text-zinc-900 mb-12">Stories from the field</h2>
+          <h2 className="text-3xl font-bold text-white mb-12">Stories from the field</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
