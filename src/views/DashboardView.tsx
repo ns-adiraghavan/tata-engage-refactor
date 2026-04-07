@@ -522,7 +522,7 @@ const DashboardView = () => {
             <div className="flex flex-wrap gap-4">
               {user.badges.map((badge: any) => (
                 <div key={badge.id} className="group relative">
-                  <div className="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center text-3xl hover:scale-110 transition-transform cursor-pointer border border-slate-100">
+                  <div className="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center text-3xl hover:scale-110 hover:ring-2 hover:ring-tata-blue/30 hover:bg-tata-blue/5 transition-all cursor-pointer border border-slate-100">
                     {badge.icon}
                   </div>
                   <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1 bg-zinc-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-20">

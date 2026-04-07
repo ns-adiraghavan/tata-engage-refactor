@@ -197,7 +197,7 @@ const ProEngageView = () => {
   const CollectionRow = ({ title, projects }: { title: string; projects: any[] }) => (
     projects.length > 0 ? (
       <div className="mb-12">
-        <h3 className="text-lg font-black text-slate-900 tracking-tight mb-6">{title}</h3>
+        <h3 className="text-lg font-black text-violet-700 tracking-tight mb-6">{title}</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map(p => <ProjectCard key={p.id} project={p} />)}
         </div>
