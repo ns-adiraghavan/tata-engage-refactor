@@ -360,7 +360,7 @@ const DashboardView = () => {
         </div>
 
         {/* ═══ SECTION: Explore ═══ */}
-        <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4 flex items-center gap-2"><div className="w-1 h-5 bg-tata-blue rounded-full mr-1" /><Compass size={16} /> Explore</h3>
+        <h3 className="text-sm font-bold text-slate-700 uppercase tracking-[0.08em] mb-6 flex items-center gap-2"><div className="w-1 h-5 bg-tata-blue rounded-full mr-1" /><Compass size={16} /> Explore</h3>
 
         <div className="space-y-8 mb-12">
           {/* AI Recommendations — PE season only */}
