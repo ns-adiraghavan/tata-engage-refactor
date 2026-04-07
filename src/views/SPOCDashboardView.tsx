@@ -1494,7 +1494,7 @@ const SPOCDashboardView = () => {
             </div>
 
             {/* ── KPI Stat Tiles (4-col) ──────────────────────────────── */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            <div className={`grid grid-cols-1 md:grid-cols-2 ${isRegionalSPOC ? "lg:grid-cols-3" : "lg:grid-cols-4"} gap-8 mb-12`}>
               {(isRegionalSPOC ? [
                 { label: "TVW Events", value: spoc.stats.tvwEvents, sub: "In my geography", icon: CalendarDays, color: "text-purple-600", bg: "bg-purple-50", border: "border-purple-100" },
                 { label: "Volunteers at Location", value: spoc.stats.totalVolunteers, sub: (spoc as any).geography || "My region", icon: Users, color: "text-tata-blue", bg: "bg-blue-50", border: "border-blue-100" },
