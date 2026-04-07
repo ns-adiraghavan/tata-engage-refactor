@@ -178,7 +178,7 @@ const SPOCDashboardView = () => {
     };
 
     return (
-      <div className="space-y-12">
+      <div id="spoc-section-ProEngage-Oversight" className="space-y-12">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
           <div>
             <div className="flex items-center gap-3 mb-2">
