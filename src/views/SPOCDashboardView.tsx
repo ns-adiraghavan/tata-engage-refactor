@@ -1564,7 +1564,7 @@ const SPOCDashboardView = () => {
       </aside>
 
       {/* Main Content */}
-      <main id="spoc-main-content" className="flex-1 lg:ml-80 p-8 md:p-16 overflow-y-auto h-[calc(100vh-96px)]">
+      <main id="spoc-main-content" className="flex-1 lg:ml-80 p-8 md:p-16">
         <div className="max-w-7xl mx-auto">
           <AnimatePresence mode="wait">
             <motion.div
