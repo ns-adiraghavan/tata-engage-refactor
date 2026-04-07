@@ -738,32 +738,6 @@ const NGODashboardView = () => {
               </div>
             </div>
 
-            {/* Volunteer Shortlists */}
-            <div className="bg-white rounded-3xl p-8 shadow-xl border border-slate-100">
-              <h3 className="font-bold text-slate-800 mb-6">Volunteer Shortlists</h3>
-              <div className="space-y-6">
-                {ANJALI_MEHTA.projects.filter(p => p.volunteers > 0).map(project => (
-                  <div key={project.id}>
-                    <div className="flex justify-between items-center mb-3">
-                      <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest truncate max-w-[150px]">{project.title}</h4>
-                      <button className="text-tata-blue text-xs font-bold hover:underline cursor-pointer">View All</button>
-                    </div>
-                    <div className="flex -space-x-3">
-                      {[1, 2, 3, 4].slice(0, project.volunteers).map(i => (
-                        <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-slate-100 flex items-center justify-center text-xs font-bold text-slate-600">
-                          V{i}
-                        </div>
-                      ))}
-                      {project.volunteers > 4 && (
-                        <div className="w-10 h-10 rounded-full border-2 border-white bg-tata-blue text-white flex items-center justify-center text-xs font-bold">
-                          +{project.volunteers - 4}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
 
             {/* Quick Actions */}
             <div className="bg-gradient-to-br from-tata-blue to-blue-900 rounded-3xl p-8 text-white shadow-xl">
