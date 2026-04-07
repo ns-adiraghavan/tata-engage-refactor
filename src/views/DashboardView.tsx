@@ -207,7 +207,7 @@ const DashboardView = () => {
                     <span className="px-3 py-1 rounded-full text-xs font-bold bg-white/20 text-white border border-white/30">Matched</span>
                   </div>
                   <button
-                    onClick={() => navigate("active-project")}
+                    onClick={() => navigate("active-project-management")}
                     className="mt-4 text-sm font-bold text-white/80 hover:text-white cursor-pointer flex items-center gap-1"
                   >
                     View project → <ArrowRight size={14} />

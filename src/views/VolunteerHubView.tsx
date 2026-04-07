@@ -104,6 +104,28 @@ const VolunteerHubView = () => {
           ))}
         </div>
 
+        {/* ═══ FEATURED TESTIMONIAL ═══ */}
+        <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4">From the community</h3>
+        {COMMUNITY_TESTIMONIALS[0] && (() => {
+          const ft = COMMUNITY_TESTIMONIALS[0];
+          return (
+            <div className="bg-white border border-zinc-100 rounded-2xl shadow-sm p-6 flex gap-6 items-start mb-12">
+              <span className="text-5xl font-black text-tata-cyan leading-none">"</span>
+              <div>
+                <span className="bg-green-50 text-green-700 text-xs font-semibold px-2 py-0.5 rounded-full">Verified story</span>
+                <p className="text-sm text-slate-700 italic mb-3 mt-2">"{ft.quote}"</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-tata-blue/10 text-tata-blue text-xs font-bold flex items-center justify-center">{ft.avatar}</div>
+                  <div>
+                    <p className="font-semibold text-sm text-slate-900">{ft.author}</p>
+                    <p className="text-xs text-slate-400">{ft.role}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })()}
+
         {/* ═══ TESTIMONIALS — CHANGE 3 ═══ */}
         <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4">Voices from the community</h3>
         <div className="flex gap-6 overflow-x-auto pb-4 mb-12">
