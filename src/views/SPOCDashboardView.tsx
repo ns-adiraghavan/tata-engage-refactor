@@ -42,6 +42,7 @@ const SPOCDashboardView = () => {
   const [proEngageSearch, setProEngageSearch] = useState("");
   const [selectedProEngageVolunteer, setSelectedProEngageVolunteer] = useState<any>(null);
   const [atRiskList, setAtRiskList] = useState(AT_RISK_VOLUNTEERS);
+  const [peProject, setPeProject] = useState<any | null>(null);
 
   // Reports & Certificates State
   const [reportsTab, setReportsTab] = useState<"Leaderboard" | "Certificates" | "Feedback">("Leaderboard");
@@ -271,7 +272,7 @@ const SPOCDashboardView = () => {
         )}
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-8 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-7 gap-6">
           {[
             { label: "Applicants", value: stats.applicants, color: "text-blue-600", bg: "bg-blue-50" },
             { label: "Matched", value: stats.matched, color: "text-indigo-600", bg: "bg-indigo-50" },
@@ -280,7 +281,6 @@ const SPOCDashboardView = () => {
             { label: "Paused", value: stats.paused, color: "text-amber-600", bg: "bg-amber-50" },
             { label: "Dropped", value: stats.dropped, color: "text-red-600", bg: "bg-red-50" },
             { label: "Rejected", value: stats.rejected, color: "text-slate-600", bg: "bg-slate-50" },
-            { label: "DR Ready", value: stats.drParticipants, color: "text-red-700", bg: "bg-red-50" },
           ].map((stat) => (
             <div key={stat.label} className="bg-white p-8 rounded-3xl border border-slate-100 text-center shadow-sm hover:shadow-lg transition-all group">
               <p className="text-xs font-semibold text-slate-400 uppercase tracking-[0.2em] mb-4 group-hover:text-tata-blue transition-colors">{stat.label}</p>
@@ -289,82 +289,96 @@ const SPOCDashboardView = () => {
           ))}
         </div>
 
-        {/* Pipeline Table */}
-        <div className="bg-white rounded-3xl p-10 shadow-sm border border-slate-100">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-10">
-            <div>
-              <h3 className="text-2xl font-black text-slate-900 tracking-tight">Volunteer Pipeline</h3>
-              <p className="text-sm text-slate-500 font-medium">Real-time status of all TCS volunteers</p>
-            </div>
-            <div className="relative w-full md:w-96 group">
-              <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-tata-blue transition-colors" size={20} />
-              <input 
-                type="text" 
-                placeholder="Search by name, project, or NGO..." 
-                className="w-full pl-14 pr-6 py-4 bg-slate-50 border-none rounded-2xl focus:ring-2 focus:ring-tata-blue/10 outline-none text-sm font-medium transition-all"
-                value={proEngageSearch}
-                onChange={(e) => setProEngageSearch(e.target.value)}
-              />
-            </div>
-          </div>
-
-          <div className="overflow-x-auto">
-            <table className="w-full text-left">
-              <thead>
-                <tr className="text-xs font-semibold text-slate-400 uppercase tracking-[0.2em] border-b border-slate-50">
-                  <th className="pb-6 px-6">Volunteer</th>
-                  <th className="pb-6 px-6">Project Applied</th>
-                  <th className="pb-6 px-6">NGO</th>
-                  <th className="pb-6 px-6">Status</th>
-                  <th className="pb-6 px-6">Match %</th>
-                  <th className="pb-6 px-6">Last Updated</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-50">
-                {filteredPipeline.map((v) => (
-                  <tr key={v.id} className="group hover:bg-slate-50/50 transition-all">
-                    <td className="py-6 px-6">
-                      <button 
-                        onClick={() => setSelectedProEngageVolunteer(v)}
-                        className="font-semibold text-slate-900 hover:text-tata-blue transition-colors cursor-pointer text-base tracking-tight"
-                      >
-                        {v.name}
-                      </button>
-                      <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">{v.email}</div>
-                    </td>
-                    <td className="py-6 px-6 text-sm font-bold text-slate-600">{v.project}</td>
-                    <td className="py-6 px-6 text-sm font-medium text-slate-500">{v.ngo}</td>
-                    <td className="py-6 px-6">
-                      <span className={`text-xs font-semibold px-3 py-1.5 rounded-full uppercase tracking-widest shadow-sm border ${
-                        v.status === "Active" ? "bg-green-50 text-green-700 border-green-100" :
-                        v.status === "Matched" ? "bg-indigo-50 text-indigo-700 border-indigo-100" :
-                        v.status === "Applied" ? "bg-blue-50 text-blue-700 border-blue-100" :
-                        v.status === "Completed" ? "bg-emerald-50 text-emerald-700 border-emerald-100" :
-                        "bg-red-50 text-red-700 border-red-100"
-                      }`}>
-                        {v.status}
-                      </span>
-                    </td>
-                    <td className="py-6 px-6">
-                      <div className="flex items-center gap-3">
-                        <div className="w-16 h-2 bg-slate-100 rounded-full overflow-hidden">
-                          <motion.div 
-                            initial={{ width: 0 }}
-                            animate={{ width: `${v.match}%` }}
-                            transition={{ duration: 1 }}
-                            className="h-full bg-tata-blue rounded-full shadow-[0_0_10px_rgba(0,51,102,0.2)]" 
-                          />
-                        </div>
-                        <span className="text-xs font-semibold text-slate-900">{v.match}%</span>
-                      </div>
-                    </td>
-                    <td className="py-6 px-6 text-xs font-bold text-slate-400 uppercase tracking-widest">{v.lastUpdated}</td>
-                  </tr>
+        {/* ProEngage Drill-down */}
+        {!peProject && (
+          <>
+            <div className="mt-8">
+              <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-4">Projects this edition</p>
+              <div className="space-y-3">
+                {OPEN_PROENGAGE_PROJECTS.map((proj: any) => (
+                  <button
+                    key={proj.id}
+                    onClick={() => setPeProject(proj)}
+                    className="w-full flex items-center justify-between p-5 bg-white border border-zinc-100 rounded-2xl hover:border-tata-cyan hover:shadow-sm transition-all cursor-pointer text-left group"
+                  >
+                    <div>
+                      <p className="font-semibold text-zinc-900 text-sm">{proj.title}</p>
+                      <p className="text-xs text-zinc-400 mt-1">{proj.ngo} · {proj.applicantCount ?? 0} applicants</p>
+                    </div>
+                    <ChevronRight size={16} className="text-zinc-300 group-hover:text-tata-cyan" />
+                  </button>
                 ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
+              </div>
+            </div>
+          </>
+        )}
+
+        {peProject && (
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
+            {/* Breadcrumb */}
+            <div className="flex items-center gap-2 mb-6">
+              <button onClick={() => setPeProject(null)} className="text-xs text-zinc-400 hover:text-zinc-700 cursor-pointer font-medium">ProEngage Oversight</button>
+              <span className="text-zinc-300 text-xs">›</span>
+              <span className="text-xs font-medium text-zinc-800">{peProject.title}</span>
+            </div>
+
+            {/* Volunteer pipeline table */}
+            <div className="bg-white border border-zinc-100 rounded-2xl overflow-hidden">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-zinc-100 bg-zinc-50">
+                    {["Name", "Email", "Company", "Project", "Contact", "Status", "Progress", "Nudge"].map((h) => (
+                      <th key={h} className="text-left px-4 py-3 text-xs font-semibold text-zinc-400 uppercase tracking-wide">{h}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {PROENGAGE_PIPELINE.map((v: any) => (
+                    <tr key={v.id} className="border-b border-zinc-50 hover:bg-slate-50 transition-colors">
+                      <td className="px-4 py-4 font-medium text-zinc-900 whitespace-nowrap">{v.name}</td>
+                      <td className="px-4 py-4 text-xs text-zinc-500">{v.email}</td>
+                      <td className="px-4 py-4 text-xs text-zinc-500">{v.company}</td>
+                      <td className="px-4 py-4 text-xs text-zinc-700 font-medium">{v.project}</td>
+                      <td className="px-4 py-4 text-xs text-zinc-500">{v.contact ?? "—"}</td>
+                      <td className="px-4 py-4">
+                        <span className={`px-2.5 py-1 rounded-full text-xs font-bold ${
+                          v.status === "Active" ? "bg-green-50 text-green-700" :
+                          v.status === "Matched" ? "bg-blue-50 text-blue-700" :
+                          v.status === "Dropped" ? "bg-red-50 text-red-600" :
+                          v.status === "Completed" ? "bg-purple-50 text-purple-700" :
+                          "bg-zinc-100 text-zinc-500"
+                        }`}>{v.status}</span>
+                      </td>
+                      <td className="px-4 py-4 text-xs text-zinc-500">
+                        {v.status === "Active" ? `${v.progress ?? 0}%` : "—"}
+                      </td>
+                      <td className="px-4 py-4">
+                        {v.status === "Active" && (
+                          <button
+                            onClick={() => {
+                              setAtRiskList(prev => prev.map(r => r.id === v.id ? { ...r, nudged: true } : r));
+                              setToastMessage(`Nudge sent to ${v.name}`);
+                              setShowToast(true);
+                              setTimeout(() => setShowToast(false), 3000);
+                            }}
+                            className={`text-xs font-semibold px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
+                              atRiskList.find(r => r.id === v.id)?.nudged
+                                ? "bg-zinc-100 text-zinc-400 cursor-not-allowed"
+                                : "bg-amber-50 text-amber-700 hover:bg-amber-100"
+                            }`}
+                            disabled={atRiskList.find(r => r.id === v.id)?.nudged}
+                          >
+                            {atRiskList.find(r => r.id === v.id)?.nudged ? "Nudged ✓" : "Nudge"}
+                          </button>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </motion.div>
+        )}
 
         {/* Share with Employees */}
         <div className="bg-gradient-to-br from-white to-slate-50 rounded-3xl p-12 shadow-sm border border-slate-100 relative overflow-hidden">
