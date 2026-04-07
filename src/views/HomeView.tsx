@@ -133,7 +133,7 @@ const HomeView = () => {
                 title: "Disaster Response",
                 subtitle: "Rapid Action",
                 desc: "Coordinated efforts to provide immediate relief and long-term rehabilitation during disasters.",
-                img: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&q=80&w=600",
+img: "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?auto=format&fit=crop&q=80&w=600",
                 accentBar: "bg-red-500",
                 subtitleColor: "text-red-600",
               },
