@@ -140,7 +140,7 @@ export default function App() {
 
   const ctx = {
     selectedRole, setSelectedRole,
-    isMenuOpen, setIsMenuOpen, isConsentOpen, setIsConsentOpen,
+    isConsentOpen, setIsConsentOpen,
     isOrientationDismissed, setIsOrientationDismissed,
     showOrientationModal, setShowOrientationModal,
     otp, setOtp, showToast, setShowToast, toastMessage, setToastMessage,
