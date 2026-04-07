@@ -4,8 +4,6 @@ import type { Role } from "@/types";
 export interface AppContextType {
   selectedRole: Role | null;
   setSelectedRole: React.Dispatch<React.SetStateAction<Role | null>>;
-  isMenuOpen: boolean;
-  setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isConsentOpen: boolean;
   setIsConsentOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isOrientationDismissed: boolean;
