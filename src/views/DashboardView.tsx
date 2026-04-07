@@ -278,6 +278,7 @@ const DashboardView = () => {
 
         <div className="space-y-8 mb-12">
           {/* Active Application */}
+          {user.activeApplication && (
           <section className="bg-tata-blue rounded-3xl p-8 text-white shadow-xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16" />
             <div className="relative z-10">
@@ -319,6 +320,7 @@ const DashboardView = () => {
               </div>
             </div>
           </section>
+          )}
 
           {/* Pulse Check */}
           {projectStatus === "active" && showPulseCheck && (
