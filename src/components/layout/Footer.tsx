@@ -1,4 +1,5 @@
 import { ChevronRight, Facebook, Twitter, Instagram, Linkedin, Youtube } from "lucide-react";
+import { Link } from "react-router-dom";
 import tataEngageLogoNoBg from "@/assets/tata-engage-logo-nobg.png";
 
 const Footer = () => (
@@ -24,7 +25,7 @@ const Footer = () => (
           <li><a href="#" className="hover:text-white transition-colors">Volunteering Policy</a></li>
           <li><a href="#" className="hover:text-white transition-colors">FAQs</a></li>
           <li><a href="#" className="hover:text-white transition-colors">Contact Us</a></li>
-          <li><a href="/login" className="hover:text-white transition-colors">Login</a></li>
+          <li><Link to="/login" className="hover:text-white transition-colors">Login</Link></li>
         </ul>
       </div>
       <div>
@@ -60,7 +61,7 @@ const Footer = () => (
         <a href="#" className="hover:text-white">Privacy Policy</a>
         <a href="#" className="hover:text-white">Terms of Use</a>
         <a href="#" className="hover:text-white">Cookie Policy</a>
-        <a href="/admin-login" className="hover:text-slate-400 transition-colors">Admin access</a>
+        <Link to="/admin-login" className="hover:text-slate-400 transition-colors">Admin access</Link>
       </div>
     </div>
   </footer>
