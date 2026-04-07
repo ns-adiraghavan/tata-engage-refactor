@@ -696,7 +696,7 @@ const SPOCDashboardView = () => {
           </div>
         )}
 
-        {reportsTab === "Feedback" && (
+        {(!isRegionalSPOC && reportsTab === "Feedback") && (
           <div className="space-y-10">
             <div className="bg-white rounded-3xl p-10 shadow-sm border border-slate-100 overflow-hidden">
               <div className="flex justify-between items-center mb-10">
