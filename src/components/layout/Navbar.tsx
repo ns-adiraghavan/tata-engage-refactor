@@ -96,11 +96,6 @@ const Navbar = ({
         <div className="flex items-center gap-4">
           {isLoggedIn ? (
             <>
-              {/* Greeting */}
-              <span className="hidden md:inline text-sm font-medium text-zinc-500">
-                {greeting()}, <span className="text-zinc-900 font-semibold">{user?.firstName}</span>
-              </span>
-
               {/* Bell icon + notification panel */}
               <div className="relative" ref={notifRef}>
                 <button
