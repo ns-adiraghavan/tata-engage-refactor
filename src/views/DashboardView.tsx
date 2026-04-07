@@ -126,41 +126,6 @@ const DashboardView = () => {
           </motion.div>
         )}
 
-        {/* ═══ MY HUB HERO ═══ */}
-        <div className="mb-10 rounded-3xl bg-gradient-to-br from-[#003580] via-[#0046b8] to-[#00b4d8] text-white p-8 md:p-12 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32 blur-3xl" />
-          <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-            <div>
-              <p className="text-xs font-bold text-white/50 uppercase tracking-[0.3em] mb-2">
-                {new Date().getHours() < 12 ? "Good Morning" : new Date().getHours() < 17 ? "Good Afternoon" : "Good Evening"}
-              </p>
-              <h1 className="text-3xl md:text-4xl font-black tracking-tight">{user.firstName} 👋</h1>
-              <p className="text-white/60 text-sm mt-1">{user.company} · {user.designation}</p>
-            </div>
-
-            <div className="flex flex-wrap gap-3">
-              <button onClick={() => navigate("my-applications")} className="px-5 py-2.5 bg-white/10 hover:bg-white/20 rounded-xl text-sm font-semibold border border-white/10 transition-all cursor-pointer">My Applications</button>
-              <button onClick={() => navigate("profile")} className="px-5 py-2.5 bg-white/10 hover:bg-white/20 rounded-xl text-sm font-semibold border border-white/10 transition-all cursor-pointer">Profile</button>
-              {isProEngageActive && (
-                <button onClick={() => navigate("proengage")} className="px-5 py-2.5 bg-white text-[#003580] hover:bg-white/90 rounded-xl text-sm font-bold transition-all cursor-pointer shadow-lg">Find Projects</button>
-              )}
-            </div>
-          </div>
-
-          {/* Impact strip */}
-          <div className="mt-8 pt-6 border-t border-white/10 flex gap-8">
-            {[
-              { num: user.history?.length ?? 0, label: "Projects completed" },
-              { num: "48h", label: "Hours volunteered" },
-              { num: user.badges?.length ?? 0, label: "Badges earned" },
-            ].map((stat) => (
-              <div key={stat.label} className="text-center">
-                <p className="text-2xl font-black">{stat.num}</p>
-                <p className="text-xs text-white/50 uppercase tracking-widest">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
 
         {/* Match Banner */}
         {projectStatus === "matched" && (
