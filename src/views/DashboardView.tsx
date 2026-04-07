@@ -306,93 +306,18 @@ const DashboardView = () => {
           </div>
         </div>
 
-        {/* ═══ SECTION: Active programmes ═══ */}
-        <h3 className="text-sm font-bold text-slate-700 uppercase tracking-[0.08em] mb-6 flex items-center gap-2"><div className="w-1 h-5 bg-tata-blue rounded-full mr-1" /><Activity size={16} /> Active programmes</h3>
-
-        <div className="space-y-8 mb-12">
-          {/* Active Application */}
-          {user.activeApplication && (
-          <section className="bg-tata-blue rounded-3xl p-8 text-white shadow-xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16" />
-            <div className="relative z-10">
-              <div className="flex justify-between items-start mb-6">
-                <div>
-                  <h2 className="text-xl font-bold mb-1">Your Active Application</h2>
-                  <p className="text-white/60 text-sm">Track your current volunteering status</p>
-                </div>
-                <span className={`px-4 py-1 rounded-full text-xs font-bold backdrop-blur-md ${
-                  projectStatus === "matched" || projectStatus === "active" ? "bg-green-500 text-white" : "bg-white/20"
-                }`}>
-                  {projectStatus === "matched" ? "Matched 🎉" : projectStatus === "active" ? "Active 🚀" : "Completed ✅"}
-                </span>
-              </div>
-              <div className="bg-white/10 rounded-2xl p-6 backdrop-blur-md border border-white/10">
-                <h3 className="text-lg font-bold mb-2">{user.activeApplication.title}</h3>
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                  <div className="flex items-center gap-4 text-sm text-white/80">
-                    <div className="flex items-center gap-1"><Calendar size={14} /> {user.activeApplication.date}</div>
-                    <div className="flex items-center gap-1"><Building2 size={14} /> {user.activeApplication.ngo}</div>
-                  </div>
-                  {projectStatus === "matched" && (
-                    <button className="bg-white text-tata-blue px-4 py-2 rounded-lg text-xs font-bold hover:bg-slate-50 transition-colors flex items-center gap-2">
-                      Access Orientation Materials <ArrowRight size={14} />
-                    </button>
-                  )}
-                  {projectStatus === "active" && (
-                    <button 
-                      onClick={() => {
-                        setProjectStatus("completed");
-                        setShowFeedbackForm(true);
-                      }}
-                      className="bg-tata-cyan text-tata-blue px-4 py-2 rounded-lg text-xs font-bold hover:bg-tata-cyan/90 transition-colors"
-                    >
-                      Mark as Completed
-                    </button>
-                  )}
-                </div>
-              </div>
+        {/* ═══ SPOC Card ═══ */}
+        <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-2"><Users size={12} /> Your SPOC</p>
+        <div className="bg-white border border-zinc-100 rounded-2xl shadow-sm p-5 mb-8 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div className="w-11 h-11 rounded-full bg-tata-blue/10 text-tata-blue font-bold text-sm flex items-center justify-center flex-shrink-0">RD</div>
+            <div>
+              <p className="font-semibold text-sm text-slate-900">Rohan Desai</p>
+              <p className="text-xs text-slate-500">Corporate SPOC · Tata Consultancy Services</p>
+              <p className="text-xs text-slate-400 mt-0.5">Your point of contact for volunteering</p>
             </div>
-          </section>
-          )}
-
-          {/* Pulse Check */}
-          {projectStatus === "active" && showPulseCheck && (
-            <motion.section 
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="bg-white rounded-3xl p-8 shadow-sm border border-zinc-100"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-full bg-tata-purple/10 flex items-center justify-center text-tata-purple">
-                  <Heart size={20} />
-                </div>
-                <h3 className="font-bold text-zinc-900">What's on your mind?</h3>
-              </div>
-              {pulseCheckSubmitted ? (
-                <div className="text-center py-4">
-                  <CheckCircle2 className="mx-auto text-green-500 mb-2" size={32} />
-                  <p className="text-sm text-slate-500">Your thoughts have been saved — only visible to you</p>
-                </div>
-              ) : (
-                <div className="space-y-4">
-                  <p className="text-sm text-slate-500">How is your project going? Share your thoughts privately.</p>
-                  <textarea 
-                    value={pulseText}
-                    onChange={(e) => setPulseText(e.target.value)}
-                    placeholder="Share your experience so far..."
-                    className="w-full h-24 p-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-tata-blue/20 resize-none"
-                  />
-                  <button 
-                    onClick={handlePulseSubmit}
-                    disabled={!pulseText.trim()}
-                    className="btn-black py-3 px-8 text-sm cursor-pointer disabled:opacity-50"
-                  >
-                    Save Thoughts
-                  </button>
-                </div>
-              )}
-            </motion.section>
-          )}
+          </div>
+          <button onClick={() => triggerToast("Message sent to Rohan Desai. He'll respond within 24 hours.")} className="text-sm text-tata-blue font-semibold border border-tata-blue/30 rounded-lg px-4 py-2 hover:bg-tata-blue/5 cursor-pointer transition-colors">Contact SPOC</button>
         </div>
 
         {/* ═══ SECTION: Explore ═══ */}
