@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Bell, ChevronDown, User, LogOut, Share2, LayoutDashboard } from "lucide-react";
+import tataLogo from "@/assets/tata-logo.png";
 import tataEngageLogo from "@/assets/tata-engage-logo.png";
 import type { View } from "@/types";
 import { MOCK_NOTIFICATIONS } from "@/data/mockData";
@@ -49,6 +50,11 @@ const Navbar = ({
       ? "spoc-hub"
       : "volunteer-hub";
 
+  const greeting = () => {
+    const hour = new Date().getHours();
+    return hour < 12 ? "Good Morning" : hour < 17 ? "Good Afternoon" : "Good Evening";
+  };
+
   const unreadCount = notifications.filter((n) => !n.read).length;
 
   const dotColor = (type: string) => {
@@ -65,13 +71,13 @@ const Navbar = ({
   return (
     <nav className="fixed top-0 left-0 right-0 z-50">
       <div className="h-16 bg-white border-b border-zinc-100 flex items-center justify-between px-6 md:px-12">
-        {/* Left: TataEngage logo */}
+        {/* Left: Tata logo → home */}
         <div className="flex-shrink-0">
           <img
-            src={tataEngageLogo}
-            alt="TATA engage"
-            className="h-10 object-contain cursor-pointer"
-            onClick={() => onNavigate(isLoggedIn ? hubView() : "home")}
+            src={tataLogo}
+            alt="Tata"
+            className="h-9 w-9 object-contain cursor-pointer"
+            onClick={() => onNavigate("home")}
           />
         </div>
 
@@ -94,6 +100,11 @@ const Navbar = ({
         <div className="flex items-center gap-4">
           {isLoggedIn ? (
             <>
+              {/* Greeting */}
+              <span className="hidden md:inline text-sm font-medium text-zinc-500">
+                {greeting()}, <span className="text-zinc-900 font-semibold">{user?.firstName}</span>
+              </span>
+
               {/* Bell icon + notification panel */}
               <div className="relative" ref={notifRef}>
                 <button
@@ -146,6 +157,14 @@ const Navbar = ({
                   </div>
                 )}
               </div>
+
+              {/* Engage logo → hub */}
+              <img
+                src={tataEngageLogo}
+                alt="TATA engage"
+                className="h-8 object-contain cursor-pointer hidden md:block"
+                onClick={() => onNavigate(hubView())}
+              />
 
               <div className="relative" ref={dropdownRef}>
                 <button

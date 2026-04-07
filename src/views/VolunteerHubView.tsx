@@ -54,10 +54,9 @@ const VolunteerHubView = () => {
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32 blur-3xl" />
           <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
             <div>
-              <p className="text-xs font-bold text-white/50 uppercase tracking-[0.3em] mb-2">
-                {new Date().getHours() < 12 ? "Good Morning" : new Date().getHours() < 17 ? "Good Afternoon" : "Good Evening"}
-              </p>
-              <h1 className="font-serif text-4xl md:text-5xl text-white leading-tight">{user.firstName} 👋</h1>
+              <h1 className="font-serif text-4xl md:text-5xl text-white leading-tight">
+                {new Date().getHours() < 12 ? "Good Morning" : new Date().getHours() < 17 ? "Good Afternoon" : "Good Evening"}, {user.firstName}
+              </h1>
               <p className="text-white/60 text-sm mt-1">{user.company} · {user.designation}</p>
               <p className="text-sm text-white/70 mt-3">
                 {IS_PE_SEASON
