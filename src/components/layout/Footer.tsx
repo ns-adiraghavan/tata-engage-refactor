@@ -1,4 +1,4 @@
-import { ChevronRight, Facebook, Twitter, Instagram, Linkedin, Youtube } from "lucide-react";
+import { Facebook, Twitter, Instagram, Linkedin, Youtube } from "lucide-react";
 import tataEngageLogoNoBg from "@/assets/tata-engage-logo-nobg.png";
 
 const Footer = () => (
