@@ -1,7 +1,7 @@
 import Drawer from "@/components/layout/Drawer";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronRight, User, Users, Mail, Search, MapPin, Clock, Check, Sparkles, MessageSquare, ArrowRight, Star, Plus, Edit2, Trash2, Copy, AlertTriangle, Download, Inbox } from "lucide-react";
+import { X, ChevronRight, User, Users, Mail, Search, MapPin, Clock, Check, Sparkles, MessageSquare, ArrowRight, Star, Plus, Edit2, Trash2, Copy, AlertTriangle, Download, Inbox, CheckCircle2 } from "lucide-react";
 import type { View } from "@/types";
 import { MOCK_APPLICANTS, ANJALI_MEHTA } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
