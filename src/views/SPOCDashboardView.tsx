@@ -6,6 +6,7 @@ import { ROHAN_DESAI, SPOC_DIRECTORY, PENDING_APPROVALS_DATA, TCS_TVW_EVENTS, PR
 import { useAppContext } from "@/context/AppContext";
 import { useAuth } from "@/context/AuthContext";
 import { useLocation } from "react-router-dom";
+import { IS_PE_SEASON } from "@/data/mockData";
 
 const SPOCDashboardView = () => {
   const { user } = useAuth();
@@ -49,6 +50,16 @@ const SPOCDashboardView = () => {
   const [feedbackReminders, setFeedbackReminders] = useState(FEEDBACK_MONITOR_DATA);
   const [showCertificatePreview, setShowCertificatePreview] = useState<any>(null);
 
+  const sectionIds: Record<string, string> = {
+    "Dashboard": "spoc-section-dashboard",
+    "ProEngage Oversight": "spoc-section-proengage",
+    "TVW Management": "spoc-section-tvw",
+    "SPOC Directory": "spoc-section-directory",
+    "Verification": "spoc-section-verification",
+    "Reports & Certificates": "spoc-section-reports",
+    "Campaign Kit": "spoc-section-campaign-kit",
+  };
+
   const navItems = [
     { name: "Dashboard", icon: LayoutGrid },
     { name: "TVW Management", icon: CalendarDays },
@@ -58,6 +69,14 @@ const SPOCDashboardView = () => {
     { name: "Reports & Certificates", icon: FileText },
     { name: "Campaign Kit", icon: Download }
   ];
+
+  const handleNavClick = (name: string) => {
+    setActiveNav(name);
+    const id = sectionIds[name];
+    if (id) {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
 
   const handleApprove = (id: number) => {
@@ -103,7 +122,7 @@ const SPOCDashboardView = () => {
       venue: formData.get("venue") as string,
       capacity: `0/${formData.get("capacity")}`,
       status: "Upcoming",
-      region: "West India", // Default for Rohan
+      region: "West India",
       volunteeringHours: Number(formData.get("hours")),
       openToAll: formData.get("openToAll") === "on",
       volunteers: []
@@ -132,6 +151,7 @@ const SPOCDashboardView = () => {
     setTimeout(() => setShowToast(false), 3000);
   };
 
+  // ─── ProEngage Oversight Panel ────────────────────────────────────────
   const ProEngageOversightPanel = () => {
     const [peProject, setPeProject] = useState<any | null>(null);
     const filteredPipeline = PROENGAGE_PIPELINE.filter(v => 
@@ -157,20 +177,15 @@ const SPOCDashboardView = () => {
       paused: 15,
       dropped: 45,
       rejected: 120,
-      drParticipants: drResponses.length + 150 // Historical data
+      drParticipants: drResponses.length + 150
     };
 
     return (
-      <div id="spoc-section-ProEngage-Oversight" className="space-y-12">
+      <div className="space-y-12">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
           <div>
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-2 h-2 rounded-full bg-tata-cyan animate-pulse" />
-              <span className="text-xs font-semibold text-tata-blue uppercase tracking-[0.3em]">
-                {spoc.tier === "Corporate SPOC" ? "Group-wide · 4,520 volunteers" : "West India · 1,240 volunteers"}
-              </span>
-            </div>
-            <h2 className="text-4xl font-black text-slate-900 tracking-tight mb-2">ProEngage Oversight</h2>
+            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Pipeline</p>
+            <h2 className="text-xl font-black text-slate-900 tracking-tight mb-6">ProEngage Oversight</h2>
             <p className="text-slate-500 font-medium">
               {spoc.tier === "Corporate SPOC" 
                 ? "Monitoring volunteer pipeline across all Tata subsidiaries." 
@@ -468,6 +483,7 @@ const SPOCDashboardView = () => {
     setTimeout(() => setShowToast(false), 3000);
   };
 
+  // ─── Reports & Certificates Panel ────────────────────────────────────
   const ReportsAndCertificatesPanel = () => {
     const [isDownloadingAll, setIsDownloadingAll] = useState(false);
 
@@ -482,10 +498,11 @@ const SPOCDashboardView = () => {
     };
 
     return (
-      <div id="spoc-section-Reports-&-Certificates" className="space-y-12">
+      <div className="space-y-12">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
           <div>
-            <h2 className="text-4xl font-black text-slate-900 tracking-tight mb-2">Reports & Recognition</h2>
+            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Analytics</p>
+            <h2 className="text-xl font-black text-slate-900 tracking-tight mb-6">Reports & Recognition</h2>
             <p className="text-slate-500 font-medium">Track company performance, manage certificates, and monitor feedback.</p>
           </div>
           <div className="flex gap-2 p-1.5 bg-slate-100 rounded-2xl shadow-inner">
@@ -671,28 +688,13 @@ const SPOCDashboardView = () => {
 
         {reportsTab === "Feedback" && (
           <div className="space-y-10">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-              <div>
-                <h3 className="text-2xl font-black text-slate-900 tracking-tight">Feedback Monitor</h3>
-                <p className="text-sm text-slate-500 font-medium">Tracking post-project feedback completion</p>
-              </div>
-              <div className="text-right bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
-                <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3">Overall Completion</p>
-                <div className="flex items-center gap-4">
-                  <div className="w-48 h-2.5 bg-slate-100 rounded-full overflow-hidden border border-slate-50">
-                    <motion.div 
-                      initial={{ width: 0 }}
-                      animate={{ width: "78%" }}
-                      transition={{ duration: 1.5 }}
-                      className="h-full bg-gradient-to-r from-green-400 to-emerald-600 shadow-[0_0_10px_rgba(16,185,129,0.3)]" 
-                    />
-                  </div>
-                  <span className="text-lg font-semibold text-slate-900">78%</span>
+            <div className="bg-white rounded-3xl p-10 shadow-sm border border-slate-100 overflow-hidden">
+              <div className="flex justify-between items-center mb-10">
+                <div>
+                  <h3 className="text-2xl font-black text-slate-900 tracking-tight">Feedback Monitor</h3>
+                  <p className="text-sm text-slate-500 font-medium">Volunteers with overdue project feedback</p>
                 </div>
               </div>
-            </div>
-
-            <div className="bg-white rounded-3xl p-10 shadow-sm border border-slate-100 overflow-hidden">
               <table className="w-full text-left">
                 <thead>
                   <tr className="text-xs font-semibold text-slate-400 uppercase tracking-[0.2em] border-b border-slate-50">
@@ -774,6 +776,7 @@ const SPOCDashboardView = () => {
     );
   };
 
+  // ─── Campaign Kit ────────────────────────────────────────────────────
   const campaignKitItems = [
     { title: "TVW 2025 Poster Pack", type: "PDF", description: "Print-ready A3 posters for office noticeboards", icon: FileText },
     { title: "ProEngage Volunteer Recruitment Email", type: "DOCX", description: "Template email to send to your company's employees", icon: File },
@@ -784,9 +787,10 @@ const SPOCDashboardView = () => {
   ];
 
   const CampaignKitPanel = () => (
-    <div id="spoc-section-Campaign-Kit" className="space-y-10">
+    <div className="space-y-10">
       <div>
-        <h2 className="text-4xl font-black text-slate-900 tracking-tight mb-2">Campaign Kit</h2>
+        <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Resources</p>
+        <h2 className="text-xl font-black text-slate-900 tracking-tight mb-6">Campaign Kit</h2>
         <p className="text-slate-500 font-medium">Downloadable collateral to promote volunteering across your company.</p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -825,228 +829,29 @@ const SPOCDashboardView = () => {
     </div>
   );
 
-  const DashboardHome = () => (
-    <div id="spoc-section-Dashboard" className="space-y-12">
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {[
-          { label: "Total Volunteers", value: spoc.stats.totalVolunteers.toLocaleString(), sub: "TCS Global", icon: Users, color: "text-tata-blue", bg: "bg-blue-50", border: "border-blue-100" },
-          { label: "Active ProEngage", value: spoc.stats.activeProEngage, sub: "Ongoing Projects", icon: Briefcase, color: "text-tata-cyan", bg: "bg-cyan-50", border: "border-cyan-100" },
-          { label: "TVW Events", value: spoc.stats.tvwEvents, sub: "This Edition", icon: CalendarDays, color: "text-purple-600", bg: "bg-purple-50", border: "border-purple-100" },
-          { label: "Verification", value: approvals.filter(a => a.status === "Pending").length, sub: "Action Required", icon: ShieldCheck, color: "text-red-600", bg: "bg-red-50", border: "border-red-100", badge: true }
-        ].map((stat, i) => (
-          <motion.div 
-            key={i}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1 }}
-            className={`p-8 rounded-3xl bg-white border ${stat.border} shadow-sm hover:shadow-xl transition-all group relative overflow-hidden`}
-          >
-            <div className="absolute -right-4 -top-4 w-24 h-24 bg-slate-50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="absolute top-6 right-6 text-slate-200">
-              <stat.icon size={24} />
-            </div>
-            <div className={`w-14 h-14 rounded-2xl ${stat.bg} ${stat.color} flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 relative z-10`}>
-              <stat.icon size={28} />
-            </div>
-            <div className="relative z-10">
-              <div className="flex items-center justify-between mb-1">
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em]">{stat.label}</p>
-                {stat.badge && Number(stat.value) > 0 && (
-                  <div className="w-2 h-2 bg-red-500 rounded-full animate-ping" />
-                )}
-              </div>
-              <div className="flex items-baseline gap-2">
-                <h4 className="text-4xl font-black text-slate-900 tracking-tighter">{stat.value}</h4>
-                <span className="text-xs font-bold text-slate-400 uppercase">{stat.sub}</span>
-              </div>
-            </div>
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Quick-action strip */}
-      <div className="flex gap-4">
-        {[
-          { label: "Download campaign kit", icon: Download, nav: "Campaign Kit" },
-          { label: "Share project list", icon: Share2, nav: "ProEngage Oversight" },
-          { label: "View leaderboard", icon: Trophy, nav: "Reports & Certificates" },
-        ].map((action) => (
-          <button
-            key={action.label}
-            onClick={() => setActiveNav(action.nav)}
-            className="flex-1 flex items-center justify-center gap-3 px-6 py-4 bg-white border border-slate-200 rounded-2xl text-sm font-bold text-slate-700 hover:border-tata-blue hover:text-tata-blue transition-all cursor-pointer"
-          >
-            <action.icon size={18} />
-            {action.label}
-          </button>
-        ))}
-      </div>
-
-      {/* Orientation Banner */}
-      {!isOrientationDismissed && (
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="p-8 bg-gradient-to-br from-tata-blue via-blue-900 to-slate-900 rounded-3xl text-white shadow-2xl relative overflow-hidden group"
-        >
-          <div className="absolute top-0 right-0 p-12 opacity-10 group-hover:scale-110 transition-transform duration-700">
-            <Sparkles size={160} />
-          </div>
-          <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-tata-cyan/10 rounded-full blur-3xl" />
-          
-          <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
-            <div className="flex-1">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center backdrop-blur-sm">
-                  <Award className="text-tata-cyan" size={20} />
-                </div>
-                <span className="text-xs font-bold uppercase tracking-[0.2em] text-tata-cyan">Onboarding Progress</span>
-              </div>
-              <h3 className="text-2xl md:text-3xl font-bold mb-4 leading-tight">Complete your SPOC Orientation to unlock all features</h3>
-              <div className="max-w-md">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-medium text-white/60">Module 2 of 5</span>
-                  <span className="text-xs font-bold text-tata-cyan">40%</span>
-                </div>
-                <div className="h-2.5 bg-white/10 rounded-full overflow-hidden backdrop-blur-sm">
-                  <motion.div 
-                    initial={{ width: 0 }}
-                    animate={{ width: "40%" }}
-                    transition={{ duration: 1, ease: "easeOut" }}
-                    className="h-full bg-gradient-to-r from-tata-cyan to-blue-400 rounded-full shadow-[0_0_15px_rgba(0,180,216,0.5)]" 
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="flex items-center gap-6">
-              <button onClick={() => setIsOrientationDismissed(true)} className="text-sm font-bold text-white/40 hover:text-white transition-colors cursor-pointer">Maybe Later</button>
-              <button onClick={() => setShowOrientationModal(true)} className="bg-white text-tata-blue py-4 px-10 rounded-2xl font-bold text-sm hover:bg-tata-cyan hover:text-white transition-all shadow-lg hover:shadow-tata-cyan/20 cursor-pointer active:scale-95">
-                Resume Orientation
-              </button>
-            </div>
-          </div>
-        </motion.div>
-      )}
-
-      {/* Welcome Banner */}
-      <section>
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
-          <div className="space-y-2">
-            <div className="flex items-center gap-3">
-              <div className="w-2 h-2 rounded-full bg-tata-cyan animate-pulse" />
-              <span className="text-xs font-semibold text-tata-blue uppercase tracking-[0.3em]">
-                {spoc.tier} Dashboard
-              </span>
-            </div>
-            <h1 className="text-5xl font-black text-slate-900 tracking-tight">Welcome, {spoc.firstName}</h1>
-            <p className="text-lg text-slate-500 font-medium">{spoc.company} • {spoc.designation}</p>
-          </div>
-          <div className="flex gap-4">
-            <button className="group px-8 py-4 bg-white border border-slate-200 text-slate-700 rounded-2xl font-bold text-sm flex items-center gap-3 hover:border-tata-blue hover:text-tata-blue transition-all shadow-sm cursor-pointer">
-              <Download size={18} className="group-hover:-translate-y-0.5 transition-transform" /> Export Reports
-            </button>
-            <button onClick={() => setShowCreateEvent(true)} className="group px-8 py-4 bg-zinc-900 text-white rounded-2xl font-bold text-sm flex items-center gap-3 hover:bg-tata-blue transition-all shadow-xl shadow-zinc-900/10 cursor-pointer active:scale-95">
-              <Plus size={18} className="group-hover:rotate-90 transition-transform" /> Post TVW Event
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Main Dashboard Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-        <div className="lg:col-span-2 space-y-10">
-          <div className="bg-white rounded-3xl p-10 shadow-sm border border-slate-100">
-            <div className="flex justify-between items-center mb-10">
-              <div>
-                <h3 className="text-2xl font-bold text-slate-900">Recent Activity</h3>
-                <p className="text-sm text-slate-500">Latest updates from your volunteer network</p>
-              </div>
-              <button className="px-5 py-2 bg-slate-50 text-slate-600 rounded-lg text-xs font-bold hover:bg-slate-100 transition-all cursor-pointer">View All Activity</button>
-            </div>
-            <div className="space-y-2">
-              {[
-                { action: "New ProEngage Application", user: "Amit Shah", project: "Digital Literacy", time: "2 hours ago", icon: Briefcase, iconColor: "text-blue-500", iconBg: "bg-blue-50" },
-                { action: "TVW Event Approved", user: "TSG Admin", project: "Beach Cleanup", time: "5 hours ago", icon: CheckCircle2, iconColor: "text-green-500", iconBg: "bg-green-50" },
-                { action: "New Volunteer Registered", user: "Sneha Patil", project: "TCS Pune", time: "1 day ago", icon: User, iconColor: "text-purple-500", iconBg: "bg-purple-50" }
-              ].map((item, i) => (
-                <div key={i} className="flex items-center justify-between p-6 rounded-3xl hover:bg-slate-50 transition-all group border border-transparent hover:border-slate-100">
-                  <div className="flex items-center gap-5">
-                    <div className={`w-12 h-12 rounded-2xl ${item.iconBg} ${item.iconColor} flex items-center justify-center group-hover:scale-110 transition-transform`}>
-                      <item.icon size={20} />
-                    </div>
-                    <div>
-                      <p className="text-base font-bold text-slate-900">{item.action}</p>
-                      <p className="text-xs text-slate-500 font-medium">{item.user} • {item.project}</p>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <span className="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-1">{item.time}</span>
-                    <ChevronRight size={14} className="text-slate-300 ml-auto group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className="space-y-10">
-          <div className="bg-zinc-900 rounded-3xl p-10 text-white shadow-2xl shadow-zinc-900/20 relative overflow-hidden">
-            <div className="absolute -top-24 -right-24 w-48 h-48 bg-white/5 rounded-full blur-3xl" />
-            <h3 className="text-xs font-semibold text-white/30 uppercase tracking-[0.3em] mb-8 relative z-10">Quick Actions</h3>
-            <div className="space-y-4 relative z-10">
-              {[
-                { label: "Review Pending Apps", nav: "Verification", icon: ShieldCheck },
-                { label: "Generate Monthly Report", nav: "Reports & Certificates", icon: FileText },
-                { label: "Manage Coordinators", nav: "SPOC Directory", icon: Users },
-                { label: "Monitor ProEngage", nav: "ProEngage Oversight", icon: Briefcase }
-              ].map((action) => (
-                <button 
-                  key={action.label}
-                  onClick={() => setActiveNav(action.nav)}
-                  className="w-full py-5 px-6 bg-white/5 hover:bg-white/10 rounded-2xl text-left text-sm font-bold transition-all flex items-center justify-between group cursor-pointer border border-white/5 hover:border-white/10"
-                >
-                  <div className="flex items-center gap-4">
-                    <action.icon size={18} className="text-white/40 group-hover:text-tata-cyan transition-colors" />
-                    {action.label}
-                  </div>
-                  <ArrowRight size={16} className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-tata-cyan" />
-                </button>
-              ))}
-            </div>
-            <div className="mt-10 pt-8 border-t border-white/5">
-              <div className="flex items-center gap-4 p-4 bg-white/5 rounded-2xl">
-                <div className="w-10 h-10 rounded-lg bg-tata-blue flex items-center justify-center">
-                  <Info size={20} className="text-white" />
-                </div>
-                <div>
-                  <p className="text-xs font-bold text-white/40 uppercase tracking-widest">Need Help?</p>
-                  <button className="text-xs font-bold text-tata-cyan hover:underline cursor-pointer">Contact Support</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-
+  // ─── SPOC Directory Panel ────────────────────────────────────────────
   const SPOCDirectoryPanel = () => {
     const filteredSpocs = spocs.filter(s => {
-      const matchesSearch = s.name.toLowerCase().includes(directorySearch.toLowerCase()) || 
-                          s.company.toLowerCase().includes(directorySearch.toLowerCase());
-      const matchesRole = directoryFilter === "All" || s.role.includes(directoryFilter);
-      return matchesSearch && matchesRole;
+      const matchesSearch = s.name.toLowerCase().includes(directorySearch.toLowerCase()) ||
+        s.email.toLowerCase().includes(directorySearch.toLowerCase()) ||
+        s.company.toLowerCase().includes(directorySearch.toLowerCase());
+      const matchesFilter = directoryFilter === "All" || s.role.includes(directoryFilter);
+      return matchesSearch && matchesFilter;
     });
 
     return (
-      <div id="spoc-section-SPOC-Directory" className="space-y-12">
+      <div className="space-y-12">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
           <div>
-            <h2 className="text-4xl font-black text-slate-900 tracking-tight mb-2">SPOC Directory</h2>
-            <p className="text-slate-500 font-medium">Manage and coordinate with Regional and Corporate SPOCs.</p>
+            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">People</p>
+            <h2 className="text-xl font-black text-slate-900 tracking-tight mb-6">SPOC Directory</h2>
+            <p className="text-slate-500 font-medium">
+              {spoc.tier === "Corporate SPOC" 
+                ? "View and manage SPOCs across all Tata Group companies." 
+                : "View SPOCs in your region and manage your regional team."}
+            </p>
           </div>
-          <button onClick={() => setShowAddSpoc(true)} className="group px-8 py-4 bg-zinc-900 text-white rounded-2xl font-semibold text-xs uppercase tracking-widest flex items-center gap-3 hover:bg-tata-blue transition-all shadow-xl shadow-zinc-900/10 cursor-pointer active:scale-95">
+          <button onClick={() => setShowAddSpoc(true)} className="group px-8 py-4 bg-zinc-900 text-white rounded-2xl font-bold text-sm flex items-center gap-3 hover:bg-tata-blue transition-all shadow-xl shadow-zinc-900/10 cursor-pointer active:scale-95">
             <Plus size={18} className="group-hover:rotate-90 transition-transform" /> Add New SPOC
           </button>
         </div>
@@ -1164,14 +969,16 @@ const SPOCDashboardView = () => {
     );
   };
 
+  // ─── Verification Panel ──────────────────────────────────────────────
   const PendingApprovalsPanel = () => {
     const filteredApprovals = approvals.filter(a => a.status === approvalTab);
 
     return (
-      <div id="spoc-section-Pending-Approvals" className="space-y-12">
+      <div className="space-y-12">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
           <div>
-            <h2 className="text-4xl font-black text-slate-900 tracking-tight mb-2">Verification</h2>
+            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Queue</p>
+            <h2 className="text-xl font-black text-slate-900 tracking-tight mb-6">Verification</h2>
             <p className="text-slate-500 font-medium">Review and approve volunteers who registered via personal email.</p>
             <div className="mt-3 px-4 py-2 bg-slate-50 rounded-xl border border-slate-100 inline-flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-tata-cyan" />
@@ -1295,6 +1102,7 @@ const SPOCDashboardView = () => {
     );
   };
 
+  // ─── TVW Management Panel ────────────────────────────────────────────
   const TVWManagementPanel = () => {
     const filteredEvents = tvwEvents.filter(e => {
       const matchesRegion = tvwFilters.region === "All" || e.region === tvwFilters.region;
@@ -1303,10 +1111,11 @@ const SPOCDashboardView = () => {
     });
 
     return (
-      <div id="spoc-section-TVW-Management" className="space-y-12">
+      <div className="space-y-12">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
           <div>
-            <h2 className="text-4xl font-black text-slate-900 tracking-tight mb-2">TVW Management</h2>
+            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Events</p>
+            <h2 className="text-xl font-black text-slate-900 tracking-tight mb-6">TVW Management</h2>
             <p className="text-slate-500 font-medium">Manage TCS's participation in Tata Volunteering Week.</p>
           </div>
           <button onClick={() => setShowCreateEvent(true)} className="group px-8 py-4 bg-zinc-900 text-white rounded-2xl font-bold text-sm flex items-center gap-3 hover:bg-tata-blue transition-all shadow-xl shadow-zinc-900/10 cursor-pointer active:scale-95">
@@ -1354,49 +1163,64 @@ const SPOCDashboardView = () => {
           {filteredEvents.map((event) => (
             <motion.div 
               key={event.id}
-              layout
-              className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-slate-100 flex flex-col group"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden group"
             >
-              <div className="p-10 space-y-8 flex-1">
-                <div className="flex justify-between items-start">
-                  <div className={`px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-[0.2em] shadow-sm ${
-                    event.status === "Upcoming" ? "bg-blue-50 text-blue-600 border border-blue-100" :
-                    event.status === "Live" ? "bg-green-50 text-green-600 border border-green-100 animate-pulse" :
-                    "bg-slate-50 text-slate-400 border border-slate-100"
+              <div className="p-8 space-y-6">
+                <div className="flex items-start justify-between">
+                  <div>
+                    <h4 className="text-xl font-black text-slate-900 tracking-tight leading-tight mb-2">{event.title}</h4>
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-xs font-bold text-tata-blue uppercase tracking-widest">{event.type}</span>
+                      {event.vibeStatus && (
+                        <span className="text-[10px] font-bold bg-purple-50 text-purple-600 px-2 py-0.5 rounded-full uppercase tracking-widest border border-purple-100">
+                          {event.vibeStatus}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  <span className={`text-xs font-semibold px-3 py-1.5 rounded-full uppercase tracking-widest whitespace-nowrap shadow-sm border ${
+                    event.status === "Upcoming" ? "bg-blue-50 text-blue-700 border-blue-100" :
+                    event.status === "Live" ? "bg-green-50 text-green-700 border-green-100" :
+                    "bg-slate-50 text-slate-500 border-slate-100"
                   }`}>
                     {event.status}
-                  </div>
-                  {event.vibeStatus && (
-                    <div className="flex items-center gap-2 px-3 py-1.5 bg-amber-50 text-amber-600 rounded-lg border border-amber-100">
-                      <Sparkles size={12} />
-                      <span className="text-xs font-bold uppercase tracking-tight">{event.vibeStatus}</span>
-                    </div>
-                  )}
+                  </span>
                 </div>
-                
-                <div className="space-y-4">
-                  <h4 className="text-2xl font-black text-slate-900 leading-tight group-hover:text-tata-blue transition-colors">{event.title}</h4>
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-3 text-sm text-slate-500 font-medium">
-                      <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400">
-                        <Calendar size={16} />
-                      </div>
-                      {event.date} • {event.time}
+
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div className="flex items-center gap-3 text-slate-500">
+                    <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center shrink-0">
+                      <CalendarDays size={14} className="text-slate-400" />
                     </div>
-                    <div className="flex items-center gap-3 text-sm text-slate-500 font-medium">
-                      <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400">
-                        <MapPin size={16} />
-                      </div>
-                      {event.venue}
+                    <span className="font-medium">{event.date}</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-slate-500">
+                    <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center shrink-0">
+                      <Clock size={14} className="text-slate-400" />
                     </div>
+                    <span className="font-medium">{event.time}</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-slate-500">
+                    <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center shrink-0">
+                      <MapPin size={14} className="text-slate-400" />
+                    </div>
+                    <span className="font-medium">{event.mode}</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-slate-500">
+                    <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center shrink-0">
+                      <Clock size={14} className="text-slate-400" />
+                    </div>
+                    <span className="font-medium">{event.volunteeringHours}h</span>
                   </div>
                 </div>
 
-                <div className="pt-8 border-t border-slate-50">
+                <div>
                   <div className="flex justify-between items-center mb-3">
                     <div className="flex items-center gap-2">
                       <Users size={14} className="text-slate-400" />
-                      <span className="text-xs font-semibold text-slate-400 uppercase tracking-widest">Registration Capacity</span>
+                      <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Capacity</span>
                     </div>
                     <span className="text-xs font-semibold text-slate-900">{event.capacity}</span>
                   </div>
@@ -1505,6 +1329,9 @@ const SPOCDashboardView = () => {
     );
   };
 
+  // ─── Pending count for sidebar preview ────────────────────────────────
+  const pendingApprovals = approvals.filter(a => a.status === "Pending");
+
   return (
     <div className="min-h-screen pt-24 bg-[#F8FAFC] flex">
       {/* Sidebar */}
@@ -1526,7 +1353,7 @@ const SPOCDashboardView = () => {
           {navItems.map((item) => (
             <button 
               key={item.name}
-              onClick={() => setActiveNav(item.name)}
+              onClick={() => handleNavClick(item.name)}
               className={`w-full flex items-center justify-between p-4 rounded-2xl text-sm font-bold transition-all cursor-pointer group ${
                 activeNav === item.name 
                   ? "bg-tata-blue text-white shadow-xl shadow-blue-900/20" 
@@ -1564,26 +1391,274 @@ const SPOCDashboardView = () => {
         </div>
       </aside>
 
-      {/* Main Content */}
+      {/* Main Content — single scroll */}
       <main id="spoc-main-content" className="flex-1 lg:ml-80 p-8 md:p-16">
-        <div className="max-w-7xl mx-auto">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeNav}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3 }}
-            >
-              {activeNav === "Dashboard" && <DashboardHome />}
-              {activeNav === "SPOC Directory" && <SPOCDirectoryPanel />}
-              {activeNav === "Verification" && <PendingApprovalsPanel />}
-              {activeNav === "TVW Management" && <TVWManagementPanel />}
-              {activeNav === "ProEngage Oversight" && <ProEngageOversightPanel />}
-              {activeNav === "Reports & Certificates" && <ReportsAndCertificatesPanel />}
-              {activeNav === "Campaign Kit" && <CampaignKitPanel />}
-            </motion.div>
-          </AnimatePresence>
+        <div className="max-w-7xl mx-auto space-y-16">
+
+          {/* ── Welcome / Header ────────────────────────────────────── */}
+          <section id="spoc-section-dashboard">
+            {/* Orientation Banner */}
+            {!isOrientationDismissed && (
+              <motion.div 
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="p-8 bg-gradient-to-br from-tata-blue via-blue-900 to-slate-900 rounded-3xl text-white shadow-2xl relative overflow-hidden group mb-12"
+              >
+                <div className="absolute top-0 right-0 p-12 opacity-10 group-hover:scale-110 transition-transform duration-700">
+                  <Sparkles size={160} />
+                </div>
+                <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-tata-cyan/10 rounded-full blur-3xl" />
+                
+                <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center backdrop-blur-sm">
+                        <Award className="text-tata-cyan" size={20} />
+                      </div>
+                      <span className="text-xs font-bold uppercase tracking-[0.2em] text-tata-cyan">Onboarding Progress</span>
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-bold mb-4 leading-tight">Complete your SPOC Orientation to unlock all features</h3>
+                    <div className="max-w-md">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-xs font-medium text-white/60">Module 2 of 5</span>
+                        <span className="text-xs font-bold text-tata-cyan">40%</span>
+                      </div>
+                      <div className="h-2.5 bg-white/10 rounded-full overflow-hidden backdrop-blur-sm">
+                        <motion.div 
+                          initial={{ width: 0 }}
+                          animate={{ width: "40%" }}
+                          transition={{ duration: 1, ease: "easeOut" }}
+                          className="h-full bg-gradient-to-r from-tata-cyan to-blue-400 rounded-full shadow-[0_0_15px_rgba(0,180,216,0.5)]" 
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-6">
+                    <button onClick={() => setIsOrientationDismissed(true)} className="text-sm font-bold text-white/40 hover:text-white transition-colors cursor-pointer">Maybe Later</button>
+                    <button onClick={() => setShowOrientationModal(true)} className="bg-white text-tata-blue py-4 px-10 rounded-2xl font-bold text-sm hover:bg-tata-cyan hover:text-white transition-all shadow-lg hover:shadow-tata-cyan/20 cursor-pointer active:scale-95">
+                      Resume Orientation
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
+            {/* Welcome */}
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-12">
+              <div className="space-y-2">
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 rounded-full bg-tata-cyan animate-pulse" />
+                  <span className="text-xs font-semibold text-tata-blue uppercase tracking-[0.3em]">
+                    {spoc.tier} Dashboard
+                  </span>
+                </div>
+                <h1 className="text-5xl font-black text-slate-900 tracking-tight">Welcome, {spoc.firstName}</h1>
+                <p className="text-lg text-slate-500 font-medium">{spoc.company} • {spoc.designation}</p>
+              </div>
+              <div className="flex gap-4">
+                <button className="group px-8 py-4 bg-white border border-slate-200 text-slate-700 rounded-2xl font-bold text-sm flex items-center gap-3 hover:border-tata-blue hover:text-tata-blue transition-all shadow-sm cursor-pointer">
+                  <Download size={18} className="group-hover:-translate-y-0.5 transition-transform" /> Export Reports
+                </button>
+                <button onClick={() => setShowCreateEvent(true)} className="group px-8 py-4 bg-zinc-900 text-white rounded-2xl font-bold text-sm flex items-center gap-3 hover:bg-tata-blue transition-all shadow-xl shadow-zinc-900/10 cursor-pointer active:scale-95">
+                  <Plus size={18} className="group-hover:rotate-90 transition-transform" /> Post TVW Event
+                </button>
+              </div>
+            </div>
+
+            {/* ── KPI Stat Tiles (4-col) ──────────────────────────────── */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+              {[
+                { label: "ProEngagers This Edition", value: spoc.stats.activeProEngage, sub: "Current edition", icon: Briefcase, color: "text-tata-blue", bg: "bg-blue-50", border: "border-blue-100" },
+                { label: "Hours Added", value: "1,240", sub: "Volunteer + NGO reported", icon: Clock, color: "text-tata-cyan", bg: "bg-cyan-50", border: "border-cyan-100" },
+                { label: "My Total SPOCs", value: SPOC_DIRECTORY.length, sub: "Across my company", icon: Users, color: "text-purple-600", bg: "bg-purple-50", border: "border-purple-100" },
+                { label: "Company Opportunities", value: OPEN_PROENGAGE_PROJECTS.length, sub: "Open right now", icon: Sparkles, color: "text-emerald-600", bg: "bg-emerald-50", border: "border-emerald-100" },
+              ].map((stat, i) => (
+                <motion.div 
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  className={`p-8 rounded-3xl bg-white border ${stat.border} shadow-sm hover:shadow-xl transition-all group relative overflow-hidden`}
+                >
+                  <div className="absolute -right-4 -top-4 w-24 h-24 bg-slate-50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute top-6 right-6 text-slate-200">
+                    <stat.icon size={24} />
+                  </div>
+                  <div className={`w-14 h-14 rounded-2xl ${stat.bg} ${stat.color} flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 relative z-10`}>
+                    <stat.icon size={28} />
+                  </div>
+                  <div className="relative z-10">
+                    <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em] mb-1">{stat.label}</p>
+                    <div className="flex items-baseline gap-2">
+                      <h4 className="text-4xl font-black text-slate-900 tracking-tighter">{stat.value}</h4>
+                      <span className="text-xs font-bold text-slate-400 uppercase">{stat.sub}</span>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* ── Quick Actions Strip ─────────────────────────────────── */}
+            <div className="flex gap-4 mb-12">
+              {[
+                { label: "Download campaign kit", icon: Download, target: "spoc-section-campaign-kit" },
+                { label: "Share project list", icon: Share2, target: "spoc-section-proengage" },
+                { label: "View leaderboard", icon: Trophy, target: "spoc-section-reports" },
+              ].map((action) => (
+                <button
+                  key={action.label}
+                  onClick={() => {
+                    document.getElementById(action.target)?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className="flex-1 flex items-center justify-center gap-3 px-6 py-4 bg-white border border-slate-200 rounded-2xl text-sm font-bold text-slate-700 hover:border-tata-blue hover:text-tata-blue transition-all cursor-pointer"
+                >
+                  <action.icon size={18} />
+                  {action.label}
+                </button>
+              ))}
+            </div>
+          </section>
+
+          {/* ── lg:grid-cols-3 Main Grid ─────────────────────────────── */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            {/* Left col-span-2 — main sections */}
+            <div className="lg:col-span-2 space-y-12">
+              {/* ProEngage Oversight */}
+              <section id="spoc-section-proengage" className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 md:p-8">
+                <ProEngageOversightPanel />
+              </section>
+
+              {/* TVW Management */}
+              <section id="spoc-section-tvw" className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 md:p-8">
+                <TVWManagementPanel />
+              </section>
+
+              {/* SPOC Directory */}
+              <section id="spoc-section-directory" className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 md:p-8">
+                <SPOCDirectoryPanel />
+              </section>
+            </div>
+
+            {/* Right col-span-1 — sidebar previews */}
+            <div className="space-y-10">
+              {/* Verification Queue Preview */}
+              <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 md:p-8">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Queue</p>
+                <h3 className="text-xl font-black text-slate-900 tracking-tight mb-6">Verification</h3>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-2xl bg-red-50 text-red-600 flex items-center justify-center">
+                    <ShieldCheck size={20} />
+                  </div>
+                  <div>
+                    <p className="text-2xl font-black text-slate-900">{pendingApprovals.length}</p>
+                    <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">Pending</p>
+                  </div>
+                </div>
+                <div className="space-y-3 mb-6">
+                  {pendingApprovals.slice(0, 3).map((a) => (
+                    <div key={a.id} className="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-100">
+                      <div className="w-8 h-8 rounded-lg bg-slate-200 flex items-center justify-center text-xs font-bold text-slate-500">
+                        {a.name.charAt(0)}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-semibold text-slate-900 truncate">{a.name}</p>
+                        <p className="text-xs text-slate-400">{a.type} · {a.registeredDate}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <button 
+                  onClick={() => document.getElementById("spoc-section-verification")?.scrollIntoView({ behavior: "smooth" })}
+                  className="text-xs font-bold text-tata-blue uppercase tracking-widest flex items-center gap-1 hover:gap-2 transition-all cursor-pointer"
+                >
+                  View all <ArrowRight size={14} />
+                </button>
+              </div>
+
+              {/* Leaderboard Preview (PE only) */}
+              {IS_PE_SEASON && (
+                <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 md:p-8">
+                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Rankings</p>
+                  <h3 className="text-xl font-black text-slate-900 tracking-tight mb-6">Leaderboard</h3>
+                  <div className="space-y-4 mb-6">
+                    {COMPANY_LEADERBOARD.slice(0, 3).map((company) => (
+                      <div key={company.rank} className="flex items-center gap-4">
+                        <div className={`w-8 h-8 rounded-xl flex items-center justify-center text-xs font-bold ${
+                          company.name === "TCS" ? "bg-tata-blue text-white" : "bg-slate-50 text-slate-400"
+                        }`}>
+                          {company.rank}
+                        </div>
+                        <div className="flex-1">
+                          <p className={`text-sm font-semibold ${company.name === "TCS" ? "text-tata-blue" : "text-slate-700"}`}>
+                            {company.name} {company.name === "TCS" && <span className="text-xs opacity-50">(You)</span>}
+                          </p>
+                        </div>
+                        <span className="text-xs font-bold text-slate-500">{company.matched}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <button 
+                    onClick={() => document.getElementById("spoc-section-reports")?.scrollIntoView({ behavior: "smooth" })}
+                    className="text-xs font-bold text-tata-blue uppercase tracking-widest flex items-center gap-1 hover:gap-2 transition-all cursor-pointer"
+                  >
+                    View full <ArrowRight size={14} />
+                  </button>
+                </div>
+              )}
+
+              {/* Campaign Kit Shortcuts */}
+              <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 md:p-8">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Resources</p>
+                <h3 className="text-xl font-black text-slate-900 tracking-tight mb-6">Campaign Kit</h3>
+                <div className="space-y-3 mb-6">
+                  {campaignKitItems.slice(0, 3).map((item) => (
+                    <button
+                      key={item.title}
+                      onClick={() => {
+                        setToastMessage(`${item.title}.${item.type.toLowerCase()} downloaded`);
+                        setShowToast(true);
+                        setTimeout(() => setShowToast(false), 3000);
+                      }}
+                      className="w-full flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-100 hover:border-tata-blue/20 transition-all cursor-pointer text-left group"
+                    >
+                      <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-slate-400 group-hover:text-tata-blue transition-colors shrink-0">
+                        <item.icon size={16} />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-semibold text-slate-900 truncate">{item.title}</p>
+                        <p className="text-xs text-slate-400">{item.type}</p>
+                      </div>
+                      <Download size={14} className="text-slate-300 group-hover:text-tata-blue shrink-0" />
+                    </button>
+                  ))}
+                </div>
+                <button 
+                  onClick={() => document.getElementById("spoc-section-campaign-kit")?.scrollIntoView({ behavior: "smooth" })}
+                  className="text-xs font-bold text-tata-blue uppercase tracking-widest flex items-center gap-1 hover:gap-2 transition-all cursor-pointer"
+                >
+                  View all <ArrowRight size={14} />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* ── Full-width sections below the grid ───────────────────── */}
+
+          {/* Verification (full) */}
+          <section id="spoc-section-verification" className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 md:p-8">
+            <PendingApprovalsPanel />
+          </section>
+
+          {/* Reports & Certificates (full-width) */}
+          <section id="spoc-section-reports" className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 md:p-8">
+            <ReportsAndCertificatesPanel />
+          </section>
+
+          {/* Campaign Kit (full-width) */}
+          <section id="spoc-section-campaign-kit" className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 md:p-8">
+            <CampaignKitPanel />
+          </section>
+
         </div>
       </main>
 
@@ -1726,17 +1801,17 @@ const SPOCDashboardView = () => {
                 </div>
                 <div>
                   <label className="form-label">Max Capacity*</label>
-                  <input name="capacity" type="number" required placeholder="e.g. 60" className="form-input" />
+                  <input name="capacity" type="number" required placeholder="e.g. 50" className="form-input" />
                 </div>
                 <div>
                   <label className="form-label">Volunteering Hours*</label>
                   <input name="hours" type="number" required placeholder="e.g. 4" className="form-input" />
                 </div>
-                <div className="md:col-span-2 flex items-center gap-3 p-4 bg-slate-50 rounded-2xl">
+                <div className="md:col-span-2 flex items-center gap-3">
                   <input name="openToAll" type="checkbox" id="openToAll" className="w-5 h-5 rounded border-slate-300 text-tata-blue focus:ring-tata-blue" />
-                  <label htmlFor="openToAll" className="text-sm font-bold text-slate-700">Open to All Tata Employees</label>
+                  <label htmlFor="openToAll" className="text-sm font-medium text-slate-700">Open to all Tata Group companies</label>
                 </div>
-                <div className="md:col-span-2 pt-4 flex gap-4">
+                <div className="md:col-span-2 flex gap-4 pt-4">
                   <button type="button" onClick={() => setShowCreateEvent(false)} className="flex-1 btn-outline cursor-pointer">Cancel</button>
                   <button type="submit" className="flex-1 btn-black cursor-pointer">Post Event</button>
                 </div>
@@ -1745,7 +1820,7 @@ const SPOCDashboardView = () => {
           </div>
         )}
 
-        {/* TVW Vibe Submission Modal */}
+        {/* TVW Vibe Modal */}
         {showVibeModal && (
           <div className="fixed inset-0 z-[200] flex items-center justify-center p-6">
             <motion.div 
