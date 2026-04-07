@@ -54,7 +54,7 @@ const SPOCDashboardView = () => {
     { name: "TVW Management", icon: CalendarDays },
     { name: "ProEngage Oversight", icon: Briefcase },
     { name: "SPOC Directory", icon: Users },
-    { name: "Pending Approvals", icon: ShieldCheck, badge: approvals.filter(a => a.status === "Pending").length },
+    { name: "Verification", icon: ShieldCheck, badge: approvals.filter(a => a.status === "Pending").length },
     { name: "Reports & Certificates", icon: FileText },
     { name: "Campaign Kit", icon: Download }
   ];
@@ -305,11 +305,11 @@ const SPOCDashboardView = () => {
             </div>
 
             {/* Volunteer pipeline table */}
-            <div className="bg-white border border-zinc-100 rounded-2xl overflow-hidden">
+            <div className="bg-white border border-zinc-100 rounded-2xl overflow-hidden overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-zinc-100 bg-zinc-50">
-                    {["Name", "Email", "Company", "Project", "Contact", "Status", "Progress", "Nudge"].map((h) => (
+                    {["Name", "Email", "Company", "Project", "Contact", "Status", "Match %", "Nudge", "Cert", "Feedback"].map((h) => (
                       <th key={h} className="text-left px-4 py-3 text-xs font-semibold text-zinc-400 uppercase tracking-wide">{h}</th>
                     ))}
                   </tr>
@@ -332,7 +332,7 @@ const SPOCDashboardView = () => {
                         }`}>{v.status}</span>
                       </td>
                       <td className="px-4 py-4 text-xs text-zinc-500">
-                        {v.status === "Active" ? `${v.progress ?? 0}%` : "—"}
+                        {v.status === "Active" ? `${v.match ?? 0}%` : "—"}
                       </td>
                       <td className="px-4 py-4">
                         {v.status === "Active" && (
@@ -352,6 +352,30 @@ const SPOCDashboardView = () => {
                           >
                             {atRiskList.find(r => r.id === v.id)?.nudged ? "Nudged ✓" : "Nudge"}
                           </button>
+                        )}
+                      </td>
+                      <td className="px-4 py-4">
+                        {!v.isCurrentEdition && (
+                          <button
+                            onClick={() => {
+                              setToastMessage("Certificate downloaded");
+                              setShowToast(true);
+                              setTimeout(() => setShowToast(false), 3000);
+                            }}
+                            className="p-2 rounded-lg bg-slate-50 text-slate-600 hover:bg-tata-blue hover:text-white transition-all cursor-pointer"
+                            title="Download Certificate"
+                          >
+                            <Download size={14} />
+                          </button>
+                        )}
+                      </td>
+                      <td className="px-4 py-4">
+                        {!v.isCurrentEdition && (
+                          <span className={`px-2.5 py-1 rounded-full text-xs font-bold ${
+                            v.feedbackStatus === "submitted" ? "bg-green-50 text-green-700" : "bg-amber-50 text-amber-700"
+                          }`}>
+                            {v.feedbackStatus === "submitted" ? "✓" : "Pending"}
+                          </span>
                         )}
                       </td>
                     </tr>
@@ -809,7 +833,7 @@ const SPOCDashboardView = () => {
           { label: "Total Volunteers", value: spoc.stats.totalVolunteers.toLocaleString(), sub: "TCS Global", icon: Users, color: "text-tata-blue", bg: "bg-blue-50", border: "border-blue-100" },
           { label: "Active ProEngage", value: spoc.stats.activeProEngage, sub: "Ongoing Projects", icon: Briefcase, color: "text-tata-cyan", bg: "bg-cyan-50", border: "border-cyan-100" },
           { label: "TVW Events", value: spoc.stats.tvwEvents, sub: "This Edition", icon: CalendarDays, color: "text-purple-600", bg: "bg-purple-50", border: "border-purple-100" },
-          { label: "Pending Approvals", value: approvals.filter(a => a.status === "Pending").length, sub: "Action Required", icon: ShieldCheck, color: "text-red-600", bg: "bg-red-50", border: "border-red-100", badge: true }
+          { label: "Verification", value: approvals.filter(a => a.status === "Pending").length, sub: "Action Required", icon: ShieldCheck, color: "text-red-600", bg: "bg-red-50", border: "border-red-100", badge: true }
         ].map((stat, i) => (
           <motion.div 
             key={i}
@@ -972,7 +996,7 @@ const SPOCDashboardView = () => {
             <h3 className="text-xs font-semibold text-white/30 uppercase tracking-[0.3em] mb-8 relative z-10">Quick Actions</h3>
             <div className="space-y-4 relative z-10">
               {[
-                { label: "Review Pending Apps", nav: "Pending Approvals", icon: ShieldCheck },
+                { label: "Review Pending Apps", nav: "Verification", icon: ShieldCheck },
                 { label: "Generate Monthly Report", nav: "Reports & Certificates", icon: FileText },
                 { label: "Manage Coordinators", nav: "SPOC Directory", icon: Users },
                 { label: "Monitor ProEngage", nav: "ProEngage Oversight", icon: Briefcase }
@@ -1147,7 +1171,7 @@ const SPOCDashboardView = () => {
       <div id="spoc-section-Pending-Approvals" className="space-y-12">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
           <div>
-            <h2 className="text-4xl font-black text-slate-900 tracking-tight mb-2">Pending Approvals</h2>
+            <h2 className="text-4xl font-black text-slate-900 tracking-tight mb-2">Verification</h2>
             <p className="text-slate-500 font-medium">Review and approve volunteers who registered via personal email.</p>
             <div className="mt-3 px-4 py-2 bg-slate-50 rounded-xl border border-slate-100 inline-flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-tata-cyan" />
@@ -1553,7 +1577,7 @@ const SPOCDashboardView = () => {
             >
               {activeNav === "Dashboard" && <DashboardHome />}
               {activeNav === "SPOC Directory" && <SPOCDirectoryPanel />}
-              {activeNav === "Pending Approvals" && <PendingApprovalsPanel />}
+              {activeNav === "Verification" && <PendingApprovalsPanel />}
               {activeNav === "TVW Management" && <TVWManagementPanel />}
               {activeNav === "ProEngage Oversight" && <ProEngageOversightPanel />}
               {activeNav === "Reports & Certificates" && <ReportsAndCertificatesPanel />}
@@ -1664,7 +1688,7 @@ const SPOCDashboardView = () => {
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl p-10 max-h-[90vh] overflow-y-auto"
             >
-              <h3 className="text-2xl font-bold text-slate-800 mb-6">Create TVW Event</h3>
+              <h3 className="text-2xl font-bold text-slate-800 mb-6">Create Opportunity</h3>
               <form className="grid grid-cols-1 md:grid-cols-2 gap-6" onSubmit={handleCreateEvent}>
                 <div className="md:col-span-2">
                   <label className="form-label">Event Title*</label>
