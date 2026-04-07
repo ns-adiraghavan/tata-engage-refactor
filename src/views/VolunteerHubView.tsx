@@ -2,7 +2,7 @@ import { useAuth } from "@/context/AuthContext";
 import { useAppContext } from "@/context/AppContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
 import { COMMUNITY_TESTIMONIALS, IS_PE_SEASON } from "@/data/mockData";
-import { FileText, Mail, MessageSquare, Calendar, Briefcase, Zap } from "lucide-react";
+import { FileText, Mail, MessageSquare, Users, HeartHandshake, AlertTriangle } from "lucide-react";
 
 const TESTIMONIAL_BG = ['bg-tata-blue', 'bg-violet-700', 'bg-emerald-800', 'bg-amber-700'];
 
