@@ -1553,7 +1553,7 @@ const SPOCDashboardView = () => {
             >
               {activeNav === "Dashboard" && <DashboardHome />}
               {activeNav === "SPOC Directory" && <SPOCDirectoryPanel />}
-              {activeNav === "Pending Approvals" && <PendingApprovalsPanel />}
+              {activeNav === "Verification" && <PendingApprovalsPanel />}
               {activeNav === "TVW Management" && <TVWManagementPanel />}
               {activeNav === "ProEngage Oversight" && <ProEngageOversightPanel />}
               {activeNav === "Reports & Certificates" && <ReportsAndCertificatesPanel />}
