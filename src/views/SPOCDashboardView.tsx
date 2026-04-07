@@ -13,7 +13,10 @@ const SPOCDashboardView = () => {
   const { user } = useAuth();
   const location = useLocation();
   const { isOrientationDismissed, setIsOrientationDismissed, setShowOrientationModal, setShowToast, setToastMessage, formData, drResponses } = useAppContext();
-  const spoc = ROHAN_DESAI;
+  
+  // Regional vs Corporate SPOC toggle (prototype)
+  const [isRegionalSPOC, setIsRegionalSPOC] = useState(false);
+  const spoc = isRegionalSPOC ? ANJALI_GUPTA_REGIONAL : ROHAN_DESAI;
   const [activeNav, setActiveNav] = useState("Dashboard");
   const [spocs, setSpocs] = useState(SPOC_DIRECTORY);
   const [approvals, setApprovals] = useState(PENDING_APPROVALS_DATA);
