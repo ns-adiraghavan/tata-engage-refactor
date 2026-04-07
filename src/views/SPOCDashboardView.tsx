@@ -511,8 +511,9 @@ const SPOCDashboardView = () => {
           <div>
             <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Analytics</p>
             <h2 className="text-xl font-black text-slate-900 tracking-tight mb-6">Reports & Recognition</h2>
-            <p className="text-slate-500 font-medium">Track company performance, manage certificates, and monitor feedback.</p>
+            <p className="text-slate-500 font-medium">{isRegionalSPOC ? "Manage certificates for your region." : "Track company performance, manage certificates, and monitor feedback."}</p>
           </div>
+          {!isRegionalSPOC && (
           <div className="flex gap-2 p-1.5 bg-slate-100 rounded-2xl shadow-inner">
             {[
               { id: "Leaderboard", label: "Leaderboard", icon: Trophy },
