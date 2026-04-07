@@ -146,7 +146,7 @@ const Navbar = ({
                         <User size={16} /> Profile
                       </button>
                       <button
-                        onClick={() => { onNavigate(dashboardView()); setDropdownOpen(false); }}
+                        onClick={() => { onNavigate(hubView()); setDropdownOpen(false); }}
                         className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-zinc-700 hover:bg-zinc-50 transition-colors cursor-pointer"
                       >
                         <LayoutDashboard size={16} /> My Hub
