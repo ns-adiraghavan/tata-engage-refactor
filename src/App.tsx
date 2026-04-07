@@ -41,6 +41,9 @@ import DRAvailabilityForm from "@/views/DRAvailabilityForm";
 import DRConfirmationView from "@/views/DRConfirmationView";
 import SPOCDashboardView from "@/views/SPOCDashboardView";
 import AdminDashboardView from "@/views/AdminDashboardView";
+import VolunteerHubView from "@/views/VolunteerHubView";
+import NGOHubView from "@/views/NGOHubView";
+import SPOCHubView from "@/views/SPOCHubView";
 import NotFound from "@/pages/NotFound";
 
 export default function App() {
