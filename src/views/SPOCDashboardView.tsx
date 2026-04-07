@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronRight, User, Users, Briefcase, ShieldCheck, Lock, Eye, CheckCircle2, Search, ExternalLink, Calendar, MapPin, Clock, Award, Info, Filter, CalendarDays, LayoutGrid, Send, FileText, Check, ChevronDown, Sparkles, MessageSquare, ArrowRight, Plus, Edit2, Save, Copy, Pause, History, AlertTriangle, Activity, Download, Upload, Trophy, Share2, File, Archive } from "lucide-react";
 import type { View, Role } from "@/types";
-import { ROHAN_DESAI, SPOC_DIRECTORY, PENDING_APPROVALS_DATA, TCS_TVW_EVENTS, PROENGAGE_PIPELINE, AT_RISK_VOLUNTEERS, OPEN_PROENGAGE_PROJECTS, COMPANY_LEADERBOARD, VOLUNTEER_CERTIFICATES, FEEDBACK_MONITOR_DATA, COMMUNITY_TESTIMONIALS } from "@/data/mockData";
+import { ROHAN_DESAI, ANJALI_GUPTA_REGIONAL, SPOC_DIRECTORY, PENDING_APPROVALS_DATA, TCS_TVW_EVENTS, PROENGAGE_PIPELINE, AT_RISK_VOLUNTEERS, OPEN_PROENGAGE_PROJECTS, COMPANY_LEADERBOARD, VOLUNTEER_CERTIFICATES, FEEDBACK_MONITOR_DATA, COMMUNITY_TESTIMONIALS } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
 import { useAuth } from "@/context/AuthContext";
 import { useLocation } from "react-router-dom";
@@ -13,7 +13,10 @@ const SPOCDashboardView = () => {
   const { user } = useAuth();
   const location = useLocation();
   const { isOrientationDismissed, setIsOrientationDismissed, setShowOrientationModal, setShowToast, setToastMessage, formData, drResponses } = useAppContext();
-  const spoc = ROHAN_DESAI;
+  
+  // Regional vs Corporate SPOC toggle (prototype)
+  const [isRegionalSPOC, setIsRegionalSPOC] = useState(false);
+  const spoc = isRegionalSPOC ? ANJALI_GUPTA_REGIONAL : ROHAN_DESAI;
   const [activeNav, setActiveNav] = useState("Dashboard");
   const [spocs, setSpocs] = useState(SPOC_DIRECTORY);
   const [approvals, setApprovals] = useState(PENDING_APPROVALS_DATA);
@@ -61,15 +64,19 @@ const SPOCDashboardView = () => {
     "Campaign Kit": "spoc-section-campaign-kit",
   };
 
-  const navItems = [
+  const allNavItems = [
     { name: "Dashboard", icon: LayoutGrid },
     { name: "TVW Management", icon: CalendarDays },
-    { name: "ProEngage Oversight", icon: Briefcase },
-    { name: "SPOC Directory", icon: Users },
+    { name: "ProEngage Oversight", icon: Briefcase, corporateOnly: true },
+    { name: "SPOC Directory", icon: Users, corporateOnly: true },
     { name: "Verification", icon: ShieldCheck, badge: approvals.filter(a => a.status === "Pending").length },
     { name: "Reports & Certificates", icon: FileText },
     { name: "Campaign Kit", icon: Download }
   ];
+
+  const navItems = isRegionalSPOC 
+    ? allNavItems.filter(item => !item.corporateOnly) 
+    : allNavItems;
 
   const handleNavClick = (name: string) => {
     setActiveNav(name);
@@ -504,8 +511,9 @@ const SPOCDashboardView = () => {
           <div>
             <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Analytics</p>
             <h2 className="text-xl font-black text-slate-900 tracking-tight mb-6">Reports & Recognition</h2>
-            <p className="text-slate-500 font-medium">Track company performance, manage certificates, and monitor feedback.</p>
+            <p className="text-slate-500 font-medium">{isRegionalSPOC ? "Manage certificates for your region." : "Track company performance, manage certificates, and monitor feedback."}</p>
           </div>
+          {!isRegionalSPOC && (
           <div className="flex gap-2 p-1.5 bg-slate-100 rounded-2xl shadow-inner">
             {[
               { id: "Leaderboard", label: "Leaderboard", icon: Trophy },
@@ -524,9 +532,10 @@ const SPOCDashboardView = () => {
               </button>
             ))}
           </div>
+          )}
         </div>
 
-        {reportsTab === "Leaderboard" && (
+        {(!isRegionalSPOC && reportsTab === "Leaderboard") && (
           <div className="space-y-10">
             <div className="px-5 py-3 bg-slate-50 rounded-2xl border border-slate-100 inline-flex items-center gap-2 mb-2">
               <div className="w-2 h-2 rounded-full bg-tata-cyan" />
@@ -608,7 +617,7 @@ const SPOCDashboardView = () => {
           </div>
         )}
 
-        {reportsTab === "Certificates" && (
+        {(isRegionalSPOC || reportsTab === "Certificates") && (
           <div className="space-y-10">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
               <div>
@@ -687,7 +696,7 @@ const SPOCDashboardView = () => {
           </div>
         )}
 
-        {reportsTab === "Feedback" && (
+        {(!isRegionalSPOC && reportsTab === "Feedback") && (
           <div className="space-y-10">
             <div className="bg-white rounded-3xl p-10 shadow-sm border border-slate-100 overflow-hidden">
               <div className="flex justify-between items-center mb-10">
@@ -1344,8 +1353,23 @@ const SPOCDashboardView = () => {
             </div>
             <div>
               <p className="text-sm font-semibold text-slate-900 tracking-tight">{spoc.firstName} {spoc.lastName}</p>
-              <p className="text-xs font-bold text-tata-blue uppercase tracking-widest">Corporate SPOC</p>
+              <p className="text-xs font-bold text-tata-blue uppercase tracking-widest">{spoc.tier}</p>
             </div>
+          </div>
+          {/* Persona toggle for prototype */}
+          <div className="flex mt-3 p-1 bg-slate-100 rounded-xl">
+            <button 
+              onClick={() => setIsRegionalSPOC(false)}
+              className={`flex-1 px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all cursor-pointer ${!isRegionalSPOC ? "bg-white text-tata-blue shadow-sm" : "text-slate-400 hover:text-slate-600"}`}
+            >
+              Corporate
+            </button>
+            <button 
+              onClick={() => setIsRegionalSPOC(true)}
+              className={`flex-1 px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all cursor-pointer ${isRegionalSPOC ? "bg-white text-tata-blue shadow-sm" : "text-slate-400 hover:text-slate-600"}`}
+            >
+              Regional
+            </button>
           </div>
         </div>
         {(user?.role?.includes("spoc") || user?.role === "corporate_spoc") && (
@@ -1472,13 +1496,17 @@ const SPOCDashboardView = () => {
             </div>
 
             {/* ── KPI Stat Tiles (4-col) ──────────────────────────────── */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-              {[
+            <div className={`grid grid-cols-1 md:grid-cols-2 ${isRegionalSPOC ? "lg:grid-cols-3" : "lg:grid-cols-4"} gap-8 mb-12`}>
+              {(isRegionalSPOC ? [
+                { label: "TVW Events", value: spoc.stats.tvwEvents, sub: "In my geography", icon: CalendarDays, color: "text-purple-600", bg: "bg-purple-50", border: "border-purple-100" },
+                { label: "Volunteers at Location", value: spoc.stats.totalVolunteers, sub: (spoc as any).geography || "My region", icon: Users, color: "text-tata-blue", bg: "bg-blue-50", border: "border-blue-100" },
+                { label: "Open Opportunities", value: OPEN_PROENGAGE_PROJECTS.length, sub: "Available now", icon: Sparkles, color: "text-emerald-600", bg: "bg-emerald-50", border: "border-emerald-100" },
+              ] : [
                 { label: "ProEngagers This Edition", value: spoc.stats.activeProEngage, sub: "Current edition", icon: Briefcase, color: "text-tata-blue", bg: "bg-blue-50", border: "border-blue-100" },
                 { label: "Hours Added", value: "1,240", sub: "Volunteer + NGO reported", icon: Clock, color: "text-tata-cyan", bg: "bg-cyan-50", border: "border-cyan-100" },
                 { label: "My Total SPOCs", value: SPOC_DIRECTORY.length, sub: "Across my company", icon: Users, color: "text-purple-600", bg: "bg-purple-50", border: "border-purple-100" },
                 { label: "Company Opportunities", value: OPEN_PROENGAGE_PROJECTS.length, sub: "Open right now", icon: Sparkles, color: "text-emerald-600", bg: "bg-emerald-50", border: "border-emerald-100" },
-              ].map((stat, i) => (
+              ]).map((stat, i) => (
                 <motion.div 
                   key={i}
                   initial={{ opacity: 0, y: 20 }}
@@ -1506,11 +1534,14 @@ const SPOCDashboardView = () => {
 
             {/* ── Quick Actions Strip ─────────────────────────────────── */}
             <div className="flex gap-4 mb-12">
-              {[
+              {(isRegionalSPOC ? [
+                { label: "Download campaign kit", icon: Download, target: "spoc-section-campaign-kit" },
+                { label: "Post TVW event", icon: CalendarDays, target: "spoc-section-tvw" },
+              ] : [
                 { label: "Download campaign kit", icon: Download, target: "spoc-section-campaign-kit" },
                 { label: "Share project list", icon: Share2, target: "spoc-section-proengage" },
                 { label: "View leaderboard", icon: Trophy, target: "spoc-section-reports" },
-              ].map((action) => (
+              ]).map((action) => (
                 <button
                   key={action.label}
                   onClick={() => {
@@ -1529,20 +1560,24 @@ const SPOCDashboardView = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
             {/* Left col-span-2 — main sections */}
             <div className="lg:col-span-2 space-y-12">
-              {/* ProEngage Oversight */}
-              <section id="spoc-section-proengage" className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 md:p-8">
-                <ProEngageOversightPanel />
-              </section>
+              {/* ProEngage Oversight (Corporate only) */}
+              {!isRegionalSPOC && (
+                <section id="spoc-section-proengage" className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 md:p-8">
+                  <ProEngageOversightPanel />
+                </section>
+              )}
 
               {/* TVW Management */}
               <section id="spoc-section-tvw" className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 md:p-8">
                 <TVWManagementPanel />
               </section>
 
-              {/* SPOC Directory */}
-              <section id="spoc-section-directory" className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 md:p-8">
-                <SPOCDirectoryPanel />
-              </section>
+              {/* SPOC Directory (Corporate only) */}
+              {!isRegionalSPOC && (
+                <section id="spoc-section-directory" className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 md:p-8">
+                  <SPOCDirectoryPanel />
+                </section>
+              )}
             </div>
 
             {/* Right col-span-1 — sidebar previews */}
@@ -1581,8 +1616,8 @@ const SPOCDashboardView = () => {
                 </button>
               </div>
 
-              {/* Leaderboard Preview (PE only) */}
-              {IS_PE_SEASON && (
+              {/* Leaderboard Preview (PE only, Corporate only) */}
+              {IS_PE_SEASON && !isRegionalSPOC && (
                 <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 md:p-8">
                   <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Rankings</p>
                   <h3 className="text-xl font-black text-slate-900 tracking-tight mb-6">Leaderboard</h3>
