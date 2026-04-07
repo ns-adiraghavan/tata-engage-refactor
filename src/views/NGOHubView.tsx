@@ -15,7 +15,7 @@ const NGOHubView = () => {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
             <div>
               <p className="text-xs font-bold text-white/50 uppercase tracking-[0.3em] mb-2">Lead Partner · NGO</p>
-              <h1 className="text-4xl md:text-5xl font-bold mb-2">Welcome, {ngoData.firstName ?? "Anjali"} 👋</h1>
+              <h1 className="font-serif text-4xl md:text-5xl text-white leading-tight mb-2">Welcome, {ngoData.firstName ?? "Anjali"} 👋</h1>
               <p className="text-xl opacity-80">{ngoData.organization}</p>
             </div>
             <div className="flex flex-col gap-4 items-end">
