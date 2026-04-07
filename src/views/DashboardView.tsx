@@ -370,7 +370,7 @@ const DashboardView = () => {
           )}
 
           {/* TVW Section */}
-          {isTVWActive ? (
+          {!IS_PE_SEASON ? (
             <section>
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-xl font-bold text-zinc-900">Upcoming TVW Events</h2>
