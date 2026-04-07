@@ -46,7 +46,7 @@ const LoginView = () => {
             onClick={() => {
               setIsLoggedIn(true);
               setUser(PRIYA_SHARMA);
-              navigate("dashboard");
+              navigate("volunteer-hub");
               triggerToast("Login Successful! Welcome back, Priya.");
             }}
             className="w-full flex items-center justify-center gap-3 bg-[#003580] text-white py-4 rounded-2xl font-bold hover:bg-[#002a66] transition-all mb-6 cursor-pointer shadow-lg shadow-blue-900/20"
