@@ -1166,6 +1166,8 @@ const SPOCDashboardView = () => {
   };
 
   // ─── TVW Management Panel ────────────────────────────────────────────
+  const isTVWActive = false; // Mock: set to false for post-TVW demo
+
   const TVWManagementPanel = () => {
     const filteredEvents = tvwEvents.filter(e => {
       const matchesRegion = tvwFilters.region === "All" || e.region === tvwFilters.region;
@@ -1181,10 +1183,25 @@ const SPOCDashboardView = () => {
             <h2 className="text-xl font-black text-slate-900 tracking-tight mb-6">TVW Management</h2>
             <p className="text-slate-500 font-medium">Manage TCS's participation in Tata Volunteering Week.</p>
           </div>
-          <button onClick={() => setShowCreateEvent(true)} className="group px-8 py-4 bg-zinc-900 text-white rounded-2xl font-bold text-sm flex items-center gap-3 hover:bg-tata-blue transition-all shadow-xl shadow-zinc-900/10 cursor-pointer active:scale-95">
-            <Plus size={18} className="group-hover:rotate-90 transition-transform" /> Create New Event
-          </button>
+          {isTVWActive && (
+            <button onClick={() => setShowCreateEvent(true)} className="group px-8 py-4 bg-zinc-900 text-white rounded-2xl font-bold text-sm flex items-center gap-3 hover:bg-tata-blue transition-all shadow-xl shadow-zinc-900/10 cursor-pointer active:scale-95">
+              <Plus size={18} className="group-hover:rotate-90 transition-transform" /> Create New Event
+            </button>
+          )}
         </div>
+
+        {/* Post-TVW Banner */}
+        {!isTVWActive && (
+          <div className="flex items-center gap-4 p-5 bg-amber-50 rounded-2xl border border-amber-100">
+            <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center shrink-0">
+              <Lock size={18} />
+            </div>
+            <div>
+              <p className="text-sm font-bold text-amber-800">TVW 2025 has closed</p>
+              <p className="text-xs text-amber-600">Events are now read-only. You can still submit Vibe updates for completed events.</p>
+            </div>
+          </div>
+        )}
 
         {/* Filters */}
         <div className="flex flex-wrap items-center gap-6 p-6 bg-white rounded-3xl border border-slate-100 shadow-sm">
@@ -1239,6 +1256,11 @@ const SPOCDashboardView = () => {
                       {event.vibeStatus && (
                         <span className="text-[10px] font-bold bg-purple-50 text-purple-600 px-2 py-0.5 rounded-full uppercase tracking-widest border border-purple-100">
                           {event.vibeStatus}
+                        </span>
+                      )}
+                      {!isTVWActive && (
+                        <span className="text-[10px] font-bold bg-slate-100 text-slate-400 px-2 py-0.5 rounded-full uppercase tracking-widest">
+                          Read-only
                         </span>
                       )}
                     </div>
@@ -1350,26 +1372,39 @@ const SPOCDashboardView = () => {
                                 </div>
                               </div>
                               <div className="flex items-center gap-4">
-                                <div className="relative">
-                                  <input 
-                                    type="number" 
-                                    className="w-20 pl-3 pr-8 py-2 text-xs font-bold border border-slate-200 rounded-2xl focus:ring-2 focus:ring-tata-blue/10 outline-none"
-                                    defaultValue={v.hours || event.volunteeringHours}
-                                    onBlur={(e) => handleUpdateHours(event.id, v.id, Number(e.target.value))}
-                                  />
-                                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400">h</span>
-                                </div>
-                                {v.confirmed ? (
-                                  <div className="w-8 h-8 rounded-full bg-green-50 text-green-500 flex items-center justify-center">
-                                    <Check size={16} />
-                                  </div>
+                                {isTVWActive ? (
+                                  <>
+                                    <div className="relative">
+                                      <input 
+                                        type="number" 
+                                        className="w-20 pl-3 pr-8 py-2 text-xs font-bold border border-slate-200 rounded-2xl focus:ring-2 focus:ring-tata-blue/10 outline-none"
+                                        defaultValue={v.hours || event.volunteeringHours}
+                                        onBlur={(e) => handleUpdateHours(event.id, v.id, Number(e.target.value))}
+                                      />
+                                      <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400">h</span>
+                                    </div>
+                                    {v.confirmed ? (
+                                      <div className="w-8 h-8 rounded-full bg-green-50 text-green-500 flex items-center justify-center">
+                                        <Check size={16} />
+                                      </div>
+                                    ) : (
+                                      <button 
+                                        onClick={() => handleUpdateHours(event.id, v.id, event.volunteeringHours)}
+                                        className="px-4 py-2 bg-tata-blue text-white rounded-lg text-xs font-semibold uppercase tracking-widest hover:bg-blue-900 transition-all cursor-pointer"
+                                      >
+                                        Confirm
+                                      </button>
+                                    )}
+                                  </>
                                 ) : (
-                                  <button 
-                                    onClick={() => handleUpdateHours(event.id, v.id, event.volunteeringHours)}
-                                    className="px-4 py-2 bg-tata-blue text-white rounded-lg text-xs font-semibold uppercase tracking-widest hover:bg-blue-900 transition-all cursor-pointer"
-                                  >
-                                    Confirm
-                                  </button>
+                                  <div className="flex items-center gap-3">
+                                    <span className="text-sm font-bold text-slate-700">{v.hours || event.volunteeringHours}h</span>
+                                    {v.confirmed && (
+                                      <div className="w-8 h-8 rounded-full bg-green-50 text-green-500 flex items-center justify-center">
+                                        <Check size={16} />
+                                      </div>
+                                    )}
+                                  </div>
                                 )}
                               </div>
                             </div>
