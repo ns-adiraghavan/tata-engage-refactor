@@ -13,8 +13,7 @@ const DashboardView = () => {
   const navigate = useAppNavigate();
   const { projectStatus, setProjectStatus, showPulseCheck, setShowPulseCheck, pulseCheckSubmitted, setPulseCheckSubmitted, setShowFeedbackForm, isDRActive, setDrResponses, hasSubmittedAvailability, setHasSubmittedAvailability, drDeploymentLog, isDRClosed, triggerToast } = useAppContext();
   const [pulseText, setPulseText] = useState("");
-  const isTVWActive = false;
-  const isProEngageActive = true;
+  const firstTvwEvent = TVW_EVENTS[0];
 
   const handlePulseSubmit = () => {
     setPulseCheckSubmitted(true);
