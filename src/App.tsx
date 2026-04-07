@@ -170,14 +170,6 @@ export default function App() {
         <Navbar
           onNavigate={navigate}
           isLoggedIn={isLoggedIn}
-          onToggleMenu={() => setIsMenuOpen(!isMenuOpen)}
-          user={user}
-        />
-        <MegaMenu
-          isOpen={isMenuOpen}
-          onClose={() => setIsMenuOpen(false)}
-          isLoggedIn={isLoggedIn}
-          onNavigate={navigate}
           onLogout={onLogout}
           user={user}
         />
