@@ -20,10 +20,6 @@ const DashboardView = () => {
     setTimeout(() => setShowPulseCheck(false), 2000);
   };
 
-  const copyReferralLink = () => {
-    navigator.clipboard.writeText("https://tataengage.com/refer/priya123");
-    triggerToast("Referral link copied to clipboard!");
-  };
 
   return (
     <div className="pt-24 pb-20 bg-slate-50 min-h-screen">
