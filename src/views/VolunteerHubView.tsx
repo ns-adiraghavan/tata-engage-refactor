@@ -64,6 +64,27 @@ const VolunteerHubView = () => {
                   ? "ProEngage is open — browse projects matched to your skills."
                   : "Stay connected — TVW is coming soon."}
               </p>
+              {/* Skills + Interests chips */}
+              {((user.skills && user.skills.length > 0) || (user.interests && user.interests.length > 0)) && (
+                <div className="flex flex-wrap gap-2 mt-3 mb-2">
+                  {user.skills && user.skills.length > 0 && (
+                    <>
+                      <span className="text-xs text-white/40 uppercase tracking-widest mr-2">Skills</span>
+                      {user.skills.map((skill: string) => (
+                        <span key={skill} className="bg-white/15 border border-white/20 rounded-full px-3 py-1 text-xs text-white font-semibold">{skill}</span>
+                      ))}
+                    </>
+                  )}
+                  {user.interests && user.interests.length > 0 && (
+                    <div className="flex flex-wrap gap-2 w-full">
+                      <span className="text-xs text-white/40 uppercase tracking-widest mr-2">Interests</span>
+                      {user.interests.map((interest: string) => (
+                        <span key={interest} className="bg-tata-cyan/20 border border-tata-cyan/30 rounded-full px-3 py-1 text-xs text-white font-semibold">{interest}</span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
               {/* Badges strip */}
               {user.badges && user.badges.length > 0 && (
                 <div className="flex flex-wrap gap-2 mt-3">
