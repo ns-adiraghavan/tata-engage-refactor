@@ -6,6 +6,21 @@ import { FileText, Mail, MessageSquare, Calendar, Briefcase, Zap } from "lucide-
 
 const TESTIMONIAL_BG = ['bg-tata-blue', 'bg-violet-700', 'bg-emerald-800', 'bg-amber-700'];
 
+const VIBE_STORIES = [
+  { title: "Mumbai Coastal Cleanup", img: "https://images.unsplash.com/photo-1618477461853-cf6ed80faba5?auto=format&fit=crop&q=80&w=800", date: "2 days ago" },
+  { title: "Teaching Coding in Rural Schools", img: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=800", date: "4 days ago" },
+  { title: "Sustainable Farming Workshop", img: "https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad?auto=format&fit=crop&q=80&w=800", date: "1 week ago" },
+  { title: "Blood Donation Camp - Jamshedpur", img: "https://images.unsplash.com/photo-1615461066841-6116ecaaba7f?auto=format&fit=crop&q=80&w=800", date: "1 week ago" },
+  { title: "Digital Literacy for All", img: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&q=80&w=800", date: "2 weeks ago" },
+  { title: "Green Earth Initiative", img: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=800", date: "2 weeks ago" },
+];
+
+const PROGRAMME_DESCRIPTIONS: Record<string, string> = {
+  "TVW": "Events, volunteering week, team activities",
+  "ProEngage": "Skill-based projects matched to you",
+  "Disaster Response": "Emergency deployment & relief",
+};
+
 const VolunteerHubView = () => {
   const { user } = useAuth();
   const navigate = useAppNavigate();
@@ -27,6 +42,7 @@ const VolunteerHubView = () => {
     { num: user.history?.length ?? 0, label: "Projects completed", sub: "All time" },
     { num: (user.hoursVolunteered != null ? `${user.hoursVolunteered}h` : "48h"), label: "Hours volunteered", sub: "This edition" },
     { num: user.badges?.length ?? 0, label: "Badges earned", sub: "All time" },
+    { num: user.history?.length ?? 1, label: "Applications", sub: "This edition" },
   ];
 
   return (
@@ -43,7 +59,6 @@ const VolunteerHubView = () => {
               </p>
               <h1 className="text-3xl md:text-4xl font-black tracking-tight">{user.firstName} 👋</h1>
               <p className="text-white/60 text-sm mt-1">{user.company} · {user.designation}</p>
-              {/* CHANGE 4 — PE-aware subtext */}
               <p className="text-sm text-white/70 mt-3">
                 {IS_PE_SEASON
                   ? "ProEngage is open — browse projects matched to your skills."
@@ -62,20 +77,16 @@ const VolunteerHubView = () => {
             </div>
             <div className="flex flex-col gap-3">
               <div className="flex flex-wrap gap-3">
-                <button onClick={() => navigate("my-applications")} className="px-5 py-2.5 bg-white/10 hover:bg-white/20 rounded-xl text-sm font-semibold border border-white/10 transition-all cursor-pointer">My Applications</button>
+                <button onClick={() => navigate("dashboard")} className="px-5 py-2.5 bg-white/10 hover:bg-white/20 rounded-xl text-sm font-semibold border border-white/10 transition-all cursor-pointer">My Activity</button>
                 <button onClick={() => navigate("profile")} className="px-5 py-2.5 bg-white/10 hover:bg-white/20 rounded-xl text-sm font-semibold border border-white/10 transition-all cursor-pointer">Profile</button>
                 <button onClick={() => navigate("dashboard")} className="px-5 py-2.5 bg-white/10 hover:bg-white/20 rounded-xl text-sm font-semibold border border-white/10 transition-all cursor-pointer">My Dashboard →</button>
                 {isProEngageActive && (
                   <button onClick={() => navigate("proengage")} className="px-5 py-2.5 bg-white text-[#003580] hover:bg-white/90 rounded-xl text-sm font-bold transition-all cursor-pointer shadow-sm">Find Projects</button>
                 )}
               </div>
-              {/* CHANGE 5 — Back to dashboard link */}
-              <button onClick={() => navigate("dashboard")} className="text-sm text-white/70 hover:text-white underline cursor-pointer text-left">
-                View my dashboard →
-              </button>
             </div>
           </div>
-          {/* Impact strip — CHANGE 2: vertical card pattern */}
+          {/* Impact strip */}
           <div className="mt-8 pt-6 border-t border-white/10 flex gap-6">
             {stats.map((stat) => (
               <div key={stat.label} className="bg-white border border-zinc-100 rounded-2xl p-5 shadow-sm">
@@ -87,7 +98,7 @@ const VolunteerHubView = () => {
           </div>
         </div>
 
-        {/* ═══ PROGRAMME TILES — CHANGE 1 ═══ */}
+        {/* ═══ PROGRAMME TILES ═══ */}
         <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4">Programmes</h3>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
           {programmes.map((p) => (
@@ -100,6 +111,7 @@ const VolunteerHubView = () => {
                 <p.Icon size={22} className={p.iconClass} />
               </div>
               <p className="text-sm font-bold text-slate-900">{p.label}</p>
+              <p className="text-xs text-slate-400 mt-1">{PROGRAMME_DESCRIPTIONS[p.label]}</p>
             </button>
           ))}
         </div>
@@ -126,8 +138,16 @@ const VolunteerHubView = () => {
           );
         })()}
 
-        {/* ═══ TESTIMONIALS — CHANGE 3 ═══ */}
-        <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4">Voices from the community</h3>
+        {/* ═══ TESTIMONIAL SEPARATOR BAND ═══ */}
+        <div className="bg-slate-100 rounded-2xl p-5 flex items-center gap-4 mb-6">
+          <div className="w-1 h-8 bg-tata-cyan rounded-full" />
+          <div>
+            <p className="text-sm font-bold text-slate-700">Volunteer voices</p>
+            <p className="text-xs text-slate-400">What our community is saying</p>
+          </div>
+        </div>
+
+        {/* ═══ TESTIMONIALS SCROLL ═══ */}
         <div className="flex gap-6 overflow-x-auto pb-4 mb-12">
           {COMMUNITY_TESTIMONIALS.map((t, i) => (
             <div key={t.id} className={`min-w-[320px] max-w-sm p-6 rounded-2xl flex-shrink-0 shadow-sm ${TESTIMONIAL_BG[i % TESTIMONIAL_BG.length]}`}>
@@ -142,6 +162,42 @@ const VolunteerHubView = () => {
             </div>
           ))}
         </div>
+
+        {/* ═══ TVW VIBE ═══ */}
+        {!IS_PE_SEASON ? (
+          <div className="mb-12">
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold">TVW Vibe</h3>
+              <div className="flex gap-3">
+                <button className="border border-slate-200 text-slate-600 rounded-lg px-4 py-2 text-xs font-semibold cursor-pointer hover:bg-slate-50">Past Editions</button>
+                <button onClick={() => triggerToast("Story submitted for Admin review!")} className="bg-tata-blue text-white rounded-lg px-4 py-2 text-xs font-semibold cursor-pointer hover:bg-tata-blue/90">Submit Your Story</button>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {VIBE_STORIES.map((story) => (
+                <div key={story.title} className="group cursor-pointer">
+                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-3">
+                    <img src={story.img} alt={story.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  </div>
+                  <h3 className="text-sm font-bold text-zinc-900 group-hover:text-tata-blue transition-colors">{story.title}</h3>
+                  <p className="text-xs text-slate-400 uppercase tracking-wider mt-1">{story.date}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="mb-12">
+            <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4">TVW Vibe</h3>
+            <div className="bg-white border border-zinc-100 rounded-2xl p-5 shadow-sm flex items-center justify-between">
+              <div>
+                <p className="font-semibold text-slate-900">TVW Vibe</p>
+                <p className="text-sm text-slate-400">Community stories from the last edition</p>
+              </div>
+              <button onClick={() => navigate("tvw")} className="text-sm text-tata-blue font-semibold hover:underline cursor-pointer">Browse stories →</button>
+            </div>
+          </div>
+        )}
 
         {/* ═══ REFER A COLLEAGUE ═══ */}
         <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4">Refer a Colleague</h3>
