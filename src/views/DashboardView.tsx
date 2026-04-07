@@ -330,7 +330,7 @@ const DashboardView = () => {
 
         <div className="space-y-8 mb-12">
           {/* AI Recommendations — PE season only */}
-          {isProEngageActive && (
+          {IS_PE_SEASON && (
             <section className="bg-white rounded-3xl p-8 shadow-sm border border-zinc-100">
               <div className="flex items-center gap-2 mb-6">
                 <div className="w-8 h-8 rounded-lg bg-tata-cyan/10 flex items-center justify-center text-tata-cyan">
