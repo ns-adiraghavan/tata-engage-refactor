@@ -441,7 +441,7 @@ const DashboardView = () => {
                 <h3 className="font-bold text-zinc-700 mb-1">TVW 2024 highlights</h3>
                 <p className="text-sm text-zinc-500">View photos and stories from the last edition</p>
               </div>
-              <button onClick={() => navigate("tvw-vibe")} className="text-sm font-bold text-tata-blue hover:underline cursor-pointer flex items-center gap-1">
+              <button onClick={() => navigate("tvw")} className="text-sm font-bold text-tata-blue hover:underline cursor-pointer flex items-center gap-1">
                 View highlights <ChevronRight size={16} />
               </button>
             </section>
