@@ -392,8 +392,8 @@ const DashboardView = () => {
                           : "Recommended for you";
 
                   return (
-                    <div key={i} className="p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:border-tata-cyan transition-colors cursor-pointer group">
-                      <div className="text-xs font-bold text-tata-cyan uppercase tracking-widest mb-2">{item.match}</div>
+                    <div key={i} className="bg-white border-l-4 border-violet-400 border border-slate-100 rounded-2xl p-4 hover:shadow-sm transition-all cursor-pointer group">
+                      <div className="text-xs font-bold text-violet-600 uppercase tracking-widest mb-2">{item.match}</div>
                       <h4 className="font-bold text-sm mb-1 group-hover:text-tata-blue transition-colors">{item.title}</h4>
                       <p className="text-xs text-slate-500 mb-2">{item.org}</p>
                       <span className="inline-block px-2.5 py-0.5 rounded-full bg-purple-50 text-purple-700 text-xs">
