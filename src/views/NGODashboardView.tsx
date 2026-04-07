@@ -261,22 +261,14 @@ const NGODashboardView = () => {
             <div className="glass rounded-3xl p-8 shadow-xl">
               <div className="flex justify-between items-center mb-8">
                 <h3 className="text-2xl font-bold text-tata-blue">Project Management</h3>
-                <div className="flex gap-2">
-                  <button 
-                    onClick={() => setActiveTab("projects")}
-                    className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${activeTab === "projects" ? "bg-tata-blue text-white" : "bg-slate-100 text-slate-500 hover:bg-slate-200"}`}
-                  >
-                    Projects
-                  </button>
-                  <button 
-                    onClick={() => setActiveTab("applications")}
-                    className={`px-4 py-2 rounded-lg text-sm font-bold transition-all flex items-center gap-2 ${activeTab === "applications" ? "bg-tata-blue text-white" : "bg-slate-100 text-slate-500 hover:bg-slate-200"}`}
-                  >
-                    Applications <span className="bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">{ANJALI_MEHTA.pendingApplications}</span>
-                  </button>
-                </div>
+                {ngoData.pendingApplications > 0 && (
+                  <span className="flex items-center gap-2 text-xs font-bold text-amber-700 bg-amber-50 border border-amber-100 px-3 py-1.5 rounded-full">
+                    <span className="w-4 h-4 bg-red-500 text-white flex items-center justify-center rounded-full text-[10px]">{ngoData.pendingApplications}</span>
+                    Pending applications
+                  </span>
+                )}
               </div>
-              {activeTab === "projects" ? (
+              <>
               <AnimatePresence mode="wait">
                 {/* ─── LEVEL 1: Edition list ─── */}
                 {!drillEdition && (
