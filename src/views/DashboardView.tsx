@@ -9,7 +9,7 @@ import { useAppNavigate } from "@/hooks/useAppNavigate";
 const DashboardView = () => {
   const { user } = useAuth();
   const navigate = useAppNavigate();
-  const { projectStatus, setProjectStatus, showPulseCheck, setShowPulseCheck, pulseCheckSubmitted, setPulseCheckSubmitted, setShowFeedbackForm, referralCount, isDRActive, setDrResponses, hasSubmittedAvailability, setHasSubmittedAvailability, drDeploymentLog, isDRClosed, triggerToast } = useAppContext();
+  const { projectStatus, setProjectStatus, showPulseCheck, setShowPulseCheck, pulseCheckSubmitted, setPulseCheckSubmitted, setShowFeedbackForm, isDRActive, setDrResponses, hasSubmittedAvailability, setHasSubmittedAvailability, drDeploymentLog, isDRClosed, triggerToast } = useAppContext();
   const [pulseText, setPulseText] = useState("");
   const isTVWActive = false;
   const isProEngageActive = true;
