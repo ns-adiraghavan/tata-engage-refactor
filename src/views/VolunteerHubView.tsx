@@ -138,13 +138,11 @@ const VolunteerHubView = () => {
           );
         })()}
 
-        {/* ═══ TESTIMONIAL SEPARATOR BAND ═══ */}
-        <div className="bg-slate-100 rounded-2xl p-5 flex items-center gap-4 mb-6">
-          <div className="w-1 h-8 bg-tata-cyan rounded-full" />
-          <div>
-            <p className="text-sm font-bold text-slate-700">Volunteer voices</p>
-            <p className="text-xs text-slate-400">What our community is saying</p>
-          </div>
+        {/* ═══ TESTIMONIAL SEPARATOR ═══ */}
+        <div className="flex items-center gap-4 mb-6 mt-2">
+          <div className="w-full h-px bg-slate-200" />
+          <span className="text-xs font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap px-3">More voices</span>
+          <div className="w-full h-px bg-slate-200" />
         </div>
 
         {/* ═══ TESTIMONIALS SCROLL ═══ */}
