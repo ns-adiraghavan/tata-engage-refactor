@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Linkedin, Award, Info, Star, Save, History, Download, X, Plus } from "lucide-react";
 import type { View } from "@/types";
+import { MOCK_FAMILY_MEMBERS } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
 import { useAuth } from "@/context/AuthContext";
 
