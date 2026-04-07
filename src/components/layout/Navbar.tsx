@@ -44,6 +44,13 @@ const Navbar = ({
       ? "admin-dashboard"
       : "dashboard";
 
+  const hubView = (): View =>
+    user?.role === "ngo"
+      ? "ngo-hub"
+      : user?.role === "corporate_spoc"
+      ? "spoc-hub"
+      : "volunteer-hub";
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50">
       {/* Top strip — ProEngage teal accent */}
@@ -139,7 +146,7 @@ const Navbar = ({
                         <User size={16} /> Profile
                       </button>
                       <button
-                        onClick={() => { onNavigate(dashboardView()); setDropdownOpen(false); }}
+                        onClick={() => { onNavigate(hubView()); setDropdownOpen(false); }}
                         className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-zinc-700 hover:bg-zinc-50 transition-colors cursor-pointer"
                       >
                         <LayoutDashboard size={16} /> My Hub
