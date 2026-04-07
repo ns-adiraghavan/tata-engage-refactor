@@ -46,7 +46,7 @@ const LoginView = () => {
             onClick={() => {
               setIsLoggedIn(true);
               setUser(PRIYA_SHARMA);
-              navigate("dashboard");
+              navigate("volunteer-hub");
               triggerToast("Login Successful! Welcome back, Priya.");
             }}
             className="w-full flex items-center justify-center gap-3 bg-[#003580] text-white py-4 rounded-2xl font-bold hover:bg-[#002a66] transition-all mb-6 cursor-pointer shadow-lg shadow-blue-900/20"
@@ -59,7 +59,7 @@ const LoginView = () => {
             onClick={() => {
               setIsLoggedIn(true);
               setUser(ROHAN_DESAI);
-              navigate("spoc-dashboard");
+              navigate("spoc-hub");
               triggerToast("Login Successful! Welcome back, Rohan.");
             }}
             className="w-full flex items-center justify-center gap-3 bg-[#00b4d8] text-tata-blue py-4 rounded-2xl font-bold hover:bg-[#00a0c2] transition-all mb-6 cursor-pointer shadow-lg shadow-cyan-500/20"
@@ -72,7 +72,7 @@ const LoginView = () => {
             onClick={() => {
               setIsLoggedIn(true);
               setUser(ANJALI_MEHTA);
-              navigate("ngo-dashboard");
+              navigate("ngo-hub");
               triggerToast("Login Successful! Welcome back, Anjali.");
             }}
             className="w-full flex items-center justify-center gap-3 bg-emerald-600 text-white py-4 rounded-2xl font-bold hover:bg-emerald-700 transition-all mb-6 cursor-pointer shadow-lg shadow-emerald-600/20"

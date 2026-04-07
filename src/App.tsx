@@ -41,6 +41,9 @@ import DRAvailabilityForm from "@/views/DRAvailabilityForm";
 import DRConfirmationView from "@/views/DRConfirmationView";
 import SPOCDashboardView from "@/views/SPOCDashboardView";
 import AdminDashboardView from "@/views/AdminDashboardView";
+import VolunteerHubView from "@/views/VolunteerHubView";
+import NGOHubView from "@/views/NGOHubView";
+import SPOCHubView from "@/views/SPOCHubView";
 import NotFound from "@/pages/NotFound";
 
 export default function App() {
@@ -207,6 +210,9 @@ export default function App() {
                 <Route path="/disaster-response/confirmation" element={<ProtectedRoute><DRConfirmationView /></ProtectedRoute>} />
                 <Route path="/spoc/dashboard" element={<ProtectedRoute><SPOCDashboardView /></ProtectedRoute>} />
                 <Route path="/admin/dashboard" element={<ProtectedRoute><AdminDashboardView /></ProtectedRoute>} />
+                <Route path="/hub" element={<ProtectedRoute><VolunteerHubView /></ProtectedRoute>} />
+                <Route path="/ngo/hub" element={<ProtectedRoute><NGOHubView /></ProtectedRoute>} />
+                <Route path="/spoc/hub" element={<ProtectedRoute><SPOCHubView /></ProtectedRoute>} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </motion.div>
