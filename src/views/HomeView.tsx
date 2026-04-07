@@ -8,13 +8,13 @@ const HomeView = () => {
   return (
     <div>
       {/* ═══ HERO ═══ */}
-      <section className="min-h-screen bg-white pt-32 px-6 md:px-12">
+      <section className="min-h-[80vh] bg-[#fafaf8] pt-32 px-6 md:px-12">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="max-w-xl">
-            <span className="inline-block bg-blue-50 text-tata-blue text-xs font-semibold px-4 py-1.5 rounded-lg border border-blue-100 mb-6">
+            <span className="inline-block bg-tata-blue text-white text-xs font-semibold px-4 py-1.5 rounded-lg mb-6">
               Tata Group Volunteering
             </span>
-            <h1 className="text-5xl font-bold text-zinc-900 leading-tight mb-6">
+            <h1 className="text-6xl md:text-7xl font-black text-zinc-900 leading-[1.05] mb-6">
               Volunteer. Connect. Impact.
             </h1>
             <p className="text-lg text-zinc-500 mb-10 leading-relaxed">
@@ -34,7 +34,7 @@ const HomeView = () => {
           </div>
           <div className="hidden lg:block">
             <img
-              src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&q=80&w=900"
+              src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&q=80&w=900"
               alt="Volunteers collaborating outdoors"
               className="rounded-2xl object-cover w-full h-[520px]"
               referrerPolicy="no-referrer"
@@ -43,8 +43,10 @@ const HomeView = () => {
         </div>
       </section>
 
+      <div className="h-12 bg-gradient-to-b from-[#fafaf8] to-tata-blue" />
+
       {/* ═══ IMPACT METRICS ═══ */}
-      <section className="bg-tata-blue py-10">
+      <section className="bg-tata-blue py-12">
         <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-center divide-x divide-white/20">
           {[
             { num: "50,000+", label: "Volunteers" },
@@ -61,7 +63,7 @@ const HomeView = () => {
       </section>
 
       {/* ═══ HOW IT WORKS ═══ */}
-      <section className="bg-zinc-50 py-24 px-6 md:px-12">
+      <section className="bg-white py-16 px-6 md:px-12">
         <div className="max-w-5xl mx-auto">
           <p className="text-xs font-semibold tracking-widest uppercase text-zinc-400 text-center mb-3">
             How It Works
@@ -69,40 +71,31 @@ const HomeView = () => {
           <h2 className="text-3xl font-bold text-zinc-900 text-center mb-16">
             Three steps to start volunteering
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             {[
               {
-                step: 1,
                 icon: UserPlus,
                 title: "Register",
                 desc: "Create your profile in minutes using your Tata email or personal account.",
                 cardClass: "bg-blue-50 border border-blue-100",
-                circleClass: "bg-tata-blue text-white",
                 iconClass: "text-tata-blue",
               },
               {
-                step: 2,
                 icon: Search,
                 title: "Find a Project",
                 desc: "Browse ProEngage skill-based projects or sign up for TVW events near you.",
                 cardClass: "bg-violet-50 border border-violet-100",
-                circleClass: "bg-violet-600 text-white",
                 iconClass: "text-violet-600",
               },
               {
-                step: 3,
                 icon: Award,
                 title: "Make an Impact",
                 desc: "Complete the project, earn a certificate, and track your volunteering journey.",
                 cardClass: "bg-emerald-50 border border-emerald-100",
-                circleClass: "bg-emerald-600 text-white",
                 iconClass: "text-emerald-600",
               },
-            ].map((s) => (
-              <div key={s.step} className={`${s.cardClass} rounded-2xl p-8 text-center`}>
-                <div className={`w-8 h-8 ${s.circleClass} rounded-full text-sm font-bold flex items-center justify-center mb-4 mx-auto`}>
-                  {s.step}
-                </div>
+            ].map((s, i) => (
+              <div key={i} className={`${s.cardClass} rounded-2xl p-6 text-center h-full`}>
                 <div className={`flex justify-center mb-4 ${s.iconClass}`}>
                   <s.icon size={28} />
                 </div>
@@ -115,7 +108,7 @@ const HomeView = () => {
       </section>
 
       {/* ═══ OUR PROGRAMMES ═══ */}
-      <section className="bg-slate-50 py-24 px-6 md:px-12">
+      <section className="bg-slate-50 py-16 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold text-zinc-900 mb-12">Our Programmes</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -124,7 +117,7 @@ const HomeView = () => {
                 title: "TVW",
                 subtitle: "Tata Volunteering Week",
                 desc: "A bi-annual celebration of volunteering where employees across the globe come together.",
-                img: "https://picsum.photos/seed/tata-volunteering/600/400",
+                img: "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&q=80&w=600",
                 accentBar: "bg-tata-cyan",
                 subtitleColor: "text-tata-cyan",
               },
@@ -140,7 +133,7 @@ const HomeView = () => {
                 title: "Disaster Response",
                 subtitle: "Rapid Action",
                 desc: "Coordinated efforts to provide immediate relief and long-term rehabilitation during disasters.",
-                img: "https://picsum.photos/seed/disaster-relief/600/400",
+                img: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&q=80&w=600",
                 accentBar: "bg-red-500",
                 subtitleColor: "text-red-600",
               },
@@ -149,7 +142,6 @@ const HomeView = () => {
                 key={i}
                 className="bg-white rounded-2xl overflow-hidden border border-zinc-100 shadow-sm"
               >
-                <div className={`h-1 w-full ${p.accentBar}`} />
                 <div className="h-44 overflow-hidden">
                   <img
                     src={p.img}
@@ -159,6 +151,7 @@ const HomeView = () => {
                   />
                 </div>
                 <div className="p-6">
+                  <div className={`h-0.5 w-12 rounded-full mb-4 ${p.accentBar}`} />
                   <div className={`text-xs font-bold uppercase tracking-widest ${p.subtitleColor} mb-2`}>
                     {p.subtitle}
                   </div>
