@@ -50,7 +50,7 @@ export default function App() {
   usePageTitle();
 
   const [selectedRole, setSelectedRole] = useState<Role | null>(null);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
   const [isConsentOpen, setIsConsentOpen] = useState(false);
   const [isOrientationDismissed, setIsOrientationDismissed] = useState(false);
   const [showOrientationModal, setShowOrientationModal] = useState(false);
