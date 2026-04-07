@@ -8,6 +8,7 @@ import { useAuth } from "@/context/AuthContext";
 import { useLocation } from "react-router-dom";
 import { IS_PE_SEASON } from "@/data/mockData";
 import RoleToggle from "@/components/shared/RoleToggle";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 const SPOCDashboardView = () => {
   const { user } = useAuth();
@@ -332,7 +333,7 @@ const SPOCDashboardView = () => {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-zinc-100 bg-zinc-50">
-                    {["Name", "Email", "Company", "Project", "Contact", "Status", "Match %", "Nudge", "Cert", "Feedback"].map((h) => (
+                    {["Name", "Email", "Company", "Project", "Contact", "Status", "Hours", "Match %", "Nudge", "Cert", "Feedback"].map((h) => (
                       <th key={h} className="text-left px-4 py-3 text-xs font-semibold text-zinc-400 uppercase tracking-wide">{h}</th>
                     ))}
                   </tr>
@@ -353,6 +354,12 @@ const SPOCDashboardView = () => {
                           v.status === "Completed" ? "bg-purple-50 text-purple-700" :
                           "bg-zinc-100 text-zinc-500"
                         }`}>{v.status}</span>
+                      </td>
+                      <td className="px-4 py-4 text-xs text-zinc-500">
+                        {v.isCurrentEdition
+                          ? <span className="text-zinc-400 italic">~{v.estimatedHours ?? 40}h est.</span>
+                          : <span className="font-semibold text-zinc-700">{v.hours ?? 120}h</span>
+                        }
                       </td>
                       <td className="px-4 py-4 text-xs text-zinc-500">
                         {v.status === "Active" ? `${v.match ?? 0}%` : "—"}
@@ -422,26 +429,60 @@ const SPOCDashboardView = () => {
               </p>
             </div>
             <div className="flex gap-4">
-              <button 
-                onClick={() => {
-                  setToastMessage("Project list link copied to clipboard!");
-                  setShowToast(true);
-                  setTimeout(() => setShowToast(false), 3000);
-                }}
-                className="group px-8 py-4 bg-white border border-slate-200 text-slate-700 rounded-2xl font-bold text-sm flex items-center gap-3 hover:border-tata-blue hover:text-tata-blue transition-all shadow-sm cursor-pointer"
-              >
-                <Copy size={18} className="group-hover:scale-110 transition-transform" /> Copy Link
-              </button>
-              <button 
-                onClick={() => {
-                  setToastMessage("Downloading project list as PDF...");
-                  setShowToast(true);
-                  setTimeout(() => setShowToast(false), 3000);
-                }}
-                className="group px-8 py-4 bg-zinc-900 text-white rounded-2xl font-bold text-sm flex items-center gap-3 hover:bg-tata-blue transition-all shadow-xl shadow-zinc-900/10 cursor-pointer active:scale-95"
-              >
-                <Download size={18} className="group-hover:-translate-y-1 transition-transform" /> Download as PDF
-              </button>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <button 
+                      onClick={() => {
+                        if (!IS_PE_SEASON) return;
+                        setToastMessage("Project list link copied to clipboard!");
+                        setShowToast(true);
+                        setTimeout(() => setShowToast(false), 3000);
+                      }}
+                      disabled={!IS_PE_SEASON}
+                      className={`group px-8 py-4 border rounded-2xl font-bold text-sm flex items-center gap-3 transition-all shadow-sm ${
+                        IS_PE_SEASON 
+                          ? "bg-white border-slate-200 text-slate-700 hover:border-tata-blue hover:text-tata-blue cursor-pointer" 
+                          : "bg-slate-50 border-slate-100 text-slate-300 cursor-not-allowed"
+                      }`}
+                    >
+                      <Copy size={18} className="group-hover:scale-110 transition-transform" /> Copy Link
+                    </button>
+                  </TooltipTrigger>
+                  {!IS_PE_SEASON && (
+                    <TooltipContent>
+                      <p>Available during active ProEngage editions only</p>
+                    </TooltipContent>
+                  )}
+                </Tooltip>
+              </TooltipProvider>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <button 
+                      onClick={() => {
+                        if (!IS_PE_SEASON) return;
+                        setToastMessage("Downloading project list as PDF...");
+                        setShowToast(true);
+                        setTimeout(() => setShowToast(false), 3000);
+                      }}
+                      disabled={!IS_PE_SEASON}
+                      className={`group px-8 py-4 rounded-2xl font-bold text-sm flex items-center gap-3 transition-all ${
+                        IS_PE_SEASON 
+                          ? "bg-zinc-900 text-white hover:bg-tata-blue shadow-xl shadow-zinc-900/10 cursor-pointer active:scale-95" 
+                          : "bg-slate-200 text-slate-400 cursor-not-allowed"
+                      }`}
+                    >
+                      <Download size={18} className="group-hover:-translate-y-1 transition-transform" /> Download as PDF
+                    </button>
+                  </TooltipTrigger>
+                  {!IS_PE_SEASON && (
+                    <TooltipContent>
+                      <p>Available during active ProEngage editions only</p>
+                    </TooltipContent>
+                  )}
+                </Tooltip>
+              </TooltipProvider>
             </div>
           </div>
 
