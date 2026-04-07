@@ -148,9 +148,12 @@ const DashboardView = () => {
         )}
 
         {/* In-System Notifications */}
-        <div className="mb-10 space-y-4">
-          <div className="flex items-center justify-between">
-            <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-widest">Recent Notifications</h3>
+        <div className="mb-10 bg-white border border-zinc-100 rounded-2xl shadow-sm p-6">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="flex items-center text-xs font-bold text-slate-400 uppercase tracking-widest">
+              <div className="w-1 h-5 bg-tata-blue rounded-full mr-3" />
+              Activity
+            </h3>
             <button className="text-xs font-semibold text-tata-blue uppercase tracking-widest hover:underline">Mark all as read</button>
           </div>
           <div className="space-y-3">
