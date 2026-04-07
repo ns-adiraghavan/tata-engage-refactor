@@ -32,7 +32,6 @@ const Footer = () => (
         <ul className="space-y-3 text-slate-400 text-sm">
           <li><a href="#" className="hover:text-white transition-colors">TVW (Tata Volunteering Week)</a></li>
           <li><a href="#" className="hover:text-white transition-colors">ProEngage</a></li>
-          <li><a href="#" className="hover:text-white transition-colors">Tata Pro-Bono</a></li>
           <li><a href="#" className="hover:text-white transition-colors">Disaster Response</a></li>
         </ul>
       </div>
