@@ -42,6 +42,7 @@ const SPOCDashboardView = () => {
   const [proEngageSearch, setProEngageSearch] = useState("");
   const [selectedProEngageVolunteer, setSelectedProEngageVolunteer] = useState<any>(null);
   const [atRiskList, setAtRiskList] = useState(AT_RISK_VOLUNTEERS);
+  const [peProject, setPeProject] = useState<any | null>(null);
 
   // Reports & Certificates State
   const [reportsTab, setReportsTab] = useState<"Leaderboard" | "Certificates" | "Feedback">("Leaderboard");
