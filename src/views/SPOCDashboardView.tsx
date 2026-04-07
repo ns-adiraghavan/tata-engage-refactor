@@ -54,7 +54,7 @@ const SPOCDashboardView = () => {
     { name: "TVW Management", icon: CalendarDays },
     { name: "ProEngage Oversight", icon: Briefcase },
     { name: "SPOC Directory", icon: Users },
-    { name: "Pending Approvals", icon: ShieldCheck, badge: approvals.filter(a => a.status === "Pending").length },
+    { name: "Verification", icon: ShieldCheck, badge: approvals.filter(a => a.status === "Pending").length },
     { name: "Reports & Certificates", icon: FileText },
     { name: "Campaign Kit", icon: Download }
   ];
