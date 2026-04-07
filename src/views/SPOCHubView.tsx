@@ -3,11 +3,15 @@ import { Users, Briefcase, CalendarDays, ShieldCheck } from "lucide-react";
 import { ROHAN_DESAI, COMMUNITY_TESTIMONIALS } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
+import { useAuth } from "@/context/AuthContext";
 import { PENDING_APPROVALS_DATA } from "@/data/mockData";
+import RoleToggle from "@/components/shared/RoleToggle";
 
 const SPOCHubView = () => {
   const spoc = ROHAN_DESAI;
   const navigate = useAppNavigate();
+  const { user } = useAuth();
+  const showToggle = user?.role?.includes("spoc") || user?.role === "corporate_spoc";
 
   const stats = [
     { label: "Total Volunteers", value: spoc.stats.totalVolunteers.toLocaleString(), sub: "TCS Global", icon: Users, color: "text-[#003580]", bg: "bg-blue-50", border: "border-blue-100" },
@@ -27,6 +31,7 @@ const SPOCHubView = () => {
               Welcome, {spoc.firstName}
             </h1>
             <p className="text-white/60 text-sm mt-1">{spoc.company} · Corporate SPOC</p>
+            {showToggle && <RoleToggle activeView="spoc" className="mt-4" />}
           </div>
           <button onClick={() => navigate("spoc-dashboard")} className="px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl text-white text-sm font-semibold transition-all cursor-pointer">
             Go to Dashboard →

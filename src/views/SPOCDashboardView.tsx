@@ -7,6 +7,7 @@ import { useAppContext } from "@/context/AppContext";
 import { useAuth } from "@/context/AuthContext";
 import { useLocation } from "react-router-dom";
 import { IS_PE_SEASON } from "@/data/mockData";
+import RoleToggle from "@/components/shared/RoleToggle";
 
 const SPOCDashboardView = () => {
   const { user } = useAuth();
@@ -1336,7 +1337,7 @@ const SPOCDashboardView = () => {
     <div className="min-h-screen pt-24 bg-[#F8FAFC] flex">
       {/* Sidebar */}
       <aside className="w-80 bg-white border-r border-slate-100 hidden lg:flex flex-col p-8 fixed h-[calc(100vh-96px)] z-20">
-        <div className="mb-10 px-2">
+        <div className="mb-6 px-2">
           <div className="flex items-center gap-4 p-4 bg-slate-50 rounded-[1.5rem] border border-slate-100">
             <div className="w-12 h-12 rounded-2xl bg-tata-blue flex items-center justify-center text-white font-semibold text-lg shadow-lg shadow-blue-900/20">
               {spoc.firstName.charAt(0)}
@@ -1347,6 +1348,11 @@ const SPOCDashboardView = () => {
             </div>
           </div>
         </div>
+        {(user?.role?.includes("spoc") || user?.role === "corporate_spoc") && (
+          <div className="mb-8 px-2">
+            <RoleToggle activeView="spoc" className="!bg-slate-100 !border-slate-200 w-full justify-center" />
+          </div>
+        )}
 
         <div className="space-y-2 flex-1">
           <p className="text-xs font-semibold text-slate-400 uppercase tracking-[0.3em] mb-4 px-4">Main Menu</p>
