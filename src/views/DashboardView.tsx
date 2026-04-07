@@ -392,8 +392,8 @@ const DashboardView = () => {
                           : "Recommended for you";
 
                   return (
-                    <div key={i} className="p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:border-tata-cyan transition-colors cursor-pointer group">
-                      <div className="text-xs font-bold text-tata-cyan uppercase tracking-widest mb-2">{item.match}</div>
+                    <div key={i} className="bg-white border-l-4 border-violet-400 border border-slate-100 rounded-2xl p-4 hover:shadow-sm transition-all cursor-pointer group">
+                      <div className="text-xs font-bold text-violet-600 uppercase tracking-widest mb-2">{item.match}</div>
                       <h4 className="font-bold text-sm mb-1 group-hover:text-tata-blue transition-colors">{item.title}</h4>
                       <p className="text-xs text-slate-500 mb-2">{item.org}</p>
                       <span className="inline-block px-2.5 py-0.5 rounded-full bg-purple-50 text-purple-700 text-xs">
@@ -418,7 +418,7 @@ const DashboardView = () => {
                   { title: "Global Tree Plantation Day", date: "April 15, 2026", loc: "Mumbai Hub", type: "On-field" },
                   { title: "Virtual Mentoring Kickoff", date: "April 18, 2026", loc: "Online", type: "Virtual" }
                 ].map((event, i) => (
-                  <div key={i} className="flex items-center justify-between p-5 bg-white rounded-2xl border border-zinc-100 hover:shadow-md transition-all cursor-pointer">
+                  <div key={i} className="flex items-center justify-between p-5 bg-white rounded-2xl border border-zinc-100 border-l-4 border-l-tata-cyan hover:shadow-md transition-all cursor-pointer">
                     <div className="flex items-center gap-4">
                       <div className="w-12 h-12 rounded-lg bg-slate-50 flex flex-col items-center justify-center text-tata-blue">
                         <span className="text-xs font-bold uppercase">{event.date.split(' ')[0]}</span>
@@ -522,7 +522,7 @@ const DashboardView = () => {
             <div className="flex flex-wrap gap-4">
               {user.badges.map((badge: any) => (
                 <div key={badge.id} className="group relative">
-                  <div className="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center text-3xl hover:scale-110 transition-transform cursor-pointer border border-slate-100">
+                  <div className="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center text-3xl hover:scale-110 hover:ring-2 hover:ring-tata-blue/30 hover:bg-tata-blue/5 transition-all cursor-pointer border border-slate-100">
                     {badge.icon}
                   </div>
                   <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1 bg-zinc-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-20">
