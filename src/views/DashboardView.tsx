@@ -453,20 +453,66 @@ const DashboardView = () => {
         <h3 className="text-sm font-bold text-slate-700 uppercase tracking-[0.08em] mb-6 flex items-center gap-2"><div className="w-1 h-5 bg-tata-blue rounded-full mr-1" /><Clock size={16} /> Your history</h3>
 
         <div className="space-y-8 mb-12">
-          {/* Application History */}
-          {user.history && user.history.length === 0 && (
-            <section className="bg-white rounded-3xl p-8 shadow-sm border border-zinc-100 flex flex-col items-center justify-center py-16 text-center">
-              <ClipboardList size={40} className="text-slate-300 mb-4" />
-              <h4 className="text-[15px] font-medium text-slate-700 mb-1">No applications yet</h4>
-              <p className="text-[13px] text-muted-foreground mb-4">Projects you apply to will be tracked here.</p>
+          {/* Application Tabs */}
+          <section>
+            <div className="flex gap-1 p-1 bg-slate-100 rounded-xl w-fit mb-6">
               <button
-                onClick={() => navigate("proengage")}
-                className="px-5 py-2 bg-tata-blue text-white text-sm font-semibold rounded-lg hover:bg-tata-blue/90 transition-colors cursor-pointer"
+                onClick={() => setAppTab("current")}
+                className={`px-5 py-2 text-xs font-bold uppercase tracking-widest cursor-pointer ${appTab === "current" ? "bg-white text-tata-blue rounded-lg shadow-sm" : "text-slate-400"}`}
               >
-                Browse projects →
+                Current
               </button>
-            </section>
-          )}
+              <button
+                onClick={() => setAppTab("past")}
+                className={`px-5 py-2 text-xs font-bold uppercase tracking-widest cursor-pointer ${appTab === "past" ? "bg-white text-tata-blue rounded-lg shadow-sm" : "text-slate-400"}`}
+              >
+                Past
+              </button>
+            </div>
+
+            {appTab === "current" && user.activeApplication ? (
+              <div className="bg-white border border-zinc-100 rounded-2xl p-6 shadow-sm">
+                <div className="flex items-start justify-between">
+                  <div>
+                    <h4 className="font-bold text-slate-900">{user.activeApplication.title}</h4>
+                    <p className="text-sm text-slate-500 mt-1">{user.activeApplication.ngo}</p>
+                    <p className="text-xs text-slate-400 mt-1 flex items-center gap-1"><Calendar size={12} /> {user.activeApplication.date}</p>
+                  </div>
+                  <span className={`text-xs font-bold px-3 py-1 rounded-full ${
+                    user.activeApplication.status === "Matched" ? "bg-green-100 text-green-700" :
+                    user.activeApplication.status === "Rejected" ? "bg-red-100 text-red-700" :
+                    "bg-slate-100 text-slate-600"
+                  }`}>
+                    {user.activeApplication.status}
+                  </span>
+                </div>
+                <div className="border-t border-zinc-100 mt-4 pt-4">
+                  <button onClick={() => navigate("active-project-management")} className="text-sm text-tata-blue font-semibold hover:underline cursor-pointer">
+                    View project →
+                  </button>
+                </div>
+              </div>
+            ) : appTab === "current" ? (
+              <div className="bg-white border border-zinc-100 rounded-2xl p-6 shadow-sm text-center py-12">
+                <ClipboardList size={32} className="text-slate-300 mx-auto mb-3" />
+                <p className="text-sm text-slate-500">No active application</p>
+              </div>
+            ) : (
+              <div className="bg-white border border-zinc-100 rounded-2xl p-6 shadow-sm">
+                <div className="flex items-start justify-between">
+                  <div>
+                    <h4 className="font-bold text-slate-900">After-School Coding Club</h4>
+                    <p className="text-sm text-slate-500 mt-1">Teach For India</p>
+                    <p className="text-xs text-slate-400 mt-1 flex items-center gap-1"><Calendar size={12} /> March 28, 2026</p>
+                  </div>
+                  <span className="text-xs font-bold px-3 py-1 rounded-full bg-red-100 text-red-700">Rejected</span>
+                </div>
+                <div className="border-t border-zinc-100 mt-4 pt-4">
+                  <p className="text-xs text-slate-400 italic">Project filled before your application was reviewed</p>
+                </div>
+              </div>
+            )}
+          </section>
 
           {/* Earned Badges */}
           <section className="bg-white rounded-3xl p-8 shadow-sm border border-zinc-100">
