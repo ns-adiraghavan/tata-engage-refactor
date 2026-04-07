@@ -972,7 +972,7 @@ const SPOCDashboardView = () => {
             <h3 className="text-xs font-semibold text-white/30 uppercase tracking-[0.3em] mb-8 relative z-10">Quick Actions</h3>
             <div className="space-y-4 relative z-10">
               {[
-                { label: "Review Pending Apps", nav: "Pending Approvals", icon: ShieldCheck },
+                { label: "Review Pending Apps", nav: "Verification", icon: ShieldCheck },
                 { label: "Generate Monthly Report", nav: "Reports & Certificates", icon: FileText },
                 { label: "Manage Coordinators", nav: "SPOC Directory", icon: Users },
                 { label: "Monitor ProEngage", nav: "ProEngage Oversight", icon: Briefcase }
