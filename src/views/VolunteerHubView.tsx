@@ -33,9 +33,9 @@ const VolunteerHubView = () => {
   };
 
   const programmes = [
-    { label: "TVW", nav: "tvw", bgClass: "bg-tata-cyan/20", iconClass: "text-tata-blue", Icon: Calendar },
-    { label: "ProEngage", nav: "proengage", bgClass: "bg-violet-100", iconClass: "text-violet-600", Icon: Briefcase },
-    { label: "Disaster Response", nav: "disaster-response", bgClass: "bg-red-100", iconClass: "text-red-600", Icon: Zap },
+    { label: "TVW", nav: "tvw", bgClass: "bg-tata-cyan/20", iconClass: "text-tata-blue", Icon: Users },
+    { label: "ProEngage", nav: "proengage", bgClass: "bg-violet-100", iconClass: "text-violet-600", Icon: HeartHandshake },
+    { label: "Disaster Response", nav: "disaster-response", bgClass: "bg-red-100", iconClass: "text-red-600", Icon: AlertTriangle },
   ];
 
   const stats = [
