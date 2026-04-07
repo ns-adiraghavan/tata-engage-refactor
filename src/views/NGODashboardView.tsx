@@ -19,6 +19,8 @@ const NGODashboardView = () => {
   const [newCoordinator, setNewCoordinator] = useState({ name: "", email: "", role: "Coordinator" });
   const [showCloneModal, setShowCloneModal] = useState(false);
   const [dismissedReminders, setDismissedReminders] = useState<number[]>([]);
+  const [drillEdition, setDrillEdition] = useState<string | null>(null);
+  const [drillProject, setDrillProject] = useState<any | null>(null);
 
   const feedbackDueProjects = ngoData.projects.filter(p => {
     if (p.status !== "Active" || !p.endDate) return false;
