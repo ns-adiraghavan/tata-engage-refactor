@@ -321,92 +321,50 @@ const DashboardView = () => {
         </div>
 
         {/* ═══ SECTION: Explore ═══ */}
-        <h3 className="text-sm font-bold text-slate-700 uppercase tracking-[0.08em] mb-6 flex items-center gap-2"><div className="w-1 h-5 bg-tata-blue rounded-full mr-1" /><Compass size={16} /> Explore</h3>
+        {IS_PE_SEASON && (
+          <>
+            <h3 className="text-sm font-bold text-slate-700 uppercase tracking-[0.08em] mb-6 flex items-center gap-2"><div className="w-1 h-5 bg-tata-blue rounded-full mr-1" /><Compass size={16} /> Explore</h3>
 
-        <div className="space-y-8 mb-12">
-          {/* AI Recommendations — PE season only */}
-          {IS_PE_SEASON && (
-            <section className="bg-white rounded-3xl p-8 shadow-sm border border-zinc-100">
-              <div className="flex items-center gap-2 mb-6">
-                <div className="w-8 h-8 rounded-lg bg-tata-cyan/10 flex items-center justify-center text-tata-cyan">
-                  <Search size={18} />
-                </div>
-                <h2 className="text-xl font-bold text-zinc-900">AI Recommended For You</h2>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {[
-                  { title: "Digital Literacy for Seniors", org: "HelpAge India", match: "98% Match", skillArea: "Education", location: "Delhi", applicantCount: 25, isNew: false },
-                  { title: "Sustainability Audit", org: "Green Earth NGO", match: "92% Match", skillArea: "Finance", location: "Pune", applicantCount: 10, isNew: false },
-                  { title: "Career Mentorship", org: "Udaan Foundation", match: "85% Match", skillArea: "Strategic Planning", location: "Mumbai", applicantCount: 8, isNew: true }
-                ].map((item, i) => {
-                  const chip = user.skills?.some((s: string) => s.toLowerCase() === item.skillArea.toLowerCase())
-                    ? `Matches your ${item.skillArea} skills`
-                    : item.location === user.city
-                      ? `Near you · ${item.location}`
-                      : item.applicantCount > 20
-                        ? "Trending this edition"
-                        : item.isNew
-                          ? "New NGO partner"
-                          : "Recommended for you";
-
-                  return (
-                    <div key={i} className="bg-white border-l-4 border-violet-400 border border-slate-100 rounded-2xl p-4 hover:shadow-sm transition-all cursor-pointer group">
-                      <div className="text-xs font-bold text-violet-600 uppercase tracking-widest mb-2">{item.match}</div>
-                      <h4 className="font-bold text-sm mb-1 group-hover:text-tata-blue transition-colors">{item.title}</h4>
-                      <p className="text-xs text-slate-500 mb-2">{item.org}</p>
-                      <span className="inline-block px-2.5 py-0.5 rounded-full bg-purple-50 text-purple-700 text-xs">
-                        {chip}
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-            </section>
-          )}
-
-          {/* TVW Section */}
-          {!IS_PE_SEASON ? (
-            <section>
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-xl font-bold text-zinc-900">Upcoming TVW Events</h2>
-                <button onClick={() => navigate("tvw")} className="text-sm font-bold text-tata-blue hover:underline cursor-pointer">View Calendar</button>
-              </div>
-              <div className="space-y-4">
-                {[
-                  { title: "Global Tree Plantation Day", date: "April 15, 2026", loc: "Mumbai Hub", type: "On-field" },
-                  { title: "Virtual Mentoring Kickoff", date: "April 18, 2026", loc: "Online", type: "Virtual" }
-                ].map((event, i) => (
-                  <div key={i} className="flex items-center justify-between p-5 bg-white rounded-2xl border border-zinc-100 border-l-4 border-l-tata-cyan hover:shadow-md transition-all cursor-pointer">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-lg bg-slate-50 flex flex-col items-center justify-center text-tata-blue">
-                        <span className="text-xs font-bold uppercase">{event.date.split(' ')[0]}</span>
-                        <span className="text-lg font-bold">{event.date.split(' ')[1].replace(',', '')}</span>
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-zinc-900">{event.title}</h4>
-                        <div className="flex items-center gap-3 text-xs text-slate-500 mt-1">
-                          <span className="flex items-center gap-1"><MapPin size={12} /> {event.loc}</span>
-                          <span className="flex items-center gap-1"><Globe size={12} /> {event.type}</span>
-                        </div>
-                      </div>
-                    </div>
-                    <ChevronRight size={20} className="text-slate-300" />
+            <div className="space-y-8 mb-12">
+              <section className="bg-white rounded-3xl p-8 shadow-sm border border-zinc-100">
+                <div className="flex items-center gap-2 mb-6">
+                  <div className="w-8 h-8 rounded-lg bg-tata-cyan/10 flex items-center justify-center text-tata-cyan">
+                    <Search size={18} />
                   </div>
-                ))}
-              </div>
-            </section>
-          ) : (
-            <section className="bg-slate-100 rounded-2xl p-6 flex items-center justify-between">
-              <div>
-                <h3 className="font-bold text-zinc-700 mb-1">TVW 2024 highlights</h3>
-                <p className="text-sm text-zinc-500">View photos and stories from the last edition</p>
-              </div>
-              <button onClick={() => navigate("tvw")} className="text-sm font-bold text-tata-blue hover:underline cursor-pointer flex items-center gap-1">
-                View highlights <ChevronRight size={16} />
-              </button>
-            </section>
-          )}
-        </div>
+                  <h2 className="text-xl font-bold text-zinc-900">AI Recommended For You</h2>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {[
+                    { title: "Digital Literacy for Seniors", org: "HelpAge India", match: "98% Match", skillArea: "Education", location: "Delhi", applicantCount: 25, isNew: false },
+                    { title: "Sustainability Audit", org: "Green Earth NGO", match: "92% Match", skillArea: "Finance", location: "Pune", applicantCount: 10, isNew: false },
+                    { title: "Career Mentorship", org: "Udaan Foundation", match: "85% Match", skillArea: "Strategic Planning", location: "Mumbai", applicantCount: 8, isNew: true }
+                  ].map((item, i) => {
+                    const chip = user.skills?.some((s: string) => s.toLowerCase() === item.skillArea.toLowerCase())
+                      ? `Matches your ${item.skillArea} skills`
+                      : item.location === user.city
+                        ? `Near you · ${item.location}`
+                        : item.applicantCount > 20
+                          ? "Trending this edition"
+                          : item.isNew
+                            ? "New NGO partner"
+                            : "Recommended for you";
+
+                    return (
+                      <div key={i} className="bg-white border-l-4 border-violet-400 border border-slate-100 rounded-2xl p-4 hover:shadow-sm transition-all cursor-pointer group">
+                        <div className="text-xs font-bold text-violet-600 uppercase tracking-widest mb-2">{item.match}</div>
+                        <h4 className="font-bold text-sm mb-1 group-hover:text-tata-blue transition-colors">{item.title}</h4>
+                        <p className="text-xs text-slate-500 mb-2">{item.org}</p>
+                        <span className="inline-block px-2.5 py-0.5 rounded-full bg-purple-50 text-purple-700 text-xs">
+                          {chip}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </section>
+            </div>
+          </>
+        )}
 
 
         {/* ═══ SECTION: Your history ═══ */}
