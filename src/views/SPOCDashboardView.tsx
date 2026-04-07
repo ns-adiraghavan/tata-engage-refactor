@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronRight, User, Users, Briefcase, ShieldCheck, Lock, Eye, CheckCircle2, Search, ExternalLink, Calendar, MapPin, Clock, Award, Info, Filter, CalendarDays, LayoutGrid, Send, FileText, Check, ChevronDown, Sparkles, MessageSquare, ArrowRight, Plus, Edit2, Save, Copy, Pause, History, AlertTriangle, Activity, Download, Upload, Trophy, Share2, File, Archive } from "lucide-react";
 import type { View, Role } from "@/types";
-import { ROHAN_DESAI, SPOC_DIRECTORY, PENDING_APPROVALS_DATA, TCS_TVW_EVENTS, PROENGAGE_PIPELINE, AT_RISK_VOLUNTEERS, OPEN_PROENGAGE_PROJECTS, COMPANY_LEADERBOARD, VOLUNTEER_CERTIFICATES, FEEDBACK_MONITOR_DATA } from "@/data/mockData";
+import { ROHAN_DESAI, SPOC_DIRECTORY, PENDING_APPROVALS_DATA, TCS_TVW_EVENTS, PROENGAGE_PIPELINE, AT_RISK_VOLUNTEERS, OPEN_PROENGAGE_PROJECTS, COMPANY_LEADERBOARD, VOLUNTEER_CERTIFICATES, FEEDBACK_MONITOR_DATA, COMMUNITY_TESTIMONIALS } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
 import { useAuth } from "@/context/AuthContext";
 import { useLocation } from "react-router-dom";
@@ -807,6 +807,16 @@ const SPOCDashboardView = () => {
 
   const DashboardHome = () => (
     <div id="spoc-section-Dashboard" className="space-y-12">
+      {/* My Hub Hero */}
+      <div className="rounded-3xl bg-gradient-to-br from-[#003580] to-[#001d4a] text-white p-8 md:p-12 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32 blur-3xl" />
+        <div className="relative z-10">
+          <p className="text-xs font-bold text-white/50 uppercase tracking-[0.3em] mb-2">Corporate SPOC Dashboard</p>
+          <h1 className="text-3xl md:text-4xl font-black tracking-tight">Welcome, {spoc.firstName}</h1>
+          <p className="text-white/60 text-sm mt-1">{spoc.company} · Corporate SPOC</p>
+        </div>
+      </div>
+
       {/* Stats Grid — moved to very top, before welcome banner */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {[
@@ -843,6 +853,20 @@ const SPOCDashboardView = () => {
             </div>
           </motion.div>
         ))}
+      </div>
+
+      {/* Community voices */}
+      <div className="space-y-4">
+        <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold">Voices from volunteers</h3>
+        <div className="flex gap-6 overflow-x-auto pb-2">
+          {COMMUNITY_TESTIMONIALS.map((t) => (
+            <div key={t.id} className="min-w-[300px] max-w-sm p-5 bg-slate-50 rounded-2xl border border-slate-100 flex-shrink-0">
+              <p className="text-sm text-slate-700 italic mb-3">"{t.quote}"</p>
+              <p className="text-sm font-bold text-slate-900">{t.author}</p>
+              <p className="text-xs text-slate-500">{t.role}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Quick-action strip */}

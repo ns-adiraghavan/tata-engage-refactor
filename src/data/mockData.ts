@@ -715,3 +715,27 @@ export const MOCK_TESTIMONIALS = [
 export const MOCK_FLAGGED_COMMENTS = [
   { id: 1, user: "John Doe", project: "Health Clinic", comment: "This project is a scam!", reason: "Hate Speech", status: "Flagged" },
 ];
+
+export const COMMUNITY_TESTIMONIALS = [
+  {
+    id: 1,
+    quote: "Volunteering through TataEngage gave me perspective I couldn't have gained anywhere else. The project changed my career trajectory.",
+    author: "Sneha Patil",
+    role: "Finance Analyst · TCS Pune",
+    avatar: "SP",
+  },
+  {
+    id: 2,
+    quote: "Within three months I had mentored 12 students. The platform matched me perfectly based on my background.",
+    author: "Arjun Nair",
+    role: "Senior Manager · Tata Steel",
+    avatar: "AN",
+  },
+  {
+    id: 3,
+    quote: "The ProEngage project was the most meaningful work I did last year — and I got a certificate to show for it.",
+    author: "Riya Mehta",
+    role: "HR Business Partner · Tata Motors",
+    avatar: "RM",
+  },
+];
