@@ -463,30 +463,6 @@ const DashboardView = () => {
           </section>
         </div>
 
-        {/* ═══ Refer a Colleague ═══ */}
-        <section className="bg-white rounded-3xl p-8 shadow-sm border border-zinc-100 overflow-hidden relative max-w-xl mb-8">
-          <div className="absolute top-0 right-0 w-24 h-24 bg-tata-cyan/5 rounded-full -mr-12 -mt-12" />
-          <h2 className="text-xl font-bold text-zinc-900 mb-2">Refer a Colleague</h2>
-          <p className="text-sm text-slate-500 mb-6">Invite someone to Tata Engage and help grow our community.</p>
-          <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 mb-6">
-            <div className="text-xs font-bold text-slate-400 uppercase mb-2">Your Referral Link</div>
-            <div className="flex items-center justify-between gap-2">
-              <code className="text-xs text-tata-blue font-mono truncate">tataengage.com/refer/priya123</code>
-              <button onClick={copyReferralLink} className="p-2 hover:bg-white rounded-lg text-slate-400 hover:text-tata-blue transition-colors">
-                <FileText size={16} />
-              </button>
-            </div>
-          </div>
-          <div className="flex items-center justify-between">
-            <div className="text-xs text-slate-500">
-              You've referred <span className="font-bold text-zinc-900">{referralCount} person</span> so far
-            </div>
-            <div className="flex gap-2">
-              <button className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 hover:bg-tata-blue hover:text-white transition-all"><Mail size={14} /></button>
-              <button className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 hover:bg-green-500 hover:text-white transition-all"><MessageSquare size={14} /></button>
-            </div>
-          </div>
-        </section>
       </div>
     </div>
   );

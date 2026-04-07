@@ -139,29 +139,6 @@ const NGODashboardView = () => {
 
   return (
     <div className="min-h-screen pt-24 bg-slate-50">
-      {/* My Hub Hero */}
-      <section className="bg-gradient-to-br from-[#003580] via-[#0046b8] to-[#00b4d8] text-white pt-16 pb-24 px-6 md:px-12 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32 blur-3xl" />
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-            <div>
-              <p className="text-xs font-bold text-white/50 uppercase tracking-[0.3em] mb-2">Lead Partner · NGO Dashboard</p>
-              <h1 className="text-4xl md:text-5xl font-bold mb-2">Welcome, {ngoData.firstName ?? "Anjali"} 👋</h1>
-              <p className="text-xl opacity-80">{ngoData.organization}</p>
-            </div>
-            <div className="flex gap-6">
-              <div className="text-center">
-                <p className="text-3xl font-black">{ngoData.projects?.filter((p: any) => p.status === "Active").length ?? 2}</p>
-                <p className="text-xs text-white/50 uppercase tracking-widest">Active projects</p>
-              </div>
-              <div className="text-center">
-                <p className="text-3xl font-black">8</p>
-                <p className="text-xs text-white/50 uppercase tracking-widest">Pending applications</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 -mt-16 pb-20">
         {/* Feedback Reminders */}
