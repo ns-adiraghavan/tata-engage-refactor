@@ -23,8 +23,9 @@ const SPOCHubView = () => {
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32 blur-3xl" />
         <div className="max-w-7xl mx-auto relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
           <div>
-            <p className="text-xs font-bold text-white/50 uppercase tracking-[0.3em] mb-2">Corporate SPOC</p>
-            <h1 className="font-serif text-4xl md:text-5xl text-white leading-tight">Welcome, {spoc.firstName} 👋</h1>
+            <h1 className="font-serif text-4xl md:text-5xl text-white leading-tight">
+              {new Date().getHours() < 12 ? "Good Morning" : new Date().getHours() < 17 ? "Good Afternoon" : "Good Evening"}, {spoc.firstName}
+            </h1>
             <p className="text-white/60 text-sm mt-1">{spoc.company} · Corporate SPOC</p>
           </div>
           <button onClick={() => navigate("spoc-dashboard")} className="px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl text-white text-sm font-semibold transition-all cursor-pointer">
