@@ -25,7 +25,7 @@ const VolunteerHubView = () => {
 
   const stats = [
     { num: user.history?.length ?? 0, label: "Projects completed", sub: "All time" },
-    { num: "48h", label: "Hours volunteered", sub: "This edition" },
+    { num: (user.hoursVolunteered != null ? `${user.hoursVolunteered}h` : "48h"), label: "Hours volunteered", sub: "This edition" },
     { num: user.badges?.length ?? 0, label: "Badges earned", sub: "All time" },
   ];
 
