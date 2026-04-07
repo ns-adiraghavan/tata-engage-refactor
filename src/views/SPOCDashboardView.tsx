@@ -1963,12 +1963,25 @@ const SPOCDashboardView = () => {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl p-10"
+              className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl p-10 max-h-[90vh] overflow-y-auto"
             >
               <h3 className="text-2xl font-bold text-slate-800 mb-2">Submit to TVW Vibe</h3>
               <p className="text-sm text-slate-500 mb-8">{showVibeModal.title}</p>
               
-              <div className="space-y-6">
+              <div className="space-y-5">
+                {/* Submit on behalf of — Corporate SPOC only */}
+                {!isRegionalSPOC && (
+                  <div>
+                    <label className="form-label">Submit on behalf of</label>
+                    <select className="form-input">
+                      <option value="">Myself (Corporate SPOC)</option>
+                      {SPOC_DIRECTORY.filter(s => s.role === "Regional SPOC").map(s => (
+                        <option key={s.id} value={s.id}>{s.name} — {s.geography}</option>
+                      ))}
+                    </select>
+                  </div>
+                )}
+
                 <div className="border-2 border-dashed border-slate-200 rounded-3xl p-8 text-center hover:border-tata-blue transition-colors cursor-pointer group">
                   <div className="w-12 h-12 bg-slate-50 text-slate-400 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:text-tata-blue group-hover:bg-tata-blue/5 transition-all">
                     <Upload size={24} />
@@ -1990,25 +2003,63 @@ const SPOCDashboardView = () => {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="form-label">Location Tag</label>
+                    <label className="form-label">Location</label>
                     <input 
                       type="text" 
                       className="form-input" 
-                      placeholder="e.g. Mumbai"
+                      placeholder="e.g. Mumbai, Maharashtra"
                       value={vibeForm.location}
                       onChange={(e) => setVibeForm({ ...vibeForm, location: e.target.value })}
                     />
                   </div>
                   <div>
-                    <label className="form-label">Impact Statement</label>
+                    <label className="form-label">NGO Partner</label>
                     <input 
                       type="text" 
                       className="form-input" 
-                      placeholder="e.g. 50 students taught"
-                      value={vibeForm.impact}
-                      onChange={(e) => setVibeForm({ ...vibeForm, impact: e.target.value })}
+                      placeholder="e.g. Teach For India"
                     />
                   </div>
+                  <div>
+                    <label className="form-label">Number of Volunteers</label>
+                    <input 
+                      type="number" 
+                      className="form-input" 
+                      placeholder="e.g. 25"
+                    />
+                  </div>
+                  <div>
+                    <label className="form-label">Activity Type</label>
+                    <select className="form-input">
+                      <option value="">Select type</option>
+                      <option>Education</option>
+                      <option>Environment</option>
+                      <option>Health</option>
+                      <option>Skilling</option>
+                      <option>Community Development</option>
+                      <option>Disaster Relief</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="form-label">Impact Statement</label>
+                  <input 
+                    type="text" 
+                    className="form-input" 
+                    placeholder="e.g. 50 students taught"
+                    value={vibeForm.impact}
+                    onChange={(e) => setVibeForm({ ...vibeForm, impact: e.target.value })}
+                  />
+                </div>
+
+                <div>
+                  <label className="form-label">Description</label>
+                  <textarea 
+                    className="form-input min-h-[100px]" 
+                    placeholder="Describe the event, activities, and outcomes..."
+                  />
                 </div>
 
                 <div className="p-4 bg-amber-50 rounded-2xl border border-amber-100">
