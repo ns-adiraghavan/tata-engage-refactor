@@ -229,13 +229,6 @@ const DashboardView = () => {
                   <p className="text-xs font-bold text-white/60 uppercase tracking-widest mb-1">Volunteering</p>
                   <p className="text-sm text-white/80">Explore past TVW events and stay ready for the next edition.</p>
                 </div>
-                {firstTvwEvent && (
-                  <div className="p-5 bg-white/15 border border-white/20 rounded-2xl">
-                    <p className="text-xs font-bold text-white/60 uppercase tracking-widest mb-1">TVW Vibe</p>
-                    <h4 className="text-sm font-bold text-white">{firstTvwEvent.title}</h4>
-                    <p className="text-xs text-white/60 mt-1 flex items-center gap-1"><MapPin size={12} /> {firstTvwEvent.location}</p>
-                  </div>
-                )}
               </div>
             )}
           </div>
