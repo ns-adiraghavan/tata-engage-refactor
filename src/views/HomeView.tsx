@@ -11,7 +11,7 @@ const HomeView = () => {
       <section className="min-h-screen bg-white pt-32 px-6 md:px-12">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="max-w-xl">
-            <span className="inline-block bg-blue-50 text-tata-blue text-xs font-semibold px-3 py-1 rounded-full mb-6">
+            <span className="inline-block bg-blue-50 text-tata-blue text-xs font-semibold px-4 py-1.5 rounded-lg border border-blue-100 mb-6">
               Tata Group Volunteering
             </span>
             <h1 className="text-5xl font-bold text-zinc-900 leading-tight mb-6">
