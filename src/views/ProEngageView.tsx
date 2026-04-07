@@ -52,6 +52,7 @@ const DEFAULT_IMAGE = "https://images.unsplash.com/photo-1559136555-9303baea8ebd
 const ProEngageView = () => {
   const { appliedProjects, setAppliedProjects, likedProjects, setLikedProjects, triggerToast } = useAppContext();
   const { user } = useAuth();
+  const navigate = useAppNavigate();
   const [activeTab, setActiveTab] = useState("All Projects");
   const [isApplying, setIsApplying] = useState(false);
   const [selectedProject, setSelectedProject] = useState<any>(null);
