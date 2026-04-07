@@ -64,6 +64,27 @@ const VolunteerHubView = () => {
                   ? "ProEngage is open — browse projects matched to your skills."
                   : "Stay connected — TVW is coming soon."}
               </p>
+              {/* Skills + Interests chips */}
+              {((user.skills && user.skills.length > 0) || (user.interests && user.interests.length > 0)) && (
+                <div className="flex flex-wrap gap-2 mt-3 mb-2">
+                  {user.skills && user.skills.length > 0 && (
+                    <>
+                      <span className="text-xs text-white/40 uppercase tracking-widest mr-2">Skills</span>
+                      {user.skills.map((skill: string) => (
+                        <span key={skill} className="bg-white/15 border border-white/20 rounded-full px-3 py-1 text-xs text-white font-semibold">{skill}</span>
+                      ))}
+                    </>
+                  )}
+                  {user.interests && user.interests.length > 0 && (
+                    <div className="flex flex-wrap gap-2 w-full">
+                      <span className="text-xs text-white/40 uppercase tracking-widest mr-2">Interests</span>
+                      {user.interests.map((interest: string) => (
+                        <span key={interest} className="bg-tata-cyan/20 border border-tata-cyan/30 rounded-full px-3 py-1 text-xs text-white font-semibold">{interest}</span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
               {/* Badges strip */}
               {user.badges && user.badges.length > 0 && (
                 <div className="flex flex-wrap gap-2 mt-3">
@@ -162,40 +183,27 @@ const VolunteerHubView = () => {
         </div>
 
         {/* ═══ TVW VIBE ═══ */}
-        {!IS_PE_SEASON ? (
-          <div className="mb-12">
-            <div className="flex justify-between items-center mb-6">
-              <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold">TVW Vibe</h3>
-              <div className="flex gap-3">
-                <button className="border border-slate-200 text-slate-600 rounded-lg px-4 py-2 text-xs font-semibold cursor-pointer hover:bg-slate-50">Past Editions</button>
-                <button onClick={() => triggerToast("Story submitted for Admin review!")} className="bg-tata-blue text-white rounded-lg px-4 py-2 text-xs font-semibold cursor-pointer hover:bg-tata-blue/90">Submit Your Story</button>
-              </div>
+        <div className="mb-12">
+          <div className="flex justify-between items-center mb-6">
+            <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold">TVW Vibe</h3>
+            <div className="flex gap-3">
+              <button className="border border-slate-200 text-slate-600 rounded-lg px-4 py-2 text-xs font-semibold cursor-pointer hover:bg-slate-50">Past Editions</button>
+              <button onClick={() => triggerToast("Story submitted for Admin review!")} className="bg-tata-blue text-white rounded-lg px-4 py-2 text-xs font-semibold cursor-pointer hover:bg-tata-blue/90">Submit Your Story</button>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {VIBE_STORIES.map((story) => (
-                <div key={story.title} className="group cursor-pointer">
-                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-3">
-                    <img src={story.img} alt={story.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  </div>
-                  <h3 className="text-sm font-bold text-zinc-900 group-hover:text-tata-blue transition-colors">{story.title}</h3>
-                  <p className="text-xs text-slate-400 uppercase tracking-wider mt-1">{story.date}</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {VIBE_STORIES.map((story) => (
+              <div key={story.title} className="group cursor-pointer">
+                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-3">
+                  <img src={story.img} alt={story.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 </div>
-              ))}
-            </div>
-          </div>
-        ) : (
-          <div className="mb-12">
-            <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4">TVW Vibe</h3>
-            <div className="bg-white border border-zinc-100 rounded-2xl p-5 shadow-sm flex items-center justify-between">
-              <div>
-                <p className="font-semibold text-slate-900">TVW Vibe</p>
-                <p className="text-sm text-slate-400">Community stories from the last edition</p>
+                <h3 className="text-sm font-bold text-zinc-900 group-hover:text-tata-blue transition-colors">{story.title}</h3>
+                <p className="text-xs text-slate-400 uppercase tracking-wider mt-1">{story.date}</p>
               </div>
-              <button onClick={() => navigate("tvw")} className="text-sm text-tata-blue font-semibold hover:underline cursor-pointer">Browse stories →</button>
-            </div>
+            ))}
           </div>
-        )}
+        </div>
 
         {/* ═══ REFER A COLLEAGUE ═══ */}
         <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4">Refer a Colleague</h3>
