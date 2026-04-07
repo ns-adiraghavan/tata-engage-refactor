@@ -15,7 +15,7 @@ const NGOHubView = () => {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
             <div>
               <h1 className="font-serif text-4xl md:text-5xl text-white leading-tight mb-2">
-                {new Date().getHours() < 12 ? "Good Morning" : new Date().getHours() < 17 ? "Good Afternoon" : "Good Evening"}, {ngoData.firstName ?? "Anjali"}
+                Welcome, {ngoData.firstName ?? "Anjali"}
               </h1>
               <p className="text-xl opacity-80">{ngoData.organization}</p>
             </div>

@@ -50,10 +50,6 @@ const Navbar = ({
       ? "spoc-hub"
       : "volunteer-hub";
 
-  const greeting = () => {
-    const hour = new Date().getHours();
-    return hour < 12 ? "Good Morning" : hour < 17 ? "Good Afternoon" : "Good Evening";
-  };
 
   const unreadCount = notifications.filter((n) => !n.read).length;
 
