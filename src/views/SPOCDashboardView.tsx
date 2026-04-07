@@ -855,6 +855,20 @@ const SPOCDashboardView = () => {
         ))}
       </div>
 
+      {/* Community voices */}
+      <div className="space-y-4">
+        <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold">Voices from volunteers</h3>
+        <div className="flex gap-6 overflow-x-auto pb-2">
+          {COMMUNITY_TESTIMONIALS.map((t) => (
+            <div key={t.id} className="min-w-[300px] max-w-sm p-5 bg-slate-50 rounded-2xl border border-slate-100 flex-shrink-0">
+              <p className="text-sm text-slate-700 italic mb-3">"{t.quote}"</p>
+              <p className="text-sm font-bold text-slate-900">{t.author}</p>
+              <p className="text-xs text-slate-500">{t.role}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* Quick-action strip */}
       <div className="flex gap-4">
         {[
