@@ -69,7 +69,27 @@ export const ROHAN_DESAI = {
   totalOrientationModules: 5
 };
 
-export const SPOC_DIRECTORY = [
+export const ANJALI_GUPTA_REGIONAL = {
+  firstName: "Anjali",
+  lastName: "Gupta",
+  email: "anjali.g@tcs.com",
+  role: "regional_spoc",
+  company: "Tata Consultancy Services",
+  designation: "Regional SPOC",
+  city: "Delhi",
+  country: "India",
+  tier: "Regional SPOC",
+  geography: "North India",
+  stats: {
+    totalVolunteers: 820,
+    activeProEngage: 0,
+    tvwEvents: 12,
+    pendingApprovals: 5
+  },
+  orientationProgress: 4,
+  totalOrientationModules: 5
+};
+
   { id: 1, name: "Rohan Desai", role: "Corporate SPOC", company: "TCS", geography: "Global", status: "Active", lastActive: "2 mins ago", email: "rohan.desai@tcs.com" },
   { id: 2, name: "Anjali Gupta", role: "Regional SPOC", company: "TCS", geography: "North India", status: "Active", lastActive: "1 hour ago", email: "anjali.g@tcs.com" },
   { id: 3, name: "Vikram Malhotra", role: "Regional SPOC", company: "TCS", geography: "West India", status: "Inactive", lastActive: "3 days ago", email: "v.malhotra@tcs.com" },
