@@ -1532,11 +1532,14 @@ const SPOCDashboardView = () => {
 
             {/* ── Quick Actions Strip ─────────────────────────────────── */}
             <div className="flex gap-4 mb-12">
-              {[
+              {(isRegionalSPOC ? [
+                { label: "Download campaign kit", icon: Download, target: "spoc-section-campaign-kit" },
+                { label: "Post TVW event", icon: CalendarDays, target: "spoc-section-tvw" },
+              ] : [
                 { label: "Download campaign kit", icon: Download, target: "spoc-section-campaign-kit" },
                 { label: "Share project list", icon: Share2, target: "spoc-section-proengage" },
                 { label: "View leaderboard", icon: Trophy, target: "spoc-section-reports" },
-              ].map((action) => (
+              ]).map((action) => (
                 <button
                   key={action.label}
                   onClick={() => {
