@@ -265,9 +265,42 @@ const DashboardView = () => {
                 <p className="text-3xl font-black text-tata-blue">1</p>
               </div>
             </div>
+            {user.city && (
+              <div className="mt-4 flex items-center gap-2 text-xs text-slate-500">
+                <MapPin size={12} /> {user.city} · {user.company}
+              </div>
+            )}
+            {user.skills && user.skills.length > 0 && (
+              <div className="mt-3">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Skills</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {user.skills.map((s: string) => (
+                    <span key={s} className="bg-tata-blue/10 text-tata-blue text-xs font-semibold px-2.5 py-1 rounded-full">{s}</span>
+                  ))}
+                </div>
+              </div>
+            )}
+            {user.interests && user.interests.length > 0 && (
+              <div className="mt-3">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Interests</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {user.interests.map((interest: string) => (
+                    <span key={interest} className="bg-tata-cyan/10 text-tata-blue text-xs font-semibold px-2.5 py-1 rounded-full">{interest}</span>
+                  ))}
+                </div>
+              </div>
+            )}
+            <div className="mt-3 flex flex-wrap gap-2">
+              {user.preferredMode && (
+                <span className="bg-slate-100 text-slate-600 text-xs font-semibold px-2.5 py-1 rounded-full">{user.preferredMode} mode</span>
+              )}
+              {user.disasterResponseInterest && (
+                <span className="bg-green-50 text-green-700 text-xs font-semibold px-2.5 py-1 rounded-full">DR Ready</span>
+              )}
+            </div>
             <div className="border-t border-slate-200 mt-6 pt-4">
               <button onClick={() => navigate("profile")} className="text-xs font-semibold text-tata-blue hover:underline cursor-pointer">
-                View full profile →
+                Edit profile →
               </button>
             </div>
           </div>
