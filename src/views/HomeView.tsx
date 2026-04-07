@@ -125,24 +125,31 @@ const HomeView = () => {
                 subtitle: "Tata Volunteering Week",
                 desc: "A bi-annual celebration of volunteering where employees across the globe come together.",
                 img: "https://picsum.photos/seed/tata-volunteering/600/400",
+                accentBar: "bg-tata-cyan",
+                subtitleColor: "text-tata-cyan",
               },
               {
                 title: "ProEngage",
                 subtitle: "Skill-based Volunteering",
                 desc: "Project-based volunteering that allows employees to use their professional expertise.",
                 img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=600",
+                accentBar: "bg-violet-500",
+                subtitleColor: "text-violet-600",
               },
               {
                 title: "Disaster Response",
                 subtitle: "Rapid Action",
                 desc: "Coordinated efforts to provide immediate relief and long-term rehabilitation during disasters.",
                 img: "https://picsum.photos/seed/disaster-relief/600/400",
+                accentBar: "bg-red-500",
+                subtitleColor: "text-red-600",
               },
             ].map((p, i) => (
               <div
                 key={i}
                 className="bg-white rounded-2xl overflow-hidden border border-zinc-100 shadow-sm"
               >
+                <div className={`h-1 w-full ${p.accentBar}`} />
                 <div className="h-44 overflow-hidden">
                   <img
                     src={p.img}
@@ -152,7 +159,7 @@ const HomeView = () => {
                   />
                 </div>
                 <div className="p-6">
-                  <div className="text-xs font-bold uppercase tracking-widest text-tata-blue mb-2">
+                  <div className={`text-xs font-bold uppercase tracking-widest ${p.subtitleColor} mb-2`}>
                     {p.subtitle}
                   </div>
                   <h3 className="text-xl font-bold text-zinc-900 mb-3">{p.title}</h3>
