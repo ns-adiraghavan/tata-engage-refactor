@@ -1558,20 +1558,24 @@ const SPOCDashboardView = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
             {/* Left col-span-2 — main sections */}
             <div className="lg:col-span-2 space-y-12">
-              {/* ProEngage Oversight */}
-              <section id="spoc-section-proengage" className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 md:p-8">
-                <ProEngageOversightPanel />
-              </section>
+              {/* ProEngage Oversight (Corporate only) */}
+              {!isRegionalSPOC && (
+                <section id="spoc-section-proengage" className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 md:p-8">
+                  <ProEngageOversightPanel />
+                </section>
+              )}
 
               {/* TVW Management */}
               <section id="spoc-section-tvw" className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 md:p-8">
                 <TVWManagementPanel />
               </section>
 
-              {/* SPOC Directory */}
-              <section id="spoc-section-directory" className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 md:p-8">
-                <SPOCDirectoryPanel />
-              </section>
+              {/* SPOC Directory (Corporate only) */}
+              {!isRegionalSPOC && (
+                <section id="spoc-section-directory" className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 md:p-8">
+                  <SPOCDirectoryPanel />
+                </section>
+              )}
             </div>
 
             {/* Right col-span-1 — sidebar previews */}
