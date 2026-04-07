@@ -191,40 +191,50 @@ const DashboardView = () => {
           </div>
         </div>
 
-        {/* ProEngage Edition CTA */}
-        {isProEngageActive ? (
-          user.activeApplication?.status === "Matched" ? (
-            <div className="w-full mb-8 p-6 bg-white border border-green-200 rounded-2xl shadow-sm">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900">{user.activeApplication.title}</h4>
-                  <p className="text-xs text-slate-500 mt-1">{user.activeApplication.ngo}</p>
+        {/* Season-aware Panel A CTA */}
+        {IS_PE_SEASON ? (
+          <div className="space-y-4 mb-8">
+            {user.activeApplication?.status === "Matched" && (
+              <div className="w-full p-6 bg-white border border-green-200 rounded-2xl shadow-sm">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h4 className="text-sm font-bold text-slate-900">{user.activeApplication.title}</h4>
+                    <p className="text-xs text-slate-500 mt-1">{user.activeApplication.ngo}</p>
+                  </div>
+                  <span className="px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700">Matched</span>
                 </div>
-                <span className="px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700">Matched</span>
+                <button
+                  onClick={() => navigate("active-project")}
+                  className="mt-4 text-sm font-bold text-tata-blue hover:underline cursor-pointer flex items-center gap-1"
+                >
+                  View project <ArrowRight size={14} />
+                </button>
               </div>
+            )}
+            <div className="w-full p-6 bg-tata-blue rounded-2xl shadow-sm">
+              <h4 className="text-sm font-bold text-white mb-1">ProEngage is open</h4>
+              <p className="text-xs text-white/70 mb-4">Find projects matched to your skills</p>
               <button
-                onClick={() => navigate("active-project")}
-                className="mt-4 text-sm font-bold text-tata-blue hover:underline cursor-pointer flex items-center gap-1"
+                onClick={() => navigate("proengage")}
+                className="px-5 py-2 bg-white text-tata-blue text-sm font-semibold rounded-lg hover:bg-slate-50 transition-colors cursor-pointer flex items-center gap-1"
               >
-                View project <ArrowRight size={14} />
+                Browse projects <ArrowRight size={14} />
               </button>
             </div>
-          ) : (
-            <button
-              onClick={() => navigate("proengage")}
-              className="w-full mb-8 py-4 bg-tata-blue text-white text-sm font-bold rounded-2xl hover:bg-tata-blue/90 transition-colors cursor-pointer"
-            >
-              Apply to ProEngage projects
-            </button>
-          )
+          </div>
         ) : (
-          <div className="w-full mb-8 p-5 border border-zinc-200 rounded-2xl flex items-center justify-between bg-white">
-            <p className="text-sm text-zinc-600">
-              Next ProEngage edition coming soon — keep your profile updated to get better matches
-            </p>
-            <button onClick={() => navigate("profile")} className="text-sm font-bold text-tata-blue hover:underline whitespace-nowrap cursor-pointer flex items-center gap-1">
-              Edit profile <ArrowRight size={14} />
-            </button>
+          <div className="space-y-3 mb-8">
+            <div className="p-5 bg-white border border-slate-200 rounded-2xl shadow-sm">
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Volunteering</p>
+              <p className="text-sm text-slate-600">Explore past TVW events and stay ready for the next edition.</p>
+            </div>
+            {firstTvwEvent && (
+              <div className="p-5 bg-white border border-slate-200 rounded-2xl shadow-sm">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">TVW Vibe</p>
+                <h4 className="text-sm font-bold text-slate-900">{firstTvwEvent.title}</h4>
+                <p className="text-xs text-slate-500 mt-1 flex items-center gap-1"><MapPin size={12} /> {firstTvwEvent.location}</p>
+              </div>
+            )}
           </div>
         )}
 
