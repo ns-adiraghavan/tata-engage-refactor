@@ -1,8 +1,10 @@
 import { useAuth } from "@/context/AuthContext";
 import { useAppContext } from "@/context/AppContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
-import { COMMUNITY_TESTIMONIALS } from "@/data/mockData";
-import { FileText, Mail, MessageSquare } from "lucide-react";
+import { COMMUNITY_TESTIMONIALS, IS_PE_SEASON } from "@/data/mockData";
+import { FileText, Mail, MessageSquare, Calendar, Briefcase, Zap } from "lucide-react";
+
+const TESTIMONIAL_BG = ['bg-tata-blue', 'bg-violet-700', 'bg-emerald-800', 'bg-amber-700'];
 
 const VolunteerHubView = () => {
   const { user } = useAuth();
@@ -14,6 +16,18 @@ const VolunteerHubView = () => {
     navigator.clipboard.writeText("https://tataengage.com/refer/priya123");
     triggerToast("Referral link copied to clipboard!");
   };
+
+  const programmes = [
+    { label: "TVW", nav: "tvw", bgClass: "bg-tata-cyan/20", iconClass: "text-tata-blue", Icon: Calendar },
+    { label: "ProEngage", nav: "proengage", bgClass: "bg-violet-100", iconClass: "text-violet-600", Icon: Briefcase },
+    { label: "Disaster Response", nav: "disaster-response", bgClass: "bg-red-100", iconClass: "text-red-600", Icon: Zap },
+  ];
+
+  const stats = [
+    { num: user.history?.length ?? 0, label: "Projects completed", sub: "All time" },
+    { num: "48h", label: "Hours volunteered", sub: "This edition" },
+    { num: user.badges?.length ?? 0, label: "Badges earned", sub: "All time" },
+  ];
 
   return (
     <div className="pt-24 pb-20 bg-slate-50 min-h-screen">
@@ -29,42 +43,68 @@ const VolunteerHubView = () => {
               </p>
               <h1 className="text-3xl md:text-4xl font-black tracking-tight">{user.firstName} 👋</h1>
               <p className="text-white/60 text-sm mt-1">{user.company} · {user.designation}</p>
+              {/* CHANGE 4 — PE-aware subtext */}
+              <p className="text-sm text-white/70 mt-3">
+                {IS_PE_SEASON
+                  ? "ProEngage is open — browse projects matched to your skills."
+                  : "Stay connected — TVW is coming soon."}
+              </p>
             </div>
-            <div className="flex flex-wrap gap-3">
-              <button onClick={() => navigate("my-applications")} className="px-5 py-2.5 bg-white/10 hover:bg-white/20 rounded-xl text-sm font-semibold border border-white/10 transition-all cursor-pointer">My Applications</button>
-              <button onClick={() => navigate("profile")} className="px-5 py-2.5 bg-white/10 hover:bg-white/20 rounded-xl text-sm font-semibold border border-white/10 transition-all cursor-pointer">Profile</button>
-              <button onClick={() => navigate("dashboard")} className="px-5 py-2.5 bg-white/10 hover:bg-white/20 rounded-xl text-sm font-semibold border border-white/10 transition-all cursor-pointer">My Dashboard →</button>
-              {isProEngageActive && (
-                <button onClick={() => navigate("proengage")} className="px-5 py-2.5 bg-white text-[#003580] hover:bg-white/90 rounded-xl text-sm font-bold transition-all cursor-pointer shadow-lg">Find Projects</button>
-              )}
+            <div className="flex flex-col gap-3">
+              <div className="flex flex-wrap gap-3">
+                <button onClick={() => navigate("my-applications")} className="px-5 py-2.5 bg-white/10 hover:bg-white/20 rounded-xl text-sm font-semibold border border-white/10 transition-all cursor-pointer">My Applications</button>
+                <button onClick={() => navigate("profile")} className="px-5 py-2.5 bg-white/10 hover:bg-white/20 rounded-xl text-sm font-semibold border border-white/10 transition-all cursor-pointer">Profile</button>
+                <button onClick={() => navigate("dashboard")} className="px-5 py-2.5 bg-white/10 hover:bg-white/20 rounded-xl text-sm font-semibold border border-white/10 transition-all cursor-pointer">My Dashboard →</button>
+                {isProEngageActive && (
+                  <button onClick={() => navigate("proengage")} className="px-5 py-2.5 bg-white text-[#003580] hover:bg-white/90 rounded-xl text-sm font-bold transition-all cursor-pointer shadow-sm">Find Projects</button>
+                )}
+              </div>
+              {/* CHANGE 5 — Back to dashboard link */}
+              <button onClick={() => navigate("dashboard")} className="text-sm text-white/70 hover:text-white underline cursor-pointer text-left">
+                View my dashboard →
+              </button>
             </div>
           </div>
-          {/* Impact strip */}
-          <div className="mt-8 pt-6 border-t border-white/10 flex gap-8">
-            {[
-              { num: user.history?.length ?? 0, label: "Projects completed" },
-              { num: "48h", label: "Hours volunteered" },
-              { num: user.badges?.length ?? 0, label: "Badges earned" },
-            ].map((stat) => (
-              <div key={stat.label} className="text-center">
-                <p className="text-2xl font-black">{stat.num}</p>
-                <p className="text-xs text-white/50 uppercase tracking-widest">{stat.label}</p>
+          {/* Impact strip — CHANGE 2: vertical card pattern */}
+          <div className="mt-8 pt-6 border-t border-white/10 flex gap-6">
+            {stats.map((stat) => (
+              <div key={stat.label} className="bg-white border border-zinc-100 rounded-2xl p-5 shadow-sm">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">{stat.label}</p>
+                <p className="text-4xl font-black text-slate-900 tracking-tighter">{stat.num}</p>
+                <p className="text-xs font-bold text-slate-400 uppercase">{stat.sub}</p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* ═══ TESTIMONIALS ═══ */}
+        {/* ═══ PROGRAMME TILES — CHANGE 1 ═══ */}
+        <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4">Programmes</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
+          {programmes.map((p) => (
+            <button
+              key={p.label}
+              onClick={() => navigate(p.nav)}
+              className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm text-left hover:shadow-md transition-all cursor-pointer"
+            >
+              <div className={`w-14 h-14 rounded-full flex items-center justify-center ${p.bgClass} mb-4`}>
+                <p.Icon size={22} className={p.iconClass} />
+              </div>
+              <p className="text-sm font-bold text-slate-900">{p.label}</p>
+            </button>
+          ))}
+        </div>
+
+        {/* ═══ TESTIMONIALS — CHANGE 3 ═══ */}
         <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4">Voices from the community</h3>
         <div className="flex gap-6 overflow-x-auto pb-4 mb-12">
-          {COMMUNITY_TESTIMONIALS.map((t) => (
-            <div key={t.id} className="min-w-[320px] max-w-sm p-6 bg-white rounded-2xl border border-slate-100 flex-shrink-0 shadow-sm">
-              <p className="text-sm text-slate-700 italic mb-4">"{t.quote}"</p>
+          {COMMUNITY_TESTIMONIALS.map((t, i) => (
+            <div key={t.id} className={`min-w-[320px] max-w-sm p-6 rounded-2xl flex-shrink-0 shadow-sm ${TESTIMONIAL_BG[i % TESTIMONIAL_BG.length]}`}>
+              <p className="text-sm text-white/90 italic mb-4">"{t.quote}"</p>
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-[#003580] text-white flex items-center justify-center text-xs font-bold">{t.avatar}</div>
+                <div className="w-9 h-9 rounded-full bg-white/20 text-white flex items-center justify-center text-xs font-bold">{t.avatar}</div>
                 <div>
-                  <p className="text-sm font-bold text-slate-900">{t.author}</p>
-                  <p className="text-xs text-slate-500">{t.role}</p>
+                  <p className="text-sm font-semibold text-white">{t.author}</p>
+                  <p className="text-xs text-white/60">{t.role}</p>
                 </div>
               </div>
             </div>
