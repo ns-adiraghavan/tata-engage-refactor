@@ -7,8 +7,8 @@ import { FileText, Mail, MessageSquare } from "lucide-react";
 const VolunteerHubView = () => {
   const { user } = useAuth();
   const navigate = useAppNavigate();
-  const { referralCount, triggerToast, isProEngageActive } = useAppContext();
-  const proEngageActive = isProEngageActive ?? true;
+  const { referralCount, triggerToast } = useAppContext();
+  const isProEngageActive = true;
 
   const copyReferralLink = () => {
     navigator.clipboard.writeText("https://tataengage.com/refer/priya123");
