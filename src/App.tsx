@@ -210,6 +210,9 @@ export default function App() {
                 <Route path="/disaster-response/confirmation" element={<ProtectedRoute><DRConfirmationView /></ProtectedRoute>} />
                 <Route path="/spoc/dashboard" element={<ProtectedRoute><SPOCDashboardView /></ProtectedRoute>} />
                 <Route path="/admin/dashboard" element={<ProtectedRoute><AdminDashboardView /></ProtectedRoute>} />
+                <Route path="/hub" element={<ProtectedRoute><VolunteerHubView /></ProtectedRoute>} />
+                <Route path="/ngo/hub" element={<ProtectedRoute><NGOHubView /></ProtectedRoute>} />
+                <Route path="/spoc/hub" element={<ProtectedRoute><SPOCHubView /></ProtectedRoute>} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </motion.div>

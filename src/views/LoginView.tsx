@@ -72,7 +72,7 @@ const LoginView = () => {
             onClick={() => {
               setIsLoggedIn(true);
               setUser(ANJALI_MEHTA);
-              navigate("ngo-dashboard");
+              navigate("ngo-hub");
               triggerToast("Login Successful! Welcome back, Anjali.");
             }}
             className="w-full flex items-center justify-center gap-3 bg-emerald-600 text-white py-4 rounded-2xl font-bold hover:bg-emerald-700 transition-all mb-6 cursor-pointer shadow-lg shadow-emerald-600/20"
