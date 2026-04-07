@@ -10,6 +10,8 @@ import RoleToggle from "@/components/shared/RoleToggle";
 const SPOCHubView = () => {
   const spoc = ROHAN_DESAI;
   const navigate = useAppNavigate();
+  const { user } = useAuth();
+  const showToggle = user?.role?.includes("spoc") || user?.role === "corporate_spoc";
 
   const stats = [
     { label: "Total Volunteers", value: spoc.stats.totalVolunteers.toLocaleString(), sub: "TCS Global", icon: Users, color: "text-[#003580]", bg: "bg-blue-50", border: "border-blue-100" },
