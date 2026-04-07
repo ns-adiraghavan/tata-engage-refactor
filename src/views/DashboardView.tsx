@@ -4,6 +4,8 @@ import { ChevronRight, Building2, Heart, CheckCircle2, Search, Globe, Calendar, 
 import { useAppContext } from "@/context/AppContext";
 import { useAuth } from "@/context/AuthContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
+import { IS_PE_SEASON, TVW_EVENTS } from "@/data/mockData";
+import { toast } from "@/hooks/use-toast";
 
 
 const DashboardView = () => {
