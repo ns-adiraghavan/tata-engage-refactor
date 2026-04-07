@@ -23,7 +23,7 @@ const DashboardView = () => {
 
 
   return (
-    <div className="pt-24 pb-20 bg-slate-50 min-h-screen">
+    <div className="pt-24 pb-20 bg-gradient-to-br from-slate-50 via-white to-blue-50/30 min-h-screen">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Disaster Response Feedback Form */}
         {isDRClosed && hasSubmittedAvailability && drDeploymentLog.some(log => log.volunteers.some((v: any) => v.email === user.email)) && (
@@ -191,55 +191,83 @@ const DashboardView = () => {
           </div>
         </div>
 
-        {/* Season-aware Panel A CTA */}
-        {IS_PE_SEASON ? (
-          <div className="space-y-4 mb-8">
-            {user.activeApplication?.status === "Matched" && (
-              <div className="w-full p-6 bg-white border border-green-200 rounded-2xl shadow-sm">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h4 className="text-sm font-bold text-slate-900">{user.activeApplication.title}</h4>
-                    <p className="text-xs text-slate-500 mt-1">{user.activeApplication.ngo}</p>
+        {/* ═══ Panel A — Your Activity ═══ */}
+        <div className="bg-gradient-to-br from-tata-blue to-[#0057ff] rounded-3xl p-8 mb-8 shadow-sm">
+          <h3 className="text-white font-bold text-lg mb-6">Your Activity</h3>
+
+          {IS_PE_SEASON ? (
+            <div className="space-y-4">
+              {user.activeApplication?.status === "Matched" && (
+                <div className="w-full p-6 bg-white/15 border border-white/20 rounded-2xl">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="text-sm font-bold text-white">{user.activeApplication.title}</h4>
+                      <p className="text-xs text-white/70 mt-1">{user.activeApplication.ngo}</p>
+                    </div>
+                    <span className="px-3 py-1 rounded-full text-xs font-bold bg-white/20 text-white border border-white/30">Matched</span>
                   </div>
-                  <span className="px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700">Matched</span>
+                  <button
+                    onClick={() => navigate("active-project")}
+                    className="mt-4 text-sm font-bold text-white/80 hover:text-white cursor-pointer flex items-center gap-1"
+                  >
+                    View project → <ArrowRight size={14} />
+                  </button>
                 </div>
+              )}
+              <div className="w-full p-6 bg-white/15 border border-white/20 rounded-2xl">
+                <h4 className="text-sm font-bold text-white mb-1">ProEngage is open</h4>
+                <p className="text-xs text-white/70 mb-4">Find projects matched to your skills</p>
                 <button
-                  onClick={() => navigate("active-project")}
-                  className="mt-4 text-sm font-bold text-tata-blue hover:underline cursor-pointer flex items-center gap-1"
+                  onClick={() => navigate("proengage")}
+                  className="px-5 py-2 bg-white text-tata-blue text-sm font-semibold rounded-lg hover:bg-slate-50 transition-colors cursor-pointer flex items-center gap-1"
                 >
-                  View project <ArrowRight size={14} />
+                  Browse projects <ArrowRight size={14} />
                 </button>
               </div>
-            )}
-            <div className="w-full p-6 bg-tata-blue rounded-2xl shadow-sm">
-              <h4 className="text-sm font-bold text-white mb-1">ProEngage is open</h4>
-              <p className="text-xs text-white/70 mb-4">Find projects matched to your skills</p>
-              <button
-                onClick={() => navigate("proengage")}
-                className="px-5 py-2 bg-white text-tata-blue text-sm font-semibold rounded-lg hover:bg-slate-50 transition-colors cursor-pointer flex items-center gap-1"
-              >
-                Browse projects <ArrowRight size={14} />
-              </button>
             </div>
-          </div>
-        ) : (
-          <div className="space-y-3 mb-8">
-            <div className="p-5 bg-white border border-slate-200 rounded-2xl shadow-sm">
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Volunteering</p>
-              <p className="text-sm text-slate-600">Explore past TVW events and stay ready for the next edition.</p>
-            </div>
-            {firstTvwEvent && (
-              <div className="p-5 bg-white border border-slate-200 rounded-2xl shadow-sm">
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">TVW Vibe</p>
-                <h4 className="text-sm font-bold text-slate-900">{firstTvwEvent.title}</h4>
-                <p className="text-xs text-slate-500 mt-1 flex items-center gap-1"><MapPin size={12} /> {firstTvwEvent.location}</p>
+          ) : (
+            <div className="space-y-3">
+              <div className="p-5 bg-white/15 border border-white/20 rounded-2xl">
+                <p className="text-xs font-bold text-white/60 uppercase tracking-widest mb-1">Volunteering</p>
+                <p className="text-sm text-white/80">Explore past TVW events and stay ready for the next edition.</p>
               </div>
-            )}
+              {firstTvwEvent && (
+                <div className="p-5 bg-white/15 border border-white/20 rounded-2xl">
+                  <p className="text-xs font-bold text-white/60 uppercase tracking-widest mb-1">TVW Vibe</p>
+                  <h4 className="text-sm font-bold text-white">{firstTvwEvent.title}</h4>
+                  <p className="text-xs text-white/60 mt-1 flex items-center gap-1"><MapPin size={12} /> {firstTvwEvent.location}</p>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* ═══ Panel B — Your Impact ═══ */}
+        <div className="bg-slate-50 border-l-4 border-tata-cyan rounded-2xl p-8 mb-8 shadow-sm">
+          <h3 className="text-sm font-bold text-slate-900 mb-6">Your Impact</h3>
+          <div className="grid grid-cols-3 gap-6">
+            <div>
+              <p className="text-xs text-slate-500 uppercase tracking-widest mb-1">Hours volunteered</p>
+              <p className="text-3xl font-black text-tata-blue">48h</p>
+            </div>
+            <div>
+              <p className="text-xs text-slate-500 uppercase tracking-widest mb-1">Projects</p>
+              <p className="text-3xl font-black text-tata-blue">{user.history?.length ?? 0}</p>
+            </div>
+            <div>
+              <p className="text-xs text-slate-500 uppercase tracking-widest mb-1">Referrals</p>
+              <p className="text-3xl font-black text-tata-blue">1</p>
+            </div>
           </div>
-        )}
+          <div className="border-t border-slate-200 mt-6 pt-4">
+            <button onClick={() => navigate("profile")} className="text-xs font-semibold text-tata-blue hover:underline cursor-pointer">
+              View full profile →
+            </button>
+          </div>
+        </div>
 
         {/* ═══ SECTION: Active programmes ═══ */}
-        <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4 flex items-center gap-2"><Activity size={16} /> Active programmes</h3>
+        <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4 flex items-center gap-2"><div className="w-1 h-5 bg-tata-blue rounded-full mr-1" /><Activity size={16} /> Active programmes</h3>
 
         <div className="space-y-8 mb-12">
           {/* Active Application */}
@@ -326,7 +354,7 @@ const DashboardView = () => {
         </div>
 
         {/* ═══ SECTION: Explore ═══ */}
-        <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4 flex items-center gap-2"><Compass size={16} /> Explore</h3>
+        <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4 flex items-center gap-2"><div className="w-1 h-5 bg-tata-blue rounded-full mr-1" /><Compass size={16} /> Explore</h3>
 
         <div className="space-y-8 mb-12">
           {/* AI Recommendations — PE season only */}
@@ -415,7 +443,7 @@ const DashboardView = () => {
 
 
         {/* ═══ SECTION: Your history ═══ */}
-        <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4 flex items-center gap-2"><Clock size={16} /> Your history</h3>
+        <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4 flex items-center gap-2"><div className="w-1 h-5 bg-tata-blue rounded-full mr-1" /><Clock size={16} /> Your history</h3>
 
         <div className="space-y-8 mb-12">
           {/* Application History */}
