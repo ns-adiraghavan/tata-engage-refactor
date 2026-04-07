@@ -406,22 +406,6 @@ const DashboardView = () => {
           )}
         </div>
 
-        {/* ═══ SECTION: Voices from the community ═══ */}
-        <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4">Voices from the community</h3>
-        <div className="flex gap-6 overflow-x-auto pb-4 mb-12">
-          {COMMUNITY_TESTIMONIALS.map((t) => (
-            <div key={t.id} className="min-w-[320px] max-w-sm p-6 bg-slate-50 rounded-2xl border border-slate-100 flex-shrink-0">
-              <p className="text-sm text-slate-700 italic mb-4">"{t.quote}"</p>
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-[#003580] text-white flex items-center justify-center text-xs font-bold">{t.avatar}</div>
-                <div>
-                  <p className="text-sm font-bold text-slate-900">{t.author}</p>
-                  <p className="text-xs text-slate-500">{t.role}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
 
         {/* ═══ SECTION: Your history ═══ */}
         <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4 flex items-center gap-2"><Clock size={16} /> Your history</h3>
