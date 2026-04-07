@@ -4,7 +4,7 @@ import { ChevronRight, Building2, Heart, Mail, CheckCircle2, Search, Globe, Cale
 import { useAppContext } from "@/context/AppContext";
 import { useAuth } from "@/context/AuthContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
-import { COMMUNITY_TESTIMONIALS } from "@/data/mockData";
+
 
 const DashboardView = () => {
   const { user } = useAuth();
