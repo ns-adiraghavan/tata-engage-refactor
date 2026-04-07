@@ -54,7 +54,7 @@ const VolunteerHubView = () => {
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32 blur-3xl" />
           <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
             <div>
-              <h1 className="font-serif text-4xl text-white leading-tight md:text-9xl">
+              <h1 className="font-serif text-4xl text-white leading-tight md:text-7xl">
                 Welcome, {user.firstName}
               </h1>
               <p className="text-white/60 text-sm mt-1">{user.company} · {user.designation}</p>
