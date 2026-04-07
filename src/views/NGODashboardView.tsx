@@ -140,7 +140,7 @@ const NGODashboardView = () => {
   return (
     <div className="min-h-screen pt-24 bg-slate-50">
       {/* My Hub Hero */}
-      <section className="bg-gradient-to-br from-[#003580] to-[#001d4a] text-white pt-16 pb-24 px-6 md:px-12 relative overflow-hidden">
+      <section className="bg-gradient-to-br from-[#003580] via-[#0046b8] to-[#00b4d8] text-white pt-16 pb-24 px-6 md:px-12 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32 blur-3xl" />
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
