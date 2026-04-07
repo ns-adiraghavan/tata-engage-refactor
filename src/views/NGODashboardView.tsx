@@ -276,7 +276,7 @@ const NGODashboardView = () => {
                   </button>
                 </div>
               </div>
-
+              {activeTab === "projects" ? (
               <AnimatePresence mode="wait">
                 {/* ─── LEVEL 1: Edition list ─── */}
                 {!drillEdition && (
@@ -318,7 +318,6 @@ const NGODashboardView = () => {
                       <span className="text-zinc-300 text-xs">›</span>
                       <span className="text-xs font-medium text-zinc-800">{drillEdition === "pe-2025" ? "ProEngage · April 2025" : "ProEngage · October 2024"}</span>
                     </div>
-                    {/* Search + filter row */}
                     <div className="flex gap-3 mb-5">
                       <div className="relative flex-1">
                         <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" />
