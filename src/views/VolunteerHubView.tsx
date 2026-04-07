@@ -49,6 +49,16 @@ const VolunteerHubView = () => {
                   ? "ProEngage is open — browse projects matched to your skills."
                   : "Stay connected — TVW is coming soon."}
               </p>
+              {/* Badges strip */}
+              {user.badges && user.badges.length > 0 && (
+                <div className="flex flex-wrap gap-2 mt-3">
+                  {user.badges.map((badge: any) => (
+                    <span key={badge.id} className="bg-white/15 border border-white/20 rounded-full px-3 py-1 text-xs text-white font-semibold">
+                      {badge.icon} {badge.name}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
             <div className="flex flex-col gap-3">
               <div className="flex flex-wrap gap-3">
