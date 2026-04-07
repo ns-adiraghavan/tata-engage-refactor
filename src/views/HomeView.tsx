@@ -11,7 +11,7 @@ const HomeView = () => {
       <section className="min-h-screen bg-white pt-32 px-6 md:px-12">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="max-w-xl">
-            <span className="inline-block bg-blue-50 text-tata-blue text-xs font-semibold px-3 py-1 rounded-full mb-6">
+            <span className="inline-block bg-blue-50 text-tata-blue text-xs font-semibold px-4 py-1.5 rounded-lg border border-blue-100 mb-6">
               Tata Group Volunteering
             </span>
             <h1 className="text-5xl font-bold text-zinc-900 leading-tight mb-6">
@@ -186,32 +186,59 @@ const HomeView = () => {
               {
                 category: "Education",
                 headline: "Teaching coding to 200 girls in Pune",
+                bg: "bg-[#0f1f3d]",
+                svg: (
+                  <svg width="100%" height="100%" viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="320" cy="30" r="140" fill="none" stroke="white" strokeWidth="0.5" opacity="0.15"/>
+                    <circle cx="320" cy="30" r="80" fill="none" stroke="white" strokeWidth="0.5" opacity="0.1"/>
+                    <line x1="0" y1="180" x2="400" y2="40" stroke="white" strokeWidth="0.5" opacity="0.12"/>
+                    <line x1="0" y1="140" x2="300" y2="0" stroke="white" strokeWidth="0.5" opacity="0.08"/>
+                    <circle cx="60" cy="160" r="20" fill="none" stroke="white" strokeWidth="0.5" opacity="0.1"/>
+                  </svg>
+                ),
               },
               {
                 category: "Environment",
                 headline: "1,000 trees planted across TCS campuses",
+                bg: "bg-[#0d2b1f]",
+                svg: (
+                  <svg width="100%" height="100%" viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="80" cy="200" r="180" fill="none" stroke="white" strokeWidth="0.5" opacity="0.12"/>
+                    <line x1="200" y1="0" x2="400" y2="200" stroke="white" strokeWidth="0.5" opacity="0.1"/>
+                    <line x1="250" y1="0" x2="400" y2="120" stroke="white" strokeWidth="0.5" opacity="0.08"/>
+                    <circle cx="340" cy="60" r="30" fill="none" stroke="white" strokeWidth="0.5" opacity="0.1"/>
+                    <line x1="0" y1="80" x2="200" y2="200" stroke="white" strokeWidth="0.5" opacity="0.07"/>
+                  </svg>
+                ),
               },
               {
                 category: "Health",
                 headline: "Free health camps serving rural Maharashtra",
+                bg: "bg-[#1f0d2b]",
+                svg: (
+                  <svg width="100%" height="100%" viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="200" cy="100" r="160" fill="none" stroke="white" strokeWidth="0.5" opacity="0.1"/>
+                    <circle cx="200" cy="100" r="90" fill="none" stroke="white" strokeWidth="0.5" opacity="0.08"/>
+                    <line x1="0" y1="0" x2="400" y2="200" stroke="white" strokeWidth="0.5" opacity="0.1"/>
+                    <line x1="400" y1="0" x2="0" y2="200" stroke="white" strokeWidth="0.5" opacity="0.08"/>
+                    <circle cx="350" cy="170" r="40" fill="none" stroke="white" strokeWidth="0.5" opacity="0.1"/>
+                  </svg>
+                ),
               },
             ].map((story, i) => (
-              <div
-                key={i}
-                className="rounded-2xl overflow-hidden border border-zinc-100"
-              >
-                <div className="bg-slate-100 h-40 flex items-center justify-center">
-                  <span className="text-xs text-zinc-400">Photo from TSG</span>
-                </div>
-                <div className="p-5">
-                  <span className="inline-block bg-blue-50 text-tata-blue text-xs font-semibold px-2.5 py-0.5 rounded-full mb-3">
+              <div key={i} className={`rounded-2xl overflow-hidden ${story.bg}`}>
+                <div className={`h-48 relative overflow-hidden ${story.bg}`}>
+                  <div className="absolute inset-0 w-full h-full">{story.svg}</div>
+                  <span className="absolute bottom-4 left-4 bg-tata-cyan text-zinc-900 text-xs font-bold px-3 py-1 rounded-full tracking-wide">
                     {story.category}
                   </span>
-                  <h3 className="text-base font-bold text-zinc-900 mb-3 leading-snug">
+                </div>
+                <div className="p-5">
+                  <h3 className="text-base font-bold text-white leading-snug mb-3">
                     {story.headline}
                   </h3>
-                  <button className="flex items-center gap-1 text-sm font-semibold text-tata-blue cursor-pointer">
-                    Read more <ChevronRight size={14} />
+                  <button className="text-tata-cyan text-sm font-semibold cursor-pointer">
+                    Read more →
                   </button>
                 </div>
               </div>
