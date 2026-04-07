@@ -133,6 +133,7 @@ const SPOCDashboardView = () => {
   };
 
   const ProEngageOversightPanel = () => {
+    const [peProject, setPeProject] = useState<any | null>(null);
     const filteredPipeline = PROENGAGE_PIPELINE.filter(v => 
       v.name.toLowerCase().includes(proEngageSearch.toLowerCase()) ||
       v.project.toLowerCase().includes(proEngageSearch.toLowerCase()) ||
