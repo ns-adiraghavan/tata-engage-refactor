@@ -12,7 +12,7 @@ const NGODashboardView = () => {
   const { setClonedProject, setActiveProject, ngoData, triggerToast } = useAppContext();
   const navigate = useAppNavigate();
   const location = useLocation();
-  const [activeTab, setActiveTab] = useState<"projects" | "applications" | "coordinators">("projects");
+  
   const [applicationTab, setApplicationTab] = useState<"shortlist" | "all">("shortlist");
   const [coordinators, setCoordinators] = useState(ngoData.coordinators);
   const [showAddCoordinator, setShowAddCoordinator] = useState(false);
