@@ -30,7 +30,7 @@ const VolunteerHubView = () => {
   ];
 
   return (
-    <div className="pt-24 pb-20 bg-slate-50 min-h-screen">
+    <div className="pt-20 pb-20 bg-slate-50 min-h-screen">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
 
         {/* ═══ HERO ═══ */}
