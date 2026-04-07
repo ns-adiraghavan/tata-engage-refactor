@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronRight, User, Users, Briefcase, ShieldCheck, Lock, Eye, CheckCircle2, Search, ExternalLink, Calendar, MapPin, Clock, Award, Info, Filter, CalendarDays, LayoutGrid, Send, FileText, Check, ChevronDown, Sparkles, MessageSquare, ArrowRight, Plus, Edit2, Save, Copy, Pause, History, AlertTriangle, Activity, Download, Upload, Trophy, Share2, File, Archive } from "lucide-react";
 import type { View, Role } from "@/types";
@@ -57,6 +57,26 @@ const SPOCDashboardView = () => {
     { name: "Reports & Certificates", icon: FileText },
     { name: "Campaign Kit", icon: Download }
   ];
+
+  // Scroll-spy: update activeNav when sections scroll into view
+  useEffect(() => {
+    const mainEl = document.getElementById("spoc-main-content");
+    if (!mainEl) return;
+    const handler = () => {
+      const sectionEls = navItems.map((item) => ({
+        name: item.name,
+        el: document.getElementById(`spoc-section-${item.name.replace(/\s+/g, "-")}`),
+      }));
+      for (const { name, el } of [...sectionEls].reverse()) {
+        if (el && el.getBoundingClientRect().top <= 160) {
+          setActiveNav(name);
+          break;
+        }
+      }
+    };
+    mainEl.addEventListener("scroll", handler);
+    return () => mainEl.removeEventListener("scroll", handler);
+  }, [navItems]);
 
   const handleApprove = (id: number) => {
     setApprovals(prev => prev.map(a => a.id === id ? { ...a, status: "Approved" } : a));
@@ -158,7 +178,7 @@ const SPOCDashboardView = () => {
     };
 
     return (
-      <div className="space-y-12">
+      <div id="spoc-section-ProEngage-Oversight" className="space-y-12">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
           <div>
             <div className="flex items-center gap-3 mb-2">
@@ -442,7 +462,7 @@ const SPOCDashboardView = () => {
     };
 
     return (
-      <div className="space-y-12">
+      <div id="spoc-section-Reports-&-Certificates" className="space-y-12">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
           <div>
             <h2 className="text-4xl font-black text-slate-900 tracking-tight mb-2">Reports & Recognition</h2>
@@ -744,7 +764,7 @@ const SPOCDashboardView = () => {
   ];
 
   const CampaignKitPanel = () => (
-    <div className="space-y-10">
+    <div id="spoc-section-Campaign-Kit" className="space-y-10">
       <div>
         <h2 className="text-4xl font-black text-slate-900 tracking-tight mb-2">Campaign Kit</h2>
         <p className="text-slate-500 font-medium">Downloadable collateral to promote volunteering across your company.</p>
@@ -786,7 +806,7 @@ const SPOCDashboardView = () => {
   );
 
   const DashboardHome = () => (
-    <div className="space-y-12">
+    <div id="spoc-section-Dashboard" className="space-y-12">
       {/* Stats Grid — moved to very top, before welcome banner */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {[
@@ -1000,7 +1020,7 @@ const SPOCDashboardView = () => {
     });
 
     return (
-      <div className="space-y-12">
+      <div id="spoc-section-SPOC-Directory" className="space-y-12">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
           <div>
             <h2 className="text-4xl font-black text-slate-900 tracking-tight mb-2">SPOC Directory</h2>
@@ -1128,7 +1148,7 @@ const SPOCDashboardView = () => {
     const filteredApprovals = approvals.filter(a => a.status === approvalTab);
 
     return (
-      <div className="space-y-12">
+      <div id="spoc-section-Pending-Approvals" className="space-y-12">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
           <div>
             <h2 className="text-4xl font-black text-slate-900 tracking-tight mb-2">Pending Approvals</h2>
@@ -1263,7 +1283,7 @@ const SPOCDashboardView = () => {
     });
 
     return (
-      <div className="space-y-12">
+      <div id="spoc-section-TVW-Management" className="space-y-12">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
           <div>
             <h2 className="text-4xl font-black text-slate-900 tracking-tight mb-2">TVW Management</h2>
@@ -1468,7 +1488,7 @@ const SPOCDashboardView = () => {
   return (
     <div className="min-h-screen pt-24 bg-[#F8FAFC] flex">
       {/* Sidebar */}
-      <aside className="w-80 bg-white border-r border-slate-100 hidden lg:flex flex-col p-8 fixed h-[calc(100vh-80px)] z-20">
+      <aside className="w-80 bg-white border-r border-slate-100 hidden lg:flex flex-col p-8 fixed h-[calc(100vh-96px)] z-20">
         <div className="mb-10 px-2">
           <div className="flex items-center gap-4 p-4 bg-slate-50 rounded-[1.5rem] border border-slate-100">
             <div className="w-12 h-12 rounded-2xl bg-tata-blue flex items-center justify-center text-white font-semibold text-lg shadow-lg shadow-blue-900/20">
@@ -1525,7 +1545,7 @@ const SPOCDashboardView = () => {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 lg:ml-80 p-8 md:p-16">
+      <main id="spoc-main-content" className="flex-1 lg:ml-80 p-8 md:p-16 overflow-y-auto h-[calc(100vh-96px)]">
         <div className="max-w-7xl mx-auto">
           <AnimatePresence mode="wait">
             <motion.div
