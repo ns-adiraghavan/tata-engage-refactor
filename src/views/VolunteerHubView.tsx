@@ -25,12 +25,12 @@ const VolunteerHubView = () => {
 
   const stats = [
     { num: user.history?.length ?? 0, label: "Projects completed", sub: "All time" },
-    { num: "48h", label: "Hours volunteered", sub: "This edition" },
+    { num: (user.hoursVolunteered != null ? `${user.hoursVolunteered}h` : "48h"), label: "Hours volunteered", sub: "This edition" },
     { num: user.badges?.length ?? 0, label: "Badges earned", sub: "All time" },
   ];
 
   return (
-    <div className="pt-24 pb-20 bg-slate-50 min-h-screen">
+    <div className="pt-20 pb-20 bg-slate-50 min-h-screen">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
 
         {/* ═══ HERO ═══ */}
@@ -49,6 +49,16 @@ const VolunteerHubView = () => {
                   ? "ProEngage is open — browse projects matched to your skills."
                   : "Stay connected — TVW is coming soon."}
               </p>
+              {/* Badges strip */}
+              {user.badges && user.badges.length > 0 && (
+                <div className="flex flex-wrap gap-2 mt-3">
+                  {user.badges.map((badge: any) => (
+                    <span key={badge.id} className="bg-white/15 border border-white/20 rounded-full px-3 py-1 text-xs text-white font-semibold">
+                      {badge.icon} {badge.name}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
             <div className="flex flex-col gap-3">
               <div className="flex flex-wrap gap-3">
@@ -93,6 +103,28 @@ const VolunteerHubView = () => {
             </button>
           ))}
         </div>
+
+        {/* ═══ FEATURED TESTIMONIAL ═══ */}
+        <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4">From the community</h3>
+        {COMMUNITY_TESTIMONIALS[0] && (() => {
+          const ft = COMMUNITY_TESTIMONIALS[0];
+          return (
+            <div className="bg-white border border-zinc-100 rounded-2xl shadow-sm p-6 flex gap-6 items-start mb-12">
+              <span className="text-5xl font-black text-tata-cyan leading-none">"</span>
+              <div>
+                <span className="bg-green-50 text-green-700 text-xs font-semibold px-2 py-0.5 rounded-full">Verified story</span>
+                <p className="text-sm text-slate-700 italic mb-3 mt-2">"{ft.quote}"</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-tata-blue/10 text-tata-blue text-xs font-bold flex items-center justify-center">{ft.avatar}</div>
+                  <div>
+                    <p className="font-semibold text-sm text-slate-900">{ft.author}</p>
+                    <p className="text-xs text-slate-400">{ft.role}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })()}
 
         {/* ═══ TESTIMONIALS — CHANGE 3 ═══ */}
         <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4">Voices from the community</h3>
