@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { useAppContext } from "@/context/AppContext";
 
 const TVWVibeView = () => (
-  <div className="pt-28 pb-20 px-6 md:px-12 bg-white min-h-screen">
+  <div className="pt-20 pb-20 px-6 md:px-12 bg-white min-h-screen">
     <div className="max-w-7xl mx-auto">
       <div className="flex justify-between items-end mb-12">
         <div>

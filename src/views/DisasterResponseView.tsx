@@ -5,7 +5,7 @@ import { useAppNavigate } from "@/hooks/useAppNavigate";
 const DisasterResponseView = () => {
   const navigate = useAppNavigate();
   return (
-    <div className="pt-28 pb-20 px-6 md:px-12 bg-slate-50 min-h-screen">
+    <div className="pt-20 pb-20 px-6 md:px-12 bg-slate-50 min-h-screen">
       <div className="max-w-7xl mx-auto">
         {/* Hero Section */}
         <section className="mb-20 text-center">

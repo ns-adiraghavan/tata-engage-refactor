@@ -25,7 +25,7 @@ const MyApplicationsView = () => {
   };
 
   return (
-    <div className="pt-28 pb-20 px-6 md:px-12 bg-slate-50 min-h-screen">
+    <div className="pt-20 pb-20 px-6 md:px-12 bg-slate-50 min-h-screen">
       <div className="max-w-4xl mx-auto">
         <div className="mb-10">
           <h1 className="text-4xl font-bold text-tata-blue tracking-tight mb-2">My Applications</h1>

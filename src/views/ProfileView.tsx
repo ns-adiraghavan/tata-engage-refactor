@@ -70,7 +70,7 @@ const ProfileView = () => {
   };
 
   return (
-    <div className="pt-28 pb-20 px-6 md:px-12 bg-white min-h-screen">
+    <div className="pt-20 pb-20 px-6 md:px-12 bg-white min-h-screen">
       <div className="max-w-5xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
           <div className="flex items-center gap-6">

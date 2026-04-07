@@ -42,7 +42,7 @@ const DRAvailabilityForm = () => {
   };
 
   return (
-    <div className="pt-28 pb-20 px-6 md:px-12 bg-slate-50 min-h-screen">
+    <div className="pt-20 pb-20 px-6 md:px-12 bg-slate-50 min-h-screen">
       <div className="max-w-3xl mx-auto">
         <button onClick={() => navigate("dashboard")} className="flex items-center gap-2 text-xs font-semibold text-slate-400 uppercase tracking-widest mb-8 hover:text-tata-blue transition-colors">
           <ArrowLeft size={16} /> Back to Dashboard
