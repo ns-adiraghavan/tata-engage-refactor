@@ -267,7 +267,7 @@ const DashboardView = () => {
         </div>
 
         {/* ═══ SECTION: Active programmes ═══ */}
-        <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4 flex items-center gap-2"><Activity size={16} /> Active programmes</h3>
+        <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4 flex items-center gap-2"><div className="w-1 h-5 bg-tata-blue rounded-full mr-1" /><Activity size={16} /> Active programmes</h3>
 
         <div className="space-y-8 mb-12">
           {/* Active Application */}
