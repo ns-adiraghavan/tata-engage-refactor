@@ -90,6 +90,7 @@ export const ANJALI_GUPTA_REGIONAL = {
   totalOrientationModules: 5
 };
 
+export const SPOC_DIRECTORY = [
   { id: 1, name: "Rohan Desai", role: "Corporate SPOC", company: "TCS", geography: "Global", status: "Active", lastActive: "2 mins ago", email: "rohan.desai@tcs.com" },
   { id: 2, name: "Anjali Gupta", role: "Regional SPOC", company: "TCS", geography: "North India", status: "Active", lastActive: "1 hour ago", email: "anjali.g@tcs.com" },
   { id: 3, name: "Vikram Malhotra", role: "Regional SPOC", company: "TCS", geography: "West India", status: "Inactive", lastActive: "3 days ago", email: "v.malhotra@tcs.com" },
