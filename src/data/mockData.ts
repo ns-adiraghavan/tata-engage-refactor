@@ -149,13 +149,13 @@ export const TCS_TVW_EVENTS = [
 ];
 
 export const PROENGAGE_PIPELINE = [
-  { id: 1, name: "Amit Shah", project: "Digital Literacy", ngo: "Pratham", status: "Active", match: 95, lastUpdated: "2 days ago", email: "amit.s@tcs.com", skills: ["Teaching", "IT"], experience: "5 years" },
-  { id: 2, name: "Sneha Patil", project: "Financial Literacy", ngo: "Swayam Krishi", status: "Matched", match: 88, lastUpdated: "1 day ago", email: "sneha.p@tcs.com", skills: ["Finance"], experience: "3 years" },
-  { id: 3, name: "Rahul Sharma", project: "Water Conservation", ngo: "Arpan", status: "Applied", match: 92, lastUpdated: "5 hours ago", email: "rahul.s@tata.com", skills: ["Engineering"], experience: "7 years" },
-  { id: 4, name: "Priya Das", project: "Rural Education", ngo: "Teach For India", status: "Completed", match: 82, lastUpdated: "1 week ago", email: "priya.d@tata.com", skills: ["Marketing"], experience: "4 years" },
-  { id: 5, name: "Vikram Singh", project: "Skill Development", ngo: "Skill India", status: "Dropped", match: 78, lastUpdated: "3 days ago", email: "vikram.s@tata.com", skills: ["HR"], experience: "10 years" },
-  { id: 6, name: "Ananya Iyer", project: "Women Empowerment", ngo: "SEWA", status: "Active", match: 90, lastUpdated: "12 hours ago", email: "ananya.i@tata.com", skills: ["Legal"], experience: "2 years" },
-  { id: 7, name: "Karan Malhotra", project: "Healthcare Support", ngo: "HelpAge India", status: "Paused", match: 85, lastUpdated: "4 days ago", email: "karan.m@tata.com", skills: ["Operations"], experience: "6 years" },
+  { id: 1, name: "Amit Shah", project: "Digital Literacy", ngo: "Pratham", status: "Active", match: 95, progress: 65, lastUpdated: "2 days ago", email: "amit.s@tcs.com", company: "TCS", contact: "+91-98765-43210", skills: ["Teaching", "IT"], experience: "5 years", isCurrentEdition: true },
+  { id: 2, name: "Sneha Patil", project: "Financial Literacy", ngo: "Swayam Krishi", status: "Matched", match: 88, lastUpdated: "1 day ago", email: "sneha.p@tcs.com", company: "TCS", contact: "+91-98765-43211", skills: ["Finance"], experience: "3 years", isCurrentEdition: true },
+  { id: 3, name: "Rahul Sharma", project: "Water Conservation", ngo: "Arpan", status: "Applied", match: 92, lastUpdated: "5 hours ago", email: "rahul.s@tata.com", company: "Tata Steel", contact: "+91-98765-43212", skills: ["Engineering"], experience: "7 years", isCurrentEdition: true },
+  { id: 4, name: "Priya Das", project: "Rural Education", ngo: "Teach For India", status: "Completed", match: 82, lastUpdated: "1 week ago", email: "priya.d@tata.com", company: "TCS", contact: "+91-98765-43213", skills: ["Marketing"], experience: "4 years", isCurrentEdition: false, feedbackStatus: "submitted" },
+  { id: 5, name: "Vikram Singh", project: "Skill Development", ngo: "Skill India", status: "Dropped", match: 78, lastUpdated: "3 days ago", email: "vikram.s@tata.com", company: "Tata Motors", contact: "+91-98765-43214", skills: ["HR"], experience: "10 years", isCurrentEdition: false, feedbackStatus: "pending" },
+  { id: 6, name: "Ananya Iyer", project: "Women Empowerment", ngo: "SEWA", status: "Active", match: 90, progress: 40, lastUpdated: "12 hours ago", email: "ananya.i@tata.com", company: "TCS", contact: "+91-98765-43215", skills: ["Legal"], experience: "2 years", isCurrentEdition: true },
+  { id: 7, name: "Karan Malhotra", project: "Healthcare Support", ngo: "HelpAge India", status: "Paused", match: 85, lastUpdated: "4 days ago", email: "karan.m@tata.com", company: "Tata Power", contact: "+91-98765-43216", skills: ["Operations"], experience: "6 years", isCurrentEdition: false, feedbackStatus: "submitted" },
 ];
 
 export const AT_RISK_VOLUNTEERS: { id: number; name: string; project: string; reason: string; daysInactive: number; severity: string; nudged?: boolean }[] = [

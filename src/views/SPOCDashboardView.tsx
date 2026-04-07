@@ -305,11 +305,11 @@ const SPOCDashboardView = () => {
             </div>
 
             {/* Volunteer pipeline table */}
-            <div className="bg-white border border-zinc-100 rounded-2xl overflow-hidden">
+            <div className="bg-white border border-zinc-100 rounded-2xl overflow-hidden overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-zinc-100 bg-zinc-50">
-                    {["Name", "Email", "Company", "Project", "Contact", "Status", "Progress", "Nudge"].map((h) => (
+                    {["Name", "Email", "Company", "Project", "Contact", "Status", "Match %", "Nudge", "Cert", "Feedback"].map((h) => (
                       <th key={h} className="text-left px-4 py-3 text-xs font-semibold text-zinc-400 uppercase tracking-wide">{h}</th>
                     ))}
                   </tr>
@@ -332,7 +332,7 @@ const SPOCDashboardView = () => {
                         }`}>{v.status}</span>
                       </td>
                       <td className="px-4 py-4 text-xs text-zinc-500">
-                        {v.status === "Active" ? `${v.progress ?? 0}%` : "—"}
+                        {v.status === "Active" ? `${v.match ?? 0}%` : "—"}
                       </td>
                       <td className="px-4 py-4">
                         {v.status === "Active" && (
@@ -352,6 +352,30 @@ const SPOCDashboardView = () => {
                           >
                             {atRiskList.find(r => r.id === v.id)?.nudged ? "Nudged ✓" : "Nudge"}
                           </button>
+                        )}
+                      </td>
+                      <td className="px-4 py-4">
+                        {!v.isCurrentEdition && (
+                          <button
+                            onClick={() => {
+                              setToastMessage("Certificate downloaded");
+                              setShowToast(true);
+                              setTimeout(() => setShowToast(false), 3000);
+                            }}
+                            className="p-2 rounded-lg bg-slate-50 text-slate-600 hover:bg-tata-blue hover:text-white transition-all cursor-pointer"
+                            title="Download Certificate"
+                          >
+                            <Download size={14} />
+                          </button>
+                        )}
+                      </td>
+                      <td className="px-4 py-4">
+                        {!v.isCurrentEdition && (
+                          <span className={`px-2.5 py-1 rounded-full text-xs font-bold ${
+                            v.feedbackStatus === "submitted" ? "bg-green-50 text-green-700" : "bg-amber-50 text-amber-700"
+                          }`}>
+                            {v.feedbackStatus === "submitted" ? "✓" : "Pending"}
+                          </span>
                         )}
                       </td>
                     </tr>
