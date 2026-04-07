@@ -64,15 +64,19 @@ const SPOCDashboardView = () => {
     "Campaign Kit": "spoc-section-campaign-kit",
   };
 
-  const navItems = [
+  const allNavItems = [
     { name: "Dashboard", icon: LayoutGrid },
     { name: "TVW Management", icon: CalendarDays },
-    { name: "ProEngage Oversight", icon: Briefcase },
-    { name: "SPOC Directory", icon: Users },
+    { name: "ProEngage Oversight", icon: Briefcase, corporateOnly: true },
+    { name: "SPOC Directory", icon: Users, corporateOnly: true },
     { name: "Verification", icon: ShieldCheck, badge: approvals.filter(a => a.status === "Pending").length },
     { name: "Reports & Certificates", icon: FileText },
     { name: "Campaign Kit", icon: Download }
   ];
+
+  const navItems = isRegionalSPOC 
+    ? allNavItems.filter(item => !item.corporateOnly) 
+    : allNavItems;
 
   const handleNavClick = (name: string) => {
     setActiveNav(name);
