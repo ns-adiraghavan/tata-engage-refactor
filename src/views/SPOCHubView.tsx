@@ -31,6 +31,7 @@ const SPOCHubView = () => {
               Welcome, {spoc.firstName}
             </h1>
             <p className="text-white/60 text-sm mt-1">{spoc.company} · Corporate SPOC</p>
+            {showToggle && <RoleToggle activeView="spoc" className="mt-4" />}
           </div>
           <button onClick={() => navigate("spoc-dashboard")} className="px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl text-white text-sm font-semibold transition-all cursor-pointer">
             Go to Dashboard →
