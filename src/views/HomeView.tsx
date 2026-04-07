@@ -175,12 +175,12 @@ const HomeView = () => {
       </section>
 
       {/* ═══ IMPACT STORIES ═══ */}
-      <section className="bg-white py-24 px-6 md:px-12">
+      <section className="bg-slate-900 py-24 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
           <p className="text-xs font-semibold tracking-widest uppercase text-zinc-400 mb-3">
             Impact Stories
           </p>
-          <h2 className="text-3xl font-bold text-zinc-900 mb-12">Stories from the field</h2>
+          <h2 className="text-3xl font-bold text-white mb-12">Stories from the field</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
