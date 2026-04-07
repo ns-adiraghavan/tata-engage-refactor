@@ -26,7 +26,7 @@ const DashboardView = () => {
   };
 
   return (
-    <div className="pt-24 pb-20 bg-white min-h-screen">
+    <div className="pt-24 pb-20 bg-slate-50 min-h-screen">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Disaster Response Feedback Form */}
         {isDRClosed && hasSubmittedAvailability && drDeploymentLog.some(log => log.volunteers.some((v: any) => v.email === user.email)) && (
