@@ -7,7 +7,7 @@ const NGOHubView = () => {
   const navigate = useAppNavigate();
 
   return (
-    <div className="min-h-screen pt-24 bg-slate-50">
+    <div className="min-h-screen pt-20 bg-slate-50">
       {/* Hero */}
       <section className="bg-gradient-to-br from-[#003580] via-[#0046b8] to-[#00b4d8] text-white pt-16 pb-24 px-6 md:px-12 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32 blur-3xl" />
