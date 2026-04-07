@@ -1,5 +1,10 @@
 export const IS_PE_SEASON = true; // toggle to false to preview non-PE state
 
+export const MOCK_FAMILY_MEMBERS = [
+  { id: 1, name: "Vikram Sharma", relationship: "Spouse", email: "v.sharma@gmail.com", status: "Active", joinedDate: "Jan 2025" },
+  { id: 2, name: "Meera Sharma", relationship: "Daughter", email: "meera.s@gmail.com", status: "Pending", joinedDate: "Mar 2025" },
+];
+
 export const MOCK_NOTIFICATIONS = [
   { id: 1, type: "match", title: "You've been matched!", body: "Pratham NGO selected you for Financial Literacy for Rural Women.", time: "2h ago", read: false },
   { id: 2, type: "certificate", title: "Certificate ready", body: "Your Digital Literacy certificate is available to download from your profile.", time: "1d ago", read: false },
