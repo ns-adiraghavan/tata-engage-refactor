@@ -137,38 +137,25 @@ const NGODashboardView = () => {
 
   return (
     <div className="min-h-screen pt-24 bg-slate-50">
-      {/* NGO Welcome Banner */}
-      <section className="bg-tata-blue text-white pt-16 pb-24 px-6 md:px-12 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/3 h-full opacity-10 pointer-events-none">
-          <Sparkles size={400} className="text-white" />
-        </div>
+      {/* My Hub Hero */}
+      <section className="bg-gradient-to-br from-[#003580] to-[#001d4a] text-white pt-16 pb-24 px-6 md:px-12 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32 blur-3xl" />
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
             <div>
-              <div className="flex items-center gap-3 mb-4">
-                <span className="bg-tata-cyan/20 text-tata-cyan px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-tata-cyan/30">
-                  {ANJALI_MEHTA.tier}
-                </span>
-              </div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-2">Welcome, {ANJALI_MEHTA.firstName}</h1>
-              <p className="text-xl opacity-80">{ANJALI_MEHTA.organization}</p>
+              <p className="text-xs font-bold text-white/50 uppercase tracking-[0.3em] mb-2">Lead Partner · NGO Dashboard</p>
+              <h1 className="text-4xl md:text-5xl font-bold mb-2">Welcome, {ngoData.contactPerson ?? "Anjali"}</h1>
+              <p className="text-xl opacity-80">{ngoData.name}</p>
             </div>
-            <div className="flex gap-4">
-              <button 
-                onClick={() => setShowCloneModal(true)}
-                className="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-lg font-bold transition-all flex items-center gap-2 backdrop-blur-md border border-white/10 cursor-pointer"
-              >
-                <Copy size={20} /> Create from Previous
-              </button>
-              <button 
-                onClick={() => {
-                  setClonedProject(null);
-                  navigate("create-project");
-                }}
-                className="bg-tata-cyan text-tata-blue px-6 py-3 rounded-lg font-bold hover:bg-white transition-all flex items-center gap-2 cursor-pointer"
-              >
-                <Plus size={20} /> Create New Project
-              </button>
+            <div className="flex gap-6">
+              <div className="text-center">
+                <p className="text-3xl font-black">{ngoData.projects?.filter((p: any) => p.status === "Active").length ?? 2}</p>
+                <p className="text-xs text-white/50 uppercase tracking-widest">Active projects</p>
+              </div>
+              <div className="text-center">
+                <p className="text-3xl font-black">8</p>
+                <p className="text-xs text-white/50 uppercase tracking-widest">Pending applications</p>
+              </div>
             </div>
           </div>
         </div>
