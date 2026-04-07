@@ -53,60 +53,33 @@ const Navbar = ({
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50">
-      {/* Top strip — ProEngage teal accent */}
-      <div className="h-8 bg-[#003580] flex items-center justify-between px-6 md:px-12">
-        <div className="flex items-center gap-2">
-          <span className="text-white/70 text-[11px] tracking-wide">
-            Tata Sons Group · Volunteering Platform
-          </span>
-        </div>
-        <div className="hidden md:flex items-center gap-4 text-white/70 text-[11px]">
-          <span className="hover:text-white cursor-pointer transition-colors">About TataEngage</span>
-          <span>|</span>
-          <span className="hover:text-white cursor-pointer transition-colors">Resources</span>
-          <span>|</span>
-          <span className="hover:text-white cursor-pointer transition-colors">Partner With Us</span>
-        </div>
-      </div>
-
-      {/* Main nav bar */}
       <div className="h-16 bg-white border-b border-zinc-100 flex items-center justify-between px-6 md:px-12">
-        {/* Left: Tata logo */}
-        <div className="flex items-center gap-8">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Tata_logo.svg/1200px-Tata_logo.svg.png"
-            alt="TATA"
-            className="h-8 md:h-10 object-contain cursor-pointer"
-            onClick={() => onNavigate(isLoggedIn ? dashboardView() : "home")}
-            referrerPolicy="no-referrer"
-          />
-          {/* Public nav links — only when not logged in */}
-          {!isLoggedIn && (
-            <div className="hidden md:flex items-center gap-6">
-              {["Home", "Our Programs", "Impact Stories", "Partner With Us"].map((link) => (
-                <span
-                  key={link}
-                  onClick={() => link === "Home" && onNavigate("home")}
-                  className="text-sm font-medium text-zinc-600 hover:text-[#003580] transition-colors cursor-pointer"
-                >
-                  {link}
-                </span>
-              ))}
-            </div>
-          )}
-        </div>
-
-        {/* Centre: TataEngage logo */}
-        <div className="absolute left-1/2 -translate-x-1/2">
+        {/* Left: TataEngage logo */}
+        <div className="flex-shrink-0">
           <img
             src={tataEngageLogo}
             alt="TATA engage"
-            className="h-12 md:h-14 object-contain cursor-pointer"
+            className="h-10 object-contain cursor-pointer"
             onClick={() => onNavigate(isLoggedIn ? dashboardView() : "home")}
           />
         </div>
 
-        {/* Right: bell + avatar */}
+        {/* Centre: public nav links */}
+        {!isLoggedIn && (
+          <div className="hidden md:flex items-center gap-8">
+            {["Home", "Our Programmes", "Impact Stories", "Partner With Us", "Resources"].map((link) => (
+              <span
+                key={link}
+                onClick={() => link === "Home" && onNavigate("home")}
+                className="text-sm font-medium text-zinc-500 hover:text-zinc-900 transition-colors cursor-pointer"
+              >
+                {link}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {/* Right */}
         <div className="flex items-center gap-4">
           {isLoggedIn ? (
             <>
@@ -115,7 +88,6 @@ const Navbar = ({
                 <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
               </button>
 
-              {/* Avatar dropdown */}
               <div className="relative" ref={dropdownRef}>
                 <button
                   onClick={() => setDropdownOpen((o) => !o)}
@@ -130,14 +102,12 @@ const Navbar = ({
 
                 {dropdownOpen && (
                   <div className="absolute right-0 top-full mt-2 w-64 bg-white rounded-xl shadow-xl border border-zinc-100 overflow-hidden z-[80]">
-                    {/* User info header */}
                     <div className="px-4 py-3 border-b border-zinc-100">
                       <div className="font-semibold text-sm text-zinc-900">
                         {user?.firstName} {user?.lastName}
                       </div>
                       <p className="text-xs text-zinc-500 mt-0.5">{roleLabel()}</p>
                     </div>
-                    {/* Menu items */}
                     <div className="py-1">
                       <button
                         onClick={() => { onNavigate("profile"); setDropdownOpen(false); }}
