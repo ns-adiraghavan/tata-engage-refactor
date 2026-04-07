@@ -1,26 +1,18 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronRight, Building2, Heart, CheckCircle2, Search, Globe, Calendar, MapPin, Award, Sparkles, MessageSquare, ArrowRight, ShieldAlert, ClipboardList, Activity, Compass, Clock } from "lucide-react";
+import { CheckCircle2, Search, Calendar, MapPin, Award, Sparkles, MessageSquare, ArrowRight, ShieldAlert, ClipboardList, Compass, Clock, Users } from "lucide-react";
 import { useAppContext } from "@/context/AppContext";
 import { useAuth } from "@/context/AuthContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
-import { IS_PE_SEASON, TVW_EVENTS } from "@/data/mockData";
+import { IS_PE_SEASON } from "@/data/mockData";
 import { toast } from "@/hooks/use-toast";
 
 
 const DashboardView = () => {
   const { user } = useAuth();
   const navigate = useAppNavigate();
-  const { projectStatus, setProjectStatus, showPulseCheck, setShowPulseCheck, pulseCheckSubmitted, setPulseCheckSubmitted, setShowFeedbackForm, isDRActive, setDrResponses, hasSubmittedAvailability, setHasSubmittedAvailability, drDeploymentLog, isDRClosed, triggerToast } = useAppContext();
-  const [pulseText, setPulseText] = useState("");
+  const { projectStatus, setProjectStatus, isDRActive, setDrResponses, hasSubmittedAvailability, setHasSubmittedAvailability, drDeploymentLog, isDRClosed, triggerToast } = useAppContext();
   const [appTab, setAppTab] = useState<"current" | "past">("current");
-  const firstTvwEvent = TVW_EVENTS[0];
-
-  const handlePulseSubmit = () => {
-    setPulseCheckSubmitted(true);
-    triggerToast("Your thoughts have been saved — only visible to you");
-    setTimeout(() => setShowPulseCheck(false), 2000);
-  };
 
 
   return (
@@ -237,13 +229,6 @@ const DashboardView = () => {
                   <p className="text-xs font-bold text-white/60 uppercase tracking-widest mb-1">Volunteering</p>
                   <p className="text-sm text-white/80">Explore past TVW events and stay ready for the next edition.</p>
                 </div>
-                {firstTvwEvent && (
-                  <div className="p-5 bg-white/15 border border-white/20 rounded-2xl">
-                    <p className="text-xs font-bold text-white/60 uppercase tracking-widest mb-1">TVW Vibe</p>
-                    <h4 className="text-sm font-bold text-white">{firstTvwEvent.title}</h4>
-                    <p className="text-xs text-white/60 mt-1 flex items-center gap-1"><MapPin size={12} /> {firstTvwEvent.location}</p>
-                  </div>
-                )}
               </div>
             )}
           </div>
@@ -265,190 +250,106 @@ const DashboardView = () => {
                 <p className="text-3xl font-black text-tata-blue">1</p>
               </div>
             </div>
+            {user.city && (
+              <div className="mt-4 flex items-center gap-2 text-xs text-slate-500">
+                <MapPin size={12} /> {user.city} · {user.company}
+              </div>
+            )}
+            {user.skills && user.skills.length > 0 && (
+              <div className="mt-3">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Skills</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {user.skills.map((s: string) => (
+                    <span key={s} className="bg-tata-blue/10 text-tata-blue text-xs font-semibold px-2.5 py-1 rounded-full">{s}</span>
+                  ))}
+                </div>
+              </div>
+            )}
+            {user.interests && user.interests.length > 0 && (
+              <div className="mt-3">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Interests</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {user.interests.map((interest: string) => (
+                    <span key={interest} className="bg-tata-cyan/10 text-tata-blue text-xs font-semibold px-2.5 py-1 rounded-full">{interest}</span>
+                  ))}
+                </div>
+              </div>
+            )}
+            <div className="mt-3 flex flex-wrap gap-2">
+              {user.preferredMode && (
+                <span className="bg-slate-100 text-slate-600 text-xs font-semibold px-2.5 py-1 rounded-full">{user.preferredMode} mode</span>
+              )}
+              {user.disasterResponseInterest && (
+                <span className="bg-green-50 text-green-700 text-xs font-semibold px-2.5 py-1 rounded-full">DR Ready</span>
+              )}
+            </div>
             <div className="border-t border-slate-200 mt-6 pt-4">
               <button onClick={() => navigate("profile")} className="text-xs font-semibold text-tata-blue hover:underline cursor-pointer">
-                View full profile →
+                Edit profile →
               </button>
             </div>
           </div>
         </div>
 
-        {/* ═══ SECTION: Active programmes ═══ */}
-        <h3 className="text-sm font-bold text-slate-700 uppercase tracking-[0.08em] mb-6 flex items-center gap-2"><div className="w-1 h-5 bg-tata-blue rounded-full mr-1" /><Activity size={16} /> Active programmes</h3>
-
-        <div className="space-y-8 mb-12">
-          {/* Active Application */}
-          {user.activeApplication && (
-          <section className="bg-tata-blue rounded-3xl p-8 text-white shadow-xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16" />
-            <div className="relative z-10">
-              <div className="flex justify-between items-start mb-6">
-                <div>
-                  <h2 className="text-xl font-bold mb-1">Your Active Application</h2>
-                  <p className="text-white/60 text-sm">Track your current volunteering status</p>
-                </div>
-                <span className={`px-4 py-1 rounded-full text-xs font-bold backdrop-blur-md ${
-                  projectStatus === "matched" || projectStatus === "active" ? "bg-green-500 text-white" : "bg-white/20"
-                }`}>
-                  {projectStatus === "matched" ? "Matched 🎉" : projectStatus === "active" ? "Active 🚀" : "Completed ✅"}
-                </span>
-              </div>
-              <div className="bg-white/10 rounded-2xl p-6 backdrop-blur-md border border-white/10">
-                <h3 className="text-lg font-bold mb-2">{user.activeApplication.title}</h3>
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                  <div className="flex items-center gap-4 text-sm text-white/80">
-                    <div className="flex items-center gap-1"><Calendar size={14} /> {user.activeApplication.date}</div>
-                    <div className="flex items-center gap-1"><Building2 size={14} /> {user.activeApplication.ngo}</div>
-                  </div>
-                  {projectStatus === "matched" && (
-                    <button className="bg-white text-tata-blue px-4 py-2 rounded-lg text-xs font-bold hover:bg-slate-50 transition-colors flex items-center gap-2">
-                      Access Orientation Materials <ArrowRight size={14} />
-                    </button>
-                  )}
-                  {projectStatus === "active" && (
-                    <button 
-                      onClick={() => {
-                        setProjectStatus("completed");
-                        setShowFeedbackForm(true);
-                      }}
-                      className="bg-tata-cyan text-tata-blue px-4 py-2 rounded-lg text-xs font-bold hover:bg-tata-cyan/90 transition-colors"
-                    >
-                      Mark as Completed
-                    </button>
-                  )}
-                </div>
-              </div>
+        {/* ═══ SPOC Card ═══ */}
+        <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-2"><Users size={12} /> Your SPOC</p>
+        <div className="bg-white border border-zinc-100 rounded-2xl shadow-sm p-5 mb-8 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div className="w-11 h-11 rounded-full bg-tata-blue/10 text-tata-blue font-bold text-sm flex items-center justify-center flex-shrink-0">RD</div>
+            <div>
+              <p className="font-semibold text-sm text-slate-900">Rohan Desai</p>
+              <p className="text-xs text-slate-500">Corporate SPOC · Tata Consultancy Services</p>
+              <p className="text-xs text-slate-400 mt-0.5">Your point of contact for volunteering</p>
             </div>
-          </section>
-          )}
-
-          {/* Pulse Check */}
-          {projectStatus === "active" && showPulseCheck && (
-            <motion.section 
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="bg-white rounded-3xl p-8 shadow-sm border border-zinc-100"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-full bg-tata-purple/10 flex items-center justify-center text-tata-purple">
-                  <Heart size={20} />
-                </div>
-                <h3 className="font-bold text-zinc-900">What's on your mind?</h3>
-              </div>
-              {pulseCheckSubmitted ? (
-                <div className="text-center py-4">
-                  <CheckCircle2 className="mx-auto text-green-500 mb-2" size={32} />
-                  <p className="text-sm text-slate-500">Your thoughts have been saved — only visible to you</p>
-                </div>
-              ) : (
-                <div className="space-y-4">
-                  <p className="text-sm text-slate-500">How is your project going? Share your thoughts privately.</p>
-                  <textarea 
-                    value={pulseText}
-                    onChange={(e) => setPulseText(e.target.value)}
-                    placeholder="Share your experience so far..."
-                    className="w-full h-24 p-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-tata-blue/20 resize-none"
-                  />
-                  <button 
-                    onClick={handlePulseSubmit}
-                    disabled={!pulseText.trim()}
-                    className="btn-black py-3 px-8 text-sm cursor-pointer disabled:opacity-50"
-                  >
-                    Save Thoughts
-                  </button>
-                </div>
-              )}
-            </motion.section>
-          )}
+          </div>
+          <button onClick={() => triggerToast("Message sent to Rohan Desai. He'll respond within 24 hours.")} className="text-sm text-tata-blue font-semibold border border-tata-blue/30 rounded-lg px-4 py-2 hover:bg-tata-blue/5 cursor-pointer transition-colors">Contact SPOC</button>
         </div>
 
         {/* ═══ SECTION: Explore ═══ */}
-        <h3 className="text-sm font-bold text-slate-700 uppercase tracking-[0.08em] mb-6 flex items-center gap-2"><div className="w-1 h-5 bg-tata-blue rounded-full mr-1" /><Compass size={16} /> Explore</h3>
+        {IS_PE_SEASON && (
+          <>
+            <h3 className="text-sm font-bold text-slate-700 uppercase tracking-[0.08em] mb-6 flex items-center gap-2"><div className="w-1 h-5 bg-tata-blue rounded-full mr-1" /><Compass size={16} /> Explore</h3>
 
-        <div className="space-y-8 mb-12">
-          {/* AI Recommendations — PE season only */}
-          {IS_PE_SEASON && (
-            <section className="bg-white rounded-3xl p-8 shadow-sm border border-zinc-100">
-              <div className="flex items-center gap-2 mb-6">
-                <div className="w-8 h-8 rounded-lg bg-tata-cyan/10 flex items-center justify-center text-tata-cyan">
-                  <Search size={18} />
-                </div>
-                <h2 className="text-xl font-bold text-zinc-900">AI Recommended For You</h2>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {[
-                  { title: "Digital Literacy for Seniors", org: "HelpAge India", match: "98% Match", skillArea: "Education", location: "Delhi", applicantCount: 25, isNew: false },
-                  { title: "Sustainability Audit", org: "Green Earth NGO", match: "92% Match", skillArea: "Finance", location: "Pune", applicantCount: 10, isNew: false },
-                  { title: "Career Mentorship", org: "Udaan Foundation", match: "85% Match", skillArea: "Strategic Planning", location: "Mumbai", applicantCount: 8, isNew: true }
-                ].map((item, i) => {
-                  const chip = user.skills?.some((s: string) => s.toLowerCase() === item.skillArea.toLowerCase())
-                    ? `Matches your ${item.skillArea} skills`
-                    : item.location === user.city
-                      ? `Near you · ${item.location}`
-                      : item.applicantCount > 20
-                        ? "Trending this edition"
-                        : item.isNew
-                          ? "New NGO partner"
-                          : "Recommended for you";
-
-                  return (
-                    <div key={i} className="bg-white border-l-4 border-violet-400 border border-slate-100 rounded-2xl p-4 hover:shadow-sm transition-all cursor-pointer group">
-                      <div className="text-xs font-bold text-violet-600 uppercase tracking-widest mb-2">{item.match}</div>
-                      <h4 className="font-bold text-sm mb-1 group-hover:text-tata-blue transition-colors">{item.title}</h4>
-                      <p className="text-xs text-slate-500 mb-2">{item.org}</p>
-                      <span className="inline-block px-2.5 py-0.5 rounded-full bg-purple-50 text-purple-700 text-xs">
-                        {chip}
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-            </section>
-          )}
-
-          {/* TVW Section */}
-          {!IS_PE_SEASON ? (
-            <section>
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-xl font-bold text-zinc-900">Upcoming TVW Events</h2>
-                <button onClick={() => navigate("tvw")} className="text-sm font-bold text-tata-blue hover:underline cursor-pointer">View Calendar</button>
-              </div>
-              <div className="space-y-4">
-                {[
-                  { title: "Global Tree Plantation Day", date: "April 15, 2026", loc: "Mumbai Hub", type: "On-field" },
-                  { title: "Virtual Mentoring Kickoff", date: "April 18, 2026", loc: "Online", type: "Virtual" }
-                ].map((event, i) => (
-                  <div key={i} className="flex items-center justify-between p-5 bg-white rounded-2xl border border-zinc-100 border-l-4 border-l-tata-cyan hover:shadow-md transition-all cursor-pointer">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-lg bg-slate-50 flex flex-col items-center justify-center text-tata-blue">
-                        <span className="text-xs font-bold uppercase">{event.date.split(' ')[0]}</span>
-                        <span className="text-lg font-bold">{event.date.split(' ')[1].replace(',', '')}</span>
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-zinc-900">{event.title}</h4>
-                        <div className="flex items-center gap-3 text-xs text-slate-500 mt-1">
-                          <span className="flex items-center gap-1"><MapPin size={12} /> {event.loc}</span>
-                          <span className="flex items-center gap-1"><Globe size={12} /> {event.type}</span>
-                        </div>
-                      </div>
-                    </div>
-                    <ChevronRight size={20} className="text-slate-300" />
+            <div className="space-y-8 mb-12">
+              <section className="bg-white rounded-3xl p-8 shadow-sm border border-zinc-100">
+                <div className="flex items-center gap-2 mb-6">
+                  <div className="w-8 h-8 rounded-lg bg-tata-cyan/10 flex items-center justify-center text-tata-cyan">
+                    <Search size={18} />
                   </div>
-                ))}
-              </div>
-            </section>
-          ) : (
-            <section className="bg-slate-100 rounded-2xl p-6 flex items-center justify-between">
-              <div>
-                <h3 className="font-bold text-zinc-700 mb-1">TVW 2024 highlights</h3>
-                <p className="text-sm text-zinc-500">View photos and stories from the last edition</p>
-              </div>
-              <button onClick={() => navigate("tvw")} className="text-sm font-bold text-tata-blue hover:underline cursor-pointer flex items-center gap-1">
-                View highlights <ChevronRight size={16} />
-              </button>
-            </section>
-          )}
-        </div>
+                  <h2 className="text-xl font-bold text-zinc-900">AI Recommended For You</h2>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {[
+                    { title: "Digital Literacy for Seniors", org: "HelpAge India", match: "98% Match", skillArea: "Education", location: "Delhi", applicantCount: 25, isNew: false },
+                    { title: "Sustainability Audit", org: "Green Earth NGO", match: "92% Match", skillArea: "Finance", location: "Pune", applicantCount: 10, isNew: false },
+                    { title: "Career Mentorship", org: "Udaan Foundation", match: "85% Match", skillArea: "Strategic Planning", location: "Mumbai", applicantCount: 8, isNew: true }
+                  ].map((item, i) => {
+                    const chip = user.skills?.some((s: string) => s.toLowerCase() === item.skillArea.toLowerCase())
+                      ? `Matches your ${item.skillArea} skills`
+                      : item.location === user.city
+                        ? `Near you · ${item.location}`
+                        : item.applicantCount > 20
+                          ? "Trending this edition"
+                          : item.isNew
+                            ? "New NGO partner"
+                            : "Recommended for you";
+
+                    return (
+                      <div key={i} className="bg-white border-l-4 border-violet-400 border border-slate-100 rounded-2xl p-4 hover:shadow-sm transition-all cursor-pointer group">
+                        <div className="text-xs font-bold text-violet-600 uppercase tracking-widest mb-2">{item.match}</div>
+                        <h4 className="font-bold text-sm mb-1 group-hover:text-tata-blue transition-colors">{item.title}</h4>
+                        <p className="text-xs text-slate-500 mb-2">{item.org}</p>
+                        <span className="inline-block px-2.5 py-0.5 rounded-full bg-purple-50 text-purple-700 text-xs">
+                          {chip}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </section>
+            </div>
+          </>
+        )}
 
 
         {/* ═══ SECTION: Your history ═══ */}
