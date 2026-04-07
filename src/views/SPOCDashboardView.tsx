@@ -1495,12 +1495,16 @@ const SPOCDashboardView = () => {
 
             {/* ── KPI Stat Tiles (4-col) ──────────────────────────────── */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-              {[
+              {(isRegionalSPOC ? [
+                { label: "TVW Events", value: spoc.stats.tvwEvents, sub: "In my geography", icon: CalendarDays, color: "text-purple-600", bg: "bg-purple-50", border: "border-purple-100" },
+                { label: "Volunteers at Location", value: spoc.stats.totalVolunteers, sub: (spoc as any).geography || "My region", icon: Users, color: "text-tata-blue", bg: "bg-blue-50", border: "border-blue-100" },
+                { label: "Open Opportunities", value: OPEN_PROENGAGE_PROJECTS.length, sub: "Available now", icon: Sparkles, color: "text-emerald-600", bg: "bg-emerald-50", border: "border-emerald-100" },
+              ] : [
                 { label: "ProEngagers This Edition", value: spoc.stats.activeProEngage, sub: "Current edition", icon: Briefcase, color: "text-tata-blue", bg: "bg-blue-50", border: "border-blue-100" },
                 { label: "Hours Added", value: "1,240", sub: "Volunteer + NGO reported", icon: Clock, color: "text-tata-cyan", bg: "bg-cyan-50", border: "border-cyan-100" },
                 { label: "My Total SPOCs", value: SPOC_DIRECTORY.length, sub: "Across my company", icon: Users, color: "text-purple-600", bg: "bg-purple-50", border: "border-purple-100" },
                 { label: "Company Opportunities", value: OPEN_PROENGAGE_PROJECTS.length, sub: "Open right now", icon: Sparkles, color: "text-emerald-600", bg: "bg-emerald-50", border: "border-emerald-100" },
-              ].map((stat, i) => (
+              ]).map((stat, i) => (
                 <motion.div 
                   key={i}
                   initial={{ opacity: 0, y: 20 }}
