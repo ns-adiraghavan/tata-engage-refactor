@@ -332,7 +332,7 @@ const SPOCDashboardView = () => {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-zinc-100 bg-zinc-50">
-                    {["Name", "Email", "Company", "Project", "Contact", "Status", "Match %", "Nudge", "Cert", "Feedback"].map((h) => (
+                    {["Name", "Email", "Company", "Project", "Contact", "Status", "Hours", "Match %", "Nudge", "Cert", "Feedback"].map((h) => (
                       <th key={h} className="text-left px-4 py-3 text-xs font-semibold text-zinc-400 uppercase tracking-wide">{h}</th>
                     ))}
                   </tr>
@@ -353,6 +353,12 @@ const SPOCDashboardView = () => {
                           v.status === "Completed" ? "bg-purple-50 text-purple-700" :
                           "bg-zinc-100 text-zinc-500"
                         }`}>{v.status}</span>
+                      </td>
+                      <td className="px-4 py-4 text-xs text-zinc-500">
+                        {v.isCurrentEdition
+                          ? <span className="text-zinc-400 italic">~{v.estimatedHours ?? 40}h est.</span>
+                          : <span className="font-semibold text-zinc-700">{v.hours ?? 120}h</span>
+                        }
                       </td>
                       <td className="px-4 py-4 text-xs text-zinc-500">
                         {v.status === "Active" ? `${v.match ?? 0}%` : "—"}
