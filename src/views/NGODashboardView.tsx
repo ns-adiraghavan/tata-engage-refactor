@@ -277,79 +277,134 @@ const NGODashboardView = () => {
                 </div>
               </div>
 
-              {activeTab === "projects" ? (
-                <div className="space-y-4">
-                  {ngoData.projects.map(project => (
-                    <div key={project.id} className="p-6 rounded-2xl border border-slate-100 hover:border-tata-cyan/30 hover:bg-tata-cyan/5 transition-all group">
-                      <div className="flex flex-col md:flex-row justify-between gap-4">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-3 mb-2">
-                            <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
-                              project.status === 'Active' ? 'bg-green-100 text-green-700' :
-                              project.status === 'Under Review' ? 'bg-amber-100 text-amber-700' :
-                              project.status === 'Draft' ? 'bg-slate-100 text-slate-600' :
-                              project.status === 'Closed – Certified' ? 'bg-blue-100 text-blue-700' :
-                              'bg-red-100 text-red-700'
-                            }`}>
-                              {project.status}
-                            </span>
-                            <span className="text-xs text-slate-400 font-medium">Stage: {project.stage}</span>
-                          </div>
-                          <h4 className="text-lg font-bold text-slate-800 mb-2">{project.title}</h4>
-                          <div className="flex items-center gap-6 text-sm text-slate-500">
-                            <div className="flex items-center gap-1.5"><Users size={16} /> {project.volunteers} Volunteers</div>
-                            <div className="flex items-center gap-1.5"><MessageSquare size={16} /> {project.applications} Applications</div>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-3">
-                          <button className="p-3 hover:bg-white rounded-lg text-slate-400 hover:text-tata-blue transition-all shadow-sm border border-transparent hover:border-slate-100 cursor-pointer">
-                            <Edit2 size={18} />
-                          </button>
-                          <button 
-                            onClick={() => {
-                              setActiveProject(project);
-                              if (project.status === "Active") {
-                                navigate("active-project-management");
-                              } else if (project.status === "Closed – Certified") {
-                                navigate("project-feedback");
-                              } else {
-                                triggerToast("Project details view coming soon.");
-                              }
-                            }}
-                            className="btn-outline py-2 px-4 text-sm cursor-pointer"
-                          >
-                            View Details
-                          </button>
-                        </div>
-                      </div>
-                      
-                      {/* Visual Pipeline */}
-                      <div className="mt-6 pt-6 border-t border-slate-100">
-                        <div className="flex justify-between items-center mb-2">
-                          <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Project Lifecycle</span>
-                          <span className="text-xs font-bold text-tata-blue uppercase tracking-widest">
-                            {project.status === 'Closed – Certified' ? '100% Complete' : '75% Complete'}
-                          </span>
-                        </div>
-                        <div className="h-2 bg-slate-100 rounded-full overflow-hidden flex">
-                          <div className="h-full bg-tata-blue w-1/4 border-r border-white/20" />
-                          <div className="h-full bg-tata-blue w-1/4 border-r border-white/20" />
-                          <div className="h-full bg-tata-blue w-1/4 border-r border-white/20" />
-                          <div className={`h-full ${project.status === 'Closed – Certified' ? 'bg-tata-blue' : 'bg-slate-200'} w-1/4`} />
-                        </div>
-                        <div className="flex justify-between mt-2">
-                          {["Draft", "Review", "Execution", "Closing"].map((stage, idx) => (
-                            <span key={idx} className={`text-xs font-bold uppercase ${
-                              (project.status === 'Closed – Certified' && stage === 'Closing') || project.stage === stage ? 'text-tata-blue' : 'text-slate-400'
-                            }`}>
-                              {stage}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
+              <AnimatePresence mode="wait">
+                {/* ─── LEVEL 1: Edition list ─── */}
+                {!drillEdition && (
+                  <motion.div key="editions" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
+                    <div className="flex items-center gap-2 mb-6">
+                      <span className="text-xs font-medium text-zinc-800">Editions</span>
                     </div>
-                  ))}
-                </div>
+                    <div className="space-y-3">
+                      {[
+                        { id: "pe-2025", label: "ProEngage · April 2025", status: "Active", projects: ngoData.projects },
+                        { id: "pe-2024", label: "ProEngage · October 2024", status: "Closed", projects: [] },
+                      ].map((edition) => (
+                        <button
+                          key={edition.id}
+                          onClick={() => setDrillEdition(edition.id)}
+                          className="w-full flex items-center justify-between p-5 bg-white border border-zinc-100 rounded-2xl hover:border-tata-cyan hover:shadow-sm transition-all cursor-pointer text-left group"
+                        >
+                          <div>
+                            <p className="font-semibold text-zinc-900 text-sm">{edition.label}</p>
+                            <p className="text-xs text-zinc-400 mt-1">{edition.projects?.length ?? 0} projects</p>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <span className={`px-2.5 py-1 rounded-full text-xs font-bold ${edition.status === "Active" ? "bg-green-50 text-green-700" : "bg-zinc-100 text-zinc-500"}`}>
+                              {edition.status}
+                            </span>
+                            <ChevronRight size={16} className="text-zinc-300 group-hover:text-tata-cyan transition-colors" />
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* ─── LEVEL 2: Project list within edition ─── */}
+                {drillEdition && !drillProject && (
+                  <motion.div key="projects" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
+                    <div className="flex items-center gap-2 mb-6">
+                      <button onClick={() => setDrillEdition(null)} className="text-xs font-medium text-zinc-400 hover:text-zinc-700 cursor-pointer">Editions</button>
+                      <span className="text-zinc-300 text-xs">›</span>
+                      <span className="text-xs font-medium text-zinc-800">{drillEdition === "pe-2025" ? "ProEngage · April 2025" : "ProEngage · October 2024"}</span>
+                    </div>
+                    {/* Search + filter row */}
+                    <div className="flex gap-3 mb-5">
+                      <div className="relative flex-1">
+                        <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" />
+                        <input placeholder="Search projects..." className="w-full pl-9 pr-4 py-2.5 text-sm bg-white border border-zinc-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-tata-blue/10" />
+                      </div>
+                      <select className="text-sm border border-zinc-200 rounded-xl px-3 py-2.5 bg-white focus:outline-none focus:ring-2 focus:ring-tata-blue/10">
+                        <option>All companies</option>
+                        <option>TCS</option>
+                        <option>Tata Steel</option>
+                        <option>Tata Motors</option>
+                      </select>
+                    </div>
+                    <div className="space-y-3">
+                      {(ngoData.projects ?? []).map((project: any) => (
+                        <button
+                          key={project.id}
+                          onClick={() => setDrillProject(project)}
+                          className="w-full flex items-center justify-between p-5 bg-white border border-zinc-100 rounded-2xl hover:border-tata-cyan hover:shadow-sm transition-all cursor-pointer text-left group"
+                        >
+                          <div>
+                            <div className="flex items-center gap-2 mb-1">
+                              <span className={`px-2 py-0.5 rounded text-xs font-bold ${project.status === "Active" ? "bg-green-50 text-green-700" : project.status === "Under Review" ? "bg-amber-50 text-amber-700" : "bg-zinc-100 text-zinc-500"}`}>
+                                {project.status}
+                              </span>
+                            </div>
+                            <p className="font-semibold text-zinc-900 text-sm">{project.title}</p>
+                            <p className="text-xs text-zinc-400 mt-1">{project.volunteersMatched ?? project.volunteers ?? 0} volunteers · {project.applicantCount ?? project.applications ?? 0} applications</p>
+                          </div>
+                          <ChevronRight size={16} className="text-zinc-300 group-hover:text-tata-cyan transition-colors" />
+                        </button>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* ─── LEVEL 3: Volunteer list within project ─── */}
+                {drillProject && (
+                  <motion.div key="volunteers" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
+                    <div className="flex items-center gap-2 mb-6">
+                      <button onClick={() => { setDrillEdition(null); setDrillProject(null); }} className="text-xs font-medium text-zinc-400 hover:text-zinc-700 cursor-pointer">Editions</button>
+                      <span className="text-zinc-300 text-xs">›</span>
+                      <button onClick={() => setDrillProject(null)} className="text-xs font-medium text-zinc-400 hover:text-zinc-700 cursor-pointer">{drillEdition === "pe-2025" ? "ProEngage · April 2025" : "ProEngage · October 2024"}</button>
+                      <span className="text-zinc-300 text-xs">›</span>
+                      <span className="text-xs font-medium text-zinc-800">{drillProject.title}</span>
+                    </div>
+                    <div className="bg-white border border-zinc-100 rounded-2xl overflow-hidden">
+                      <table className="w-full text-sm">
+                        <thead>
+                          <tr className="border-b border-zinc-100 bg-zinc-50">
+                            <th className="text-left px-5 py-3 text-xs font-semibold text-zinc-400 uppercase tracking-wide">Volunteer</th>
+                            <th className="text-left px-5 py-3 text-xs font-semibold text-zinc-400 uppercase tracking-wide">Status</th>
+                            <th className="text-left px-5 py-3 text-xs font-semibold text-zinc-400 uppercase tracking-wide">Feedback</th>
+                            <th className="text-left px-5 py-3 text-xs font-semibold text-zinc-400 uppercase tracking-wide">Hours</th>
+                            <th className="text-left px-5 py-3 text-xs font-semibold text-zinc-400 uppercase tracking-wide">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {(drillProject.volunteers ?? [
+                            { name: "Priya Sharma", status: "Active", feedbackDone: false, hours: null },
+                            { name: "Amit Verma", status: "Matched", feedbackDone: false, hours: null },
+                          ]).map((v: any, i: number) => (
+                            <tr key={i} className="border-b border-zinc-50 hover:bg-slate-50 transition-colors">
+                              <td className="px-5 py-4 font-medium text-zinc-900">{v.name}</td>
+                              <td className="px-5 py-4">
+                                <span className={`px-2.5 py-1 rounded-full text-xs font-bold ${v.status === "Active" ? "bg-green-50 text-green-700" : v.status === "Matched" ? "bg-blue-50 text-blue-700" : "bg-zinc-100 text-zinc-500"}`}>
+                                  {v.status}
+                                </span>
+                              </td>
+                              <td className="px-5 py-4">
+                                {v.feedbackDone
+                                  ? <span className="text-xs text-green-600 font-semibold flex items-center gap-1"><CheckCircle2 size={12} /> Submitted</span>
+                                  : <button className="text-xs font-semibold text-tata-blue hover:underline cursor-pointer">Give Feedback</button>
+                                }
+                              </td>
+                              <td className="px-5 py-4 text-xs text-zinc-500">{v.hours ?? "—"}</td>
+                              <td className="px-5 py-4">
+                                <button className="text-xs font-semibold text-zinc-400 hover:text-zinc-700 cursor-pointer">View</button>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
               ) : (
                 <div className="space-y-6">
                   {/* Sub-tabs */}
