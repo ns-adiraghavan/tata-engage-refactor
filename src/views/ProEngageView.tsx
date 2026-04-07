@@ -147,7 +147,7 @@ const ProEngageView = () => {
             );
           })()}
           <div className="flex flex-wrap gap-2">
-            <span className="px-3 py-1 rounded-full bg-slate-50 text-slate-500 text-xs font-bold uppercase tracking-wider">{project.area}</span>
+            <span className="px-3 py-1 rounded-full bg-violet-50 text-violet-700 text-xs font-bold uppercase tracking-wider">{project.area}</span>
             <span className="px-3 py-1 rounded-full bg-slate-50 text-slate-500 text-xs font-bold uppercase tracking-wider">{project.mode}</span>
           </div>
         </div>
