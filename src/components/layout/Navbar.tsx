@@ -100,7 +100,7 @@ const Navbar = ({
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50">
-      <div className="h-16 bg-zinc-950/95 backdrop-blur-md border-b border-white/10 flex items-center justify-between px-6 md:px-12">
+      <div className="h-16 bg-white/60 backdrop-blur-md border-b border-white/20 flex items-center justify-between px-6 md:px-12">
         {/* Left: Tata logo → home */}
         <div className="flex-shrink-0">
           <img
@@ -116,13 +116,13 @@ const Navbar = ({
           <div className="hidden md:flex items-center gap-8">
             <span
               onClick={() => onNavigate("home")}
-              className="text-sm font-medium text-white/60 hover:text-white transition-colors cursor-pointer"
+              className="text-sm font-medium text-zinc-500 hover:text-zinc-900 transition-colors cursor-pointer"
             >
               Home
             </span>
 
             <div className="relative group">
-              <span className="text-sm font-medium text-white/60 hover:text-white transition-colors cursor-pointer flex items-center gap-1">
+              <span className="text-sm font-medium text-zinc-500 hover:text-zinc-900 transition-colors cursor-pointer flex items-center gap-1">
                 About <ChevronDown size={12} />
               </span>
               <div className="absolute top-full left-0 mt-2 bg-white border border-zinc-100 rounded-xl shadow-sm py-2 w-48 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150">
@@ -133,7 +133,7 @@ const Navbar = ({
             </div>
 
             <div className="relative group">
-              <span className="text-sm font-medium text-white/60 hover:text-white transition-colors cursor-pointer flex items-center gap-1">
+              <span className="text-sm font-medium text-zinc-500 hover:text-zinc-900 transition-colors cursor-pointer flex items-center gap-1">
                 Programmes <ChevronDown size={12} />
               </span>
               <div className="absolute top-full left-0 mt-2 bg-white border border-zinc-100 rounded-xl shadow-sm py-2 w-48 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150">
@@ -150,7 +150,7 @@ const Navbar = ({
             </div>
 
             <div className="relative group">
-              <span className="text-sm font-medium text-white/60 hover:text-white transition-colors cursor-pointer flex items-center gap-1">
+              <span className="text-sm font-medium text-zinc-500 hover:text-zinc-900 transition-colors cursor-pointer flex items-center gap-1">
                 Media & Resources <ChevronDown size={12} />
               </span>
               <div className="absolute top-full left-0 mt-2 bg-white border border-zinc-100 rounded-xl shadow-sm py-2 w-48 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150">
@@ -161,7 +161,7 @@ const Navbar = ({
             </div>
 
             <div className="relative group">
-              <span className="text-sm font-medium text-white/60 hover:text-white transition-colors cursor-pointer flex items-center gap-1">
+              <span className="text-sm font-medium text-zinc-500 hover:text-zinc-900 transition-colors cursor-pointer flex items-center gap-1">
                 Partner With Us <ChevronDown size={12} />
               </span>
               <div className="absolute top-full left-0 mt-2 bg-white border border-zinc-100 rounded-xl shadow-sm py-2 w-48 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150">
@@ -176,7 +176,7 @@ const Navbar = ({
               </div>
             </div>
 
-            <Search size={18} className="text-white/40 hover:text-white cursor-pointer transition-colors" />
+            <Search size={18} className="text-zinc-400 hover:text-zinc-700 cursor-pointer transition-colors" />
           </div>
         )}
 
@@ -188,11 +188,11 @@ const Navbar = ({
               <div className="relative" ref={notifRef}>
                 <button
                   onClick={() => setNotifOpen((o) => !o)}
-                  className="p-2 hover:bg-white/10 rounded-full cursor-pointer relative"
+                  className="p-2 hover:bg-zinc-100 rounded-full cursor-pointer relative"
                 >
-                  <Bell size={20} className="text-white" />
+                  <Bell size={20} className="text-zinc-700" />
                   {unreadCount > 0 && (
-                    <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-zinc-950" />
+                    <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white" />
                   )}
                 </button>
 
@@ -259,7 +259,7 @@ const Navbar = ({
                     {user?.firstName?.[0]}
                     {user?.lastName?.[0]}
                   </div>
-                  <ChevronDown size={14} className="text-white/40 group-hover:text-white/60 transition-colors" />
+                  <ChevronDown size={14} className="text-zinc-400 group-hover:text-zinc-600 transition-colors" />
                 </button>
 
                 {dropdownOpen && (
@@ -307,17 +307,17 @@ const Navbar = ({
               <img
                 src={tataEngageLogo}
                 alt="TATA engage"
-                className="h-8 object-contain hidden md:block brightness-0 invert opacity-80"
+                className="h-8 object-contain hidden md:block"
               />
               <span
                 onClick={() => onNavigate("login")}
-                className="text-sm font-medium text-white/60 hover:text-white transition-colors cursor-pointer"
+                className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors cursor-pointer"
               >
                 Log In
               </span>
               <button
                 onClick={() => onNavigate("register-role")}
-                className="bg-white text-zinc-900 py-2 px-5 text-sm font-semibold rounded-lg hover:bg-zinc-100 transition-all cursor-pointer"
+                className="btn-black py-2 px-5 text-sm cursor-pointer"
               >
                 Register
               </button>
