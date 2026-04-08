@@ -86,32 +86,38 @@ const VolunteerHubView = () => {
 
         {/* ═══ STAT TILES ═══ */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-          {stats.map((stat) => (
-            <div key={stat.label} className={`bg-white border border-slate-100 border-l-4 ${stat.border} rounded-2xl shadow-sm p-5 relative`}>
-              <div className={`absolute top-4 right-4 w-8 h-8 rounded-full ${stat.dot} flex items-center justify-center text-xs font-bold`}>•</div>
-              <p className="text-3xl font-black text-slate-900 tracking-tighter">{stat.num}</p>
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">{stat.label}</p>
-              <p className="text-xs text-slate-400 mt-0.5">{stat.sub}</p>
-            </div>
-          ))}
+          {stats.map((stat, i) => {
+            const tileBg = ["bg-cyan-50 border-cyan-100", "bg-violet-50 border-violet-100", "bg-amber-50 border-amber-100", "bg-red-50 border-red-100"][i];
+            return (
+              <div key={stat.label} className={`${tileBg} border border-l-4 ${stat.border} rounded-2xl shadow-sm p-5 relative`}>
+                <div className={`absolute top-4 right-4 w-8 h-8 rounded-full ${stat.dot} flex items-center justify-center text-xs font-bold`}>•</div>
+                <p className="text-3xl font-black text-slate-900 tracking-tighter">{stat.num}</p>
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">{stat.label}</p>
+                <p className="text-xs text-slate-400 mt-0.5">{stat.sub}</p>
+              </div>
+            );
+          })}
         </div>
 
         {/* ═══ PROGRAMME TILES ═══ */}
         <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4">Programmes</h3>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
-          {programmes.map((p) => (
-            <button
-              key={p.label}
-              onClick={() => navigate(p.nav)}
-              className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm text-left hover:shadow-md transition-all cursor-pointer"
-            >
-              <div className={`w-14 h-14 rounded-full flex items-center justify-center ${p.bgClass} mb-4`}>
-                <p.Icon size={22} className={p.iconClass} />
-              </div>
-              <p className="text-sm font-bold text-slate-900">{p.label}</p>
-              <p className="text-xs text-slate-400 mt-1">{PROGRAMME_DESCRIPTIONS[p.label]}</p>
-            </button>
-          ))}
+          {programmes.map((p, i) => {
+            const cardBg = ["bg-cyan-50 border-cyan-100", "bg-violet-50 border-violet-100", "bg-red-50 border-red-100"][i];
+            return (
+              <button
+                key={p.label}
+                onClick={() => navigate(p.nav)}
+                className={`${cardBg} border rounded-2xl p-6 shadow-sm text-left hover:shadow-md transition-all cursor-pointer`}
+              >
+                <div className={`w-14 h-14 rounded-full flex items-center justify-center ${p.bgClass} mb-4`}>
+                  <p.Icon size={22} className={p.iconClass} />
+                </div>
+                <p className="text-sm font-bold text-slate-900">{p.label}</p>
+                <p className="text-xs text-slate-400 mt-1">{PROGRAMME_DESCRIPTIONS[p.label]}</p>
+              </button>
+            );
+          })}
         </div>
 
         {/* ═══ FEATURED TESTIMONIAL ═══ */}

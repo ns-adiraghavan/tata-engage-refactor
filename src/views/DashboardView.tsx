@@ -316,7 +316,7 @@ const DashboardView = () => {
             <h2 className="text-xl font-black text-slate-900 tracking-tight mb-8 flex items-center gap-2"><Compass size={16} /> Explore</h2>
 
             <div className="space-y-8 mb-12">
-              <section className="bg-white rounded-3xl p-8 shadow-sm border border-zinc-100">
+              <section className="bg-violet-50 rounded-3xl p-8 shadow-sm border border-violet-100">
                 <div className="flex items-center gap-2 mb-6">
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-violet-50 text-violet-600 text-xs font-bold">🤖 AI Picks</span>
                   <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Recommended for you</p>
