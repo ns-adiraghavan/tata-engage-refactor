@@ -350,7 +350,7 @@ export const MOCK_APPLICANTS = [
     matchPercentage: 98,
     isReturning: true,
     status: "Pending",
-    projectId: 101,
+    projectId: 105,
     appliedDate: "2026-04-01"
   },
   {
@@ -365,7 +365,7 @@ export const MOCK_APPLICANTS = [
     matchPercentage: 75,
     isReturning: false,
     status: "Pending",
-    projectId: 101,
+    projectId: 105,
     appliedDate: "2026-04-01"
   },
   {
@@ -380,7 +380,7 @@ export const MOCK_APPLICANTS = [
     matchPercentage: 94,
     isReturning: false,
     status: "Pending",
-    projectId: 101,
+    projectId: 104,
     appliedDate: "2026-04-02"
   },
   {
@@ -395,7 +395,7 @@ export const MOCK_APPLICANTS = [
     matchPercentage: 85,
     isReturning: true,
     status: "Pending",
-    projectId: 101,
+    projectId: 104,
     appliedDate: "2026-04-02"
   }
 ];
@@ -411,17 +411,70 @@ export const ANJALI_MEHTA = {
   city: "Mumbai",
   country: "India",
   projects: [
-    { id: 101, title: "Financial Literacy for Rural Women", status: "Active", applications: 12, volunteers: 4, stage: "Execution", endDate: "2026-04-07" },
+    { id: 101, title: "Financial Literacy for Rural Women", status: "Active", applications: 12, volunteers: 4, stage: "Execution", endDate: "2026-04-07", healthUpdates: [
+      { month: "January", status: "Healthy", date: "2026-01-15" },
+      { month: "February", status: "Healthy", date: "2026-02-14" },
+      { month: "March", status: "At Risk", date: "2026-03-20" },
+      { month: "April", status: "Pending", date: null }
+    ] },
     { id: 102, title: "Digital Skills for Youth", status: "Under Review", applications: 0, volunteers: 0, stage: "Planning" },
     { id: 103, title: "Early Childhood Education", status: "Draft", applications: 0, volunteers: 0, stage: "Drafting" },
     { id: 104, title: "Community Health Awareness", status: "Closed", applications: 45, volunteers: 15, stage: "Completed" },
-    { id: 105, title: "Urban Sanitation Drive", status: "Active", applications: 8, volunteers: 3, stage: "Execution", endDate: "2026-04-06" }
+    { id: 105, title: "Urban Sanitation Drive", status: "Active", applications: 8, volunteers: 3, stage: "Execution", endDate: "2026-04-06", healthUpdates: [
+      { month: "January", status: "Healthy", date: "2026-01-18" },
+      { month: "February", status: "Drop Out", date: "2026-02-20" },
+      { month: "March", status: "Healthy", date: "2026-03-22" },
+      { month: "April", status: "Pending", date: null }
+    ] }
   ],
   coordinators: [
     { id: 1, name: "Rahul Singh", email: "rahul.s@pratham.org", role: "SPOC" },
     { id: 2, name: "Sneha Kapur", email: "sneha.k@pratham.org", role: "Coordinator" }
   ],
-  pendingApplications: 8
+  pendingApplications: 8,
+  partnerNGOs: [
+    {
+      id: 201,
+      name: "Akanksha Foundation",
+      city: "Mumbai",
+      focusArea: "Education",
+      status: "Active",
+      contactName: "Priya Nair",
+      contactEmail: "priya@akanksha.org",
+      projects: [
+        { id: 201, title: "After-School Learning Programme", status: "Active", volunteers: 6 },
+        { id: 202, title: "Digital Classrooms Initiative", status: "Closed", volunteers: 10 }
+      ],
+      joinedDate: "2023-08-01",
+      volunteersTotal: 16
+    },
+    {
+      id: 202,
+      name: "Teach For India",
+      city: "Pune",
+      focusArea: "Education",
+      status: "Active",
+      contactName: "Arjun Mehta",
+      contactEmail: "arjun@teachforindia.org",
+      projects: [
+        { id: 203, title: "Fellowship Classroom Support", status: "Active", volunteers: 4 }
+      ],
+      joinedDate: "2024-01-15",
+      volunteersTotal: 4
+    },
+    {
+      id: 203,
+      name: "Smile Foundation",
+      city: "Delhi",
+      focusArea: "Health & Livelihood",
+      status: "Inactive",
+      contactName: "Kavita Sharma",
+      contactEmail: "kavita@smilefoundation.org",
+      projects: [],
+      joinedDate: "2022-05-10",
+      volunteersTotal: 0
+    }
+  ]
 };
 
 export const PRIYA_SHARMA = {
