@@ -671,8 +671,10 @@ const NGODashboardView = () => {
 
           {/* ═══ SECTION: M&E Tracker ═══ */}
           <section id="ngo-section-me">
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Monitoring & Evaluation</p>
-            <h2 className="text-xl font-black text-slate-900 tracking-tight mb-8">M&E Tracker</h2>
+            <div className="bg-orange-50 border-b border-orange-100 rounded-t-xl px-6 pt-5 pb-4 -mx-6 -mt-6 mb-6">
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Monitoring & Evaluation</p>
+              <h2 className="text-xl font-black text-slate-900 tracking-tight">M&E Tracker</h2>
+            </div>
             <div className="space-y-6">
               {ngoData.projects
                 ?.filter((p: any) => p.status === "Active" && p.healthUpdates)
