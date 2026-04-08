@@ -88,7 +88,7 @@ const CreateProjectView = () => {
   const handleSkillAreaChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const area = e.target.value;
     setProjectData(prev => ({ ...prev, skillArea: area }));
-    if (area) generateTemplate(area);
+    if (area && projectData.isSkillBased) generateTemplate(area);
   };
 
   const handleSaveDraft = () => {
