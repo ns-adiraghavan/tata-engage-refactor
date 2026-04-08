@@ -241,6 +241,7 @@ const CreateProjectView = () => {
                         </button>
                       </div>
 
+                      <div>
                         <label className="form-label">Duration*</label>
                         <select 
                           className="form-input"
