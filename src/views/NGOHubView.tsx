@@ -53,9 +53,12 @@ const NGOHubView = () => {
                 Showcase your organisation's ongoing work, highlight volunteer impact, and bring visibility to your current programmes.
               </p>
             </div>
-            <div className="w-full h-48 md:h-56 rounded-2xl bg-slate-200 flex items-center justify-center text-slate-400 text-sm">
-              Image placeholder
-            </div>
+            <img
+              src="https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=1200&auto=format&fit=crop"
+              alt="NGO volunteering activity"
+              className="w-full h-48 md:h-56 object-cover rounded-2xl"
+              referrerPolicy="no-referrer"
+            />
           </div>
         </div>
 
@@ -79,6 +82,62 @@ const NGOHubView = () => {
           ))}
         </div>
 
+        {/* NGO Identity */}
+        <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 mb-12">
+          <div className="grid md:grid-cols-3 gap-6">
+            <div>
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">
+                Focus Areas
+              </p>
+              <p className="text-sm text-slate-700">
+                Education · Livelihood · Women Empowerment
+              </p>
+            </div>
+            <div>
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">
+                Operating Cities
+              </p>
+              <p className="text-sm text-slate-700">
+                Mumbai · Pune · Delhi
+              </p>
+            </div>
+            <div>
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">
+                Partnership
+              </p>
+              <p className="text-sm text-slate-700">
+                Partner Since 2022 · Lead Partner
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Featured Story */}
+        <div className="bg-white border border-slate-100 rounded-3xl shadow-sm p-6 md:p-8 mb-12">
+          <div className="grid md:grid-cols-2 gap-6 items-center">
+            <img
+              src="https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=1200&auto=format&fit=crop"
+              alt="Volunteer teaching session"
+              className="w-full h-56 md:h-64 object-cover rounded-2xl"
+              referrerPolicy="no-referrer"
+            />
+            <div>
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">
+                Featured Story
+              </p>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">
+                Enabling digital literacy for underserved communities
+              </h3>
+              <p className="text-sm text-slate-600 mb-4">
+                Through ProEngage, volunteers helped design and implement a digital learning programme reaching over 500 learners across multiple cities.
+              </p>
+              <p className="text-sm italic text-slate-700">
+                "The volunteers brought structure and scale to our programme in ways we couldn't have achieved alone."
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Community Section */}
         <div className="space-y-10 mt-16">
 
@@ -87,6 +146,15 @@ const NGOHubView = () => {
             <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">
               Voices from volunteers
             </p>
+
+            <div className="flex items-center gap-4 my-6">
+              <div className="h-px flex-1 bg-slate-200" />
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">
+                More voices
+              </p>
+              <div className="h-px flex-1 bg-slate-200" />
+            </div>
+
             <div className="flex gap-6 overflow-x-auto pb-4">
               {COMMUNITY_TESTIMONIALS.map((t) => (
                 <div
