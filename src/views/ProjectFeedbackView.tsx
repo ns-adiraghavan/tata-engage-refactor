@@ -22,6 +22,9 @@ const ProjectFeedbackView = ({ project }: { project: any }) => {
   const [aiSummary, setAiSummary] = useState<any>(null);
   const [isGeneratingSummary, setIsGeneratingSummary] = useState(false);
   const [showCertificatePreview, setShowCertificatePreview] = useState<any>(null);
+  const [openVolunteerId, setOpenVolunteerId] = useState<number | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [submitted, setSubmitted] = useState<Set<number>>(new Set());
 
   const handleRating = (vId: number, category: string, value: number) => {
     setFeedbackData(prev => prev.map(f => 
