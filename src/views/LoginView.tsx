@@ -15,6 +15,13 @@ const LoginView = () => {
   const { triggerToast } = useAppContext();
   const location = useLocation();
   const isAdminLogin = location.pathname === "/admin-login";
+  const [isPESeason, setIsPESeason] = useState(IS_PE_SEASON);
+
+  const togglePE = () => {
+    mockData.IS_PE_SEASON = !mockData.IS_PE_SEASON;
+    setIsPESeason(mockData.IS_PE_SEASON);
+    triggerToast(mockData.IS_PE_SEASON ? "PE Season ON — dashboard shows ProEngage mode" : "PE Season OFF — dashboard shows non-PE mode");
+  };
 
   return (
   <div className="min-h-screen pt-20 flex items-center justify-center p-6 bg-slate-100 relative overflow-hidden">

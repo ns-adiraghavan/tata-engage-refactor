@@ -1,4 +1,4 @@
-export const IS_PE_SEASON = true; // toggle to false to preview non-PE state
+export let IS_PE_SEASON = true; // toggle to false to preview non-PE state
 
 export const MOCK_FAMILY_MEMBERS = [
   { id: 1, name: "Vikram Sharma", relationship: "Spouse", email: "v.sharma@gmail.com", status: "Active", joinedDate: "Jan 2025" },
