@@ -100,7 +100,7 @@ const Navbar = ({
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50">
-      <div className="h-16 bg-white/60 backdrop-blur-md border-b border-white/20 flex items-center justify-between px-6 md:px-12">
+      <div className="h-16 bg-transparent flex items-center justify-between px-6 md:px-12">
         {/* Left: Tata logo → home */}
         <div className="flex-shrink-0">
           <img
