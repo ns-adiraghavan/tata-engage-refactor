@@ -34,54 +34,48 @@ const AdminDashboardView = () => {
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex font-sans">
       {/* Sidebar */}
-      <aside className="w-64 bg-slate-900 text-white flex flex-col fixed inset-y-0 left-0 z-50 shadow-2xl">
-        <div className="p-8 border-b border-white/5">
+      <aside className="w-64 bg-white border-r border-slate-100 flex flex-col fixed inset-y-0 left-0 z-50">
+        {/* Logo / brand */}
+        <div className="p-6 border-b border-slate-100">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-tata-blue rounded-2xl flex items-center justify-center font-semibold text-white shadow-lg shadow-tata-blue/20">T</div>
-            <div className="flex flex-col">
-              <span className="font-semibold tracking-tighter text-lg leading-none">ENGAGE</span>
-              <span className="text-xs font-semibold text-tata-cyan uppercase tracking-[0.2em] mt-1">Admin Portal</span>
+            <div className="w-9 h-9 bg-tata-blue rounded-xl flex items-center justify-center font-bold text-white text-sm">T</div>
+            <div>
+              <p className="font-bold text-slate-900 text-sm leading-none">TataEngage</p>
+              <p className="text-xs text-tata-blue font-semibold uppercase tracking-widest mt-0.5">Admin Portal</p>
             </div>
           </div>
         </div>
-        <nav className="flex-1 py-8 overflow-y-auto custom-scrollbar">
-          <div className="px-6 mb-4">
-            <div className="text-xs font-semibold text-slate-500 uppercase tracking-widest">Main Menu</div>
-          </div>
+
+        {/* Nav */}
+        <nav className="flex-1 py-4 overflow-y-auto px-3">
+          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em] mb-2 px-2">Main Menu</p>
           {sidebarItems.map((item) => (
             <button
               key={item.id}
               onClick={() => setAdminActiveTab(item.id)}
-              className={`w-full flex items-center gap-3 px-6 py-4 text-xs font-bold uppercase tracking-widest transition-all relative group ${
-                adminActiveTab === item.id 
-                  ? "text-white" 
-                  : "text-slate-400 hover:text-white hover:bg-white/5"
+              className={`w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-sm font-medium transition-all cursor-pointer mb-0.5 ${
+                adminActiveTab === item.id
+                  ? "bg-blue-50 text-tata-blue border-l-2 border-tata-blue"
+                  : "text-slate-500 hover:bg-slate-50 hover:text-slate-900 border-l-2 border-transparent"
               }`}
             >
-              {adminActiveTab === item.id && (
-                <motion.div 
-                  layoutId="activeTab"
-                  className="absolute inset-0 bg-tata-blue/20 border-l-4 border-tata-cyan"
-                />
-              )}
-              <item.icon size={18} className={`relative z-10 ${adminActiveTab === item.id ? "text-tata-cyan" : "group-hover:text-tata-cyan transition-colors"}`} />
-              <span className="relative z-10">{item.id}</span>
+              <item.icon size={16} className="flex-shrink-0" />
+              <span className="truncate text-left">{item.id}</span>
             </button>
           ))}
         </nav>
-        <div className="p-6 border-t border-white/5 bg-black/20">
-          <div className="flex items-center gap-3 mb-6 p-3 rounded-lg bg-white/5 border border-white/5">
-            <div className="w-10 h-10 rounded-lg bg-tata-blue flex items-center justify-center font-semibold text-sm shadow-inner">VN</div>
-            <div className="flex-1 min-w-0">
-              <div className="text-xs font-semibold uppercase tracking-tight truncate">Vikram Nair</div>
-              <div className="text-xs text-slate-500 font-mono">ADMIN_001</div>
+
+        {/* Footer */}
+        <div className="p-4 border-t border-slate-100">
+          <div className="flex items-center gap-2.5 p-3 bg-slate-50 rounded-xl border border-slate-100 mb-3">
+            <div className="w-8 h-8 rounded-lg bg-tata-blue flex items-center justify-center font-bold text-white text-xs">VN</div>
+            <div className="min-w-0">
+              <p className="text-xs font-semibold text-slate-900 truncate">Vikram Nair</p>
+              <p className="text-xs text-slate-400">TSG Admin</p>
             </div>
-            <button className="text-slate-500 hover:text-white transition-colors">
-              <ShieldCheck size={14} />
-            </button>
           </div>
-          <button onClick={handleLogout} className="w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-red-500/10 border border-red-500/20 text-xs font-semibold uppercase tracking-widest text-red-400 hover:bg-red-500 hover:text-white transition-all cursor-pointer shadow-lg shadow-red-500/5">
-            <ArrowLeft size={14} /> Logout
+          <button onClick={handleLogout} className="w-full py-2.5 text-xs font-semibold text-red-500 hover:bg-red-50 rounded-lg transition-colors cursor-pointer border border-red-100">
+            Log Out
           </button>
         </div>
       </aside>

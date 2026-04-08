@@ -170,12 +170,14 @@ export default function App() {
   return (
     <AppContext.Provider value={ctx}>
       <div className="relative min-h-screen">
-        <Navbar
-          onNavigate={navigate}
-          isLoggedIn={isLoggedIn}
-          onLogout={onLogout}
-          user={user}
-        />
+        {user?.role !== "platform_admin" && (
+          <Navbar
+            onNavigate={navigate}
+            isLoggedIn={isLoggedIn}
+            onLogout={onLogout}
+            user={user}
+          />
+        )}
 
         <main>
           <AnimatePresence mode="wait">

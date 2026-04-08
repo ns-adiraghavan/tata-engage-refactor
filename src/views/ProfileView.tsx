@@ -310,13 +310,10 @@ const ProfileView = () => {
                         <motion.div 
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
-                          className="relative bg-zinc-900 rounded-3xl p-10 text-white overflow-hidden shadow-2xl"
+                          className="relative bg-white border border-slate-100 rounded-3xl p-10 overflow-hidden shadow-sm"
                         >
-                          <div className="absolute top-0 right-0 w-64 h-64 bg-tata-cyan/10 rounded-full -mr-32 -mt-32 blur-3xl" />
-                          <div className="absolute bottom-0 left-0 w-64 h-64 bg-tata-purple/10 rounded-full -ml-32 -mb-32 blur-3xl" />
-                          
                           <div className="relative z-10 flex flex-col md:flex-row gap-10 items-center">
-                            <div className="w-48 h-64 bg-white rounded-2xl shadow-2xl flex flex-col p-4 text-zinc-900 shrink-0">
+                            <div className="w-48 h-64 bg-white rounded-2xl shadow-md border border-slate-100 flex flex-col p-4 text-zinc-900 shrink-0">
                               <div className="text-[10px] font-bold text-tata-blue mb-4">TATA ENGAGE</div>
                               <div className="flex-1 flex flex-col items-center justify-center text-center">
                                 <div className="w-12 h-12 rounded-full bg-slate-50 flex items-center justify-center mb-4">
@@ -333,13 +330,13 @@ const ProfileView = () => {
                               </div>
                             </div>
                             <div>
-                              <h4 className="text-2xl font-bold mb-4">Your Impact, Certified.</h4>
-                              <p className="text-slate-400 text-sm mb-8 leading-relaxed">This certificate recognizes your commitment to social change and your contribution to the Tata Engage ecosystem.</p>
+                              <h4 className="text-2xl font-black text-slate-900 mb-4">Your Impact, Certified.</h4>
+                              <p className="text-slate-500 text-sm mb-8 leading-relaxed">This certificate recognizes your commitment to social change and your contribution to the Tata Engage ecosystem.</p>
                               <div className="flex flex-wrap gap-4">
-                                <button className="bg-white text-zinc-900 py-3 px-8 rounded-lg font-bold text-sm flex items-center gap-2 hover:bg-tata-cyan transition-all cursor-pointer">
+                                <button className="bg-tata-blue text-white py-3 px-8 rounded-lg font-bold text-sm flex items-center gap-2 hover:bg-tata-blue/90 transition-all cursor-pointer">
                                   <Download size={18} /> Download PDF
                                 </button>
-                                <button onClick={shareToLinkedIn} className="bg-white/10 hover:bg-white/20 text-white py-3 px-8 rounded-lg font-bold text-sm flex items-center gap-2 transition-all cursor-pointer">
+                                <button onClick={shareToLinkedIn} className="bg-slate-100 text-slate-700 py-3 px-8 rounded-lg font-bold text-sm flex items-center gap-2 hover:bg-slate-200 transition-all cursor-pointer">
                                   <Linkedin size={18} /> Share to LinkedIn
                                 </button>
                               </div>
