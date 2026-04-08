@@ -138,7 +138,7 @@ const NGODashboardView = () => {
     .sort((a, b) => b.matchPercentage - a.matchPercentage);
 
   return (
-    <div className="min-h-screen pt-20 bg-slate-50">
+    <div className="min-h-screen pt-20 bg-[#F8FAFC]">
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 -mt-16 pb-20">
         {/* Feedback Reminders */}
@@ -213,20 +213,20 @@ const NGODashboardView = () => {
         </AnimatePresence>
 
         {/* Stat Tiles */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 relative z-10">
           {[
-            { label: "Active Projects", value: ANJALI_MEHTA.projects.filter(p => p.status === "Active").length, icon: Sparkles, color: "text-green-600", bg: "bg-green-50" },
-            { label: "Volunteers matched this edition", value: ANJALI_MEHTA.projects.filter(p => p.status === "Active" || p.status === "Closed").reduce((sum, p) => sum + p.volunteers, 0), icon: Users, color: "text-tata-blue", bg: "bg-blue-50" },
-            { label: "Pending Applications", value: ANJALI_MEHTA.pendingApplications, icon: Clock, color: "text-amber-600", bg: "bg-amber-50" },
+            { label: "Active Projects", value: ANJALI_MEHTA.projects.filter(p => p.status === "Active").length, sub: "This edition", icon: Sparkles, color: "text-emerald-600", bg: "bg-emerald-50", border: "border-emerald-100" },
+            { label: "Volunteers Matched", value: ANJALI_MEHTA.projects.filter(p => p.status === "Active" || p.status === "Closed").reduce((sum, p) => sum + p.volunteers, 0), sub: "All active projects", icon: Users, color: "text-tata-blue", bg: "bg-blue-50", border: "border-blue-100" },
+            { label: "Pending Applications", value: ANJALI_MEHTA.pendingApplications, sub: "Awaiting review", icon: Clock, color: "text-amber-600", bg: "bg-amber-50", border: "border-amber-100" },
           ].map((stat, i) => (
-            <div key={i} className="p-6 rounded-2xl bg-white border border-slate-100 shadow-sm flex items-center gap-4">
-              <div className={`w-12 h-12 rounded-2xl ${stat.bg} ${stat.color} flex items-center justify-center shrink-0`}>
-                <stat.icon size={22} />
+            <div key={i} className={`p-8 rounded-3xl bg-white border ${stat.border} shadow-sm hover:shadow-xl transition-all group relative overflow-hidden`}>
+              <div className="absolute top-6 right-6 text-slate-200"><stat.icon size={24} /></div>
+              <div className={`w-14 h-14 rounded-2xl ${stat.bg} ${stat.color} flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500`}>
+                <stat.icon size={28} />
               </div>
-              <div>
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.15em]">{stat.label}</p>
-                <h4 className="text-2xl font-black text-slate-900 tracking-tight">{stat.value}</h4>
-              </div>
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em] mb-1">{stat.label}</p>
+              <h4 className="text-4xl font-black text-slate-900 tracking-tighter">{stat.value}</h4>
+              <p className="text-xs text-slate-400 mt-1 uppercase font-bold tracking-widest">{stat.sub}</p>
             </div>
           ))}
         </div>
@@ -237,7 +237,10 @@ const NGODashboardView = () => {
           <div className="lg:col-span-2 space-y-8">
             <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-8">
               <div className="flex justify-between items-center mb-8">
-                <h3 className="text-2xl font-bold text-tata-blue">Project Management</h3>
+                <div>
+                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Projects</p>
+                  <h3 className="text-xl font-black text-slate-900 tracking-tight">Project Management</h3>
+                </div>
                 {ngoData.pendingApplications > 0 && (
                   <span className="flex items-center gap-2 text-xs font-bold text-amber-700 bg-amber-50 border border-amber-100 px-3 py-1.5 rounded-full">
                     <span className="w-4 h-4 bg-red-500 text-white flex items-center justify-center rounded-full text-[10px]">{ngoData.pendingApplications}</span>
@@ -380,7 +383,8 @@ const NGODashboardView = () => {
             <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-8">
               <div className="flex justify-between items-center mb-8">
                 <div>
-                  <h3 className="text-2xl font-bold text-tata-blue">Coordinator Management</h3>
+                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Team</p>
+                  <h3 className="text-xl font-black text-slate-900 tracking-tight mb-1">Coordinator Management</h3>
                   <p className="text-sm text-slate-500">Manage your NGO SPOCs and program coordinators</p>
                 </div>
                 <button 
@@ -461,9 +465,10 @@ const NGODashboardView = () => {
           {/* Sidebar Stats & Shortlists */}
           <div className="space-y-8">
             {/* Application Queue Summary */}
-            <div className="bg-white rounded-3xl p-8 shadow-xl border border-slate-100">
+            <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-8">
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Queue</p>
               <div className="flex items-center justify-between mb-6">
-                <h3 className="font-bold text-slate-800">Application Queue</h3>
+                <h3 className="text-xl font-black text-slate-900 tracking-tight">Applications</h3>
                 <span className="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full">8 Pending</span>
               </div>
               <div className="space-y-4">
@@ -484,8 +489,9 @@ const NGODashboardView = () => {
 
 
             {/* Quick Actions */}
-            <div className="bg-gradient-to-br from-tata-blue to-blue-900 rounded-3xl p-8 text-white shadow-xl">
-              <h3 className="font-bold mb-6">Quick Actions</h3>
+            <div className="bg-gradient-to-br from-slate-900 to-zinc-800 rounded-2xl shadow-sm p-8 text-white">
+              <p className="text-xs font-bold text-white/50 uppercase tracking-widest mb-1">Actions</p>
+              <h3 className="text-xl font-black text-white tracking-tight mb-6">Quick Actions</h3>
               <div className="space-y-3">
                 <button className="w-full py-3 px-4 bg-white/10 hover:bg-white/20 rounded-lg text-sm font-bold flex items-center justify-between transition-all cursor-pointer">
                   Download All CVs <ArrowRight size={16} />
