@@ -66,7 +66,12 @@ export const ROHAN_DESAI = {
   },
   subsidiaries: ["Tata Power", "Tata Power Western", "Tata Power Central", "Tata Power Eastern", "Tata Steel", "Tata Motors", "TCS", "Titan", "IHCL", "Tata Consumer Products", "Tata Communications"],
   orientationProgress: 2,
-  totalOrientationModules: 5
+  totalOrientationModules: 5,
+  badges: [
+    { id: "b1", icon: "🏅", name: "Edition Champion", edition: "ProEngage 2025" },
+    { id: "b2", icon: "⭐", name: "Top Mobiliser", edition: "TVW 2024" },
+    { id: "b3", icon: "🤝", name: "Community Builder", edition: "ProEngage 2024" },
+  ]
 };
 
 export const ROHAN_DESAI_VOLUNTEER = {

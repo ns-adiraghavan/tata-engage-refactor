@@ -165,6 +165,20 @@ export const AdminCommandCentre = () => {
               </button>
             </div>
           </div>
+
+          <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 flex items-center justify-between">
+            <div>
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">External</p>
+              <h3 className="text-sm font-black text-slate-900">Annual Reporting Portal</h3>
+              <p className="text-xs text-slate-400 mt-1">TSG external reporting dashboard</p>
+            </div>
+            <button
+              onClick={() => triggerToast("Annual reporting portal link — to be configured by TSG.")}
+              className="px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs font-semibold text-slate-600 hover:bg-tata-blue hover:text-white hover:border-tata-blue transition-all cursor-pointer"
+            >
+              Open →
+            </button>
+          </div>
         </div>
       </div>
 

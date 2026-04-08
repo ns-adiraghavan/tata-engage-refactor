@@ -59,6 +59,16 @@ const SPOCHubView = () => {
           ))}
         </div>
 
+        {spoc.badges && spoc.badges.length > 0 && (
+          <div className="flex flex-wrap gap-2 mt-4">
+            {spoc.badges.map((badge: any) => (
+              <span key={badge.id} className="bg-white/15 border border-white/20 rounded-full px-3 py-1 text-xs text-white font-semibold">
+                {badge.icon} {badge.name}
+              </span>
+            ))}
+          </div>
+        )}
+
         {/* Testimonials */}
         <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4">Voices from volunteers</h3>
         <div className="flex gap-6 overflow-x-auto pb-4 mb-12">
