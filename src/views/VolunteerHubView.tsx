@@ -53,75 +53,46 @@ const VolunteerHubView = () => {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
 
         {/* ═══ HERO ═══ */}
-        <div className="mb-10 rounded-3xl bg-gradient-to-br from-[#003580] via-[#0046b8] to-[#00b4d8] text-white p-8 md:p-12 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32 blur-3xl" />
-          <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-            <div>
-              <h1 className="text-4xl text-white leading-tight md:text-7xl font-serif">
-                Welcome, {user.firstName}!
-              </h1>
-              <p className="text-white/60 text-sm mt-1">{user.company} · {user.designation}</p>
-              {(user?.role?.includes("spoc") || user?.role === "corporate_spoc") && (
-                <RoleToggle activeView="volunteer" className="mt-4" />
-              )}
-              <p className="text-sm text-white/70 mt-3">
-                {IS_PE_SEASON
-                  ? "ProEngage is open — browse projects matched to your skills."
-                  : "Stay connected — TVW is coming soon."}
-              </p>
-              {/* Skills + Interests chips */}
-              {((user.skills && user.skills.length > 0) || (user.interests && user.interests.length > 0)) && (
-                <div className="flex flex-wrap gap-2 mt-3 mb-2">
-                  {user.skills && user.skills.length > 0 && (
-                    <>
-                      <span className="text-xs text-white/40 uppercase tracking-widest mr-2">Skills</span>
-                      {user.skills.map((skill: string) => (
-                        <span key={skill} className="bg-white/15 border border-white/20 rounded-full px-3 py-1 text-xs text-white font-semibold">{skill}</span>
-                      ))}
-                    </>
-                  )}
-                  {user.interests && user.interests.length > 0 && (
-                    <div className="flex flex-wrap gap-2 w-full">
-                      <span className="text-xs text-white/40 uppercase tracking-widest mr-2">Interests</span>
-                      {user.interests.map((interest: string) => (
-                        <span key={interest} className="bg-tata-cyan/20 border border-tata-cyan/30 rounded-full px-3 py-1 text-xs text-white font-semibold">{interest}</span>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )}
-              {/* Badges strip */}
-              {user.badges && user.badges.length > 0 && (
-                <div className="flex flex-wrap gap-2 mt-3">
-                  {user.badges.map((badge: any) => (
-                    <span key={badge.id} className="bg-white/15 border border-white/20 rounded-full px-3 py-1 text-xs text-white font-semibold">
-                      {badge.icon} {badge.name}
-                    </span>
-                  ))}
-                </div>
+        <div className="relative min-h-[420px] md:min-h-[480px] bg-zinc-950 rounded-3xl overflow-hidden mb-10 flex items-end">
+          <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&q=80&w=1600" alt="" className="absolute inset-0 w-full h-full object-cover opacity-25" referrerPolicy="no-referrer" />
+          <div className="absolute inset-0 bg-gradient-to-r from-zinc-950/95 via-zinc-950/60 to-transparent" />
+          <div className="relative z-10 p-8 md:p-12 w-full">
+            <span className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white/70 text-xs font-semibold px-4 py-1.5 rounded-full mb-6 tracking-wide">
+              <span className="w-1.5 h-1.5 rounded-full bg-tata-cyan inline-block" />
+              Tata Group · Volunteering
+            </span>
+            <h1 className="font-serif text-5xl md:text-7xl text-white leading-[0.95] tracking-tight mb-2">
+              Welcome, {user.firstName}!
+            </h1>
+            <p className="text-white/50 text-sm mt-1 mb-6">{user.company} · {user.designation}</p>
+            {(user?.role?.includes("spoc") || user?.role === "corporate_spoc") && (
+              <RoleToggle activeView="volunteer" className="mb-6" />
+            )}
+            <p className="text-sm text-white/70 mt-0 mb-6">
+              {IS_PE_SEASON
+                ? "ProEngage is open — browse projects matched to your skills."
+                : "Stay connected — TVW is coming soon."}
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <button onClick={() => navigate("dashboard")} className="bg-white/10 border border-white/20 text-white px-6 py-2.5 rounded-xl text-sm font-semibold hover:bg-white/20 transition-all cursor-pointer">My Activity</button>
+              <button onClick={() => navigate("profile")} className="bg-white/10 border border-white/20 text-white px-6 py-2.5 rounded-xl text-sm font-semibold hover:bg-white/20 transition-all cursor-pointer">Profile</button>
+              <button onClick={() => navigate("dashboard")} className="bg-white/10 border border-white/20 text-white px-6 py-2.5 rounded-xl text-sm font-semibold hover:bg-white/20 transition-all cursor-pointer">My Dashboard →</button>
+              {isProEngageActive && (
+                <button onClick={() => navigate("proengage")} className="bg-white text-zinc-900 px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-zinc-100 transition-all cursor-pointer">Find Projects</button>
               )}
             </div>
-            <div className="flex flex-col gap-3">
-              <div className="flex flex-wrap gap-3">
-                <button onClick={() => navigate("dashboard")} className="px-5 py-2.5 bg-white/10 hover:bg-white/20 rounded-xl text-sm font-semibold border border-white/10 transition-all cursor-pointer">My Activity</button>
-                <button onClick={() => navigate("profile")} className="px-5 py-2.5 bg-white/10 hover:bg-white/20 rounded-xl text-sm font-semibold border border-white/10 transition-all cursor-pointer">Profile</button>
-                <button onClick={() => navigate("dashboard")} className="px-5 py-2.5 bg-white/10 hover:bg-white/20 rounded-xl text-sm font-semibold border border-white/10 transition-all cursor-pointer">My Dashboard →</button>
-                {isProEngageActive && (
-                  <button onClick={() => navigate("proengage")} className="px-5 py-2.5 bg-white text-[#003580] hover:bg-white/90 rounded-xl text-sm font-bold transition-all cursor-pointer shadow-sm">Find Projects</button>
-                )}
-              </div>
+          </div>
+        </div>
+
+        {/* ═══ STAT TILES ═══ */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+          {stats.map((stat) => (
+            <div key={stat.label} className="bg-white border border-slate-100 rounded-2xl shadow-sm p-5">
+              <p className="text-3xl font-black text-slate-900 tracking-tighter">{stat.num}</p>
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">{stat.label}</p>
+              <p className="text-xs text-slate-400 mt-0.5">{stat.sub}</p>
             </div>
-          </div>
-          {/* Impact strip */}
-          <div className="mt-8 pt-6 border-t border-white/10 flex gap-6">
-            {stats.map((stat) => (
-              <div key={stat.label} className="bg-white border border-zinc-100 rounded-2xl p-5 shadow-sm">
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">{stat.label}</p>
-                <p className="text-4xl font-black text-slate-900 tracking-tighter">{stat.num}</p>
-                <p className="text-xs font-bold text-slate-400 uppercase">{stat.sub}</p>
-              </div>
-            ))}
-          </div>
+          ))}
         </div>
 
         {/* ═══ PROGRAMME TILES ═══ */}

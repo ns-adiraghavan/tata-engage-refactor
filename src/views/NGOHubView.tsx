@@ -8,76 +8,37 @@ const NGOHubView = () => {
 
   return (
     <div className="min-h-screen pt-20 bg-slate-50">
-      {/* Hero */}
-      <section className="bg-gradient-to-br from-[#003580] via-[#0046b8] to-[#00b4d8] text-white pt-16 pb-24 px-6 md:px-12 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32 blur-3xl" />
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-            <div>
-              <h1 className="font-serif text-4xl md:text-5xl text-white leading-tight mb-2">
-                Welcome, {ngoData.firstName ?? "Anjali"}
-              </h1>
-              <p className="text-xl opacity-80">{ngoData.organization}</p>
-            </div>
-            <div className="flex flex-col gap-4 items-end">
-              <div className="flex gap-6">
-                <div className="text-center">
-                  <p className="text-3xl font-black">{ngoData.projects?.filter((p: any) => p.status === "Active").length ?? 2}</p>
-                  <p className="text-xs text-white/50 uppercase tracking-widest">Active projects</p>
-                </div>
-                <div className="text-center">
-                  <p className="text-3xl font-black">{ngoData.pendingApplications ?? 8}</p>
-                  <p className="text-xs text-white/50 uppercase tracking-widest">Pending applications</p>
-                </div>
-              </div>
-              <button onClick={() => navigate("ngo-dashboard")} className="px-5 py-2.5 bg-white/10 hover:bg-white/20 rounded-xl text-sm font-semibold border border-white/10 transition-all cursor-pointer text-center">
-                Go to Dashboard →
-              </button>
+      <div className="max-w-7xl mx-auto px-6 md:px-12 pb-20">
+        {/* Hero */}
+        <div className="relative min-h-[420px] md:min-h-[480px] bg-zinc-950 rounded-3xl overflow-hidden mb-10 flex items-end">
+          <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&q=80&w=1600" alt="" className="absolute inset-0 w-full h-full object-cover opacity-25" referrerPolicy="no-referrer" />
+          <div className="absolute inset-0 bg-gradient-to-r from-zinc-950/95 via-zinc-950/60 to-transparent" />
+          <div className="relative z-10 p-8 md:p-12 w-full">
+            <span className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white/70 text-xs font-semibold px-4 py-1.5 rounded-full mb-6 tracking-wide">
+              <span className="w-1.5 h-1.5 rounded-full bg-tata-cyan inline-block" />
+              Tata Group · Partner NGO
+            </span>
+            <h1 className="font-serif text-5xl md:text-7xl text-white leading-[0.95] tracking-tight mb-2">
+              Welcome, {ngoData.firstName ?? "Anjali"}!
+            </h1>
+            <p className="text-white/50 text-sm mt-1 mb-6">{ngoData.organization} · Lead Partner</p>
+            <div className="flex flex-wrap gap-3">
+              <button onClick={() => navigate("ngo-dashboard")} className="bg-white text-zinc-900 px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-zinc-100 transition-all cursor-pointer">Go to Dashboard →</button>
             </div>
           </div>
         </div>
-      </section>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 -mt-16 pb-20">
-        {/* Banner */}
-        <div className="bg-white border border-slate-100 rounded-3xl shadow-sm p-6 md:p-8 mb-12">
-          <div className="grid md:grid-cols-2 gap-6 items-center">
-            <div>
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">
-                Featured
-              </p>
-              <h2 className="text-2xl font-bold text-slate-900 mb-2">
-                Driving impact through skilled volunteering
-              </h2>
-              <p className="text-sm text-slate-600">
-                Showcase your organisation's ongoing work, highlight volunteer impact, and bring visibility to your current programmes.
-              </p>
-            </div>
-            <img
-              src="https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=1200&auto=format&fit=crop"
-              alt="NGO volunteering activity"
-              className="w-full h-48 md:h-56 object-cover rounded-2xl"
-              referrerPolicy="no-referrer"
-            />
-          </div>
-        </div>
-
-        {/* Edition KPIs */}
+        {/* ═══ STAT TILES ═══ */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
           {[
+            { label: "Active Projects", value: ngoData.projects?.filter((p: any) => p.status === "Active").length ?? 2 },
+            { label: "Pending Applications", value: ngoData.pendingApplications ?? 8 },
             { label: "Edition", value: "ProEngage 2025" },
-            { label: "Live Projects", value: ngoData.projects?.filter((p: any) => p.status === "Active").length ?? 2 },
-            { label: "My Past Edition", value: "2024" },
             { label: "Badges Earned", value: "3" },
           ].map((kpi, i) => (
-            <div
-              key={i}
-              className="bg-white border border-slate-100 rounded-2xl shadow-sm p-4"
-            >
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">
-                {kpi.label}
-              </p>
-              <p className="text-xl font-black text-tata-blue">{kpi.value}</p>
+            <div key={i} className="bg-white border border-slate-100 rounded-2xl shadow-sm p-5">
+              <p className="text-3xl font-black text-slate-900 tracking-tighter">{kpi.value}</p>
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">{kpi.label}</p>
             </div>
           ))}
         </div>

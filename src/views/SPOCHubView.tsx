@@ -24,37 +24,37 @@ const SPOCHubView = () => {
     <div className="pt-20 pb-20 bg-slate-50 min-h-screen">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
       {/* Hero */}
-      <div className="mb-10 rounded-3xl bg-gradient-to-br from-[#003580] via-[#0046b8] to-[#00b4d8] text-white p-8 md:p-12 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32 blur-3xl" />
-        <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-          <div>
-            <h1 className="text-4xl md:text-7xl font-serif text-white leading-tight">
-              Welcome, {spoc.firstName}!
-            </h1>
-            <p className="text-white/60 text-sm mt-1">{spoc.company} · Corporate SPOC</p>
-            {showToggle && <RoleToggle activeView="spoc" className="mt-4" />}
+      <div className="relative min-h-[420px] md:min-h-[480px] bg-zinc-950 rounded-3xl overflow-hidden mb-10 flex items-end">
+        <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80&w=1600" alt="" className="absolute inset-0 w-full h-full object-cover opacity-25" referrerPolicy="no-referrer" />
+        <div className="absolute inset-0 bg-gradient-to-r from-zinc-950/95 via-zinc-950/60 to-transparent" />
+        <div className="relative z-10 p-8 md:p-12 w-full">
+          <span className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white/70 text-xs font-semibold px-4 py-1.5 rounded-full mb-6 tracking-wide">
+            <span className="w-1.5 h-1.5 rounded-full bg-tata-cyan inline-block" />
+            Tata Group · SPOC Portal
+          </span>
+          <h1 className="font-serif text-5xl md:text-7xl text-white leading-[0.95] tracking-tight mb-2">
+            Welcome, {spoc.firstName}!
+          </h1>
+          <p className="text-white/50 text-sm mt-1 mb-6">{spoc.company} · Corporate SPOC</p>
+          {showToggle && <RoleToggle activeView="spoc" className="mb-6" />}
+          <div className="flex flex-wrap gap-3">
+            <button onClick={() => navigate("spoc-dashboard")} className="bg-white text-zinc-900 px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-zinc-100 transition-all cursor-pointer">Go to Dashboard →</button>
           </div>
-          <button onClick={() => navigate("spoc-dashboard")} className="px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl text-white text-sm font-semibold transition-all cursor-pointer">
-            Go to Dashboard →
-          </button>
         </div>
       </div>
         {/* KPI tiles */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
           {stats.map((stat, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
-              className={`p-6 rounded-2xl bg-white border ${stat.border} shadow-sm hover:shadow-lg transition-all`}
+              className="bg-white border border-slate-100 rounded-2xl shadow-sm p-5"
             >
-              <div className={`w-12 h-12 rounded-xl ${stat.bg} ${stat.color} flex items-center justify-center mb-4`}>
-                <stat.icon size={24} />
-              </div>
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">{stat.label}</p>
-              <p className="text-3xl font-black text-slate-900">{stat.value}</p>
-              <p className="text-xs text-slate-400 mt-1">{stat.sub}</p>
+              <p className="text-3xl font-black text-slate-900 tracking-tighter">{stat.value}</p>
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">{stat.label}</p>
+              <p className="text-xs text-slate-400 mt-0.5">{stat.sub}</p>
             </motion.div>
           ))}
         </div>
