@@ -130,28 +130,38 @@ const HomeView = () => {
   return (
     <div className="relative">
       {/* ═══ SECTION DOT RAIL ═══ */}
-      <div className="fixed right-6 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-40">
-        {SECTION_IDS.map((id, i) => (
-          <button
-            key={id}
-            onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })}
-            className="flex items-center justify-end"
-            aria-label={`Scroll to ${SECTION_LABELS[i]}`}
-          >
-            {activeSection === i && (
-              <span className="text-xs font-semibold text-white bg-white/15 border border-white/20 px-2.5 py-1 rounded-full mr-2 whitespace-nowrap">
-                {SECTION_LABELS[i]}
-              </span>
-            )}
-            <span
-              className={`rounded-full transition-all duration-300 shrink-0 ${
-                activeSection === i
-                  ? "w-2.5 h-2.5 bg-white scale-125"
-                  : "w-2 h-2 bg-white/30 hover:bg-white/50"
-              }`}
-            />
-          </button>
-        ))}
+      <div className="fixed right-5 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-40">
+        {SECTION_IDS.map((id, i) => {
+          const isDarkSection = i === 0;
+          const isActive = activeSection === i;
+          return (
+            <button
+              key={id}
+              onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })}
+              className="flex items-center justify-end group"
+              aria-label={`Scroll to ${SECTION_LABELS[i]}`}
+            >
+              {isActive && (
+                <span className={`text-xs font-semibold px-2.5 py-1 rounded-full mr-2 whitespace-nowrap border ${
+                  isDarkSection
+                    ? "text-white bg-white/15 border-white/20"
+                    : "text-slate-700 bg-white border-slate-200 shadow-sm"
+                }`}>
+                  {SECTION_LABELS[i]}
+                </span>
+              )}
+              <span className={`rounded-full transition-all duration-300 shrink-0 ${
+                isActive
+                  ? isDarkSection
+                    ? "w-2.5 h-2.5 bg-white scale-125"
+                    : "w-2.5 h-2.5 bg-slate-700 scale-125"
+                  : isDarkSection
+                    ? "w-2 h-2 bg-white/30 hover:bg-white/60"
+                    : "w-2 h-2 bg-slate-300 hover:bg-slate-500"
+              }`} />
+            </button>
+          );
+        })}
       </div>
 
       {/* ═══ CONTACT US ═══ */}
