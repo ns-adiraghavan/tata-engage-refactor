@@ -82,7 +82,8 @@ const PROGRAMMES = [
   },
 ];
 
-const SECTION_IDS = ["hero", "metrics", "how-it-works", "programmes", "impact-stories"];
+const SECTION_IDS = ["hero", "highlights", "metrics", "impact-stories", "how-it-works", "programmes"];
+const SECTION_LABELS = ["Hero", "Highlights", "Impact", "Stories", "How It Works", "Programmes"];
 
 const HomeView = () => {
   const navigate = useAppNavigate();
