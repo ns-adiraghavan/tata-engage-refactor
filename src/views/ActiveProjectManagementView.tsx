@@ -163,7 +163,7 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
             {/* Audit Trail */}
             <div className="bg-white rounded-3xl p-8 shadow-xl border border-slate-100">
               <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
-                <History size={20} className="text-tata-blue" /> Project Audit Trail
+                <Clock size={20} className="text-tata-blue" /> Project Audit Trail
               </h3>
               <div className="space-y-4">
                 {auditTrail.length === 0 ? (
