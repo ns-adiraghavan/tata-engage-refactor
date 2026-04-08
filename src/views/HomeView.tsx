@@ -82,7 +82,8 @@ const PROGRAMMES = [
   },
 ];
 
-const SECTION_IDS = ["hero", "metrics", "how-it-works", "programmes", "impact-stories"];
+const SECTION_IDS = ["hero", "highlights", "metrics", "impact-stories", "how-it-works", "programmes"];
+const SECTION_LABELS = ["Hero", "Highlights", "Impact", "Stories", "How It Works", "Programmes"];
 
 const HomeView = () => {
   const navigate = useAppNavigate();
@@ -133,13 +134,22 @@ const HomeView = () => {
           <button
             key={id}
             onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })}
-            className={`rounded-full transition-all duration-300 ${
-              activeSection === i
-                ? "w-2.5 h-2.5 bg-white scale-125"
-                : "w-2 h-2 bg-white/30 hover:bg-white/50"
-            }`}
-            aria-label={`Scroll to ${id}`}
-          />
+            className="flex items-center justify-end"
+            aria-label={`Scroll to ${SECTION_LABELS[i]}`}
+          >
+            {activeSection === i && (
+              <span className="text-xs font-semibold text-white bg-white/15 border border-white/20 px-2.5 py-1 rounded-full mr-2 whitespace-nowrap">
+                {SECTION_LABELS[i]}
+              </span>
+            )}
+            <span
+              className={`rounded-full transition-all duration-300 shrink-0 ${
+                activeSection === i
+                  ? "w-2.5 h-2.5 bg-white scale-125"
+                  : "w-2 h-2 bg-white/30 hover:bg-white/50"
+              }`}
+            />
+          </button>
         ))}
       </div>
 
@@ -247,6 +257,47 @@ const HomeView = () => {
         <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-tata-blue to-transparent" />
       </section>
 
+      {/* ═══ WHAT'S HAPPENING NOW ═══ */}
+      <section id="highlights" className="bg-zinc-950 py-12 px-6 md:px-12 border-t border-white/5">
+        <div className="max-w-7xl mx-auto">
+          <p className="text-xs font-semibold tracking-widest uppercase text-zinc-500 mb-6">
+            What&apos;s happening now
+          </p>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            <div className="lg:col-span-2 bg-[#0f2d4a] rounded-2xl p-8 min-h-[280px] flex flex-col justify-between">
+              <span className="inline-block bg-tata-cyan/20 text-tata-cyan text-xs font-bold px-3 py-1 rounded-full self-start">
+                Trending Now
+              </span>
+              <h3 className="text-2xl font-bold text-white leading-snug mt-4">
+                ProEngage Edition 2026 is now open — 85 NGOs, 400+ projects across India
+              </h3>
+              <div className="flex items-center justify-between mt-4">
+                <span className="text-sm text-white/50">Updated 2 hours ago</span>
+                <button className="bg-white text-zinc-900 text-sm font-bold px-5 py-2 rounded-xl hover:bg-zinc-100 cursor-pointer transition-all">
+                  Browse Projects →
+                </button>
+              </div>
+            </div>
+            <div className="flex flex-col gap-4">
+              <div className="bg-[#1a0d2e] rounded-2xl p-6 flex flex-col justify-between min-h-[132px]">
+                <span className="inline-block bg-violet-500/20 text-violet-300 text-xs font-bold px-3 py-1 rounded-full self-start">
+                  TVW 2026
+                </span>
+                <p className="text-base font-bold text-white mt-3">Tata Volunteering Week registration opens in 14 days</p>
+                <span className="text-xs text-white/40">Mark your calendar</span>
+              </div>
+              <div className="bg-[#0d2b1f] rounded-2xl p-6 flex flex-col justify-between min-h-[132px]">
+                <span className="inline-block bg-emerald-500/20 text-emerald-300 text-xs font-bold px-3 py-1 rounded-full self-start">
+                  Impact
+                </span>
+                <p className="text-base font-bold text-white mt-3">1,240 volunteers matched this edition — highest ever</p>
+                <span className="text-xs text-white/40">ProEngage 2026</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ═══ IMPACT METRICS ═══ */}
       <section id="metrics" className="bg-tata-blue py-12">
         <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-center divide-x divide-white/20">
@@ -264,6 +315,117 @@ const HomeView = () => {
         </div>
       </section>
 
+      {/* ═══ IMPACT STORIES ═══ */}
+      <section id="impact-stories" className="bg-[#0f1118] py-16 px-6 md:px-12">
+        <div className="max-w-7xl mx-auto">
+          <p className="text-xs font-semibold tracking-widest uppercase text-zinc-500 mb-3">
+            Impact Stories
+          </p>
+          <h2 className="text-3xl font-bold text-white mb-10">Stories from the field</h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div className="relative rounded-2xl overflow-hidden min-h-[420px] cursor-pointer hover:brightness-125 transition-all duration-300">
+              {FEATURED_STORIES.map((story, i) => (
+                <div
+                  key={i}
+                  className={`absolute inset-0 ${story.bg} flex flex-col justify-end p-8 transition-opacity duration-700 ${
+                    storyIdx === i ? "opacity-100 z-10" : "opacity-0 z-0"
+                  }`}
+                >
+                  <div className="absolute inset-0">
+                    <svg width="100%" height="100%" viewBox="0 0 600 420" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="480" cy="80" r="260" fill="none" stroke="white" strokeWidth="0.5" opacity="0.12"/>
+                      <circle cx="480" cy="80" r="160" fill="none" stroke="white" strokeWidth="0.5" opacity="0.08"/>
+                      <circle cx="480" cy="80" r="80" fill="none" stroke="white" strokeWidth="0.5" opacity="0.06"/>
+                      <line x1="0" y1="380" x2="600" y2="100" stroke="white" strokeWidth="0.5" opacity="0.1"/>
+                      <line x1="0" y1="300" x2="400" y2="0" stroke="white" strokeWidth="0.5" opacity="0.07"/>
+                      <circle cx="100" cy="360" r="40" fill="none" stroke="white" strokeWidth="0.5" opacity="0.08"/>
+                    </svg>
+                  </div>
+                  <div className="relative z-10">
+                    <span className={`inline-block text-xs font-bold px-3 py-1 rounded-full tracking-wide mb-4 ${story.tagColor}`}>
+                      {story.tag}
+                    </span>
+                    <h3 className="text-2xl font-bold text-white leading-snug mb-4">{story.headline}</h3>
+                    <span className="flex items-center gap-1 text-tata-cyan text-sm font-semibold">
+                      Read story <ChevronRight size={14} />
+                    </span>
+                  </div>
+                </div>
+              ))}
+              <div className="absolute bottom-4 left-8 z-20 flex gap-1.5">
+                {FEATURED_STORIES.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={(e) => { e.stopPropagation(); setStoryIdx(i); }}
+                    className={`rounded-full transition-all ${
+                      storyIdx === i ? "w-2 h-2 bg-white" : "w-1.5 h-1.5 bg-white/30"
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div className="relative rounded-2xl overflow-hidden bg-[#0d2b1f] min-h-[200px] flex flex-col justify-end p-5 group cursor-pointer hover:brightness-125 transition-all duration-300">
+                <div className="absolute inset-0">
+                  <svg width="100%" height="100%" viewBox="0 0 300 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="60" cy="200" r="180" fill="none" stroke="white" strokeWidth="0.5" opacity="0.12"/>
+                    <line x1="200" y1="0" x2="300" y2="200" stroke="white" strokeWidth="0.5" opacity="0.1"/>
+                    <circle cx="260" cy="50" r="30" fill="none" stroke="white" strokeWidth="0.5" opacity="0.1"/>
+                  </svg>
+                </div>
+                <div className="relative z-10">
+                  <span className="inline-block bg-emerald-400 text-zinc-900 text-xs font-bold px-2.5 py-0.5 rounded-full tracking-wide mb-3">Environment</span>
+                  <h3 className="text-sm font-bold text-white leading-snug">1,000 trees planted across TCS campuses</h3>
+                </div>
+              </div>
+
+              <div className="relative rounded-2xl overflow-hidden bg-[#003580] min-h-[200px] flex flex-col justify-end p-5 group cursor-pointer hover:brightness-125 transition-all duration-300">
+                <div className="absolute inset-0">
+                  <svg width="100%" height="100%" viewBox="0 0 300 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="150" cy="100" r="140" fill="none" stroke="white" strokeWidth="0.5" opacity="0.1"/>
+                    <circle cx="150" cy="100" r="80" fill="none" stroke="white" strokeWidth="0.5" opacity="0.07"/>
+                    <line x1="0" y1="0" x2="300" y2="200" stroke="white" strokeWidth="0.5" opacity="0.1"/>
+                  </svg>
+                </div>
+                <div className="relative z-10">
+                  <span className="inline-block bg-tata-cyan text-zinc-900 text-xs font-bold px-2.5 py-0.5 rounded-full tracking-wide mb-3">Health</span>
+                  <h3 className="text-sm font-bold text-white leading-snug">Free health camps serving rural Maharashtra</h3>
+                </div>
+              </div>
+
+              <div className="relative rounded-2xl overflow-hidden bg-[#2d1040] min-h-[200px] flex flex-col justify-end p-5 group cursor-pointer hover:brightness-125 transition-all duration-300">
+                <div className="absolute inset-0">
+                  <svg width="100%" height="100%" viewBox="0 0 300 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="280" cy="180" r="160" fill="none" stroke="white" strokeWidth="0.5" opacity="0.1"/>
+                    <line x1="0" y1="0" x2="300" y2="150" stroke="white" strokeWidth="0.5" opacity="0.1"/>
+                    <circle cx="40" cy="40" r="35" fill="none" stroke="white" strokeWidth="0.5" opacity="0.1"/>
+                  </svg>
+                </div>
+                <div className="relative z-10">
+                  <span className="inline-block bg-violet-400 text-white text-xs font-bold px-2.5 py-0.5 rounded-full tracking-wide mb-3">Skills</span>
+                  <h3 className="text-sm font-bold text-white leading-snug">50 finance professionals mentoring rural entrepreneurs</h3>
+                </div>
+              </div>
+
+              <div className="relative rounded-2xl overflow-hidden bg-[#2d1a00] min-h-[200px] flex flex-col justify-end p-5 group cursor-pointer hover:brightness-125 transition-all duration-300">
+                <div className="absolute inset-0">
+                  <svg width="100%" height="100%" viewBox="0 0 300 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="150" cy="0" r="180" fill="none" stroke="white" strokeWidth="0.5" opacity="0.1"/>
+                    <line x1="300" y1="0" x2="0" y2="200" stroke="white" strokeWidth="0.5" opacity="0.1"/>
+                    <circle cx="260" cy="170" r="40" fill="none" stroke="white" strokeWidth="0.5" opacity="0.09"/>
+                  </svg>
+                </div>
+                <div className="relative z-10">
+                  <span className="inline-block bg-amber-400 text-zinc-900 text-xs font-bold px-2.5 py-0.5 rounded-full tracking-wide mb-3">Disaster Response</span>
+                  <h3 className="text-sm font-bold text-white leading-snug">Tata volunteers deployed within 48 hours of Kerala floods</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ═══ HOW IT WORKS ═══ */}
       <section id="how-it-works" className="bg-zinc-900 py-16 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
@@ -272,7 +434,6 @@ const HomeView = () => {
           </p>
           <h2 className="text-3xl font-bold text-white mb-10">Three steps to get started</h2>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-            {/* Step 1 */}
             <div className="relative rounded-2xl overflow-hidden bg-[#0f2d4a] p-8 flex flex-col justify-between min-h-[360px] lg:row-span-1">
               <div className="absolute inset-0">
                 <svg width="100%" height="100%" viewBox="0 0 400 360" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
@@ -293,7 +454,6 @@ const HomeView = () => {
               </div>
             </div>
 
-            {/* Step 2 */}
             <div className="relative rounded-2xl overflow-hidden bg-[#1a0d2e] p-8 flex flex-col justify-between min-h-[172px] lg:col-span-2">
               <div className="absolute inset-0">
                 <svg width="100%" height="100%" viewBox="0 0 600 172" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
@@ -334,7 +494,6 @@ const HomeView = () => {
               </div>
             </div>
 
-            {/* Step 3 */}
             <div className="relative rounded-2xl overflow-hidden bg-[#0d2b1f] p-8 flex flex-col justify-between min-h-[172px] lg:col-span-2">
               <div className="absolute inset-0">
                 <svg width="100%" height="100%" viewBox="0 0 600 172" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
@@ -409,120 +568,6 @@ const HomeView = () => {
                 </div>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ IMPACT STORIES ═══ */}
-      <section id="impact-stories" className="bg-[#0f1118] py-16 px-6 md:px-12">
-        <div className="max-w-7xl mx-auto">
-          <p className="text-xs font-semibold tracking-widest uppercase text-zinc-500 mb-3">
-            Impact Stories
-          </p>
-          <h2 className="text-3xl font-bold text-white mb-10">Stories from the field</h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            {/* LEFT: Rotating featured card */}
-            <div className="relative rounded-2xl overflow-hidden min-h-[420px] cursor-pointer hover:brightness-125 transition-all duration-300">
-              {FEATURED_STORIES.map((story, i) => (
-                <div
-                  key={i}
-                  className={`absolute inset-0 ${story.bg} flex flex-col justify-end p-8 transition-opacity duration-700 ${
-                    storyIdx === i ? "opacity-100 z-10" : "opacity-0 z-0"
-                  }`}
-                >
-                  <div className="absolute inset-0">
-                    <svg width="100%" height="100%" viewBox="0 0 600 420" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="480" cy="80" r="260" fill="none" stroke="white" strokeWidth="0.5" opacity="0.12"/>
-                      <circle cx="480" cy="80" r="160" fill="none" stroke="white" strokeWidth="0.5" opacity="0.08"/>
-                      <circle cx="480" cy="80" r="80" fill="none" stroke="white" strokeWidth="0.5" opacity="0.06"/>
-                      <line x1="0" y1="380" x2="600" y2="100" stroke="white" strokeWidth="0.5" opacity="0.1"/>
-                      <line x1="0" y1="300" x2="400" y2="0" stroke="white" strokeWidth="0.5" opacity="0.07"/>
-                      <circle cx="100" cy="360" r="40" fill="none" stroke="white" strokeWidth="0.5" opacity="0.08"/>
-                    </svg>
-                  </div>
-                  <div className="relative z-10">
-                    <span className={`inline-block text-xs font-bold px-3 py-1 rounded-full tracking-wide mb-4 ${story.tagColor}`}>
-                      {story.tag}
-                    </span>
-                    <h3 className="text-2xl font-bold text-white leading-snug mb-4">{story.headline}</h3>
-                    <span className="flex items-center gap-1 text-tata-cyan text-sm font-semibold">
-                      Read story <ChevronRight size={14} />
-                    </span>
-                  </div>
-                </div>
-              ))}
-              {/* Story dots */}
-              <div className="absolute bottom-4 left-8 z-20 flex gap-1.5">
-                {FEATURED_STORIES.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={(e) => { e.stopPropagation(); setStoryIdx(i); }}
-                    className={`rounded-full transition-all ${
-                      storyIdx === i ? "w-2 h-2 bg-white" : "w-1.5 h-1.5 bg-white/30"
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
-
-            {/* RIGHT: 2×2 grid of smaller cards */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="relative rounded-2xl overflow-hidden bg-[#0d2b1f] min-h-[200px] flex flex-col justify-end p-5 group cursor-pointer hover:brightness-125 transition-all duration-300">
-                <div className="absolute inset-0">
-                  <svg width="100%" height="100%" viewBox="0 0 300 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="60" cy="200" r="180" fill="none" stroke="white" strokeWidth="0.5" opacity="0.12"/>
-                    <line x1="200" y1="0" x2="300" y2="200" stroke="white" strokeWidth="0.5" opacity="0.1"/>
-                    <circle cx="260" cy="50" r="30" fill="none" stroke="white" strokeWidth="0.5" opacity="0.1"/>
-                  </svg>
-                </div>
-                <div className="relative z-10">
-                  <span className="inline-block bg-emerald-400 text-zinc-900 text-xs font-bold px-2.5 py-0.5 rounded-full tracking-wide mb-3">Environment</span>
-                  <h3 className="text-sm font-bold text-white leading-snug">1,000 trees planted across TCS campuses</h3>
-                </div>
-              </div>
-
-              <div className="relative rounded-2xl overflow-hidden bg-[#003580] min-h-[200px] flex flex-col justify-end p-5 group cursor-pointer hover:brightness-125 transition-all duration-300">
-                <div className="absolute inset-0">
-                  <svg width="100%" height="100%" viewBox="0 0 300 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="150" cy="100" r="140" fill="none" stroke="white" strokeWidth="0.5" opacity="0.1"/>
-                    <circle cx="150" cy="100" r="80" fill="none" stroke="white" strokeWidth="0.5" opacity="0.07"/>
-                    <line x1="0" y1="0" x2="300" y2="200" stroke="white" strokeWidth="0.5" opacity="0.1"/>
-                  </svg>
-                </div>
-                <div className="relative z-10">
-                  <span className="inline-block bg-tata-cyan text-zinc-900 text-xs font-bold px-2.5 py-0.5 rounded-full tracking-wide mb-3">Health</span>
-                  <h3 className="text-sm font-bold text-white leading-snug">Free health camps serving rural Maharashtra</h3>
-                </div>
-              </div>
-
-              <div className="relative rounded-2xl overflow-hidden bg-[#2d1040] min-h-[200px] flex flex-col justify-end p-5 group cursor-pointer hover:brightness-125 transition-all duration-300">
-                <div className="absolute inset-0">
-                  <svg width="100%" height="100%" viewBox="0 0 300 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="280" cy="180" r="160" fill="none" stroke="white" strokeWidth="0.5" opacity="0.1"/>
-                    <line x1="0" y1="0" x2="300" y2="150" stroke="white" strokeWidth="0.5" opacity="0.1"/>
-                    <circle cx="40" cy="40" r="35" fill="none" stroke="white" strokeWidth="0.5" opacity="0.1"/>
-                  </svg>
-                </div>
-                <div className="relative z-10">
-                  <span className="inline-block bg-violet-400 text-white text-xs font-bold px-2.5 py-0.5 rounded-full tracking-wide mb-3">Skills</span>
-                  <h3 className="text-sm font-bold text-white leading-snug">50 finance professionals mentoring rural entrepreneurs</h3>
-                </div>
-              </div>
-
-              <div className="relative rounded-2xl overflow-hidden bg-[#2d1a00] min-h-[200px] flex flex-col justify-end p-5 group cursor-pointer hover:brightness-125 transition-all duration-300">
-                <div className="absolute inset-0">
-                  <svg width="100%" height="100%" viewBox="0 0 300 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="150" cy="0" r="180" fill="none" stroke="white" strokeWidth="0.5" opacity="0.1"/>
-                    <line x1="300" y1="0" x2="0" y2="200" stroke="white" strokeWidth="0.5" opacity="0.1"/>
-                    <circle cx="260" cy="170" r="40" fill="none" stroke="white" strokeWidth="0.5" opacity="0.09"/>
-                  </svg>
-                </div>
-                <div className="relative z-10">
-                  <span className="inline-block bg-amber-400 text-zinc-900 text-xs font-bold px-2.5 py-0.5 rounded-full tracking-wide mb-3">Disaster Response</span>
-                  <h3 className="text-sm font-bold text-white leading-snug">Tata volunteers deployed within 48 hours of Kerala floods</h3>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
