@@ -1046,11 +1046,11 @@ const SPOCDashboardView = () => {
 
     return (
       <div className="space-y-12">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-          <div>
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Queue</p>
-            <h2 className="text-xl font-black text-slate-900 tracking-tight mb-6">Verification</h2>
-            <p className="text-slate-500 font-medium">Review and approve volunteers who registered via personal email.</p>
+        <div className="bg-amber-50 border-b border-amber-100 rounded-t-xl px-6 pt-5 pb-4 -mx-6 -mt-6 mb-6 md:-mx-8 md:-mt-8">
+          <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Queue</p>
+          <h2 className="text-xl font-black text-slate-900 tracking-tight">Verification</h2>
+          <p className="text-slate-500 font-medium mt-1">Review and approve volunteers who registered via personal email.</p>
+        </div>
             <div className="mt-3 px-4 py-2 bg-slate-50 rounded-xl border border-slate-100 inline-flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-tata-cyan" />
               <span className="text-xs font-bold text-slate-500 uppercase tracking-widest">
