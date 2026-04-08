@@ -1498,9 +1498,6 @@ const SPOCDashboardView = () => {
                 </AnimatePresence>
               </div>
             </motion.div>
-          ))}
-        </div>
-      </div>
     );
   };
 
