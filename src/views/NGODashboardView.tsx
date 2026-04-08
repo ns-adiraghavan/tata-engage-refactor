@@ -734,8 +734,10 @@ const NGODashboardView = () => {
 
           {/* ═══ SECTION: Feedback Module ═══ */}
           <section id="ngo-section-feedback">
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">End-of-Edition</p>
-            <h2 className="text-xl font-black text-slate-900 tracking-tight mb-8">Feedback Module</h2>
+            <div className="bg-violet-50 border-b border-violet-100 rounded-t-xl px-6 pt-5 pb-4 -mx-6 -mt-6 mb-6">
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">End-of-Edition</p>
+              <h2 className="text-xl font-black text-slate-900 tracking-tight">Feedback Module</h2>
+            </div>
             <div className="space-y-3">
               {ngoData.projects?.map((project: any) => {
                 const canGiveFeedback = project.status === "Active" || project.status === "Closed";
