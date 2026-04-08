@@ -17,6 +17,7 @@ const Navbar = ({
   onLogout: () => void;
   user: any;
 }) => {
+  const { triggerToast } = useAppContext();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [notifOpen, setNotifOpen] = useState(false);
   const [notifications, setNotifications] = useState(MOCK_NOTIFICATIONS);
