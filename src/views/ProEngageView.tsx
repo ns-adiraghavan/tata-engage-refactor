@@ -54,6 +54,7 @@ const ProEngageView = () => {
   const { appliedProjects, setAppliedProjects, likedProjects, setLikedProjects, triggerToast } = useAppContext();
   const { user } = useAuth();
   const rawNavigate = useNavigate();
+  const appNavigate = useAppNavigate();
   const [activeTab, setActiveTab] = useState("All Projects");
   const [isApplying, setIsApplying] = useState(false);
   const [selectedProject, setSelectedProject] = useState<any>(null);
