@@ -359,6 +359,12 @@ const NGODashboardView = () => {
                             </button>
                           ))}
                         </div>
+
+                        {/* Previous Edition placeholder */}
+                        <div className="mt-6 p-4 border border-slate-100 rounded-xl">
+                          <p className="text-xs font-bold text-slate-300 uppercase tracking-widest">Previous Edition</p>
+                          <p className="text-xs text-slate-400 mt-1">Edition 2025 data — 3 projects · 12 volunteers matched</p>
+                        </div>
                       </motion.div>
                     )}
 
