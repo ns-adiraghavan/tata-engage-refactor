@@ -476,7 +476,7 @@ export const DisasterResponsePanel = ({ addAuditLog, triggerToast, drResponses, 
           </div>
 
           {/* Deployment Log Panel */}
-          <div className="glass rounded-3xl p-8 border border-white/20 shadow-xl">
+          <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-8">
             <div className="flex items-center gap-3 mb-8">
               <div className="w-10 h-10 bg-slate-50 text-slate-600 rounded-lg flex items-center justify-center">
                 <History size={20} />
