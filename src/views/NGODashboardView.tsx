@@ -1,7 +1,7 @@
 import Drawer from "@/components/layout/Drawer";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronRight, User, Users, Mail, Search, MapPin, Clock, Check, Sparkles, MessageSquare, ArrowRight, Star, Plus, Edit2, Trash2, Copy, AlertTriangle, Download, Inbox, CheckCircle2, LayoutGrid, Activity, ShieldAlert, FileText } from "lucide-react";
+import { X, ChevronRight, User, Users, Mail, Search, MapPin, Clock, Check, Sparkles, MessageSquare, ArrowRight, Star, Plus, Edit2, Trash2, Copy, AlertTriangle, Download, Inbox, CheckCircle2, LayoutGrid, Activity, ShieldAlert, FileText, Archive } from "lucide-react";
 import type { View } from "@/types";
 import { MOCK_APPLICANTS, ANJALI_MEHTA } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
@@ -52,6 +52,7 @@ const NGODashboardView = () => {
       badge: ngoData.projects?.filter((p: any) => p.status === "Active").length ?? 0 },
     { name: "Grievance Redressal", icon: ShieldAlert, sectionId: "ngo-section-grievance" },
     { name: "Reports", icon: FileText, sectionId: "ngo-section-reports" },
+    { name: "Past Editions", icon: Archive, sectionId: "ngo-section-past-editions" },
     { name: "Partner NGOs", icon: Users, sectionId: "ngo-section-partner-ngos" },
   ];
 
@@ -925,6 +926,19 @@ const NGODashboardView = () => {
                   </div>
                 </div>
               ))}
+            </div>
+          </section>
+
+          {/* ═══ SECTION: Past Editions ═══ */}
+          <section id="ngo-section-past-editions">
+            <div className="space-y-6">
+              <div>
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Archive</p>
+                <h2 className="text-xl font-black text-slate-900 tracking-tight mb-8">Past Editions</h2>
+              </div>
+              <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-8">
+                <p className="text-sm text-slate-400 italic text-center py-8">Past edition data will appear here once an active edition closes. Available for the current SPOC scope.</p>
+              </div>
             </div>
           </section>
 
