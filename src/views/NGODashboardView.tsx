@@ -428,7 +428,10 @@ const NGODashboardView = () => {
                 ))}
               </div>
 
-              {showAddCoordinator && (
+              <p className="text-xs text-slate-400 mt-4 italic">
+                Coordinators can only edit projects assigned to them before Admin approval. For access changes, contact TSG Admin.
+              </p>
+
                 <motion.div 
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
