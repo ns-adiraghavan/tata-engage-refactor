@@ -364,7 +364,7 @@ const DashboardView = () => {
 
         {/* ═══ SECTION: Explore ═══ */}
         {IS_PE_SEASON && (
-          <>
+          <div id="vol-section-explore">
             <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Discover</p>
             <h2 className="text-xl font-black text-slate-900 tracking-tight mb-8 flex items-center gap-2"><Compass size={16} /> Explore</h2>
 
