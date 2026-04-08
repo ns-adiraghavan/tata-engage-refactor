@@ -97,7 +97,7 @@ export const DisasterResponsePanel = ({ addAuditLog, triggerToast, drResponses, 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Configuration Column */}
           <div className="lg:col-span-2 space-y-8">
-            <div className="glass rounded-3xl p-8 shadow-xl border border-white/20">
+            <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-8">
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-12 h-12 bg-red-50 text-red-600 rounded-2xl flex items-center justify-center shadow-lg shadow-red-600/10">
                   <ShieldAlert size={24} />
@@ -222,7 +222,7 @@ export const DisasterResponsePanel = ({ addAuditLog, triggerToast, drResponses, 
 
           {/* Actions & Summary Column */}
           <div className="space-y-8">
-            <div className="glass rounded-3xl p-8 shadow-xl border border-white/20">
+            <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-8">
               <h4 className="text-xs font-semibold text-slate-900 uppercase tracking-widest mb-6">Alert Summary</h4>
               <div className="space-y-6">
                 <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
@@ -282,7 +282,7 @@ export const DisasterResponsePanel = ({ addAuditLog, triggerToast, drResponses, 
 
       {step === "status" && (
         <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="max-w-3xl mx-auto">
-          <div className="glass rounded-3xl p-12 shadow-2xl border border-white/20 text-center">
+          <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-12 text-center">
             <div className="w-24 h-24 bg-green-50 text-green-600 rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl shadow-green-600/10">
               <Check size={48} />
             </div>
@@ -329,7 +329,7 @@ export const DisasterResponsePanel = ({ addAuditLog, triggerToast, drResponses, 
               { label: "En Route", value: "0", icon: MapPin, color: "text-amber-600" },
               { label: "On Ground", value: "0", icon: ShieldCheck, color: "text-red-600" }
             ].map((stat, i) => (
-              <div key={i} className="glass rounded-3xl p-6 border border-white/20 shadow-lg">
+              <div key={i} className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6">
                 <div className="flex justify-between items-start mb-4">
                   <div className={`p-3 rounded-lg bg-slate-50 ${stat.color}`}>
                     <stat.icon size={20} />
@@ -342,7 +342,7 @@ export const DisasterResponsePanel = ({ addAuditLog, triggerToast, drResponses, 
           </div>
 
           {/* Response List */}
-          <div className="glass rounded-3xl overflow-hidden border border-white/20 shadow-xl">
+          <div className="bg-white border border-slate-100 rounded-2xl shadow-sm overflow-hidden">
             <div className="p-8 border-b border-slate-100 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
               <div>
                 <h4 className="text-sm font-semibold text-slate-900 uppercase tracking-widest">Volunteer Response List</h4>
@@ -476,7 +476,7 @@ export const DisasterResponsePanel = ({ addAuditLog, triggerToast, drResponses, 
           </div>
 
           {/* Deployment Log Panel */}
-          <div className="glass rounded-3xl p-8 border border-white/20 shadow-xl">
+          <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-8">
             <div className="flex items-center gap-3 mb-8">
               <div className="w-10 h-10 bg-slate-50 text-slate-600 rounded-lg flex items-center justify-center">
                 <History size={20} />
@@ -519,7 +519,7 @@ export const DisasterResponsePanel = ({ addAuditLog, triggerToast, drResponses, 
             </div>
           </div>
 
-          <div className="glass rounded-3xl p-12 border border-white/20 shadow-xl flex flex-col items-center justify-center text-center min-h-[400px]">
+          <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-12 flex flex-col items-center justify-center text-center min-h-[400px]">
             <div className="w-20 h-20 bg-slate-50 text-slate-300 rounded-3xl flex items-center justify-center mb-6">
               <Activity size={40} />
             </div>
