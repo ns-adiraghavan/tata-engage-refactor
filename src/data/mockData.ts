@@ -350,7 +350,7 @@ export const MOCK_APPLICANTS = [
     matchPercentage: 98,
     isReturning: true,
     status: "Pending",
-    projectId: 101,
+    projectId: 105,
     appliedDate: "2026-04-01"
   },
   {
@@ -365,7 +365,7 @@ export const MOCK_APPLICANTS = [
     matchPercentage: 75,
     isReturning: false,
     status: "Pending",
-    projectId: 101,
+    projectId: 105,
     appliedDate: "2026-04-01"
   },
   {
@@ -380,7 +380,7 @@ export const MOCK_APPLICANTS = [
     matchPercentage: 94,
     isReturning: false,
     status: "Pending",
-    projectId: 101,
+    projectId: 104,
     appliedDate: "2026-04-02"
   },
   {
@@ -395,7 +395,7 @@ export const MOCK_APPLICANTS = [
     matchPercentage: 85,
     isReturning: true,
     status: "Pending",
-    projectId: 101,
+    projectId: 104,
     appliedDate: "2026-04-02"
   }
 ];
