@@ -32,7 +32,7 @@ const SPOCHubView = () => {
             <span className="w-1.5 h-1.5 rounded-full bg-tata-cyan inline-block" />
             Tata Group · SPOC Portal
           </span>
-          <h1 className="font-serif text-5xl md:text-7xl text-white leading-[0.95] tracking-tight mb-2">
+          <h1 className="font-sans font-black text-5xl md:text-7xl text-white leading-[0.9] tracking-tight mb-2">
             Welcome, {spoc.firstName}!
           </h1>
           <p className="text-white/50 text-sm mt-1 mb-6">{spoc.company} · Corporate SPOC</p>
@@ -43,21 +43,26 @@ const SPOCHubView = () => {
         </div>
       </div>
         {/* KPI tiles */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
           {stats.map((stat, i) => {
-            const tileBg = ["bg-cyan-50 border-cyan-100", "bg-violet-50 border-violet-100", "bg-amber-50 border-amber-100", "bg-red-50 border-red-100"][i];
+            const configs = [
+              { bg: "bg-cyan-50", border: "border-cyan-200", num: "text-tata-blue", label: "text-cyan-700" },
+              { bg: "bg-violet-50", border: "border-violet-200", num: "text-violet-700", label: "text-violet-600" },
+              { bg: "bg-amber-50", border: "border-amber-200", num: "text-amber-700", label: "text-amber-600" },
+              { bg: "bg-rose-50", border: "border-rose-200", num: "text-rose-700", label: "text-rose-600" },
+            ];
+            const c = configs[i];
             return (
               <motion.div
-                key={i}
+                key={stat.label}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
-                className={`${tileBg} border border-l-4 ${stat.borderAccent} rounded-2xl shadow-sm p-5 relative`}
+                className={`${c.bg} border ${c.border} rounded-2xl p-5 shadow-sm`}
               >
-                <div className={`absolute top-4 right-4 w-8 h-8 rounded-full ${stat.dot} flex items-center justify-center text-xs font-bold`}>•</div>
-                <p className="text-3xl font-black text-slate-900 tracking-tighter">{stat.value}</p>
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">{stat.label}</p>
-                <p className="text-xs text-slate-400 mt-0.5">{stat.sub}</p>
+                <p className={`text-3xl font-black tracking-tighter ${c.num}`}>{stat.value}</p>
+                <p className={`text-xs font-bold uppercase tracking-widest mt-1 ${c.label}`}>{stat.label}</p>
+                {stat.sub && <p className="text-xs text-slate-400 mt-0.5">{stat.sub}</p>}
               </motion.div>
             );
           })}
@@ -66,7 +71,7 @@ const SPOCHubView = () => {
         {spoc.badges && spoc.badges.length > 0 && (
           <div className="flex flex-wrap gap-2 mt-4">
             {spoc.badges.map((badge: any) => (
-              <span key={badge.id} className="bg-white/15 border border-white/20 rounded-full px-3 py-1 text-xs text-white font-semibold">
+              <span key={badge.id} className="bg-tata-blue/10 border border-tata-blue/20 rounded-full px-3 py-1 text-xs text-tata-blue font-semibold">
                 {badge.icon} {badge.name}
               </span>
             ))}
