@@ -26,6 +26,9 @@ const NGODashboardView = () => {
   const [grievanceForm, setGrievanceForm] = useState({ category: "", description: "", projectId: "" });
   const [submittedGrievances, setSubmittedGrievances] = useState<any[]>([]);
   const [selectedPartnerNGO, setSelectedPartnerNGO] = useState<any>(null);
+  const [isEditingPartner, setIsEditingPartner] = useState(false);
+  const [partnerEditForm, setPartnerEditForm] = useState({ contactName: "", contactEmail: "", status: "", focusArea: "" });
+  const [partnerHealthForm, setPartnerHealthForm] = useState({ month: "April 2026", status: "Healthy", projectId: "" });
 
   const feedbackDueProjects = ngoData.projects.filter(p => {
     if (p.status !== "Active" || !p.endDate) return false;
