@@ -102,18 +102,21 @@ const VolunteerHubView = () => {
         {/* ═══ PROGRAMME TILES ═══ */}
         <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4">Programmes</h3>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
-          {programmes.map((p) => (
-            <button
-              key={p.label}
-              onClick={() => navigate(p.nav)}
-              className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm text-left hover:shadow-md transition-all cursor-pointer"
-            >
-              <div className={`w-14 h-14 rounded-full flex items-center justify-center ${p.bgClass} mb-4`}>
-                <p.Icon size={22} className={p.iconClass} />
-              </div>
-              <p className="text-sm font-bold text-slate-900">{p.label}</p>
-              <p className="text-xs text-slate-400 mt-1">{PROGRAMME_DESCRIPTIONS[p.label]}</p>
-            </button>
+          {programmes.map((p, i) => {
+            const cardBg = ["bg-cyan-50 border-cyan-100", "bg-violet-50 border-violet-100", "bg-red-50 border-red-100"][i];
+            return (
+              <button
+                key={p.label}
+                onClick={() => navigate(p.nav)}
+                className={`${cardBg} border rounded-2xl p-6 shadow-sm text-left hover:shadow-md transition-all cursor-pointer`}
+              >
+                <div className={`w-14 h-14 rounded-full flex items-center justify-center ${p.bgClass} mb-4`}>
+                  <p.Icon size={22} className={p.iconClass} />
+                </div>
+                <p className="text-sm font-bold text-slate-900">{p.label}</p>
+                <p className="text-xs text-slate-400 mt-1">{PROGRAMME_DESCRIPTIONS[p.label]}</p>
+              </button>
+            );
           ))}
         </div>
 

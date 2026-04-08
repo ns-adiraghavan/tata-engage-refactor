@@ -35,13 +35,16 @@ const NGOHubView = () => {
             { label: "Pending Applications", value: ngoData.pendingApplications ?? 8, border: "border-violet-400", dot: "bg-violet-100 text-violet-500" },
             { label: "Edition", value: "ProEngage 2025", border: "border-amber-400", dot: "bg-amber-100 text-amber-500" },
             { label: "Badges Earned", value: "3", border: "border-red-400", dot: "bg-red-100 text-red-500" },
-          ].map((kpi, i) => (
-            <div key={i} className={`bg-white border border-slate-100 border-l-4 ${kpi.border} rounded-2xl shadow-sm p-5 relative`}>
-              <div className={`absolute top-4 right-4 w-8 h-8 rounded-full ${kpi.dot} flex items-center justify-center text-xs font-bold`}>•</div>
-              <p className="text-3xl font-black text-slate-900 tracking-tighter">{kpi.value}</p>
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">{kpi.label}</p>
-            </div>
-          ))}
+          ].map((kpi, i) => {
+            const tileBg = ["bg-cyan-50 border-cyan-100", "bg-violet-50 border-violet-100", "bg-amber-50 border-amber-100", "bg-red-50 border-red-100"][i];
+            return (
+              <div key={i} className={`${tileBg} border border-l-4 ${kpi.border} rounded-2xl shadow-sm p-5 relative`}>
+                <div className={`absolute top-4 right-4 w-8 h-8 rounded-full ${kpi.dot} flex items-center justify-center text-xs font-bold`}>•</div>
+                <p className="text-3xl font-black text-slate-900 tracking-tighter">{kpi.value}</p>
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">{kpi.label}</p>
+              </div>
+            );
+          })}
         </div>
 
         {/* Banner */}
