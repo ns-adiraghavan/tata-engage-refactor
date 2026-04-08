@@ -671,8 +671,10 @@ const NGODashboardView = () => {
 
           {/* ═══ SECTION: M&E Tracker ═══ */}
           <section id="ngo-section-me">
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Monitoring & Evaluation</p>
-            <h2 className="text-xl font-black text-slate-900 tracking-tight mb-8">M&E Tracker</h2>
+            <div className="bg-orange-50 border-b border-orange-100 rounded-t-xl px-6 pt-5 pb-4 -mx-6 -mt-6 mb-6">
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Monitoring & Evaluation</p>
+              <h2 className="text-xl font-black text-slate-900 tracking-tight">M&E Tracker</h2>
+            </div>
             <div className="space-y-6">
               {ngoData.projects
                 ?.filter((p: any) => p.status === "Active" && p.healthUpdates)
@@ -732,8 +734,10 @@ const NGODashboardView = () => {
 
           {/* ═══ SECTION: Feedback Module ═══ */}
           <section id="ngo-section-feedback">
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">End-of-Edition</p>
-            <h2 className="text-xl font-black text-slate-900 tracking-tight mb-8">Feedback Module</h2>
+            <div className="bg-violet-50 border-b border-violet-100 rounded-t-xl px-6 pt-5 pb-4 -mx-6 -mt-6 mb-6">
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">End-of-Edition</p>
+              <h2 className="text-xl font-black text-slate-900 tracking-tight">Feedback Module</h2>
+            </div>
             <div className="space-y-3">
               {ngoData.projects?.map((project: any) => {
                 const canGiveFeedback = project.status === "Active" || project.status === "Closed";
@@ -776,8 +780,10 @@ const NGODashboardView = () => {
 
           {/* ═══ SECTION: Grievance Redressal ═══ */}
           <section id="ngo-section-grievance">
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Support</p>
-            <h2 className="text-xl font-black text-slate-900 tracking-tight mb-8">Grievance Redressal</h2>
+            <div className="bg-red-50 border-b border-red-100 rounded-t-xl px-6 pt-5 pb-4 -mx-6 -mt-6 mb-6">
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Support</p>
+              <h2 className="text-xl font-black text-slate-900 tracking-tight">Grievance Redressal</h2>
+            </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Submit form */}
               <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6">
@@ -865,8 +871,10 @@ const NGODashboardView = () => {
 
           {/* ═══ SECTION: Reports ═══ */}
           <section id="ngo-section-reports">
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Analytics</p>
-            <h2 className="text-xl font-black text-slate-900 tracking-tight mb-8">Reports</h2>
+            <div className="bg-slate-50 border-b border-slate-100 rounded-t-xl px-6 pt-5 pb-4 -mx-6 -mt-6 mb-6">
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Analytics</p>
+              <h2 className="text-xl font-black text-slate-900 tracking-tight">Reports</h2>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {[
                 { title: "Edition Participation Report", desc: "Applications, matches, completions for ProEngage 2025", date: "Generated 1 Apr 2026" },

@@ -193,9 +193,9 @@ const SPOCDashboardView = () => {
     return (
       <div className="space-y-12">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-          <div>
+          <div className="bg-violet-50 border-b border-violet-100 rounded-t-xl px-6 pt-5 pb-4 -mx-6 -mt-6 mb-6 md:-mx-8 md:-mt-8">
             <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Pipeline</p>
-            <h2 className="text-xl font-black text-slate-900 tracking-tight mb-6">ProEngage Oversight</h2>
+            <h2 className="text-xl font-black text-slate-900 tracking-tight">ProEngage Oversight</h2>
             <p className="text-slate-500 font-medium">
               {spoc.tier === "Corporate SPOC" 
                 ? "Monitoring volunteer pipeline across all Tata subsidiaries." 
@@ -501,12 +501,12 @@ const SPOCDashboardView = () => {
 
     return (
       <div className="space-y-12">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-          <div>
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Analytics</p>
-            <h2 className="text-xl font-black text-slate-900 tracking-tight mb-6">Reports & Recognition</h2>
-            <p className="text-slate-500 font-medium">{isRegionalSPOC ? "Manage certificates for your region." : "Track company performance, manage certificates, and monitor feedback."}</p>
-          </div>
+        <div className="bg-slate-50 border-b border-slate-100 rounded-t-xl px-6 pt-5 pb-4 -mx-6 -mt-6 mb-6 md:-mx-8 md:-mt-8">
+          <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Analytics</p>
+          <h2 className="text-xl font-black text-slate-900 tracking-tight">Reports & Recognition</h2>
+          <p className="text-slate-500 font-medium mt-1">{isRegionalSPOC ? "Manage certificates for your region." : "Track company performance, manage certificates, and monitor feedback."}</p>
+        </div>
+        <div className="flex justify-end mb-6">
           {!isRegionalSPOC && (
           <div className="flex gap-2 p-1.5 bg-slate-100 rounded-2xl shadow-inner">
             {[
@@ -803,12 +803,13 @@ const SPOCDashboardView = () => {
 
     return (
       <div className="space-y-10">
+        <div className="bg-tata-blue/5 border-b border-blue-100 rounded-t-xl px-6 pt-5 pb-4 -mx-6 -mt-6 mb-6 md:-mx-8 md:-mt-8">
+          <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Resources</p>
+          <h2 className="text-xl font-black text-slate-900 tracking-tight">Campaign Kit</h2>
+          <p className="text-slate-500 font-medium mt-1">Downloadable collateral to promote volunteering across your company.</p>
+        </div>
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-          <div>
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Resources</p>
-            <h2 className="text-xl font-black text-slate-900 tracking-tight mb-6">Campaign Kit</h2>
-            <p className="text-slate-500 font-medium">Downloadable collateral to promote volunteering across your company.</p>
-          </div>
+          <div></div>
           <button
             onClick={() => {
               setToastMessage("Preparing ZIP download...");
@@ -912,16 +913,16 @@ const SPOCDashboardView = () => {
 
     return (
       <div className="space-y-12">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-          <div>
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">People</p>
-            <h2 className="text-xl font-black text-slate-900 tracking-tight mb-6">SPOC Directory</h2>
-            <p className="text-slate-500 font-medium">
-              {spoc.tier === "Corporate SPOC" 
-                ? "View and manage SPOCs across all Tata Group companies." 
-                : "View SPOCs in your region and manage your regional team."}
-            </p>
-          </div>
+        <div className="bg-slate-50 border-b border-slate-100 rounded-t-xl px-6 pt-5 pb-4 -mx-6 -mt-6 mb-6 md:-mx-8 md:-mt-8">
+          <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">People</p>
+          <h2 className="text-xl font-black text-slate-900 tracking-tight">SPOC Directory</h2>
+          <p className="text-slate-500 font-medium mt-1">
+            {spoc.tier === "Corporate SPOC" 
+              ? "View and manage SPOCs across all Tata Group companies." 
+              : "View SPOCs in your region and manage your regional team."}
+          </p>
+        </div>
+        <div className="flex justify-end mb-6">
           <button onClick={() => setShowAddSpoc(true)} className="group px-8 py-4 bg-zinc-900 text-white rounded-2xl font-bold text-sm flex items-center gap-3 hover:bg-tata-blue transition-all shadow-xl shadow-zinc-900/10 cursor-pointer active:scale-95">
             <Plus size={18} className="group-hover:rotate-90 transition-transform" /> Add New SPOC
           </button>
@@ -1046,11 +1047,13 @@ const SPOCDashboardView = () => {
 
     return (
       <div className="space-y-12">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+        <div className="bg-amber-50 border-b border-amber-100 rounded-t-xl px-6 pt-5 pb-4 -mx-6 -mt-6 mb-6 md:-mx-8 md:-mt-8">
+          <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Queue</p>
+          <h2 className="text-xl font-black text-slate-900 tracking-tight">Verification</h2>
+          <p className="text-slate-500 font-medium mt-1">Review and approve volunteers who registered via personal email.</p>
+        </div>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-6">
           <div>
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Queue</p>
-            <h2 className="text-xl font-black text-slate-900 tracking-tight mb-6">Verification</h2>
-            <p className="text-slate-500 font-medium">Review and approve volunteers who registered via personal email.</p>
             <div className="mt-3 px-4 py-2 bg-slate-50 rounded-xl border border-slate-100 inline-flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-tata-cyan" />
               <span className="text-xs font-bold text-slate-500 uppercase tracking-widest">
@@ -1186,10 +1189,10 @@ const SPOCDashboardView = () => {
     return (
       <div className="space-y-12">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-          <div>
+          <div className="bg-cyan-50 border-b border-cyan-100 rounded-t-xl px-6 pt-5 pb-4 -mx-6 -mt-6 mb-6 md:-mx-8 md:-mt-8">
             <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Events</p>
-            <h2 className="text-xl font-black text-slate-900 tracking-tight mb-6">TVW Management</h2>
-            <p className="text-slate-500 font-medium">Manage TCS's participation in Tata Volunteering Week.</p>
+            <h2 className="text-xl font-black text-slate-900 tracking-tight">TVW Management</h2>
+            <p className="text-slate-500 font-medium mt-1">Manage TCS's participation in Tata Volunteering Week.</p>
           </div>
           {isTVWActive && (
             <button onClick={() => setShowCreateEvent(true)} className="group px-8 py-4 bg-zinc-900 text-white rounded-2xl font-bold text-sm flex items-center gap-3 hover:bg-tata-blue transition-all shadow-xl shadow-zinc-900/10 cursor-pointer active:scale-95">
