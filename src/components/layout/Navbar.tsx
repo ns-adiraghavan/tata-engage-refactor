@@ -3,7 +3,7 @@ import { Bell, ChevronDown, User, LogOut, Share2, LayoutDashboard, Search } from
 import tataLogo from "@/assets/tata-logo.png";
 import tataEngageLogo from "@/assets/tata-engage-logo.png";
 import type { View } from "@/types";
-import { MOCK_NOTIFICATIONS } from "@/data/mockData";
+import { NOTIFICATIONS_VOLUNTEER, NOTIFICATIONS_NGO, NOTIFICATIONS_SPOC, NOTIFICATIONS_ADMIN } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
 
 const Navbar = ({
@@ -18,9 +18,17 @@ const Navbar = ({
   user: any;
 }) => {
   const { triggerToast } = useAppContext();
+  const getRoleNotifications = () => {
+    if (!user) return NOTIFICATIONS_VOLUNTEER;
+    if (user.role === "ngo") return NOTIFICATIONS_NGO;
+    if (user.role === "corporate_spoc" || user.role === "regional_spoc") return NOTIFICATIONS_SPOC;
+    if (user.role === "platform_admin") return NOTIFICATIONS_ADMIN;
+    return NOTIFICATIONS_VOLUNTEER;
+  };
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [notifOpen, setNotifOpen] = useState(false);
-  const [notifications, setNotifications] = useState(MOCK_NOTIFICATIONS);
+  const [notifications, setNotifications] = useState(getRoleNotifications());
   const dropdownRef = useRef<HTMLDivElement>(null);
   const notifRef = useRef<HTMLDivElement>(null);
 
@@ -56,9 +64,29 @@ const Navbar = ({
   const unreadCount = notifications.filter((n) => !n.read).length;
 
   const dotColor = (type: string) => {
-    if (type === "match") return "bg-green-500";
+    if (type === "match" || type === "approval") return "bg-green-500";
     if (type === "certificate") return "bg-blue-500";
+    if (type === "verification" || type === "grievance") return "bg-red-500";
+    if (type === "leaderboard") return "bg-violet-500";
     return "bg-amber-500";
+  };
+
+  const iconChip = (type: string) => {
+    if (type === "match" || type === "approval") return "✓";
+    if (type === "certificate") return "↓";
+    if (type === "feedback") return "★";
+    if (type === "verification") return "!";
+    if (type === "leaderboard") return "↑";
+    if (type === "grievance") return "⚠";
+    return "•";
+  };
+
+  const notifRoleLabel = () => {
+    if (!user) return "Volunteer";
+    if (user.role === "ngo") return "NGO";
+    if (user.role === "corporate_spoc" || user.role === "regional_spoc") return "SPOC";
+    if (user.role === "platform_admin") return "Admin";
+    return "Volunteer";
   };
 
   const handleMarkAllRead = () => {
@@ -171,10 +199,13 @@ const Navbar = ({
                 </button>
 
                 {notifOpen && (
-                  <div className="absolute right-0 top-full mt-2 w-80 bg-white border border-gray-200 rounded-2xl shadow-sm z-50 overflow-hidden">
+                  <div className="absolute right-0 top-full mt-2 w-96 bg-white border border-gray-200 rounded-2xl shadow-sm z-50 overflow-hidden">
                     {/* Header */}
-                    <div className="flex items-center justify-between px-4 py-3 border-b border-zinc-100">
-                      <span className="font-semibold text-sm text-zinc-900">Notifications</span>
+                    <div className="flex items-center justify-between px-5 py-4 border-b border-zinc-100">
+                      <div>
+                        <span className="font-semibold text-sm text-zinc-900">Notifications</span>
+                        <p className="text-xs text-slate-400">{notifRoleLabel()}</p>
+                      </div>
                       <button
                         onClick={handleMarkAllRead}
                         className="text-xs text-blue-600 font-medium hover:underline cursor-pointer"
@@ -189,18 +220,20 @@ const Navbar = ({
                         <p className="text-xs text-slate-400">You're all caught up</p>
                       </div>
                     ) : (
-                      <div className="max-h-72 overflow-y-auto">
+                      <div className="max-h-[420px] overflow-y-auto">
                         {notifications.map((n) => (
                           <div
                             key={n.id}
-                            className={`flex items-start gap-3 px-4 py-3 border-b border-zinc-50 last:border-b-0 ${
+                            className={`flex items-start gap-3 px-5 py-4 border-b border-zinc-50 last:border-b-0 ${
                               n.read ? "bg-white" : "bg-slate-50"
                             }`}
                           >
-                            <span className={`mt-1.5 w-2 h-2 rounded-full shrink-0 ${dotColor(n.type)}`} />
+                            <span className={`mt-0.5 w-6 h-6 rounded-full shrink-0 flex items-center justify-center text-white text-xs font-bold ${dotColor(n.type)}`}>
+                              {iconChip(n.type)}
+                            </span>
                             <div className="min-w-0">
                               <p className="font-semibold text-sm text-zinc-900">{n.title}</p>
-                              <p className="text-xs text-slate-500 line-clamp-2">{n.body}</p>
+                              <p className="text-sm text-slate-500 line-clamp-2">{n.body}</p>
                               <p className="text-xs text-slate-400 mt-1">{n.time}</p>
                             </div>
                           </div>

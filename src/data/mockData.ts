@@ -6,11 +6,31 @@ export const MOCK_FAMILY_MEMBERS = [
   { id: 2, name: "Meera Sharma", relationship: "Daughter", email: "meera.s@gmail.com", status: "Pending", joinedDate: "Mar 2025" },
 ];
 
-export const MOCK_NOTIFICATIONS = [
-  { id: 1, type: "match", title: "You've been matched!", body: "Pratham NGO selected you for Financial Literacy for Rural Women.", time: "2h ago", read: false },
+export const NOTIFICATIONS_VOLUNTEER = [
+  { id: 1, type: "match", title: "You've been matched!", body: "Pratham NGO selected you for Financial Literacy for Rural Women. Check your dashboard to view next steps.", time: "2h ago", read: false },
   { id: 2, type: "certificate", title: "Certificate ready", body: "Your Digital Literacy certificate is available to download from your profile.", time: "1d ago", read: false },
-  { id: 3, type: "feedback", title: "Feedback reminder", body: "Please submit your feedback for the Rural Education project before the deadline.", time: "2d ago", read: true },
+  { id: 3, type: "feedback", title: "Feedback reminder", body: "Please submit your project feedback before the deadline — 3 days remaining.", time: "2d ago", read: true },
 ];
+
+export const NOTIFICATIONS_NGO = [
+  { id: 1, type: "application", title: "New application received", body: "Sneha Iyer applied for the Financial Literacy for Rural Women project. Review her profile in your dashboard.", time: "1h ago", read: false },
+  { id: 2, type: "approval", title: "Project approved", body: "Your project 'Urban Sanitation Drive' has been approved by TSG Admin and is now live on the platform.", time: "6h ago", read: false },
+  { id: 3, type: "feedback", title: "Feedback window open", body: "The feedback window for ProEngage 2025 is now open. Please submit ratings for your matched volunteers.", time: "1d ago", read: true },
+];
+
+export const NOTIFICATIONS_SPOC = [
+  { id: 1, type: "verification", title: "Pending verification", body: "3 new registrations from your company are awaiting your approval in SPOC Corner.", time: "30m ago", read: false },
+  { id: 2, type: "leaderboard", title: "Leaderboard update", body: "TCS has moved to #2 on the ProEngage leaderboard — 2 more matches to reach #1.", time: "4h ago", read: false },
+  { id: 3, type: "event", title: "TVW event posted", body: "Your Mumbai Coastal Cleanup event has been published to the TVW calendar.", time: "1d ago", read: true },
+];
+
+export const NOTIFICATIONS_ADMIN = [
+  { id: 1, type: "ngo", title: "NGO application pending", body: "Smile Foundation has submitted a new registration. AI pre-screening is complete — review required.", time: "1h ago", read: false },
+  { id: 2, type: "project", title: "Project awaiting review", body: "2 new ProEngage projects submitted by NGOs are in your review queue.", time: "3h ago", read: false },
+  { id: 3, type: "grievance", title: "Grievance raised", body: "A volunteer has raised a grievance on project #104. Action required within 48 hours.", time: "5h ago", read: true },
+];
+
+export const MOCK_NOTIFICATIONS = NOTIFICATIONS_VOLUNTEER;
 
 export const VIKRAM_NAIR = {
   firstName: "Vikram",
