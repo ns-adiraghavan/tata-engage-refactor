@@ -329,7 +329,7 @@ export const DisasterResponsePanel = ({ addAuditLog, triggerToast, drResponses, 
               { label: "En Route", value: "0", icon: MapPin, color: "text-amber-600" },
               { label: "On Ground", value: "0", icon: ShieldCheck, color: "text-red-600" }
             ].map((stat, i) => (
-              <div key={i} className="glass rounded-3xl p-6 border border-white/20 shadow-lg">
+              <div key={i} className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6">
                 <div className="flex justify-between items-start mb-4">
                   <div className={`p-3 rounded-lg bg-slate-50 ${stat.color}`}>
                     <stat.icon size={20} />
