@@ -114,17 +114,15 @@ const Navbar = ({
         {/* Centre: public nav links */}
         {!isLoggedIn && (
           <div className="hidden md:flex items-center gap-8">
-            {/* Home */}
             <span
               onClick={() => onNavigate("home")}
-              className="text-sm font-medium text-zinc-500 hover:text-zinc-900 transition-colors cursor-pointer"
+              className="text-sm font-medium text-white/60 hover:text-white transition-colors cursor-pointer"
             >
               Home
             </span>
 
-            {/* About */}
             <div className="relative group">
-              <span className="text-sm font-medium text-zinc-500 hover:text-zinc-900 transition-colors cursor-pointer flex items-center gap-1">
+              <span className="text-sm font-medium text-white/60 hover:text-white transition-colors cursor-pointer flex items-center gap-1">
                 About <ChevronDown size={12} />
               </span>
               <div className="absolute top-full left-0 mt-2 bg-white border border-zinc-100 rounded-xl shadow-sm py-2 w-48 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150">
@@ -134,9 +132,8 @@ const Navbar = ({
               </div>
             </div>
 
-            {/* Programmes */}
             <div className="relative group">
-              <span className="text-sm font-medium text-zinc-500 hover:text-zinc-900 transition-colors cursor-pointer flex items-center gap-1">
+              <span className="text-sm font-medium text-white/60 hover:text-white transition-colors cursor-pointer flex items-center gap-1">
                 Programmes <ChevronDown size={12} />
               </span>
               <div className="absolute top-full left-0 mt-2 bg-white border border-zinc-100 rounded-xl shadow-sm py-2 w-48 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150">
@@ -152,9 +149,8 @@ const Navbar = ({
               </div>
             </div>
 
-            {/* Media & Resources */}
             <div className="relative group">
-              <span className="text-sm font-medium text-zinc-500 hover:text-zinc-900 transition-colors cursor-pointer flex items-center gap-1">
+              <span className="text-sm font-medium text-white/60 hover:text-white transition-colors cursor-pointer flex items-center gap-1">
                 Media & Resources <ChevronDown size={12} />
               </span>
               <div className="absolute top-full left-0 mt-2 bg-white border border-zinc-100 rounded-xl shadow-sm py-2 w-48 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150">
@@ -164,9 +160,8 @@ const Navbar = ({
               </div>
             </div>
 
-            {/* Partner With Us */}
             <div className="relative group">
-              <span className="text-sm font-medium text-zinc-500 hover:text-zinc-900 transition-colors cursor-pointer flex items-center gap-1">
+              <span className="text-sm font-medium text-white/60 hover:text-white transition-colors cursor-pointer flex items-center gap-1">
                 Partner With Us <ChevronDown size={12} />
               </span>
               <div className="absolute top-full left-0 mt-2 bg-white border border-zinc-100 rounded-xl shadow-sm py-2 w-48 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150">
@@ -181,8 +176,7 @@ const Navbar = ({
               </div>
             </div>
 
-            {/* Search icon */}
-            <Search size={18} className="text-zinc-400 hover:text-zinc-700 cursor-pointer transition-colors" />
+            <Search size={18} className="text-white/40 hover:text-white cursor-pointer transition-colors" />
           </div>
         )}
 
