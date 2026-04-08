@@ -193,7 +193,8 @@ const DashboardView = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           {/* Panel A — Your Activity */}
           <div className="bg-gradient-to-br from-tata-blue to-[#0057ff] rounded-3xl p-8 shadow-sm">
-            <h3 className="text-white font-bold text-lg mb-6">Your Activity</h3>
+            <p className="text-xs font-bold text-white/50 uppercase tracking-widest mb-1">Overview</p>
+            <h2 className="text-xl font-black text-white tracking-tight mb-6">Your Activity</h2>
 
             {IS_PE_SEASON ? (
               <div className="space-y-4">
