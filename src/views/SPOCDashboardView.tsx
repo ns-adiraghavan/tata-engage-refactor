@@ -1051,6 +1051,8 @@ const SPOCDashboardView = () => {
           <h2 className="text-xl font-black text-slate-900 tracking-tight">Verification</h2>
           <p className="text-slate-500 font-medium mt-1">Review and approve volunteers who registered via personal email.</p>
         </div>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-6">
+          <div>
             <div className="mt-3 px-4 py-2 bg-slate-50 rounded-xl border border-slate-100 inline-flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-tata-cyan" />
               <span className="text-xs font-bold text-slate-500 uppercase tracking-widest">
