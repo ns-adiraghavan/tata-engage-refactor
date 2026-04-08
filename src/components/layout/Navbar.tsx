@@ -116,7 +116,7 @@ const Navbar = ({
           <div className="hidden md:flex items-center gap-8">
             <span
               onClick={() => onNavigate("home")}
-              className="text-sm font-medium text-white/60 hover:text-white transition-colors cursor-pointer"
+              className="text-sm font-medium text-zinc-500 hover:text-zinc-900 transition-colors cursor-pointer"
             >
               Home
             </span>
