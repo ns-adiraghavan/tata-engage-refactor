@@ -913,15 +913,15 @@ const SPOCDashboardView = () => {
     return (
       <div className="space-y-12">
         <div className="bg-slate-50 border-b border-slate-100 rounded-t-xl px-6 pt-5 pb-4 -mx-6 -mt-6 mb-6 md:-mx-8 md:-mt-8">
-          <div>
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">People</p>
-            <h2 className="text-xl font-black text-slate-900 tracking-tight mb-6">SPOC Directory</h2>
-            <p className="text-slate-500 font-medium">
-              {spoc.tier === "Corporate SPOC" 
-                ? "View and manage SPOCs across all Tata Group companies." 
-                : "View SPOCs in your region and manage your regional team."}
-            </p>
-          </div>
+          <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">People</p>
+          <h2 className="text-xl font-black text-slate-900 tracking-tight">SPOC Directory</h2>
+          <p className="text-slate-500 font-medium mt-1">
+            {spoc.tier === "Corporate SPOC" 
+              ? "View and manage SPOCs across all Tata Group companies." 
+              : "View SPOCs in your region and manage your regional team."}
+          </p>
+        </div>
+        <div className="flex justify-end mb-6">
           <button onClick={() => setShowAddSpoc(true)} className="group px-8 py-4 bg-zinc-900 text-white rounded-2xl font-bold text-sm flex items-center gap-3 hover:bg-tata-blue transition-all shadow-xl shadow-zinc-900/10 cursor-pointer active:scale-95">
             <Plus size={18} className="group-hover:rotate-90 transition-transform" /> Add New SPOC
           </button>
