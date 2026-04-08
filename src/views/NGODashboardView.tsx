@@ -489,8 +489,9 @@ const NGODashboardView = () => {
 
 
             {/* Quick Actions */}
-            <div className="bg-gradient-to-br from-tata-blue to-blue-900 rounded-3xl p-8 text-white shadow-xl">
-              <h3 className="font-bold mb-6">Quick Actions</h3>
+            <div className="bg-gradient-to-br from-slate-900 to-zinc-800 rounded-2xl shadow-sm p-8 text-white">
+              <p className="text-xs font-bold text-white/50 uppercase tracking-widest mb-1">Actions</p>
+              <h3 className="text-xl font-black text-white tracking-tight mb-6">Quick Actions</h3>
               <div className="space-y-3">
                 <button className="w-full py-3 px-4 bg-white/10 hover:bg-white/20 rounded-lg text-sm font-bold flex items-center justify-between transition-all cursor-pointer">
                   Download All CVs <ArrowRight size={16} />
