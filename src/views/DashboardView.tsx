@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { CheckCircle2, Calendar, MapPin, Award, Sparkles, MessageSquare, ArrowRight, ShieldAlert, ClipboardList, Compass, Clock, Users } from "lucide-react";
+import { CheckCircle2, Calendar, MapPin, Award, Sparkles, MessageSquare, ArrowRight, ShieldAlert, ClipboardList, Compass, Clock, Users, LayoutDashboard, Search as SearchIcon, User } from "lucide-react";
 import { useAppContext } from "@/context/AppContext";
 import { useAuth } from "@/context/AuthContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
@@ -15,11 +15,64 @@ const DashboardView = () => {
   const navigate = useAppNavigate();
   const { projectStatus, setProjectStatus, isDRActive, setDrResponses, hasSubmittedAvailability, setHasSubmittedAvailability, drDeploymentLog, isDRClosed, triggerToast } = useAppContext();
   const [appTab, setAppTab] = useState<"current" | "past">("current");
+  const [activeSidebarItem, setActiveSidebarItem] = useState("Activity");
 
+  const sidebarItems = [
+    { label: "Activity", icon: LayoutDashboard, anchor: "#vol-section-activity" },
+    ...(IS_PE_SEASON ? [{ label: "Explore", icon: Compass, anchor: "#vol-section-explore" }] : []),
+    { label: "History", icon: Clock, anchor: "#vol-section-history" },
+    { label: "Profile", icon: User, anchor: null as string | null },
+  ];
+
+  const handleSidebarClick = (item: typeof sidebarItems[0]) => {
+    if (item.label === "Profile") {
+      navigate("profile");
+      return;
+    }
+    setActiveSidebarItem(item.label);
+    if (item.anchor) {
+      const el = document.querySelector(item.anchor);
+      el?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <div className="pt-20 pb-20 bg-gradient-to-br from-slate-50 via-white to-blue-50/30 min-h-screen">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+      {/* ═══ SIDEBAR ═══ */}
+      <aside className="hidden lg:flex flex-col fixed left-0 top-20 h-[calc(100vh-80px)] w-56 bg-white border-r border-slate-100 p-4 z-30">
+        {/* Identity card */}
+        <div className="flex items-center gap-3 mb-6 px-2">
+          <div className="w-10 h-10 rounded-full bg-tata-blue text-white flex items-center justify-center font-bold text-sm shrink-0">
+            {user?.firstName?.[0]}{user?.lastName?.[0]}
+          </div>
+          <div className="min-w-0">
+            <p className="text-sm font-semibold text-slate-900 truncate">{user?.firstName} {user?.lastName}</p>
+            <p className="text-xs text-slate-400">Tata Employee</p>
+          </div>
+        </div>
+
+        <nav className="flex flex-col gap-1">
+          {sidebarItems.map((item) => {
+            const isActive = activeSidebarItem === item.label && item.label !== "Profile";
+            return (
+              <button
+                key={item.label}
+                onClick={() => handleSidebarClick(item)}
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-all cursor-pointer ${
+                  isActive
+                    ? "border-l-2 border-tata-cyan text-tata-blue bg-cyan-50/50"
+                    : "text-slate-500 hover:bg-slate-50 border-l-2 border-transparent"
+                }`}
+              >
+                <item.icon className="w-4 h-4 shrink-0" />
+                <span className="text-sm font-medium">{item.label}</span>
+              </button>
+            );
+          })}
+        </nav>
+      </aside>
+
+      <div className="lg:ml-56 max-w-7xl mx-auto px-6 md:px-12">
         {/* Disaster Response Feedback Form */}
         {isDRClosed && hasSubmittedAvailability && drDeploymentLog.some(log => log.volunteers.some((v: any) => v.email === user.email)) && (
           <motion.div 
