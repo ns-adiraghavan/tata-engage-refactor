@@ -938,6 +938,7 @@ const NGODashboardView = () => {
                     </div>
                   ))}
                 </div>
+              ) : (
                 <div>
                   <button
                     onClick={() => { setSelectedPartnerNGO(null); setIsEditingPartner(false); }}
