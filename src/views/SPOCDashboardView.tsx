@@ -1570,7 +1570,7 @@ const SPOCDashboardView = () => {
       </aside>
 
       {/* Main Content — single scroll */}
-      <main id="spoc-main-content" className="flex-1 lg:ml-80 p-8 md:p-16">
+      <main id="spoc-main-content" className="flex-1 lg:ml-72 p-8 md:p-16">
         <div className="max-w-7xl mx-auto space-y-16">
 
           {/* ── Welcome / Header ────────────────────────────────────── */}

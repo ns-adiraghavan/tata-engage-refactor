@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer";
 import { UserPlus, Search, Award, ChevronRight, ChevronLeft } from "lucide-react";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
 import { useAppContext } from "@/context/AppContext";
+import tataEngageLogo from "@/assets/tata-engage-logo.png";
 
 const HERO_SLIDES = [
   {
