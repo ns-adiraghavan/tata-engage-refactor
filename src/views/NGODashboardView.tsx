@@ -780,8 +780,10 @@ const NGODashboardView = () => {
 
           {/* ═══ SECTION: Grievance Redressal ═══ */}
           <section id="ngo-section-grievance">
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Support</p>
-            <h2 className="text-xl font-black text-slate-900 tracking-tight mb-8">Grievance Redressal</h2>
+            <div className="bg-red-50 border-b border-red-100 rounded-t-xl px-6 pt-5 pb-4 -mx-6 -mt-6 mb-6">
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Support</p>
+              <h2 className="text-xl font-black text-slate-900 tracking-tight">Grievance Redressal</h2>
+            </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Submit form */}
               <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6">
