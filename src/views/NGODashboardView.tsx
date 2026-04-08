@@ -213,20 +213,20 @@ const NGODashboardView = () => {
         </AnimatePresence>
 
         {/* Stat Tiles */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 relative z-10">
           {[
-            { label: "Active Projects", value: ANJALI_MEHTA.projects.filter(p => p.status === "Active").length, icon: Sparkles, color: "text-green-600", bg: "bg-green-50" },
-            { label: "Volunteers matched this edition", value: ANJALI_MEHTA.projects.filter(p => p.status === "Active" || p.status === "Closed").reduce((sum, p) => sum + p.volunteers, 0), icon: Users, color: "text-tata-blue", bg: "bg-blue-50" },
-            { label: "Pending Applications", value: ANJALI_MEHTA.pendingApplications, icon: Clock, color: "text-amber-600", bg: "bg-amber-50" },
+            { label: "Active Projects", value: ANJALI_MEHTA.projects.filter(p => p.status === "Active").length, sub: "This edition", icon: Sparkles, color: "text-emerald-600", bg: "bg-emerald-50", border: "border-emerald-100" },
+            { label: "Volunteers Matched", value: ANJALI_MEHTA.projects.filter(p => p.status === "Active" || p.status === "Closed").reduce((sum, p) => sum + p.volunteers, 0), sub: "All active projects", icon: Users, color: "text-tata-blue", bg: "bg-blue-50", border: "border-blue-100" },
+            { label: "Pending Applications", value: ANJALI_MEHTA.pendingApplications, sub: "Awaiting review", icon: Clock, color: "text-amber-600", bg: "bg-amber-50", border: "border-amber-100" },
           ].map((stat, i) => (
-            <div key={i} className="p-6 rounded-2xl bg-white border border-slate-100 shadow-sm flex items-center gap-4">
-              <div className={`w-12 h-12 rounded-2xl ${stat.bg} ${stat.color} flex items-center justify-center shrink-0`}>
-                <stat.icon size={22} />
+            <div key={i} className={`p-8 rounded-3xl bg-white border ${stat.border} shadow-sm hover:shadow-xl transition-all group relative overflow-hidden`}>
+              <div className="absolute top-6 right-6 text-slate-200"><stat.icon size={24} /></div>
+              <div className={`w-14 h-14 rounded-2xl ${stat.bg} ${stat.color} flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500`}>
+                <stat.icon size={28} />
               </div>
-              <div>
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.15em]">{stat.label}</p>
-                <h4 className="text-2xl font-black text-slate-900 tracking-tight">{stat.value}</h4>
-              </div>
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em] mb-1">{stat.label}</p>
+              <h4 className="text-4xl font-black text-slate-900 tracking-tighter">{stat.value}</h4>
+              <p className="text-xs text-slate-400 mt-1 uppercase font-bold tracking-widest">{stat.sub}</p>
             </div>
           ))}
         </div>
