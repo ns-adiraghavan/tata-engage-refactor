@@ -800,7 +800,7 @@ const SPOCDashboardView = () => {
           </div>
           <button
             onClick={() => {
-              setToastMessage("Preparing bulk download...");
+              setToastMessage("Preparing ZIP download...");
               setShowToast(true);
               setTimeout(() => setShowToast(false), 3000);
             }}
