@@ -1,8 +1,9 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Building2, ShieldCheck, Landmark, Mail, Lock, Eye, MapPin } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import tataEngageLogoNoBg from "@/assets/tata-engage-logo-nobg.png";
-import { VIKRAM_NAIR, ROHAN_DESAI, PRIYA_SHARMA, ANJALI_MEHTA, ANJALI_GUPTA_REGIONAL } from "@/data/mockData";
+import { VIKRAM_NAIR, ROHAN_DESAI, PRIYA_SHARMA, ANJALI_MEHTA, ANJALI_GUPTA_REGIONAL, IS_PE_SEASON, togglePESeason } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
 import { useAuth } from "@/context/AuthContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
@@ -13,6 +14,13 @@ const LoginView = () => {
   const { triggerToast } = useAppContext();
   const location = useLocation();
   const isAdminLogin = location.pathname === "/admin-login";
+  const [isPESeason, setIsPESeason] = useState(IS_PE_SEASON);
+
+  const togglePE = () => {
+    const newVal = togglePESeason();
+    setIsPESeason(newVal);
+    triggerToast(newVal ? "PE Season ON — dashboard shows ProEngage mode" : "PE Season OFF — dashboard shows non-PE mode");
+  };
 
   return (
   <div className="min-h-screen pt-20 flex items-center justify-center p-6 bg-slate-100 relative overflow-hidden">
@@ -93,6 +101,12 @@ const LoginView = () => {
             <MapPin size={20} />
             Anjali (Regional SPOC)
           </button>
+          <div className="flex items-center justify-center gap-3 mt-4 pt-4 border-t border-slate-100">
+            <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Demo mode</span>
+            <button onClick={togglePE} className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold border transition-all cursor-pointer ${isPESeason ? "bg-violet-50 border-violet-200 text-violet-700" : "bg-slate-50 border-slate-200 text-slate-500"}`}>
+              {isPESeason ? "🟢 PE Season active" : "⚪ Outside PE Season"}
+            </button>
+          </div>
         </>
       )}
 
