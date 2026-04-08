@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Building2, Heart, Search, Clock, Info, Check, Sparkles, Laptop, TrendingUp, GraduationCap, Megaphone, Scale, Leaf, Users, Package, Plus, ArrowLeft } from "lucide-react";
 import { PROENGAGE_PROJECTS } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
-import { useAppNavigate } from "@/hooks/useAppNavigate";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
 
 const SKILL_AREA_TO_CATEGORY: Record<string, string> = {
@@ -52,7 +52,7 @@ const DEFAULT_IMAGE = "https://images.unsplash.com/photo-1559136555-9303baea8ebd
 const ProEngageView = () => {
   const { appliedProjects, setAppliedProjects, likedProjects, setLikedProjects, triggerToast } = useAppContext();
   const { user } = useAuth();
-  const navigate = useAppNavigate();
+  const rawNavigate = useNavigate();
   const [activeTab, setActiveTab] = useState("All Projects");
   const [isApplying, setIsApplying] = useState(false);
   const [selectedProject, setSelectedProject] = useState<any>(null);
@@ -212,8 +212,8 @@ const ProEngageView = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-12">
-          <button onClick={() => navigate("volunteer-hub")} className="flex items-center gap-1 text-sm font-bold text-tata-blue hover:underline cursor-pointer mb-4">
-            <ArrowLeft size={15} /> Back to Hub
+          <button onClick={() => rawNavigate(-1)} className="flex items-center gap-1 text-sm font-bold text-tata-blue hover:underline cursor-pointer mb-4">
+            <ArrowLeft size={15} /> ← Back
           </button>
           <h1 className="text-4xl font-bold text-tata-blue mb-4 tracking-tight">ProEngage Projects</h1>
           <p className="text-slate-500 max-w-2xl text-lg">Skill-based volunteering opportunities for Tata employees to contribute their professional expertise to social causes.</p>

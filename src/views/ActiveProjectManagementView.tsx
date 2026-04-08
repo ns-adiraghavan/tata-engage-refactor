@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { User, Mail, CheckCircle2, Sparkles, Edit2, Pause, StopCircle, History, AlertTriangle, Activity, ChevronLeft } from "lucide-react";
+import { User, Mail, CheckCircle2, Sparkles, Edit2, StopCircle, AlertTriangle, Activity, ChevronLeft, Clock } from "lucide-react";
 import type { View } from "@/types";
 import { useAppContext } from "@/context/AppContext";
 import { useAuth } from "@/context/AuthContext";
@@ -18,7 +18,7 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
   ];
   const [healthUpdates, setHealthUpdates] = useState(MOCK_HEALTH_UPDATES);
   const [projectStatus, setProjectStatus] = useState(project?.status || "Active");
-  const [showConfirmModal, setShowConfirmModal] = useState<"pause" | "close" | "extend" | null>(null);
+  const [showConfirmModal, setShowConfirmModal] = useState<"close" | null>(null);
   const [auditTrail, setAuditTrail] = useState<any[]>([]);
   const [isSubAdminMode, setIsSubAdminMode] = useState(false);
 
@@ -47,7 +47,7 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
   const hasRisk = healthUpdates.some(h => h.status === "At Risk" || (h.month === "April" && h.status === "Pending"));
 
   return (
-    <div className="min-h-screen pt-28 pb-20 bg-slate-50 px-6 md:px-12">
+    <div className="min-h-screen pt-20 pb-20 bg-slate-50 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
@@ -69,12 +69,6 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
           </div>
           
           <div className="flex gap-3">
-            <button onClick={() => setShowConfirmModal("pause")} className="btn-outline py-3 px-6 flex items-center gap-2 cursor-pointer">
-              <Pause size={18} /> Pause
-            </button>
-            <button onClick={() => setShowConfirmModal("extend")} className="btn-outline py-3 px-6 flex items-center gap-2 cursor-pointer">
-              <History size={18} /> Request Extension
-            </button>
             <button onClick={() => setShowConfirmModal("close")} className="bg-red-500 text-white py-3 px-6 rounded-lg font-bold hover:bg-red-600 transition-all flex items-center gap-2 cursor-pointer">
               <StopCircle size={18} /> Close Project
             </button>
@@ -169,7 +163,7 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
             {/* Audit Trail */}
             <div className="bg-white rounded-3xl p-8 shadow-xl border border-slate-100">
               <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
-                <History size={20} className="text-tata-blue" /> Project Audit Trail
+                <Clock size={20} className="text-tata-blue" /> Project Audit Trail
               </h3>
               <div className="space-y-4">
                 {auditTrail.length === 0 ? (
@@ -301,32 +295,16 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               className="relative w-full max-w-md bg-white rounded-3xl shadow-2xl p-10 text-center"
             >
-              <div className={`w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-8 ${
-                showConfirmModal === 'close' ? 'bg-red-100 text-red-500' : 'bg-amber-100 text-amber-500'
-              }`}>
-                {showConfirmModal === 'pause' ? <Pause size={40} /> : 
-                 showConfirmModal === 'close' ? <StopCircle size={40} /> : <History size={40} />}
+              <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-8 bg-red-100 text-red-500">
+                <StopCircle size={40} />
               </div>
-              <h2 className="text-2xl font-bold text-tata-blue mb-4">
-                {showConfirmModal === 'pause' ? "Pause Project?" : 
-                 showConfirmModal === 'close' ? "Close Project?" : "Request Extension?"}
-              </h2>
-              <p className="text-slate-500 mb-10">
-                {showConfirmModal === 'pause' ? "This will temporarily halt all volunteer activities. TSG Admin will be notified." : 
-                 showConfirmModal === 'close' ? "Are you sure you want to close this project? This action cannot be undone." : 
-                 "This will send a request to TSG Admin to extend the project duration."}
-              </p>
+              <h2 className="text-2xl font-bold text-tata-blue mb-4">Close Project?</h2>
+              <p className="text-slate-500 mb-10">Are you sure you want to close this project? This action cannot be undone.</p>
               <div className="flex gap-4">
                 <button onClick={() => setShowConfirmModal(null)} className="flex-1 btn-outline py-4 cursor-pointer">Cancel</button>
                 <button 
-                  onClick={() => {
-                    const status = showConfirmModal === 'pause' ? 'Paused' : showConfirmModal === 'close' ? 'Closed' : 'Active';
-                    const action = showConfirmModal === 'pause' ? 'Paused' : showConfirmModal === 'close' ? 'Closed' : 'Extension Requested';
-                    handleStatusChange(status, action);
-                  }}
-                  className={`flex-1 py-4 rounded-lg font-bold text-white transition-all cursor-pointer ${
-                    showConfirmModal === 'close' ? 'bg-red-500 hover:bg-red-600' : 'bg-zinc-900 hover:bg-tata-blue'
-                  }`}
+                  onClick={() => handleStatusChange('Closed', 'Closed')}
+                  className="flex-1 py-4 rounded-lg font-bold text-white transition-all cursor-pointer bg-red-500 hover:bg-red-600"
                 >
                   Confirm
                 </button>

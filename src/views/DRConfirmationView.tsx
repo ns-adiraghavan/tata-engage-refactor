@@ -9,11 +9,11 @@ const DRConfirmationView = () => {
   const refId = `DR-2026-AF-${Math.floor(1000 + Math.random() * 9000)}`;
   
   return (
-    <div className="pt-28 pb-20 px-6 md:px-12 bg-slate-50 min-h-screen flex items-center justify-center">
+    <div className="pt-20 pb-20 px-6 md:px-12 bg-slate-50 min-h-screen flex items-center justify-center">
       <motion.div 
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="max-w-2xl w-full glass rounded-3xl p-12 md:p-16 shadow-2xl border border-white/20 text-center"
+        className="max-w-2xl w-full bg-white border border-slate-100 rounded-2xl shadow-sm p-12 md:p-16 text-center"
       >
         <div className="w-24 h-24 bg-green-50 text-green-600 rounded-full flex items-center justify-center mx-auto mb-10 shadow-xl shadow-green-600/10">
           <Check size={48} />
