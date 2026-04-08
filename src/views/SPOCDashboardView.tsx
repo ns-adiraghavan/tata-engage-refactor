@@ -281,51 +281,61 @@ const SPOCDashboardView = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {PROENGAGE_PIPELINE.map((v: any) => (
-                    <tr key={v.id} className="border-b border-zinc-50 hover:bg-slate-50 transition-colors">
-                      <td className="px-4 py-4 font-medium text-zinc-900 whitespace-nowrap">{v.name}</td>
-                      <td className="px-4 py-4 text-xs text-zinc-500">{v.email}</td>
-                      <td className="px-4 py-4 text-xs text-zinc-500">{v.company}</td>
-                      <td className="px-4 py-4 text-xs text-zinc-700 font-medium">{v.project}</td>
-                      <td className="px-4 py-4 text-xs text-zinc-500">{v.contact ?? "—"}</td>
-                      <td className="px-4 py-4">
-                        <span className={`px-2.5 py-1 rounded-full text-xs font-bold ${
-                          v.status === "Active" ? "bg-green-50 text-green-700" :
-                          v.status === "Matched" ? "bg-blue-50 text-blue-700" :
-                          v.status === "Dropped" ? "bg-red-50 text-red-600" :
-                          v.status === "Completed" ? "bg-purple-50 text-purple-700" :
-                          "bg-zinc-100 text-zinc-500"
-                        }`}>{v.status}</span>
-                      </td>
-                      <td className="px-4 py-4 text-xs text-zinc-500">
-                        {v.isCurrentEdition
-                          ? <span className="text-zinc-400 italic">~{v.estimatedHours ?? 40}h est.</span>
-                          : <span className="font-semibold text-zinc-700">{v.hours ?? 120}h</span>
-                        }
-                      </td>
-                      <td className="px-4 py-4 text-xs text-zinc-500">
-                        {v.status === "Active" ? `${v.match ?? 0}%` : "—"}
-                      </td>
-                      <td className="px-4 py-4">
-                        {v.status === "Active" && (
-                          <button
-                            onClick={() => {
-                              setAtRiskList(prev => prev.map(r => r.id === v.id ? { ...r, nudged: true } : r));
-                              setToastMessage(`Nudge sent to ${v.name}`);
-                              setShowToast(true);
-                              setTimeout(() => setShowToast(false), 3000);
-                            }}
-                            className={`text-xs font-semibold px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
-                              atRiskList.find(r => r.id === v.id)?.nudged
-                                ? "bg-zinc-100 text-zinc-400 cursor-not-allowed"
-                                : "bg-amber-50 text-amber-700 hover:bg-amber-100"
-                            }`}
-                            disabled={atRiskList.find(r => r.id === v.id)?.nudged}
-                          >
-                            {atRiskList.find(r => r.id === v.id)?.nudged ? "Nudged ✓" : "Nudge"}
-                          </button>
-                        )}
-                      </td>
+                  {PROENGAGE_PIPELINE.map((v: any) => {
+                    const isAtRisk = AT_RISK_VOLUNTEERS.some((r: any) => r.id === v.id);
+                    const nudgedState = atRiskList.find((r: any) => r.id === v.id);
+                    return (
+                     <tr key={v.id} className="border-b border-zinc-50 hover:bg-slate-50 transition-colors">
+                       <td className="px-4 py-4 font-medium text-zinc-900 whitespace-nowrap">
+                         <div className="flex items-center gap-2">
+                           {v.name}
+                           {isAtRisk && (
+                             <span className="inline-flex items-center gap-1 bg-amber-50 text-amber-700 rounded-full text-xs px-2 py-0.5 font-semibold">🚩 At Risk</span>
+                           )}
+                         </div>
+                       </td>
+                       <td className="px-4 py-4 text-xs text-zinc-500">{v.email}</td>
+                       <td className="px-4 py-4 text-xs text-zinc-500">{v.company}</td>
+                       <td className="px-4 py-4 text-xs text-zinc-700 font-medium">{v.project}</td>
+                       <td className="px-4 py-4 text-xs text-zinc-500">{v.contact ?? "—"}</td>
+                       <td className="px-4 py-4">
+                         <span className={`px-2.5 py-1 rounded-full text-xs font-bold ${
+                           v.status === "Active" ? "bg-green-50 text-green-700" :
+                           v.status === "Matched" ? "bg-blue-50 text-blue-700" :
+                           v.status === "Dropped" ? "bg-red-50 text-red-600" :
+                           v.status === "Completed" ? "bg-purple-50 text-purple-700" :
+                           "bg-zinc-100 text-zinc-500"
+                         }`}>{v.status}</span>
+                       </td>
+                       <td className="px-4 py-4 text-xs text-zinc-500">
+                         {v.isCurrentEdition
+                           ? <span className="text-zinc-400 italic">~{v.estimatedHours ?? 40}h est.</span>
+                           : <span className="font-semibold text-zinc-700">{v.hours ?? 120}h</span>
+                         }
+                       </td>
+                       <td className="px-4 py-4 text-xs text-zinc-500">
+                         {(v.status === "Active" || v.status === "Matched") ? `${v.match ?? 0}%` : "—"}
+                       </td>
+                       <td className="px-4 py-4">
+                         {isAtRisk && (
+                           <button
+                             onClick={() => {
+                               setAtRiskList(prev => prev.map(r => r.id === v.id ? { ...r, nudged: true } : r));
+                               setToastMessage(`Nudge sent to ${v.name}`);
+                               setShowToast(true);
+                               setTimeout(() => setShowToast(false), 3000);
+                             }}
+                             className={`text-xs font-semibold px-3 py-1 rounded-lg transition-all cursor-pointer border ${
+                               nudgedState?.nudged
+                                 ? "bg-green-50 text-green-600 border-green-200 cursor-not-allowed"
+                                 : "bg-white text-amber-700 border-amber-300 hover:bg-amber-50"
+                             }`}
+                             disabled={nudgedState?.nudged}
+                           >
+                             {nudgedState?.nudged ? "Nudged ✓" : "Nudge"}
+                           </button>
+                         )}
+                       </td>
                       <td className="px-4 py-4">
                         {!v.isCurrentEdition && (
                           <button
@@ -351,7 +361,8 @@ const SPOCDashboardView = () => {
                         )}
                       </td>
                     </tr>
-                  ))}
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
