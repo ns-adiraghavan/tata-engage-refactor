@@ -1507,7 +1507,7 @@ const SPOCDashboardView = () => {
   return (
     <div className="min-h-screen pt-20 bg-[#F8FAFC] flex">
       {/* Sidebar */}
-      <aside className="w-80 bg-white border-r border-slate-100 hidden lg:flex flex-col p-8 fixed h-[calc(100vh-96px)] z-20">
+      <aside className="w-72 bg-white border-r border-slate-100 hidden lg:flex flex-col p-6 fixed h-[calc(100vh-80px)] top-20 z-20">
         <div className="mb-6 px-2">
           <div className="flex items-center gap-4 p-4 bg-slate-50 rounded-[1.5rem] border border-slate-100">
             <div className="w-12 h-12 rounded-2xl bg-tata-blue flex items-center justify-center text-white font-semibold text-lg shadow-lg shadow-blue-900/20">
@@ -1570,7 +1570,7 @@ const SPOCDashboardView = () => {
       </aside>
 
       {/* Main Content — single scroll */}
-      <main id="spoc-main-content" className="flex-1 lg:ml-80 p-8 md:p-16">
+      <main id="spoc-main-content" className="flex-1 lg:ml-72 p-8 md:p-16">
         <div className="max-w-7xl mx-auto space-y-16">
 
           {/* ── Welcome / Header ────────────────────────────────────── */}
