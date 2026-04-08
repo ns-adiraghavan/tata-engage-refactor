@@ -150,7 +150,7 @@ const Navbar = ({
             </div>
 
             <div className="relative group">
-              <span className="text-sm font-medium text-white/60 hover:text-white transition-colors cursor-pointer flex items-center gap-1">
+              <span className="text-sm font-medium text-zinc-500 hover:text-zinc-900 transition-colors cursor-pointer flex items-center gap-1">
                 Media & Resources <ChevronDown size={12} />
               </span>
               <div className="absolute top-full left-0 mt-2 bg-white border border-zinc-100 rounded-xl shadow-sm py-2 w-48 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150">
