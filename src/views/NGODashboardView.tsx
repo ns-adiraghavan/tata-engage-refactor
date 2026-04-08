@@ -465,9 +465,10 @@ const NGODashboardView = () => {
           {/* Sidebar Stats & Shortlists */}
           <div className="space-y-8">
             {/* Application Queue Summary */}
-            <div className="bg-white rounded-3xl p-8 shadow-xl border border-slate-100">
+            <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-8">
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Queue</p>
               <div className="flex items-center justify-between mb-6">
-                <h3 className="font-bold text-slate-800">Application Queue</h3>
+                <h3 className="text-xl font-black text-slate-900 tracking-tight">Applications</h3>
                 <span className="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full">8 Pending</span>
               </div>
               <div className="space-y-4">
