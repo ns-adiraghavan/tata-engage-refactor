@@ -150,17 +150,16 @@ export const AdminCommandCentre = () => {
             </div>
           </div>
 
-          <div className="bg-slate-900 rounded-2xl text-white p-6 shadow-xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-tata-blue/20 rounded-full -mr-16 -mt-16 blur-3xl" />
-            <h4 className="text-xs font-semibold text-tata-cyan uppercase tracking-widest mb-4 relative z-10">Admin Quick Links</h4>
-            <div className="space-y-3 relative z-10">
-              <button className="w-full flex items-center justify-between text-xs font-bold text-slate-300 hover:text-white transition-colors group">
+          <div className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
+            <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Admin Quick Links</h4>
+            <div className="space-y-3">
+              <button className="w-full flex items-center justify-between text-xs font-bold text-slate-600 hover:text-tata-blue transition-colors group">
                 Generate Edition Report <ExternalLink size={12} className="group-hover:translate-x-1 transition-transform" />
               </button>
-              <button className="w-full flex items-center justify-between text-xs font-bold text-slate-300 hover:text-white transition-colors group">
+              <button className="w-full flex items-center justify-between text-xs font-bold text-slate-600 hover:text-tata-blue transition-colors group">
                 Bulk NGO Export <ExternalLink size={12} className="group-hover:translate-x-1 transition-transform" />
               </button>
-              <button className="w-full flex items-center justify-between text-xs font-bold text-slate-300 hover:text-white transition-colors group">
+              <button className="w-full flex items-center justify-between text-xs font-bold text-slate-600 hover:text-tata-blue transition-colors group">
                 Platform Settings <ShieldCheck size={12} className="group-hover:rotate-12 transition-transform" />
               </button>
             </div>
