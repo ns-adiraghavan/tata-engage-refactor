@@ -373,6 +373,16 @@ const NGODashboardView = () => {
                         </tbody>
                       </table>
                     </div>
+                    {(drillProject.status === "Closed" || drillProject.status === "Closed – Certified") && (
+                      <div className="mt-6 flex items-center gap-4 p-5 bg-amber-50 border border-amber-100 rounded-2xl">
+                        <div className="text-3xl">🏅</div>
+                        <div>
+                          <p className="text-xs font-bold text-amber-700 uppercase tracking-widest mb-0.5">Project Completed</p>
+                          <p className="text-sm font-bold text-amber-900">Badge awarded to Pratham Foundation</p>
+                          <p className="text-xs text-amber-700 mt-0.5">Certificate generation triggered — pending TSG Admin approval.</p>
+                        </div>
+                      </div>
+                    )}
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -417,6 +427,10 @@ const NGODashboardView = () => {
                   </div>
                 ))}
               </div>
+
+              <p className="text-xs text-slate-400 mt-4 italic">
+                Coordinators can only edit projects assigned to them before Admin approval. For access changes, contact TSG Admin.
+              </p>
 
               {showAddCoordinator && (
                 <motion.div 
@@ -485,8 +499,7 @@ const NGODashboardView = () => {
                 </div>
                 <p className="text-xs text-slate-400 text-center">65% of applications reviewed this week</p>
               </div>
-            </div>
-
+              </div>
 
             {/* Quick Actions */}
             <div className="bg-gradient-to-br from-slate-900 to-zinc-800 rounded-2xl shadow-sm p-8 text-white">

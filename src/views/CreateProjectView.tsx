@@ -16,7 +16,8 @@ const CreateProjectView = () => {
     volunteers: 1,
     location: "",
     brief: "",
-    outcomes: ""
+    outcomes: "",
+    isSkillBased: true
   });
   const [isGenerating, setIsGenerating] = useState(false);
   const [qualityScore, setQualityScore] = useState(0);
@@ -87,7 +88,7 @@ const CreateProjectView = () => {
   const handleSkillAreaChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const area = e.target.value;
     setProjectData(prev => ({ ...prev, skillArea: area }));
-    if (area) generateTemplate(area);
+    if (area && projectData.isSkillBased) generateTemplate(area);
   };
 
   const handleSaveDraft = () => {
@@ -110,7 +111,7 @@ const CreateProjectView = () => {
 
   return (
     <div className="min-h-screen pt-20 pb-20 bg-slate-50 px-6 md:px-12">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <button 
@@ -141,7 +142,8 @@ const CreateProjectView = () => {
           </div>
         )}
 
-        <div className="bg-white border border-slate-100 rounded-2xl shadow-sm overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="lg:col-span-2 bg-white border border-slate-100 rounded-2xl shadow-sm overflow-hidden">
           {/* Stepper */}
           <div className="bg-tata-blue p-8 text-white">
             <div className="flex justify-between items-center relative">
@@ -189,6 +191,7 @@ const CreateProjectView = () => {
                         />
                       </div>
                       
+                      {projectData.isSkillBased && (
                       <div>
                         <label className="form-label">Skill Area*</label>
                         <select 
@@ -205,6 +208,7 @@ const CreateProjectView = () => {
                           <option value="Marketing">Marketing</option>
                         </select>
                       </div>
+                      )}
 
                       <div>
                         <label className="form-label">Mode*</label>
@@ -221,6 +225,20 @@ const CreateProjectView = () => {
                             </button>
                           ))}
                         </div>
+                      </div>
+
+                      <div className="md:col-span-2 flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                        <div>
+                          <p className="text-sm font-bold text-slate-800">Skill-based project</p>
+                          <p className="text-xs text-slate-500 mt-0.5">Requires a specific skill area match. Disable for general volunteering tasks.</p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => setProjectData({...projectData, isSkillBased: !projectData.isSkillBased})}
+                          className={`w-12 h-6 rounded-full transition-all relative ${projectData.isSkillBased ? "bg-tata-blue" : "bg-slate-200"}`}
+                        >
+                          <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${projectData.isSkillBased ? "left-7" : "left-1"}`} />
+                        </button>
                       </div>
 
                       <div>
@@ -266,29 +284,9 @@ const CreateProjectView = () => {
 
                 {step === 2 && (
                   <div className="space-y-8">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <h2 className="text-3xl font-bold text-tata-blue mb-2">Project Brief</h2>
-                        <p className="text-slate-500">Describe the project goals and volunteer responsibilities.</p>
-                      </div>
-                      <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-center min-w-[140px]">
-                        <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">AI Quality Score</div>
-                        <div
-                          className={`text-2xl font-bold ${qualityScore > 7 ? 'text-green-500' : qualityScore > 4 ? 'text-amber-500' : 'text-red-500'}`}
-                          style={{ transition: 'all 0.4s ease' }}
-                        >
-                          {qualityScore}/10
-                        </div>
-                        <div className="w-full h-1.5 bg-slate-200 rounded-full mt-2 overflow-hidden">
-                          <div
-                            className={`h-full rounded-full ${qualityScore > 7 ? 'bg-green-500' : qualityScore > 4 ? 'bg-amber-500' : 'bg-red-500'}`}
-                            style={{ width: `${qualityScore * 10}%`, transition: 'all 0.4s ease' }}
-                          />
-                        </div>
-                        {scoreHint && (
-                          <p className="text-[11px] text-muted-foreground mt-2 text-left leading-snug">{scoreHint}</p>
-                        )}
-                      </div>
+                    <div>
+                      <h2 className="text-3xl font-bold text-tata-blue mb-2">Project Brief</h2>
+                      <p className="text-slate-500">Describe the project goals and volunteer responsibilities.</p>
                     </div>
 
                     <div className="relative">
@@ -403,6 +401,63 @@ const CreateProjectView = () => {
                   </button>
                 )}
               </div>
+            </div>
+          </div>
+        </div>
+
+          {/* Sticky Sidebar */}
+          <div className="hidden lg:block">
+            <div className="sticky top-24 space-y-6">
+              {/* AI Quality Score */}
+              <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">AI Quality Score</p>
+                <div
+                  className={`text-4xl font-black ${qualityScore > 7 ? 'text-green-500' : qualityScore > 4 ? 'text-amber-500' : 'text-red-500'}`}
+                  style={{ transition: 'all 0.4s ease' }}
+                >
+                  {qualityScore}/10
+                </div>
+                <div className="w-full h-2 bg-slate-100 rounded-full mt-3 overflow-hidden">
+                  <div
+                    className={`h-full rounded-full ${qualityScore > 7 ? 'bg-green-500' : qualityScore > 4 ? 'bg-amber-500' : 'bg-red-500'}`}
+                    style={{ width: `${qualityScore * 10}%`, transition: 'all 0.4s ease' }}
+                  />
+                </div>
+                {scoreHint && (
+                  <p className="text-xs text-slate-500 mt-3 leading-snug">{scoreHint}</p>
+                )}
+                <p className="text-xs text-slate-400 italic mt-3">Score visible to NGO only — not shown to Admin</p>
+              </div>
+
+              {/* Project Checklist */}
+              <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Project Checklist</p>
+                <div className="space-y-2">
+                  {[
+                    { label: "Title", done: (projectData.title || "").trim().length > 0 },
+                    { label: "Skill Area", done: !projectData.isSkillBased || !!(projectData.skillArea || "").trim() },
+                    { label: "Mode", done: !!(projectData.mode || "").trim() },
+                    { label: "Duration", done: !!(projectData.duration || "").trim() },
+                    { label: "Brief (50+ words)", done: (projectData.brief || "").trim().split(/\s+/).filter(Boolean).length >= 50 },
+                    { label: "Outcomes (30+ words)", done: (projectData.outcomes || "").trim().split(/\s+/).filter(Boolean).length >= 30 },
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-2">
+                      <div className={`w-5 h-5 rounded-full flex items-center justify-center text-xs ${item.done ? "bg-green-50 text-green-600" : "bg-slate-100 text-slate-400"}`}>
+                        {item.done ? <Check size={12} /> : "–"}
+                      </div>
+                      <span className={`text-sm ${item.done ? "text-slate-700 font-medium" : "text-slate-400"}`}>{item.label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Refer an NGO */}
+              <button
+                onClick={() => triggerToast("Referral link copied!")}
+                className="w-full py-3 px-4 bg-white border border-slate-100 rounded-2xl shadow-sm text-sm font-bold text-slate-600 hover:border-slate-200 hover:text-slate-800 transition-all cursor-pointer"
+              >
+                Refer another NGO
+              </button>
             </div>
           </div>
         </div>
