@@ -1,12 +1,11 @@
 import { useAuth } from "@/context/AuthContext";
 import { useAppContext } from "@/context/AppContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
-import { COMMUNITY_TESTIMONIALS, IS_PE_SEASON } from "@/data/mockData";
+import { COMMUNITY_TESTIMONIALS, IS_PE_SEASON, ROHAN_DESAI_VOLUNTEER } from "@/data/mockData";
 import { FileText, Mail, MessageSquare, Users, HeartHandshake, AlertTriangle } from "lucide-react";
 import RoleToggle from "@/components/shared/RoleToggle";
 
 const TESTIMONIAL_BG = ['bg-tata-blue', 'bg-violet-700', 'bg-emerald-800', 'bg-amber-700'];
-
 const VIBE_STORIES = [
   { title: "Mumbai Coastal Cleanup", img: "https://images.unsplash.com/photo-1618477461853-cf6ed80faba5?auto=format&fit=crop&q=80&w=800", date: "2 days ago" },
   { title: "Teaching Coding in Rural Schools", img: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=800", date: "4 days ago" },
@@ -23,9 +22,12 @@ const PROGRAMME_DESCRIPTIONS: Record<string, string> = {
 };
 
 const VolunteerHubView = () => {
-  const { user } = useAuth();
+  const { user: authUser } = useAuth();
   const navigate = useAppNavigate();
   const { referralCount, triggerToast } = useAppContext();
+
+  // When a corporate SPOC toggles to volunteer view, use their volunteer persona
+  const user = authUser?.role === "corporate_spoc" ? ROHAN_DESAI_VOLUNTEER : authUser;
   const isProEngageActive = true;
 
   const copyReferralLink = () => {

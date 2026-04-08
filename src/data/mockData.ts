@@ -69,6 +69,45 @@ export const ROHAN_DESAI = {
   totalOrientationModules: 5
 };
 
+export const ROHAN_DESAI_VOLUNTEER = {
+  firstName: "Rohan",
+  lastName: "Desai",
+  company: "Tata Consultancy Services",
+  designation: "Program Manager",
+  city: "Mumbai",
+  role: "corporate_spoc",
+  email: "rohan.desai@tcs.com",
+  skills: ["Project Management", "Stakeholder Coordination", "Strategy", "Operations"],
+  interests: ["Education", "Digital Literacy", "Mentorship"],
+  badges: [
+    { id: 1, name: "Top Contributor", icon: "🏆", date: "Jan 2026" },
+    { id: 2, name: "2x ProEngager", icon: "⚡", date: "Mar 2026" },
+  ],
+  history: [
+    {
+      project: "NGO Digitisation Support",
+      ngo: "Saksham Foundation",
+      hours: 42,
+      year: "2025"
+    },
+    {
+      project: "Volunteer Coordination System",
+      ngo: "Teach For India",
+      hours: 28,
+      year: "2024"
+    }
+  ],
+  hoursVolunteered: 70,
+  activeApplication: {
+    title: "Financial Literacy Programme",
+    ngo: "Udayan Care",
+    status: "Applied",
+    date: "2 days ago"
+  },
+  preferredMode: "Either",
+  disasterResponseInterest: true,
+};
+
 export const ANJALI_GUPTA_REGIONAL = {
   firstName: "Anjali",
   lastName: "Gupta",

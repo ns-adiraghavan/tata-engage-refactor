@@ -4,12 +4,14 @@ import { CheckCircle2, Search, Calendar, MapPin, Award, Sparkles, MessageSquare,
 import { useAppContext } from "@/context/AppContext";
 import { useAuth } from "@/context/AuthContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
-import { IS_PE_SEASON } from "@/data/mockData";
+import { IS_PE_SEASON, ROHAN_DESAI_VOLUNTEER } from "@/data/mockData";
 import { toast } from "@/hooks/use-toast";
 
 
 const DashboardView = () => {
-  const { user } = useAuth();
+  const { user: authUser } = useAuth();
+  // When a corporate SPOC views the volunteer dashboard, use their volunteer persona
+  const user = authUser?.role === "corporate_spoc" ? ROHAN_DESAI_VOLUNTEER : authUser;
   const navigate = useAppNavigate();
   const { projectStatus, setProjectStatus, isDRActive, setDrResponses, hasSubmittedAvailability, setHasSubmittedAvailability, drDeploymentLog, isDRClosed, triggerToast } = useAppContext();
   const [appTab, setAppTab] = useState<"current" | "past">("current");
@@ -421,7 +423,7 @@ const DashboardView = () => {
           <section className="bg-white rounded-3xl p-8 shadow-sm border border-zinc-100">
             <h2 className="text-xl font-bold text-zinc-900 mb-6">Earned Badges</h2>
             <div className="flex flex-wrap gap-4">
-              {user.badges.map((badge: any) => (
+              {(user?.badges ?? []).map((badge: any) => (
                 <div key={badge.id} className="group relative">
                   <div className="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center text-3xl hover:scale-110 hover:ring-2 hover:ring-tata-blue/30 hover:bg-tata-blue/5 transition-all cursor-pointer border border-slate-100">
                     {badge.icon}
