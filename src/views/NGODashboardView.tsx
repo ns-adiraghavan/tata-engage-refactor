@@ -938,10 +938,9 @@ const NGODashboardView = () => {
                     </div>
                   ))}
                 </div>
-              ) : (
                 <div>
                   <button
-                    onClick={() => setSelectedPartnerNGO(null)}
+                    onClick={() => { setSelectedPartnerNGO(null); setIsEditingPartner(false); }}
                     className="flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900 font-medium mb-6 cursor-pointer transition-colors"
                   >
                     ← Back to Partner NGOs
@@ -954,14 +953,43 @@ const NGODashboardView = () => {
                         </div>
                         <div>
                           <h3 className="text-base font-black text-slate-900">{selectedPartnerNGO.name}</h3>
-                          <p className="text-xs text-slate-500">{selectedPartnerNGO.city} · {selectedPartnerNGO.focusArea}</p>
+                          <p className="text-xs text-slate-500">{selectedPartnerNGO.city} · {isEditingPartner ? partnerEditForm.focusArea : selectedPartnerNGO.focusArea}</p>
                         </div>
                       </div>
-                      <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${
-                        selectedPartnerNGO.status === "Active" ? "bg-green-50 text-green-700" : "bg-slate-100 text-slate-500"
-                      }`}>
-                        {selectedPartnerNGO.status}
-                      </span>
+                      <div className="flex items-center gap-2">
+                        {!isEditingPartner ? (
+                          <button
+                            onClick={() => {
+                              setIsEditingPartner(true);
+                              setPartnerEditForm({
+                                contactName: selectedPartnerNGO.contactName,
+                                contactEmail: selectedPartnerNGO.contactEmail,
+                                status: selectedPartnerNGO.status,
+                                focusArea: selectedPartnerNGO.focusArea,
+                              });
+                            }}
+                            className="flex items-center gap-1.5 px-3 py-1.5 border border-slate-200 rounded-lg text-xs font-bold text-slate-700 hover:border-orange-500 hover:text-orange-500 transition-colors cursor-pointer"
+                          >
+                            <Edit2 size={12} /> Edit
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() => {
+                              setSelectedPartnerNGO({ ...selectedPartnerNGO, ...partnerEditForm });
+                              setIsEditingPartner(false);
+                              triggerToast("Partner NGO details updated");
+                            }}
+                            className="flex items-center gap-1.5 px-4 py-1.5 bg-orange-500 text-white rounded-lg text-xs font-bold hover:bg-orange-600 transition-all cursor-pointer"
+                          >
+                            Save Changes
+                          </button>
+                        )}
+                        <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${
+                          (isEditingPartner ? partnerEditForm.status : selectedPartnerNGO.status) === "Active" ? "bg-green-50 text-green-700" : "bg-slate-100 text-slate-500"
+                        }`}>
+                          {isEditingPartner ? partnerEditForm.status : selectedPartnerNGO.status}
+                        </span>
+                      </div>
                     </div>
                     <div className="grid grid-cols-3 gap-4 mb-5">
                       <div className="bg-slate-50 rounded-xl p-3 text-center">
@@ -977,11 +1005,79 @@ const NGODashboardView = () => {
                         <p className="text-sm font-black text-slate-900">{new Date(selectedPartnerNGO.joinedDate).getFullYear()}</p>
                       </div>
                     </div>
+
+                    {/* Contact — editable */}
                     <div className="border-t border-slate-100 pt-4">
                       <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Contact</p>
-                      <p className="text-sm font-bold text-slate-900">{selectedPartnerNGO.contactName}</p>
-                      <p className="text-xs text-slate-500">{selectedPartnerNGO.contactEmail}</p>
+                      {isEditingPartner ? (
+                        <div className="space-y-3">
+                          <div>
+                            <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Contact Name</label>
+                            <input value={partnerEditForm.contactName} onChange={e => setPartnerEditForm({ ...partnerEditForm, contactName: e.target.value })} className="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/20" />
+                          </div>
+                          <div>
+                            <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Contact Email</label>
+                            <input value={partnerEditForm.contactEmail} onChange={e => setPartnerEditForm({ ...partnerEditForm, contactEmail: e.target.value })} className="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/20" />
+                          </div>
+                          <div>
+                            <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Status</label>
+                            <select value={partnerEditForm.status} onChange={e => setPartnerEditForm({ ...partnerEditForm, status: e.target.value })} className="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/20 bg-white">
+                              <option>Active</option>
+                              <option>Inactive</option>
+                            </select>
+                          </div>
+                          <div>
+                            <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Focus Area</label>
+                            <input value={partnerEditForm.focusArea} onChange={e => setPartnerEditForm({ ...partnerEditForm, focusArea: e.target.value })} className="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/20" />
+                          </div>
+                        </div>
+                      ) : (
+                        <>
+                          <p className="text-sm font-bold text-slate-900">{selectedPartnerNGO.contactName}</p>
+                          <p className="text-xs text-slate-500">{selectedPartnerNGO.contactEmail}</p>
+                        </>
+                      )}
                     </div>
+                  </div>
+
+                  {/* Health Update Form */}
+                  <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 mb-6">
+                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Health Monitoring</p>
+                    <h4 className="text-sm font-black text-slate-900 mb-4">Submit Health Update</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                      {selectedPartnerNGO.projects.length > 0 && (
+                        <select value={partnerHealthForm.projectId} onChange={e => setPartnerHealthForm({ ...partnerHealthForm, projectId: e.target.value })} className="px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/20 bg-white">
+                          <option value="">Select project</option>
+                          {selectedPartnerNGO.projects.map((p: any) => (
+                            <option key={p.id} value={p.id}>{p.title}</option>
+                          ))}
+                        </select>
+                      )}
+                      <select value={partnerHealthForm.month} onChange={e => setPartnerHealthForm({ ...partnerHealthForm, month: e.target.value })} className="px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/20 bg-white">
+                        <option>April 2026</option>
+                        <option>March 2026</option>
+                        <option>February 2026</option>
+                        <option>January 2026</option>
+                      </select>
+                      <select value={partnerHealthForm.status} onChange={e => setPartnerHealthForm({ ...partnerHealthForm, status: e.target.value })} className="px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/20 bg-white">
+                        <option>Healthy</option>
+                        <option>At Risk</option>
+                        <option>Drop Out</option>
+                        <option>Pending</option>
+                      </select>
+                    </div>
+                    <button
+                      onClick={() => {
+                        if (!partnerHealthForm.projectId && selectedPartnerNGO.projects.length > 0) {
+                          triggerToast("Please select a project first.");
+                          return;
+                        }
+                        triggerToast(`Health update submitted: ${partnerHealthForm.month} — ${partnerHealthForm.status}`);
+                      }}
+                      className="mt-4 px-5 py-2 bg-orange-500 text-white text-xs font-bold rounded-lg hover:bg-orange-600 transition-all cursor-pointer"
+                    >
+                      Submit Update
+                    </button>
                   </div>
 
                   <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Projects</h4>
@@ -1009,7 +1105,7 @@ const NGODashboardView = () => {
                     )}
                   </div>
                   <p className="text-xs text-slate-400 mt-5 italic">
-                    Partner NGO projects are view-only. Partner NGOs manage their own projects independently and do not have edit access to Lead Partner data.
+                    As Lead Partner, you can edit partner details and submit health updates. Partner NGOs manage their own projects independently.
                   </p>
                 </div>
               )}
