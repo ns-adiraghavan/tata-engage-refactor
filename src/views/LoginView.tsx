@@ -18,9 +18,9 @@ const LoginView = () => {
   const [isPESeason, setIsPESeason] = useState(IS_PE_SEASON);
 
   const togglePE = () => {
-    mockData.IS_PE_SEASON = !mockData.IS_PE_SEASON;
-    setIsPESeason(mockData.IS_PE_SEASON);
-    triggerToast(mockData.IS_PE_SEASON ? "PE Season ON — dashboard shows ProEngage mode" : "PE Season OFF — dashboard shows non-PE mode");
+    const newVal = togglePESeason();
+    setIsPESeason(newVal);
+    triggerToast(newVal ? "PE Season ON — dashboard shows ProEngage mode" : "PE Season OFF — dashboard shows non-PE mode");
   };
 
   return (
