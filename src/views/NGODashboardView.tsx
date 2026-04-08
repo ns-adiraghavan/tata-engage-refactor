@@ -138,7 +138,7 @@ const NGODashboardView = () => {
     .sort((a, b) => b.matchPercentage - a.matchPercentage);
 
   return (
-    <div className="min-h-screen pt-24 bg-slate-50">
+    <div className="min-h-screen pt-20 bg-slate-50">
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 -mt-16 pb-20">
         {/* Feedback Reminders */}
