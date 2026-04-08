@@ -307,17 +307,17 @@ const Navbar = ({
               <img
                 src={tataEngageLogo}
                 alt="TATA engage"
-                className="h-8 object-contain hidden md:block brightness-0 invert opacity-80"
+                className="h-8 object-contain hidden md:block"
               />
               <span
                 onClick={() => onNavigate("login")}
-                className="text-sm font-medium text-white/60 hover:text-white transition-colors cursor-pointer"
+                className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors cursor-pointer"
               >
                 Log In
               </span>
               <button
                 onClick={() => onNavigate("register-role")}
-                className="bg-white text-zinc-900 py-2 px-5 text-sm font-semibold rounded-lg hover:bg-zinc-100 transition-all cursor-pointer"
+                className="btn-black py-2 px-5 text-sm cursor-pointer"
               >
                 Register
               </button>
