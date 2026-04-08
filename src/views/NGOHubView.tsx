@@ -18,7 +18,7 @@ const NGOHubView = () => {
               <span className="w-1.5 h-1.5 rounded-full bg-tata-cyan inline-block" />
               Tata Group · Partner NGO
             </span>
-            <h1 className="font-serif text-5xl md:text-7xl text-white leading-[0.95] tracking-tight mb-2">
+            <h1 className="font-sans font-black text-5xl md:text-7xl text-white leading-[0.9] tracking-tight mb-2">
               Welcome, {ngoData.firstName ?? "Anjali"}!
             </h1>
             <p className="text-white/50 text-sm mt-1 mb-6">{ngoData.organization} · Lead Partner</p>
