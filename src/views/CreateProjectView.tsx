@@ -408,6 +408,63 @@ const CreateProjectView = () => {
             </div>
           </div>
         </div>
+
+          {/* Sticky Sidebar */}
+          <div className="hidden lg:block">
+            <div className="sticky top-24 space-y-6">
+              {/* AI Quality Score */}
+              <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">AI Quality Score</p>
+                <div
+                  className={`text-4xl font-black ${qualityScore > 7 ? 'text-green-500' : qualityScore > 4 ? 'text-amber-500' : 'text-red-500'}`}
+                  style={{ transition: 'all 0.4s ease' }}
+                >
+                  {qualityScore}/10
+                </div>
+                <div className="w-full h-2 bg-slate-100 rounded-full mt-3 overflow-hidden">
+                  <div
+                    className={`h-full rounded-full ${qualityScore > 7 ? 'bg-green-500' : qualityScore > 4 ? 'bg-amber-500' : 'bg-red-500'}`}
+                    style={{ width: `${qualityScore * 10}%`, transition: 'all 0.4s ease' }}
+                  />
+                </div>
+                {scoreHint && (
+                  <p className="text-xs text-slate-500 mt-3 leading-snug">{scoreHint}</p>
+                )}
+                <p className="text-xs text-slate-400 italic mt-3">Score visible to NGO only — not shown to Admin</p>
+              </div>
+
+              {/* Project Checklist */}
+              <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Project Checklist</p>
+                <div className="space-y-2">
+                  {[
+                    { label: "Title", done: (projectData.title || "").trim().length > 0 },
+                    { label: "Skill Area", done: !projectData.isSkillBased || !!(projectData.skillArea || "").trim() },
+                    { label: "Mode", done: !!(projectData.mode || "").trim() },
+                    { label: "Duration", done: !!(projectData.duration || "").trim() },
+                    { label: "Brief (50+ words)", done: (projectData.brief || "").trim().split(/\s+/).filter(Boolean).length >= 50 },
+                    { label: "Outcomes (30+ words)", done: (projectData.outcomes || "").trim().split(/\s+/).filter(Boolean).length >= 30 },
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-2">
+                      <div className={`w-5 h-5 rounded-full flex items-center justify-center text-xs ${item.done ? "bg-green-50 text-green-600" : "bg-slate-100 text-slate-400"}`}>
+                        {item.done ? <Check size={12} /> : "–"}
+                      </div>
+                      <span className={`text-sm ${item.done ? "text-slate-700 font-medium" : "text-slate-400"}`}>{item.label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Refer an NGO */}
+              <button
+                onClick={() => triggerToast("Referral link copied!")}
+                className="w-full py-3 px-4 bg-white border border-slate-100 rounded-2xl shadow-sm text-sm font-bold text-slate-600 hover:border-slate-200 hover:text-slate-800 transition-all cursor-pointer"
+              >
+                Refer another NGO
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
