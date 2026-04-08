@@ -259,7 +259,7 @@ const Navbar = ({
                     {user?.firstName?.[0]}
                     {user?.lastName?.[0]}
                   </div>
-                  <ChevronDown size={14} className="text-white/40 group-hover:text-white/60 transition-colors" />
+                  <ChevronDown size={14} className="text-zinc-400 group-hover:text-zinc-600 transition-colors" />
                 </button>
 
                 {dropdownOpen && (
