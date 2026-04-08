@@ -86,14 +86,17 @@ const VolunteerHubView = () => {
 
         {/* ═══ STAT TILES ═══ */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-          {stats.map((stat) => (
-            <div key={stat.label} className={`bg-white border border-slate-100 border-l-4 ${stat.border} rounded-2xl shadow-sm p-5 relative`}>
-              <div className={`absolute top-4 right-4 w-8 h-8 rounded-full ${stat.dot} flex items-center justify-center text-xs font-bold`}>•</div>
-              <p className="text-3xl font-black text-slate-900 tracking-tighter">{stat.num}</p>
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">{stat.label}</p>
-              <p className="text-xs text-slate-400 mt-0.5">{stat.sub}</p>
-            </div>
-          ))}
+          {stats.map((stat, i) => {
+            const tileBg = ["bg-cyan-50 border-cyan-100", "bg-violet-50 border-violet-100", "bg-amber-50 border-amber-100", "bg-red-50 border-red-100"][i];
+            return (
+              <div key={stat.label} className={`${tileBg} border border-l-4 ${stat.border} rounded-2xl shadow-sm p-5 relative`}>
+                <div className={`absolute top-4 right-4 w-8 h-8 rounded-full ${stat.dot} flex items-center justify-center text-xs font-bold`}>•</div>
+                <p className="text-3xl font-black text-slate-900 tracking-tighter">{stat.num}</p>
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">{stat.label}</p>
+                <p className="text-xs text-slate-400 mt-0.5">{stat.sub}</p>
+              </div>
+            );
+          })}
         </div>
 
         {/* ═══ PROGRAMME TILES ═══ */}
