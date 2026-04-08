@@ -109,7 +109,7 @@ const ProjectFeedbackView = ({ project }: { project: any }) => {
         </div>
 
         {isBulkMode ? (
-          <div className="glass rounded-3xl p-10 shadow-xl bg-white text-center">
+          <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-8 text-center">
             <div className="w-20 h-20 bg-tata-blue/5 text-tata-blue rounded-full flex items-center justify-center mx-auto mb-6">
               <Upload size={40} />
             </div>
@@ -130,7 +130,7 @@ const ProjectFeedbackView = ({ project }: { project: any }) => {
         ) : (
           <div className="space-y-8">
             {feedbackData.map((volunteer: any) => (
-              <div key={volunteer.volunteerId} className="glass rounded-3xl p-8 shadow-xl bg-white border border-slate-100">
+              <div key={volunteer.volunteerId} className="bg-white border border-slate-100 rounded-2xl shadow-sm p-8">
                 <div className="flex justify-between items-start mb-8">
                   <div className="flex items-center gap-4">
                     <div className="w-14 h-14 rounded-2xl bg-tata-blue text-white flex items-center justify-center text-xl font-bold">

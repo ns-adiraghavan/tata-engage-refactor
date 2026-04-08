@@ -48,7 +48,7 @@ const DRAvailabilityForm = () => {
           <ArrowLeft size={16} /> Back to Dashboard
         </button>
 
-        <div className="glass rounded-3xl p-10 md:p-12 shadow-2xl border border-white/20">
+        <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-8 md:p-12">
           <div className="flex items-center gap-6 mb-10">
             <div className="w-16 h-16 bg-red-600 text-white rounded-2xl flex items-center justify-center shadow-xl shadow-red-600/20">
               <ShieldAlert size={32} />
