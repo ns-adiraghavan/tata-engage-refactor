@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { CheckCircle2, Search, Calendar, MapPin, Award, Sparkles, MessageSquare, ArrowRight, ShieldAlert, ClipboardList, Compass, Clock, Users } from "lucide-react";
+import { CheckCircle2, Calendar, MapPin, Award, Sparkles, MessageSquare, ArrowRight, ShieldAlert, ClipboardList, Compass, Clock, Users } from "lucide-react";
 import { useAppContext } from "@/context/AppContext";
 import { useAuth } from "@/context/AuthContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
@@ -193,7 +193,8 @@ const DashboardView = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           {/* Panel A — Your Activity */}
           <div className="bg-gradient-to-br from-tata-blue to-[#0057ff] rounded-3xl p-8 shadow-sm">
-            <h3 className="text-white font-bold text-lg mb-6">Your Activity</h3>
+            <p className="text-xs font-bold text-white/50 uppercase tracking-widest mb-1">Overview</p>
+            <h2 className="text-xl font-black text-white tracking-tight mb-6">Your Activity</h2>
 
             {IS_PE_SEASON ? (
               <div className="space-y-4">
@@ -237,7 +238,8 @@ const DashboardView = () => {
 
           {/* Panel B — Your Impact */}
           <div className="bg-slate-50 border-l-4 border-tata-cyan rounded-2xl p-8 shadow-sm">
-            <h3 className="text-sm font-bold text-slate-900 mb-6">Your Impact</h3>
+            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Stats</p>
+            <h2 className="text-xl font-black text-slate-900 tracking-tight mb-6">Your Impact</h2>
             <div className="grid grid-cols-3 gap-6">
               <div>
                 <p className="text-xs text-slate-500 uppercase tracking-widest mb-1">Hours volunteered</p>
@@ -310,15 +312,14 @@ const DashboardView = () => {
         {/* ═══ SECTION: Explore ═══ */}
         {IS_PE_SEASON && (
           <>
-            <h3 className="text-sm font-bold text-slate-700 uppercase tracking-[0.08em] mb-6 flex items-center gap-2"><div className="w-1 h-5 bg-tata-blue rounded-full mr-1" /><Compass size={16} /> Explore</h3>
+            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Discover</p>
+            <h2 className="text-xl font-black text-slate-900 tracking-tight mb-8 flex items-center gap-2"><Compass size={16} /> Explore</h2>
 
             <div className="space-y-8 mb-12">
               <section className="bg-white rounded-3xl p-8 shadow-sm border border-zinc-100">
                 <div className="flex items-center gap-2 mb-6">
-                  <div className="w-8 h-8 rounded-lg bg-tata-cyan/10 flex items-center justify-center text-tata-cyan">
-                    <Search size={18} />
-                  </div>
-                  <h2 className="text-xl font-bold text-zinc-900">AI Recommended For You</h2>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-violet-50 text-violet-600 text-xs font-bold">🤖 AI Picks</span>
+                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Recommended for you</p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {[
@@ -337,7 +338,8 @@ const DashboardView = () => {
                             : "Recommended for you";
 
                     return (
-                      <div key={i} className="bg-white border-l-4 border-violet-400 border border-slate-100 rounded-2xl p-4 hover:shadow-sm transition-all cursor-pointer group">
+                      <div key={i} className="bg-white border-l-4 border-violet-400 border border-slate-100 rounded-2xl p-4 hover:shadow-sm transition-all cursor-pointer group relative">
+                        <span className="absolute top-3 right-3 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-violet-50 text-violet-600 text-[10px] font-bold">🤖 AI</span>
                         <div className="text-xs font-bold text-violet-600 uppercase tracking-widest mb-2">{item.match}</div>
                         <h4 className="font-bold text-sm mb-1 group-hover:text-tata-blue transition-colors">{item.title}</h4>
                         <p className="text-xs text-slate-500 mb-2">{item.org}</p>
@@ -355,7 +357,8 @@ const DashboardView = () => {
 
 
         {/* ═══ SECTION: Your history ═══ */}
-        <h3 className="text-sm font-bold text-slate-700 uppercase tracking-[0.08em] mb-6 flex items-center gap-2"><div className="w-1 h-5 bg-tata-blue rounded-full mr-1" /><Clock size={16} /> Your history</h3>
+        <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Timeline</p>
+        <h2 className="text-xl font-black text-slate-900 tracking-tight mb-8 flex items-center gap-2"><Clock size={16} /> Your History</h2>
 
         <div className="space-y-8 mb-12">
           {/* Application Tabs */}
@@ -421,7 +424,8 @@ const DashboardView = () => {
 
           {/* Earned Badges */}
           <section className="bg-white rounded-3xl p-8 shadow-sm border border-zinc-100">
-            <h2 className="text-xl font-bold text-zinc-900 mb-6">Earned Badges</h2>
+            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Recognition</p>
+            <h2 className="text-xl font-black text-slate-900 tracking-tight mb-8">Earned Badges</h2>
             <div className="flex flex-wrap gap-4">
               {(user?.badges ?? []).map((badge: any) => (
                 <div key={badge.id} className="group relative">

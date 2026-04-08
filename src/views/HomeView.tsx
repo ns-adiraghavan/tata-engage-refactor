@@ -260,9 +260,9 @@ const HomeView = () => {
       </section>
 
       {/* ═══ WHAT'S HAPPENING NOW ═══ */}
-      <section id="highlights" className="py-12 px-6 md:px-12 border-t border-white/5 bg-slate-50">
+      <section id="highlights" className="py-12 px-6 md:px-12 border-t border-white/5 bg-zinc-950">
         <div className="max-w-7xl mx-auto">
-          <p className="text-xs font-semibold tracking-widest uppercase text-zinc-500 mb-6">
+          <p className="text-xs font-semibold tracking-widest uppercase text-zinc-500 mb-6 text-white/40">
             What&apos;s happening now
           </p>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -301,7 +301,7 @@ const HomeView = () => {
       </section>
 
       {/* ═══ IMPACT METRICS ═══ */}
-      <section id="metrics" className="bg-tata-blue py-12">
+      <section id="metrics" className="bg-gradient-to-r from-tata-blue to-[#0057ff] py-12">
         <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-center divide-x divide-white/20">
           {[
             { num: "50,000+", label: "Volunteers" },
@@ -429,12 +429,12 @@ const HomeView = () => {
       </section>
 
       {/* ═══ HOW IT WORKS ═══ */}
-      <section id="how-it-works" className="bg-zinc-900 py-16 px-6 md:px-12">
+      <section id="how-it-works" className="bg-white py-16 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
-          <p className="text-xs font-semibold tracking-widest uppercase text-zinc-500 mb-3">
+          <p className="text-xs font-semibold tracking-widest uppercase text-zinc-400 mb-3">
             How It Works
           </p>
-          <h2 className="text-3xl font-bold text-white mb-10">Three steps to get started</h2>
+          <h2 className="text-3xl font-bold text-zinc-900 mb-10">Three steps to get started</h2>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             <div className="relative rounded-2xl overflow-hidden bg-[#0f2d4a] p-8 flex flex-col justify-between min-h-[360px] lg:row-span-1">
               <div className="absolute inset-0">
@@ -524,12 +524,12 @@ const HomeView = () => {
       </section>
 
       {/* ═══ OUR PROGRAMMES ═══ */}
-      <section id="programmes" className="bg-[#fafaf8] py-16 px-6 md:px-12">
+      <section id="programmes" className="bg-zinc-900 py-16 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
-          <p className="text-xs font-semibold tracking-widest uppercase text-zinc-400 mb-3">
+          <p className="text-xs font-semibold tracking-widest uppercase text-zinc-500 mb-3">
             Our Programmes
           </p>
-          <h2 className="text-3xl font-bold text-zinc-900 mb-10">Ways to volunteer</h2>
+          <h2 className="text-3xl font-bold text-white mb-10">Ways to volunteer</h2>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {PROGRAMMES.map((prog) => {
               const isExpanded = selectedProgramme === prog.id;

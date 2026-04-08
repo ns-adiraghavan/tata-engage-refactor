@@ -31,12 +31,13 @@ const NGOHubView = () => {
         {/* ═══ STAT TILES ═══ */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
           {[
-            { label: "Active Projects", value: ngoData.projects?.filter((p: any) => p.status === "Active").length ?? 2 },
-            { label: "Pending Applications", value: ngoData.pendingApplications ?? 8 },
-            { label: "Edition", value: "ProEngage 2025" },
-            { label: "Badges Earned", value: "3" },
+            { label: "Active Projects", value: ngoData.projects?.filter((p: any) => p.status === "Active").length ?? 2, border: "border-tata-cyan", dot: "bg-cyan-100 text-tata-cyan" },
+            { label: "Pending Applications", value: ngoData.pendingApplications ?? 8, border: "border-violet-400", dot: "bg-violet-100 text-violet-500" },
+            { label: "Edition", value: "ProEngage 2025", border: "border-amber-400", dot: "bg-amber-100 text-amber-500" },
+            { label: "Badges Earned", value: "3", border: "border-red-400", dot: "bg-red-100 text-red-500" },
           ].map((kpi, i) => (
-            <div key={i} className="bg-white border border-slate-100 rounded-2xl shadow-sm p-5">
+            <div key={i} className={`bg-white border border-slate-100 border-l-4 ${kpi.border} rounded-2xl shadow-sm p-5 relative`}>
+              <div className={`absolute top-4 right-4 w-8 h-8 rounded-full ${kpi.dot} flex items-center justify-center text-xs font-bold`}>•</div>
               <p className="text-3xl font-black text-slate-900 tracking-tighter">{kpi.value}</p>
               <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">{kpi.label}</p>
             </div>
@@ -48,7 +49,7 @@ const NGOHubView = () => {
           <div className="grid md:grid-cols-2 gap-6 items-center">
             <div>
               <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Featured</p>
-              <h2 className="text-2xl font-bold text-slate-900 mb-2">Driving impact through skilled volunteering</h2>
+              <h2 className="text-xl font-black text-slate-900 tracking-tight mb-2">Driving impact through skilled volunteering</h2>
               <p className="text-sm text-slate-600">Showcase your organisation's ongoing work, highlight volunteer impact, and bring visibility to your current programmes.</p>
             </div>
             <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=1200&auto=format&fit=crop" alt="NGO volunteering activity" className="w-full h-48 md:h-56 object-cover rounded-2xl" referrerPolicy="no-referrer" />
@@ -109,7 +110,7 @@ const NGOHubView = () => {
               <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">
                 Featured Story
               </p>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">
+              <h3 className="text-xl font-black text-slate-900 tracking-tight mb-3">
                 Enabling digital literacy for underserved communities
               </h3>
               <p className="text-sm text-slate-600 mb-4">
