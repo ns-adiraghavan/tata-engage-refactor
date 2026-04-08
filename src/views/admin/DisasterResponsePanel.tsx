@@ -282,7 +282,7 @@ export const DisasterResponsePanel = ({ addAuditLog, triggerToast, drResponses, 
 
       {step === "status" && (
         <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="max-w-3xl mx-auto">
-          <div className="glass rounded-3xl p-12 shadow-2xl border border-white/20 text-center">
+          <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-12 text-center">
             <div className="w-24 h-24 bg-green-50 text-green-600 rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl shadow-green-600/10">
               <Check size={48} />
             </div>
