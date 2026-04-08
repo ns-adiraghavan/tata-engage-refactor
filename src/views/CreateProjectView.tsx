@@ -227,7 +227,20 @@ const CreateProjectView = () => {
                         </div>
                       </div>
 
-                      <div>
+                      <div className="md:col-span-2 flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                        <div>
+                          <p className="text-sm font-bold text-slate-800">Skill-based project</p>
+                          <p className="text-xs text-slate-500 mt-0.5">Requires a specific skill area match. Disable for general volunteering tasks.</p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => setProjectData({...projectData, isSkillBased: !projectData.isSkillBased})}
+                          className={`w-12 h-6 rounded-full transition-all relative ${projectData.isSkillBased ? "bg-tata-blue" : "bg-slate-200"}`}
+                        >
+                          <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${projectData.isSkillBased ? "left-7" : "left-1"}`} />
+                        </button>
+                      </div>
+
                         <label className="form-label">Duration*</label>
                         <select 
                           className="form-input"
