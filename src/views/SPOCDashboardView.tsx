@@ -506,8 +506,7 @@ const SPOCDashboardView = () => {
           <h2 className="text-xl font-black text-slate-900 tracking-tight">Reports & Recognition</h2>
           <p className="text-slate-500 font-medium mt-1">{isRegionalSPOC ? "Manage certificates for your region." : "Track company performance, manage certificates, and monitor feedback."}</p>
         </div>
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-          <div>
+        <div className="flex justify-end mb-6">
           {!isRegionalSPOC && (
           <div className="flex gap-2 p-1.5 bg-slate-100 rounded-2xl shadow-inner">
             {[
