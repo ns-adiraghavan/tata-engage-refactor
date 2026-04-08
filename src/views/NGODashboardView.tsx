@@ -235,7 +235,7 @@ const NGODashboardView = () => {
           
           {/* Project Management Panel */}
           <div className="lg:col-span-2 space-y-8">
-            <div className="glass rounded-3xl p-8 shadow-xl">
+            <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-8">
               <div className="flex justify-between items-center mb-8">
                 <h3 className="text-2xl font-bold text-tata-blue">Project Management</h3>
                 {ngoData.pendingApplications > 0 && (
