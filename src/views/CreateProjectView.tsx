@@ -268,29 +268,9 @@ const CreateProjectView = () => {
 
                 {step === 2 && (
                   <div className="space-y-8">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <h2 className="text-3xl font-bold text-tata-blue mb-2">Project Brief</h2>
-                        <p className="text-slate-500">Describe the project goals and volunteer responsibilities.</p>
-                      </div>
-                      <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-center min-w-[140px]">
-                        <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">AI Quality Score</div>
-                        <div
-                          className={`text-2xl font-bold ${qualityScore > 7 ? 'text-green-500' : qualityScore > 4 ? 'text-amber-500' : 'text-red-500'}`}
-                          style={{ transition: 'all 0.4s ease' }}
-                        >
-                          {qualityScore}/10
-                        </div>
-                        <div className="w-full h-1.5 bg-slate-200 rounded-full mt-2 overflow-hidden">
-                          <div
-                            className={`h-full rounded-full ${qualityScore > 7 ? 'bg-green-500' : qualityScore > 4 ? 'bg-amber-500' : 'bg-red-500'}`}
-                            style={{ width: `${qualityScore * 10}%`, transition: 'all 0.4s ease' }}
-                          />
-                        </div>
-                        {scoreHint && (
-                          <p className="text-[11px] text-muted-foreground mt-2 text-left leading-snug">{scoreHint}</p>
-                        )}
-                      </div>
+                    <div>
+                      <h2 className="text-3xl font-bold text-tata-blue mb-2">Project Brief</h2>
+                      <p className="text-slate-500">Describe the project goals and volunteer responsibilities.</p>
                     </div>
 
                     <div className="relative">
