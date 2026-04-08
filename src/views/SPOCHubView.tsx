@@ -14,10 +14,10 @@ const SPOCHubView = () => {
   const showToggle = user?.role?.includes("spoc") || user?.role === "corporate_spoc";
 
   const stats = [
-    { label: "Total Volunteers", value: spoc.stats.totalVolunteers.toLocaleString(), sub: "TCS Global", icon: Users, color: "text-[#003580]", bg: "bg-blue-50", border: "border-blue-100" },
-    { label: "Active ProEngage", value: spoc.stats.activeProEngage, sub: "Ongoing Projects", icon: Briefcase, color: "text-[#00b4d8]", bg: "bg-cyan-50", border: "border-cyan-100" },
-    { label: "TVW Events", value: spoc.stats.tvwEvents, sub: "This Edition", icon: CalendarDays, color: "text-purple-600", bg: "bg-purple-50", border: "border-purple-100" },
-    { label: "Pending Verifications", value: PENDING_APPROVALS_DATA.filter((a: any) => a.status === "Pending").length, sub: "Action Required", icon: ShieldCheck, color: "text-red-600", bg: "bg-red-50", border: "border-red-100" },
+    { label: "Total Volunteers", value: spoc.stats.totalVolunteers.toLocaleString(), sub: "TCS Global", icon: Users, borderAccent: "border-tata-cyan", dot: "bg-cyan-100 text-tata-cyan" },
+    { label: "Active ProEngage", value: spoc.stats.activeProEngage, sub: "Ongoing Projects", icon: Briefcase, borderAccent: "border-violet-400", dot: "bg-violet-100 text-violet-500" },
+    { label: "TVW Events", value: spoc.stats.tvwEvents, sub: "This Edition", icon: CalendarDays, borderAccent: "border-amber-400", dot: "bg-amber-100 text-amber-500" },
+    { label: "Pending Verifications", value: PENDING_APPROVALS_DATA.filter((a: any) => a.status === "Pending").length, sub: "Action Required", icon: ShieldCheck, borderAccent: "border-red-400", dot: "bg-red-100 text-red-500" },
   ];
 
   return (
