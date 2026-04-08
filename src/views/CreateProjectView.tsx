@@ -142,7 +142,8 @@ const CreateProjectView = () => {
           </div>
         )}
 
-        <div className="bg-white border border-slate-100 rounded-2xl shadow-sm overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="lg:col-span-2 bg-white border border-slate-100 rounded-2xl shadow-sm overflow-hidden">
           {/* Stepper */}
           <div className="bg-tata-blue p-8 text-white">
             <div className="flex justify-between items-center relative">
