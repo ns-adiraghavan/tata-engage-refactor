@@ -485,8 +485,11 @@ const NGODashboardView = () => {
                 </div>
                 <p className="text-xs text-slate-400 text-center">65% of applications reviewed this week</p>
               </div>
-            </div>
+              </div>
 
+              <p className="text-xs text-slate-400 mt-4 italic">
+                Coordinators can only edit projects assigned to them before Admin approval. For access changes, contact TSG Admin.
+              </p>
 
             {/* Quick Actions */}
             <div className="bg-gradient-to-br from-slate-900 to-zinc-800 rounded-2xl shadow-sm p-8 text-white">
