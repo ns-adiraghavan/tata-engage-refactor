@@ -9,7 +9,7 @@ const DRConfirmationView = () => {
   const refId = `DR-2026-AF-${Math.floor(1000 + Math.random() * 9000)}`;
   
   return (
-    <div className="pt-28 pb-20 px-6 md:px-12 bg-slate-50 min-h-screen flex items-center justify-center">
+    <div className="pt-20 pb-20 px-6 md:px-12 bg-slate-50 min-h-screen flex items-center justify-center">
       <motion.div 
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
