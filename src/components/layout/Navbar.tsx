@@ -3,7 +3,7 @@ import { Bell, ChevronDown, User, LogOut, Share2, LayoutDashboard, Search } from
 import tataLogo from "@/assets/tata-logo.png";
 import tataEngageLogo from "@/assets/tata-engage-logo.png";
 import type { View } from "@/types";
-import { NOTIFICATIONS_VOLUNTEER, NOTIFICATIONS_NGO, NOTIFICATIONS_SPOC, NOTIFICATIONS_ADMIN, MOCK_NOTIFICATIONS } from "@/data/mockData";
+import { NOTIFICATIONS_VOLUNTEER, NOTIFICATIONS_NGO, NOTIFICATIONS_SPOC, NOTIFICATIONS_ADMIN } from "@/data/mockData";
 import { useAppContext } from "@/context/AppContext";
 
 const Navbar = ({
