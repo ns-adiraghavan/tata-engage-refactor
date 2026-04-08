@@ -134,13 +134,22 @@ const HomeView = () => {
           <button
             key={id}
             onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })}
-            className={`rounded-full transition-all duration-300 ${
-              activeSection === i
-                ? "w-2.5 h-2.5 bg-white scale-125"
-                : "w-2 h-2 bg-white/30 hover:bg-white/50"
-            }`}
-            aria-label={`Scroll to ${id}`}
-          />
+            className="flex items-center justify-end"
+            aria-label={`Scroll to ${SECTION_LABELS[i]}`}
+          >
+            {activeSection === i && (
+              <span className="text-xs font-semibold text-white bg-white/15 border border-white/20 px-2.5 py-1 rounded-full mr-2 whitespace-nowrap">
+                {SECTION_LABELS[i]}
+              </span>
+            )}
+            <span
+              className={`rounded-full transition-all duration-300 shrink-0 ${
+                activeSection === i
+                  ? "w-2.5 h-2.5 bg-white scale-125"
+                  : "w-2 h-2 bg-white/30 hover:bg-white/50"
+              }`}
+            />
+          </button>
         ))}
       </div>
 
