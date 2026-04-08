@@ -1485,21 +1485,7 @@ const SPOCDashboardView = () => {
               <p className="text-xs font-bold text-tata-blue uppercase tracking-widest">{spoc.tier}</p>
             </div>
           </div>
-          {/* Persona toggle for prototype */}
-          <div className="flex mt-3 p-1 bg-slate-100 rounded-xl">
-            <button 
-              onClick={() => setIsRegionalSPOC(false)}
-              className={`flex-1 px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all cursor-pointer ${!isRegionalSPOC ? "bg-white text-tata-blue shadow-sm" : "text-slate-400 hover:text-slate-600"}`}
-            >
-              Corporate
-            </button>
-            <button 
-              onClick={() => setIsRegionalSPOC(true)}
-              className={`flex-1 px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all cursor-pointer ${isRegionalSPOC ? "bg-white text-tata-blue shadow-sm" : "text-slate-400 hover:text-slate-600"}`}
-            >
-              Regional
-            </button>
-          </div>
+          {/* Persona toggle removed — role is derived from login */}
         </div>
         {(user?.role?.includes("spoc") || user?.role === "corporate_spoc") && (
           <div className="mb-8 px-2">

@@ -163,6 +163,7 @@ export const TCS_TVW_EVENTS = [
     region: "West India",
     volunteeringHours: 4,
     openToAll: true,
+    createdBy: "Rohan Desai",
     volunteers: [
       { id: 101, name: "Amit Shah", email: "amit.s@tcs.com", hours: 0, confirmed: false },
       { id: 102, name: "Sneha Patil", email: "sneha.p@tcs.com", hours: 0, confirmed: false },
@@ -182,6 +183,7 @@ export const TCS_TVW_EVENTS = [
     region: "Global",
     volunteeringHours: 2,
     openToAll: false,
+    createdBy: "Rohan Desai",
     volunteers: [
       { id: 104, name: "Priya Das", email: "priya.d@tata.com", hours: 0, confirmed: false },
       { id: 105, name: "Vikram Singh", email: "vikram.s@tata.com", hours: 0, confirmed: false },
@@ -200,10 +202,29 @@ export const TCS_TVW_EVENTS = [
     region: "South India",
     volunteeringHours: 6,
     openToAll: true,
+    createdBy: "Anjali Gupta",
     vibeStatus: null,
     volunteers: [
       { id: 106, name: "Ananya Iyer", email: "ananya.i@tata.com", hours: 6, confirmed: true },
       { id: 107, name: "Karan Malhotra", email: "karan.m@tata.com", hours: 6, confirmed: true },
+    ]
+  },
+  {
+    id: 4,
+    title: "Rural School Library Setup",
+    type: "Community Service",
+    date: "2026-04-12",
+    time: "09:00 AM",
+    venue: "Government School, Faridabad",
+    mode: "In-Person",
+    capacity: "15/20",
+    status: "Upcoming",
+    region: "North India",
+    volunteeringHours: 5,
+    openToAll: true,
+    createdBy: "Anjali Gupta",
+    volunteers: [
+      { id: 108, name: "Neha Kapoor", email: "neha.k@tcs.com", hours: 0, confirmed: false },
     ]
   }
 ];

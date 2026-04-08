@@ -80,6 +80,19 @@ const LoginView = () => {
             <Landmark size={20} />
             Login as NGO
           </button>
+
+          <button 
+            onClick={() => {
+              setIsLoggedIn(true);
+              setUser(ANJALI_GUPTA_REGIONAL);
+              navigate("spoc-hub");
+              triggerToast("Login Successful! Welcome back, Anjali (Regional SPOC).");
+            }}
+            className="w-full flex items-center justify-center gap-3 bg-violet-600 text-white py-4 rounded-2xl font-bold hover:bg-violet-700 transition-all mb-6 cursor-pointer shadow-lg shadow-violet-600/20"
+          >
+            <MapPin size={20} />
+            Anjali (Regional SPOC)
+          </button>
         </>
       )}
 
