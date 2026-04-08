@@ -59,6 +59,9 @@ const VolunteerHubView = () => {
                 Welcome, {user.firstName}!
               </h1>
               <p className="text-white/60 text-sm mt-1">{user.company} · {user.designation}</p>
+              {(user?.role?.includes("spoc") || user?.role === "corporate_spoc") && (
+                <RoleToggle activeView="volunteer" className="mt-4" />
+              )}
               <p className="text-sm text-white/70 mt-3">
                 {IS_PE_SEASON
                   ? "ProEngage is open — browse projects matched to your skills."

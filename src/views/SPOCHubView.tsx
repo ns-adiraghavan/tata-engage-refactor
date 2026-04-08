@@ -38,9 +38,7 @@ const SPOCHubView = () => {
             Go to Dashboard →
           </button>
         </div>
-      </section>
-
-      <div className="max-w-7xl mx-auto px-6 md:px-12 -mt-16 pb-20">
+      </div>
         {/* KPI tiles */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {stats.map((stat, i) => (
