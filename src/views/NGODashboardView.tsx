@@ -299,7 +299,7 @@ const NGODashboardView = () => {
                 { label: "Volunteers Matched", value: ANJALI_MEHTA.projects.filter(p => p.status === "Active" || p.status === "Closed").reduce((sum, p) => sum + p.volunteers, 0), sub: "All active projects", icon: Users, color: "text-tata-blue", bg: "bg-blue-50", border: "border-blue-100" },
                 { label: "Pending Applications", value: ANJALI_MEHTA.pendingApplications, sub: "Awaiting review", icon: Clock, color: "text-amber-600", bg: "bg-amber-50", border: "border-amber-100" },
               ].map((stat, i) => (
-                <div key={i} className={`p-8 rounded-3xl bg-white border ${stat.border} shadow-sm hover:shadow-xl transition-all group relative overflow-hidden`}>
+                <div key={i} className={`p-8 rounded-3xl bg-white border ${stat.border} shadow-sm hover:shadow-sm transition-all group relative overflow-hidden`}>
                   <div className="absolute top-6 right-6 text-slate-200"><stat.icon size={24} /></div>
                   <div className={`w-14 h-14 rounded-2xl ${stat.bg} ${stat.color} flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500`}>
                     <stat.icon size={28} />
