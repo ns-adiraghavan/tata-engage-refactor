@@ -97,7 +97,7 @@ export const DisasterResponsePanel = ({ addAuditLog, triggerToast, drResponses, 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Configuration Column */}
           <div className="lg:col-span-2 space-y-8">
-            <div className="glass rounded-3xl p-8 shadow-xl border border-white/20">
+            <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-8">
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-12 h-12 bg-red-50 text-red-600 rounded-2xl flex items-center justify-center shadow-lg shadow-red-600/10">
                   <ShieldAlert size={24} />
