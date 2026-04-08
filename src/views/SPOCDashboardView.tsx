@@ -1704,10 +1704,10 @@ const SPOCDashboardView = () => {
             </div>
           </section>
 
-          {/* ── lg:grid-cols-3 Main Grid ─────────────────────────────── */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-            {/* Left col-span-2 — main sections */}
-            <div className="lg:col-span-2 space-y-12">
+          {/* ── Main Grid ─────────────────────────────── */}
+          <div className={`grid grid-cols-1 ${isRegionalSPOC ? "" : "lg:grid-cols-3"} gap-10`}>
+            {/* Left col — main sections */}
+            <div className={`${isRegionalSPOC ? "" : "lg:col-span-2"} space-y-12`}>
               {/* ProEngage Oversight (Corporate only) */}
               {!isRegionalSPOC && (
                 <section id="spoc-section-proengage" className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 md:p-8">
@@ -1728,7 +1728,8 @@ const SPOCDashboardView = () => {
               )}
             </div>
 
-            {/* Right col-span-1 — sidebar previews */}
+            {/* Right col — sidebar previews (Corporate only) */}
+            {!isRegionalSPOC && (
             <div className="space-y-10">
               {/* Verification Queue Preview */}
               <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 md:p-8">
