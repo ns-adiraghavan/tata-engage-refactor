@@ -1280,11 +1280,40 @@ const SPOCDashboardView = () => {
           </div>
         </div>
 
-        {/* Event Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
-          {filteredEvents.map((event) => (
+        {/* Event Grid — split by ownership */}
+        {isRegionalSPOC ? (
+          <>
+            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">My Region Opportunities</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
+              {filteredEvents.map((event: any) => (
+        <EventCard key={event.id} event={event} />
+              ))}
+            </div>
+          </>
+        ) : (
+          <>
+            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">My Opportunities</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 mb-12">
+              {filteredEvents.filter((e: any) => e.createdBy === `${spoc.firstName} ${spoc.lastName}`).map((event: any) => (
+        <EventCard key={event.id} event={event} />
+              ))}
+            </div>
+            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Regional Opportunities</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
+              {filteredEvents.filter((e: any) => e.createdBy !== `${spoc.firstName} ${spoc.lastName}`).map((event: any) => (
+        <EventCard key={event.id} event={event} />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+    );
+  };
+
+  const EventCard = ({ event }: { event: any }) => {
+    const isCorporateCreated = event.createdBy === `${ROHAN_DESAI.firstName} ${ROHAN_DESAI.lastName}`;
+    return (
             <motion.div 
-              key={event.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden group"
