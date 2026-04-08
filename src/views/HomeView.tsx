@@ -301,7 +301,7 @@ const HomeView = () => {
       </section>
 
       {/* ═══ IMPACT METRICS ═══ */}
-      <section id="metrics" className="bg-tata-blue py-12">
+      <section id="metrics" className="bg-gradient-to-r from-tata-blue to-[#0057ff] py-12">
         <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-center divide-x divide-white/20">
           {[
             { num: "50,000+", label: "Volunteers" },
