@@ -82,6 +82,17 @@ const NGOHubView = () => {
           ))}
         </div>
 
+        {/* NGO Profile */}
+        <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-8 mb-8">
+          <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Organisation</p>
+          <h3 className="text-xl font-black text-slate-900 tracking-tight mb-6">NGO Profile</h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 text-sm">
+            <div><p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Registered Name</p><p className="font-semibold text-slate-800">{ngoData.organization}</p></div>
+            <div><p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Partnership Tier</p><p className="font-semibold text-orange-600">{ngoData.tier}</p></div>
+            <div><p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Primary Contact</p><p className="font-semibold text-slate-800">{ngoData.firstName} {ngoData.lastName}</p></div>
+          </div>
+        </div>
+
         {/* NGO Identity */}
         <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 mb-12">
           <div className="grid md:grid-cols-3 gap-6">
