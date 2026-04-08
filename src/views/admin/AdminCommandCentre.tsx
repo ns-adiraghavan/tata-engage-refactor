@@ -6,7 +6,7 @@ import { MOCK_PROJECT_SUBMISSIONS, MOCK_BULK_EMAILS, MOCK_TESTIMONIALS } from "@
 import { useAppContext } from "@/context/AppContext";
 
 export const AdminCommandCentre = () => {
-  const { setAdminActiveTab, auditLogs } = useAppContext();
+  const { setAdminActiveTab, auditLogs, triggerToast } = useAppContext();
 
   const [reportCards, setReportCards] = useState([
     { id: 1, title: "ProEngage edition report", description: "Applications, matches, completions by company", lastGenerated: "12 Mar 2025" },
