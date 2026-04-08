@@ -316,12 +316,12 @@ const HomeView = () => {
       </section>
 
       {/* ═══ IMPACT STORIES ═══ */}
-      <section id="impact-stories" className="bg-[#0f1118] py-16 px-6 md:px-12">
+      <section id="impact-stories" className="py-16 px-6 md:px-12 bg-slate-50">
         <div className="max-w-7xl mx-auto">
           <p className="text-xs font-semibold tracking-widest uppercase text-zinc-500 mb-3">
             Impact Stories
           </p>
-          <h2 className="text-3xl font-bold text-white mb-10">Stories from the field</h2>
+          <h2 className="text-3xl font-bold mb-10 text-slate-950">Stories from the field</h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <div className="relative rounded-2xl overflow-hidden min-h-[420px] cursor-pointer hover:brightness-125 transition-all duration-300">
               {FEATURED_STORIES.map((story, i) => (
