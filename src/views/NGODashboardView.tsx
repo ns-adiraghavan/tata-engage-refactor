@@ -383,7 +383,8 @@ const NGODashboardView = () => {
             <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-8">
               <div className="flex justify-between items-center mb-8">
                 <div>
-                  <h3 className="text-2xl font-bold text-tata-blue">Coordinator Management</h3>
+                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Team</p>
+                  <h3 className="text-xl font-black text-slate-900 tracking-tight mb-1">Coordinator Management</h3>
                   <p className="text-sm text-slate-500">Manage your NGO SPOCs and program coordinators</p>
                 </div>
                 <button 
