@@ -43,6 +43,18 @@ const NGOHubView = () => {
           ))}
         </div>
 
+        {/* Banner */}
+        <div className="bg-white border border-slate-100 rounded-3xl shadow-sm p-6 md:p-8 mb-12">
+          <div className="grid md:grid-cols-2 gap-6 items-center">
+            <div>
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Featured</p>
+              <h2 className="text-2xl font-bold text-slate-900 mb-2">Driving impact through skilled volunteering</h2>
+              <p className="text-sm text-slate-600">Showcase your organisation's ongoing work, highlight volunteer impact, and bring visibility to your current programmes.</p>
+            </div>
+            <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=1200&auto=format&fit=crop" alt="NGO volunteering activity" className="w-full h-48 md:h-56 object-cover rounded-2xl" referrerPolicy="no-referrer" />
+          </div>
+        </div>
+
         {/* NGO Profile */}
         <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-8 mb-8">
           <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Organisation</p>
