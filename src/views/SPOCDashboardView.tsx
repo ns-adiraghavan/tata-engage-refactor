@@ -832,45 +832,59 @@ const SPOCDashboardView = () => {
           </select>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {filteredKit.map((item) => (
-            <div key={item.title} className="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-lg transition-all group">
-              <div className="flex items-start gap-5">
-                <div className="w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-tata-blue/5 group-hover:text-tata-blue transition-colors shrink-0">
-                  <item.icon size={24} />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1 flex-wrap">
-                    <h4 className="font-bold text-slate-900 tracking-tight">{item.title}</h4>
-                    <span className={`text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full ${
-                      item.type === "PDF" ? "bg-red-50 text-red-600" :
-                      item.type === "DOCX" ? "bg-blue-50 text-blue-600" :
-                      "bg-amber-50 text-amber-600"
-                    }`}>{item.type}</span>
-                    <span className="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full bg-slate-100 text-slate-500">{item.program}</span>
+        {/* Grouped by programme */}
+        {["TVW", "ProEngage", "DR"].map(prog => {
+          const items = filteredKit.filter(item => item.program === prog);
+          if (items.length === 0) return null;
+          const colorMap: Record<string, string> = { TVW: "bg-tata-cyan text-zinc-900", ProEngage: "bg-violet-600 text-white", DR: "bg-red-600 text-white" };
+          const labelMap: Record<string, string> = { TVW: "Tata Volunteering Week", ProEngage: "ProEngage", DR: "Disaster Response" };
+          return (
+            <div key={prog} className="space-y-4">
+              <div className="flex items-center gap-3">
+                <span className={`text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full ${colorMap[prog]}`}>{labelMap[prog]}</span>
+                <div className="flex-1 h-px bg-slate-100" />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {items.map((item) => (
+                  <div key={item.title} className="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-lg transition-all group">
+                    <div className="flex items-start gap-5">
+                      <div className="w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-tata-blue/5 group-hover:text-tata-blue transition-colors shrink-0">
+                        <item.icon size={24} />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-1 flex-wrap">
+                          <h4 className="font-bold text-slate-900 tracking-tight">{item.title}</h4>
+                          <span className={`text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full ${
+                            item.type === "PDF" ? "bg-red-50 text-red-600" :
+                            item.type === "DOCX" ? "bg-blue-50 text-blue-600" :
+                            "bg-amber-50 text-amber-600"
+                          }`}>{item.type}</span>
+                        </div>
+                        <p className="text-sm text-slate-500 mb-5">{item.description}</p>
+                        <button
+                          onClick={() => {
+                            setToastMessage(`Downloading ${item.title}.${item.type.toLowerCase()}...`);
+                            setShowToast(true);
+                            setTimeout(() => setShowToast(false), 3000);
+                          }}
+                          className="flex items-center gap-2 px-5 py-2.5 bg-zinc-900 text-white rounded-xl text-xs font-bold uppercase tracking-widest hover:bg-tata-blue transition-all cursor-pointer"
+                        >
+                          <Download size={14} />
+                          Download
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                  <p className="text-sm text-slate-500 mb-5">{item.description}</p>
-                  <button
-                    onClick={() => {
-                      setToastMessage(`${item.title}.${item.type.toLowerCase()} downloaded`);
-                      setShowToast(true);
-                      setTimeout(() => setShowToast(false), 3000);
-                    }}
-                    className="flex items-center gap-2 px-5 py-2.5 bg-zinc-900 text-white rounded-xl text-xs font-bold uppercase tracking-widest hover:bg-tata-blue transition-all cursor-pointer"
-                  >
-                    <Download size={14} />
-                    Download
-                  </button>
-                </div>
+                ))}
               </div>
             </div>
-          ))}
-          {filteredKit.length === 0 && (
-            <div className="col-span-2 text-center py-16 text-slate-400">
-              <p className="text-sm font-medium">No items match the selected filters.</p>
-            </div>
-          )}
-        </div>
+          );
+        })}
+        {filteredKit.length === 0 && (
+          <div className="text-center py-16 text-slate-400">
+            <p className="text-sm font-medium">No items match the selected filters.</p>
+          </div>
+        )}
       </div>
     );
   };
