@@ -176,7 +176,7 @@ const Navbar = ({
               </div>
             </div>
 
-            <Search size={18} className="text-white/40 hover:text-white cursor-pointer transition-colors" />
+            <Search size={18} className="text-zinc-400 hover:text-zinc-700 cursor-pointer transition-colors" />
           </div>
         )}
 
