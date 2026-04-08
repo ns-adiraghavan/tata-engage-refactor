@@ -3,6 +3,7 @@ import { useAppContext } from "@/context/AppContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
 import { COMMUNITY_TESTIMONIALS, IS_PE_SEASON } from "@/data/mockData";
 import { FileText, Mail, MessageSquare, Users, HeartHandshake, AlertTriangle } from "lucide-react";
+import RoleToggle from "@/components/shared/RoleToggle";
 
 const TESTIMONIAL_BG = ['bg-tata-blue', 'bg-violet-700', 'bg-emerald-800', 'bg-amber-700'];
 
@@ -58,6 +59,9 @@ const VolunteerHubView = () => {
                 Welcome, {user.firstName}!
               </h1>
               <p className="text-white/60 text-sm mt-1">{user.company} · {user.designation}</p>
+              {(user?.role?.includes("spoc") || user?.role === "corporate_spoc") && (
+                <RoleToggle activeView="volunteer" className="mt-4" />
+              )}
               <p className="text-sm text-white/70 mt-3">
                 {IS_PE_SEASON
                   ? "ProEngage is open — browse projects matched to your skills."

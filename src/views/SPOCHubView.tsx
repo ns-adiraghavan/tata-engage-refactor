@@ -21,14 +21,15 @@ const SPOCHubView = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-20 bg-slate-50">
+    <div className="pt-20 pb-20 bg-slate-50 min-h-screen">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
       {/* Hero */}
-      <section className="bg-gradient-to-br from-[#003580] via-[#0046b8] to-[#00b4d8] text-white pt-16 pb-24 px-6 md:px-12 relative overflow-hidden">
+      <div className="mb-10 rounded-3xl bg-gradient-to-br from-[#003580] via-[#0046b8] to-[#00b4d8] text-white p-8 md:p-12 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32 blur-3xl" />
-        <div className="max-w-7xl mx-auto relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+        <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
           <div>
-            <h1 className="font-serif text-4xl md:text-5xl text-white leading-tight">
-              Welcome, {spoc.firstName}
+            <h1 className="text-4xl md:text-7xl font-sans font-semibold text-white leading-tight">
+              Welcome, {spoc.firstName}!
             </h1>
             <p className="text-white/60 text-sm mt-1">{spoc.company} · Corporate SPOC</p>
             {showToggle && <RoleToggle activeView="spoc" className="mt-4" />}
@@ -37,9 +38,7 @@ const SPOCHubView = () => {
             Go to Dashboard →
           </button>
         </div>
-      </section>
-
-      <div className="max-w-7xl mx-auto px-6 md:px-12 -mt-16 pb-20">
+      </div>
         {/* KPI tiles */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {stats.map((stat, i) => (
