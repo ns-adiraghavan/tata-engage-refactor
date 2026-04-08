@@ -138,7 +138,7 @@ const NGODashboardView = () => {
     .sort((a, b) => b.matchPercentage - a.matchPercentage);
 
   return (
-    <div className="min-h-screen pt-24 bg-slate-50">
+    <div className="min-h-screen pt-20 bg-slate-50">
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 -mt-16 pb-20">
         {/* Feedback Reminders */}
@@ -235,7 +235,7 @@ const NGODashboardView = () => {
           
           {/* Project Management Panel */}
           <div className="lg:col-span-2 space-y-8">
-            <div className="glass rounded-3xl p-8 shadow-xl">
+            <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-8">
               <div className="flex justify-between items-center mb-8">
                 <h3 className="text-2xl font-bold text-tata-blue">Project Management</h3>
                 {ngoData.pendingApplications > 0 && (
@@ -377,7 +377,7 @@ const NGODashboardView = () => {
             </div>
 
             {/* Coordinator Management Section */}
-            <div className="glass rounded-3xl p-8 shadow-xl">
+            <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-8">
               <div className="flex justify-between items-center mb-8">
                 <div>
                   <h3 className="text-2xl font-bold text-tata-blue">Coordinator Management</h3>
