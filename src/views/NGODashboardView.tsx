@@ -929,6 +929,19 @@ const NGODashboardView = () => {
             </div>
           </section>
 
+          {/* ═══ SECTION: Past Editions ═══ */}
+          <section id="ngo-section-past-editions">
+            <div className="space-y-6">
+              <div>
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Archive</p>
+                <h2 className="text-xl font-black text-slate-900 tracking-tight mb-8">Past Editions</h2>
+              </div>
+              <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-8">
+                <p className="text-sm text-slate-400 italic text-center py-8">Past edition data will appear here once an active edition closes. Available for the current SPOC scope.</p>
+              </div>
+            </div>
+          </section>
+
           {/* ═══ SECTION: Partner NGOs ═══ */}
           {ngoData.partnerNGOs && ngoData.tier === "Lead Partner" && (
             <section id="ngo-section-partner-ngos">
