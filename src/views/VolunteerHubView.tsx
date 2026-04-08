@@ -22,9 +22,12 @@ const PROGRAMME_DESCRIPTIONS: Record<string, string> = {
 };
 
 const VolunteerHubView = () => {
-  const { user } = useAuth();
+  const { user: authUser } = useAuth();
   const navigate = useAppNavigate();
   const { referralCount, triggerToast } = useAppContext();
+
+  // When a corporate SPOC toggles to volunteer view, use their volunteer persona
+  const user = authUser?.role === "corporate_spoc" ? ROHAN_DESAI_VOLUNTEER : authUser;
   const isProEngageActive = true;
 
   const copyReferralLink = () => {

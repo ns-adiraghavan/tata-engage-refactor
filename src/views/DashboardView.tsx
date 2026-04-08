@@ -423,7 +423,7 @@ const DashboardView = () => {
           <section className="bg-white rounded-3xl p-8 shadow-sm border border-zinc-100">
             <h2 className="text-xl font-bold text-zinc-900 mb-6">Earned Badges</h2>
             <div className="flex flex-wrap gap-4">
-              {user.badges.map((badge: any) => (
+              {(user?.badges ?? []).map((badge: any) => (
                 <div key={badge.id} className="group relative">
                   <div className="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center text-3xl hover:scale-110 hover:ring-2 hover:ring-tata-blue/30 hover:bg-tata-blue/5 transition-all cursor-pointer border border-slate-100">
                     {badge.icon}
