@@ -357,7 +357,8 @@ const DashboardView = () => {
 
 
         {/* ═══ SECTION: Your history ═══ */}
-        <h3 className="text-sm font-bold text-slate-700 uppercase tracking-[0.08em] mb-6 flex items-center gap-2"><div className="w-1 h-5 bg-tata-blue rounded-full mr-1" /><Clock size={16} /> Your history</h3>
+        <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Timeline</p>
+        <h2 className="text-xl font-black text-slate-900 tracking-tight mb-8 flex items-center gap-2"><Clock size={16} /> Your History</h2>
 
         <div className="space-y-8 mb-12">
           {/* Application Tabs */}
