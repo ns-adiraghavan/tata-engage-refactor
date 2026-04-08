@@ -429,7 +429,7 @@ const HomeView = () => {
       </section>
 
       {/* ═══ HOW IT WORKS ═══ */}
-      <section id="how-it-works" className="bg-zinc-900 py-16 px-6 md:px-12">
+      <section id="how-it-works" className="bg-white py-16 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
           <p className="text-xs font-semibold tracking-widest uppercase text-zinc-500 mb-3">
             How It Works
