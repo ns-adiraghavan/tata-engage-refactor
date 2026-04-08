@@ -185,6 +185,7 @@ const HomeView = () => {
         {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full">
           <div className="max-w-2xl">
+            <img src={tataEngageLogo} alt="TataEngage" className="h-10 mb-6 opacity-90" />
             <span className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white/80 text-xs font-semibold px-4 py-1.5 rounded-full mb-8 tracking-wide">
               <span className="w-1.5 h-1.5 rounded-full bg-tata-cyan inline-block" />
               Tata Group · Volunteering Platform
