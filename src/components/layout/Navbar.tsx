@@ -18,9 +18,17 @@ const Navbar = ({
   user: any;
 }) => {
   const { triggerToast } = useAppContext();
+  const getRoleNotifications = () => {
+    if (!user) return NOTIFICATIONS_VOLUNTEER;
+    if (user.role === "ngo") return NOTIFICATIONS_NGO;
+    if (user.role === "corporate_spoc" || user.role === "regional_spoc") return NOTIFICATIONS_SPOC;
+    if (user.role === "platform_admin") return NOTIFICATIONS_ADMIN;
+    return NOTIFICATIONS_VOLUNTEER;
+  };
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [notifOpen, setNotifOpen] = useState(false);
-  const [notifications, setNotifications] = useState(MOCK_NOTIFICATIONS);
+  const [notifications, setNotifications] = useState(getRoleNotifications());
   const dropdownRef = useRef<HTMLDivElement>(null);
   const notifRef = useRef<HTMLDivElement>(null);
 
