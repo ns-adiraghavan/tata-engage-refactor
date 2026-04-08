@@ -29,19 +29,24 @@ const NGOHubView = () => {
         </div>
 
         {/* ═══ STAT TILES ═══ */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
           {[
-            { label: "Active Projects", value: ngoData.projects?.filter((p: any) => p.status === "Active").length ?? 2, border: "border-tata-cyan", dot: "bg-cyan-100 text-tata-cyan" },
-            { label: "Pending Applications", value: ngoData.pendingApplications ?? 8, border: "border-violet-400", dot: "bg-violet-100 text-violet-500" },
-            { label: "Edition", value: "ProEngage 2025", border: "border-amber-400", dot: "bg-amber-100 text-amber-500" },
-            { label: "Badges Earned", value: "3", border: "border-red-400", dot: "bg-red-100 text-red-500" },
+            { label: "Active Projects", value: ngoData.projects?.filter((p: any) => p.status === "Active").length ?? 2 },
+            { label: "Pending Applications", value: ngoData.pendingApplications ?? 8 },
+            { label: "Edition", value: "ProEngage 2025" },
+            { label: "Badges Earned", value: "3" },
           ].map((kpi, i) => {
-            const tileBg = ["bg-cyan-50 border-cyan-100", "bg-violet-50 border-violet-100", "bg-amber-50 border-amber-100", "bg-red-50 border-red-100"][i];
+            const configs = [
+              { bg: "bg-cyan-50", border: "border-cyan-200", num: "text-tata-blue", label: "text-cyan-700" },
+              { bg: "bg-violet-50", border: "border-violet-200", num: "text-violet-700", label: "text-violet-600" },
+              { bg: "bg-amber-50", border: "border-amber-200", num: "text-amber-700", label: "text-amber-600" },
+              { bg: "bg-rose-50", border: "border-rose-200", num: "text-rose-700", label: "text-rose-600" },
+            ];
+            const c = configs[i];
             return (
-              <div key={i} className={`${tileBg} border border-l-4 ${kpi.border} rounded-2xl shadow-sm p-5 relative`}>
-                <div className={`absolute top-4 right-4 w-8 h-8 rounded-full ${kpi.dot} flex items-center justify-center text-xs font-bold`}>•</div>
-                <p className="text-3xl font-black text-slate-900 tracking-tighter">{kpi.value}</p>
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">{kpi.label}</p>
+              <div key={kpi.label} className={`${c.bg} border ${c.border} rounded-2xl p-5 shadow-sm`}>
+                <p className={`text-3xl font-black tracking-tighter ${c.num}`}>{kpi.value}</p>
+                <p className={`text-xs font-bold uppercase tracking-widest mt-1 ${c.label}`}>{kpi.label}</p>
               </div>
             );
           })}

@@ -210,7 +210,7 @@ const NGODashboardView = () => {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 lg:ml-56 p-6 md:p-12">
+      <main className="flex-1 lg:ml-56 p-6 md:p-10">
         <div className="max-w-5xl mx-auto space-y-10">
 
           {/* ═══ SECTION: Dashboard ═══ */}

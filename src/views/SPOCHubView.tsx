@@ -71,7 +71,7 @@ const SPOCHubView = () => {
         {spoc.badges && spoc.badges.length > 0 && (
           <div className="flex flex-wrap gap-2 mt-4">
             {spoc.badges.map((badge: any) => (
-              <span key={badge.id} className="bg-white/15 border border-white/20 rounded-full px-3 py-1 text-xs text-white font-semibold">
+              <span key={badge.id} className="bg-tata-blue/10 border border-tata-blue/20 rounded-full px-3 py-1 text-xs text-tata-blue font-semibold">
                 {badge.icon} {badge.name}
               </span>
             ))}

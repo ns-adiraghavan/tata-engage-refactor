@@ -272,7 +272,7 @@ const HomeView = () => {
       {/* ═══ WHAT'S HAPPENING NOW ═══ */}
       <section id="highlights" className="py-12 px-6 md:px-12 border-t border-white/5 bg-slate-50">
         <div className="max-w-7xl mx-auto">
-          <p className="text-xs font-semibold tracking-widest uppercase text-zinc-500 mb-6 text-white/40">
+          <p className="text-xs font-bold tracking-widest uppercase text-slate-400 mb-6">
             What&apos;s happening now
           </p>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
