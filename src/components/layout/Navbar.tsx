@@ -29,6 +29,10 @@ const Navbar = ({
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [notifOpen, setNotifOpen] = useState(false);
   const [notifications, setNotifications] = useState(getRoleNotifications());
+
+  useEffect(() => {
+    setNotifications(getRoleNotifications());
+  }, [user]);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const notifRef = useRef<HTMLDivElement>(null);
 
