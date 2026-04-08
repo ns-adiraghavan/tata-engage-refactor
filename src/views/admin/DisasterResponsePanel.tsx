@@ -519,7 +519,7 @@ export const DisasterResponsePanel = ({ addAuditLog, triggerToast, drResponses, 
             </div>
           </div>
 
-          <div className="glass rounded-3xl p-12 border border-white/20 shadow-xl flex flex-col items-center justify-center text-center min-h-[400px]">
+          <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-12 flex flex-col items-center justify-center text-center min-h-[400px]">
             <div className="w-20 h-20 bg-slate-50 text-slate-300 rounded-3xl flex items-center justify-center mb-6">
               <Activity size={40} />
             </div>
