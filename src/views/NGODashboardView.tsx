@@ -250,38 +250,7 @@ const NGODashboardView = () => {
               })}
             </AnimatePresence>
 
-            {/* AI Risk Flag Alert */}
-            <AnimatePresence>
-              {ANJALI_MEHTA.projects.some(p => p.status === "Active") && (
-                <motion.div 
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="mb-8 p-4 bg-red-50 border border-red-100 rounded-2xl flex items-center justify-between shadow-sm"
-                >
-                  <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-full bg-red-100 text-red-600 flex items-center justify-center">
-                      <AlertTriangle size={20} />
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-bold text-red-800 tracking-tight">⚠️ Project health flagged – review recommended</h4>
-                      <p className="text-xs text-red-600 opacity-80">One or more active projects require immediate attention.</p>
-                    </div>
-                  </div>
-                  <button 
-                    onClick={() => {
-                      const activeProj = ANJALI_MEHTA.projects.find(p => p.status === "Active");
-                      if (activeProj) {
-                        setActiveProject(activeProj);
-                        navigate("active-project-management");
-                      }
-                    }}
-                    className="px-4 py-2 bg-red-600 text-white text-xs font-bold rounded-lg hover:bg-red-700 transition-all cursor-pointer"
-                  >
-                    Review Now
-                  </button>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {/* AI Risk Flag Alert removed — health status shown inline in M&E Tracker */}
 
             {/* Stat Tiles */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 relative z-10">

@@ -217,66 +217,7 @@ const SPOCDashboardView = () => {
           </div>
         </div>
 
-        {/* AI Risk Flags */}
-        {atRiskList.length > 0 && (
-          <div className="bg-red-50/50 rounded-3xl p-10 border border-red-100 shadow-sm relative overflow-hidden">
-            <div className="absolute top-0 right-0 p-12 opacity-5">
-              <AlertTriangle size={120} className="text-red-600" />
-            </div>
-            <div className="flex items-center gap-4 mb-8 relative z-10">
-              <div className="w-12 h-12 rounded-2xl bg-red-600 text-white flex items-center justify-center shadow-lg shadow-red-600/20">
-                <AlertTriangle size={24} />
-              </div>
-              <div>
-                <h3 className="text-xl font-black text-slate-900 tracking-tight">AI Risk Flags (AI-05)</h3>
-                <p className="text-sm text-red-600/70 font-medium">Volunteers requiring immediate attention or intervention</p>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
-              {atRiskList.map((v) => (
-                <div key={v.id} className="bg-white p-8 rounded-3xl border border-red-100 shadow-sm hover:shadow-xl transition-all group">
-                  <div className="flex justify-between items-start mb-6">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center font-semibold text-slate-400 group-hover:bg-red-50 group-hover:text-red-500 transition-colors">
-                        {v.name.charAt(0)}
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-slate-900 tracking-tight">{v.name}</h4>
-                        <p className="text-xs font-bold text-tata-blue uppercase tracking-widest">{v.project}</p>
-                      </div>
-                    </div>
-                    <span className={`text-xs font-semibold px-3 py-1.5 rounded-full uppercase tracking-widest ${
-                      v.severity === "high" ? "bg-red-100 text-red-700" : "bg-amber-100 text-amber-700"
-                    }`}>
-                      {v.severity} Risk
-                    </span>
-                  </div>
-                  <div className="p-4 bg-slate-50 rounded-2xl mb-6 border border-slate-100">
-                    <p className="text-xs text-slate-700 leading-relaxed">
-                      <span className="font-semibold uppercase text-xs text-slate-400 block mb-1 tracking-widest">Reason for Alert</span>
-                      {v.reason} ({v.daysInactive} days inactive)
-                    </p>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-xs font-semibold text-slate-400 uppercase tracking-widest">
-                      <History size={14} />
-                      {v.nudged ? "Nudge sent today" : "No recent action"}
-                    </div>
-                    <button 
-                      onClick={() => handleSendNudge(v.id)}
-                      disabled={v.nudged}
-                      className={`px-6 py-3 rounded-lg text-xs font-semibold uppercase tracking-[0.2em] transition-all cursor-pointer active:scale-95 ${
-                        v.nudged ? "bg-slate-100 text-slate-400" : "bg-zinc-900 text-white hover:bg-tata-blue shadow-lg hover:shadow-tata-blue/20"
-                      }`}
-                    >
-                      {v.nudged ? "Nudge Sent" : "Send Nudge"}
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+        {/* AI Risk Flags removed — risk indicators shown inline on pipeline table rows */}
 
         {/* Stats Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-7 gap-6">
