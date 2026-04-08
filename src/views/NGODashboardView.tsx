@@ -432,6 +432,7 @@ const NGODashboardView = () => {
                 Coordinators can only edit projects assigned to them before Admin approval. For access changes, contact TSG Admin.
               </p>
 
+              {showAddCoordinator && (
                 <motion.div 
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
