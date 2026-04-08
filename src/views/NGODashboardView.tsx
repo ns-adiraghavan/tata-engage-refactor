@@ -344,7 +344,7 @@ const NGODashboardView = () => {
                           </tr>
                         </thead>
                         <tbody>
-                          {(drillProject.volunteers ?? [
+                          {(Array.isArray(drillProject.volunteers) ? drillProject.volunteers : [
                             { name: "Priya Sharma", status: "Active", feedbackDone: false, hours: null },
                             { name: "Amit Verma", status: "Matched", feedbackDone: false, hours: null },
                           ]).map((v: any, i: number) => (
