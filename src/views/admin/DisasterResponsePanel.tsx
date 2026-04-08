@@ -342,7 +342,7 @@ export const DisasterResponsePanel = ({ addAuditLog, triggerToast, drResponses, 
           </div>
 
           {/* Response List */}
-          <div className="glass rounded-3xl overflow-hidden border border-white/20 shadow-xl">
+          <div className="bg-white border border-slate-100 rounded-2xl shadow-sm overflow-hidden">
             <div className="p-8 border-b border-slate-100 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
               <div>
                 <h4 className="text-sm font-semibold text-slate-900 uppercase tracking-widest">Volunteer Response List</h4>
