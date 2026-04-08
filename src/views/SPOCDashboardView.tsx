@@ -1322,8 +1322,13 @@ const SPOCDashboardView = () => {
                 <div className="flex items-start justify-between">
                   <div>
                     <h4 className="text-xl font-black text-slate-900 tracking-tight leading-tight mb-2">{event.title}</h4>
-                    <div className="flex items-center gap-2 mb-3">
+                    <div className="flex items-center gap-2 mb-1">
                       <span className="text-xs font-bold text-tata-blue uppercase tracking-widest">{event.type}</span>
+                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-widest border ${
+                        isCorporateCreated ? "bg-tata-blue/10 text-tata-blue border-tata-blue/20" : "bg-tata-cyan/10 text-tata-blue border-tata-cyan/20"
+                      }`}>
+                        {isCorporateCreated ? "Corporate" : "Regional"}
+                      </span>
                       {event.vibeStatus && (
                         <span className="text-[10px] font-bold bg-purple-50 text-purple-600 px-2 py-0.5 rounded-full uppercase tracking-widest border border-purple-100">
                           {event.vibeStatus}
@@ -1335,6 +1340,7 @@ const SPOCDashboardView = () => {
                         </span>
                       )}
                     </div>
+                    <span className="text-xs text-slate-500">Created by: {event.createdBy}</span>
                   </div>
                   <span className={`text-xs font-semibold px-3 py-1.5 rounded-full uppercase tracking-widest whitespace-nowrap shadow-sm border ${
                     event.status === "Upcoming" ? "bg-blue-50 text-blue-700 border-blue-100" :
