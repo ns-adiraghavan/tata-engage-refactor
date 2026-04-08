@@ -431,10 +431,10 @@ const HomeView = () => {
       {/* ═══ HOW IT WORKS ═══ */}
       <section id="how-it-works" className="bg-white py-16 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
-          <p className="text-xs font-semibold tracking-widest uppercase text-zinc-500 mb-3">
+          <p className="text-xs font-semibold tracking-widest uppercase text-zinc-400 mb-3">
             How It Works
           </p>
-          <h2 className="text-3xl font-bold text-white mb-10">Three steps to get started</h2>
+          <h2 className="text-3xl font-bold text-zinc-900 mb-10">Three steps to get started</h2>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             <div className="relative rounded-2xl overflow-hidden bg-[#0f2d4a] p-8 flex flex-col justify-between min-h-[360px] lg:row-span-1">
               <div className="absolute inset-0">
