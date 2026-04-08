@@ -410,6 +410,7 @@ const DashboardView = () => {
 
 
         {/* ═══ SECTION: Your history ═══ */}
+        <div id="vol-section-history">
         <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Timeline</p>
         <h2 className="text-xl font-black text-slate-900 tracking-tight mb-8 flex items-center gap-2"><Clock size={16} /> Your History</h2>
 
