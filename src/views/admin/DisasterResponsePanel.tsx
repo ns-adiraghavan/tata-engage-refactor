@@ -222,7 +222,7 @@ export const DisasterResponsePanel = ({ addAuditLog, triggerToast, drResponses, 
 
           {/* Actions & Summary Column */}
           <div className="space-y-8">
-            <div className="glass rounded-3xl p-8 shadow-xl border border-white/20">
+            <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-8">
               <h4 className="text-xs font-semibold text-slate-900 uppercase tracking-widest mb-6">Alert Summary</h4>
               <div className="space-y-6">
                 <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
