@@ -1186,10 +1186,10 @@ const SPOCDashboardView = () => {
     return (
       <div className="space-y-12">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-          <div>
+          <div className="bg-cyan-50 border-b border-cyan-100 rounded-t-xl px-6 pt-5 pb-4 -mx-6 -mt-6 mb-6 md:-mx-8 md:-mt-8">
             <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Events</p>
-            <h2 className="text-xl font-black text-slate-900 tracking-tight mb-6">TVW Management</h2>
-            <p className="text-slate-500 font-medium">Manage TCS's participation in Tata Volunteering Week.</p>
+            <h2 className="text-xl font-black text-slate-900 tracking-tight">TVW Management</h2>
+            <p className="text-slate-500 font-medium mt-1">Manage TCS's participation in Tata Volunteering Week.</p>
           </div>
           {isTVWActive && (
             <button onClick={() => setShowCreateEvent(true)} className="group px-8 py-4 bg-zinc-900 text-white rounded-2xl font-bold text-sm flex items-center gap-3 hover:bg-tata-blue transition-all shadow-xl shadow-zinc-900/10 cursor-pointer active:scale-95">
