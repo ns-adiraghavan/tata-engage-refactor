@@ -18,7 +18,7 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
   ];
   const [healthUpdates, setHealthUpdates] = useState(MOCK_HEALTH_UPDATES);
   const [projectStatus, setProjectStatus] = useState(project?.status || "Active");
-  const [showConfirmModal, setShowConfirmModal] = useState<"pause" | "close" | "extend" | null>(null);
+  const [showConfirmModal, setShowConfirmModal] = useState<"close" | null>(null);
   const [auditTrail, setAuditTrail] = useState<any[]>([]);
   const [isSubAdminMode, setIsSubAdminMode] = useState(false);
 
