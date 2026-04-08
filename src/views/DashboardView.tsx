@@ -238,7 +238,8 @@ const DashboardView = () => {
 
           {/* Panel B — Your Impact */}
           <div className="bg-slate-50 border-l-4 border-tata-cyan rounded-2xl p-8 shadow-sm">
-            <h3 className="text-sm font-bold text-slate-900 mb-6">Your Impact</h3>
+            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Stats</p>
+            <h2 className="text-xl font-black text-slate-900 tracking-tight mb-6">Your Impact</h2>
             <div className="grid grid-cols-3 gap-6">
               <div>
                 <p className="text-xs text-slate-500 uppercase tracking-widest mb-1">Hours volunteered</p>
