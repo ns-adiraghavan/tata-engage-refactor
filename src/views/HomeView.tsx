@@ -524,7 +524,7 @@ const HomeView = () => {
       </section>
 
       {/* ═══ OUR PROGRAMMES ═══ */}
-      <section id="programmes" className="bg-[#fafaf8] py-16 px-6 md:px-12">
+      <section id="programmes" className="bg-zinc-900 py-16 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
           <p className="text-xs font-semibold tracking-widest uppercase text-zinc-400 mb-3">
             Our Programmes
