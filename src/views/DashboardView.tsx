@@ -243,7 +243,7 @@ const DashboardView = () => {
         </div>
 
         {/* ═══ Panels A + B side by side ═══ */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div id="vol-section-activity" className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           {/* Panel A — Your Activity */}
           <div className="bg-gradient-to-br from-tata-blue to-[#0057ff] rounded-3xl p-8 shadow-sm">
             <p className="text-xs font-bold text-white/50 uppercase tracking-widest mb-1">Overview</p>
