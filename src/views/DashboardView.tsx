@@ -9,7 +9,9 @@ import { toast } from "@/hooks/use-toast";
 
 
 const DashboardView = () => {
-  const { user } = useAuth();
+  const { user: authUser } = useAuth();
+  // When a corporate SPOC views the volunteer dashboard, use their volunteer persona
+  const user = authUser?.role === "corporate_spoc" ? ROHAN_DESAI_VOLUNTEER : authUser;
   const navigate = useAppNavigate();
   const { projectStatus, setProjectStatus, isDRActive, setDrResponses, hasSubmittedAvailability, setHasSubmittedAvailability, drDeploymentLog, isDRClosed, triggerToast } = useAppContext();
   const [appTab, setAppTab] = useState<"current" | "past">("current");
