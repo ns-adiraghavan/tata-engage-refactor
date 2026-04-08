@@ -52,6 +52,7 @@ const NGODashboardView = () => {
       badge: ngoData.projects?.filter((p: any) => p.status === "Active").length ?? 0 },
     { name: "Grievance Redressal", icon: ShieldAlert, sectionId: "ngo-section-grievance" },
     { name: "Reports", icon: FileText, sectionId: "ngo-section-reports" },
+    { name: "Past Editions", icon: Archive, sectionId: "ngo-section-past-editions" },
     { name: "Partner NGOs", icon: Users, sectionId: "ngo-section-partner-ngos" },
   ];
 
