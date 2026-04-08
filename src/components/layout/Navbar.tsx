@@ -188,11 +188,11 @@ const Navbar = ({
               <div className="relative" ref={notifRef}>
                 <button
                   onClick={() => setNotifOpen((o) => !o)}
-                  className="p-2 hover:bg-zinc-100 rounded-full cursor-pointer relative"
+                  className="p-2 hover:bg-white/10 rounded-full cursor-pointer relative"
                 >
-                  <Bell size={20} />
+                  <Bell size={20} className="text-white" />
                   {unreadCount > 0 && (
-                    <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white" />
+                    <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-zinc-950" />
                   )}
                 </button>
 
