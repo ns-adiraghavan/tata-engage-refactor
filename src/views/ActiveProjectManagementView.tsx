@@ -215,39 +215,6 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
               </motion.div>
             )}
 
-            {/* Simulated SPOC Dashboard Panel */}
-            <div className="bg-zinc-900 rounded-3xl p-8 text-white shadow-xl">
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="font-bold">SPOC Dashboard</h3>
-                <span className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Simulated View</span>
-              </div>
-              <div className="space-y-4">
-                <div className="p-4 bg-white/5 rounded-2xl border border-white/10">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-8 h-8 rounded-full bg-tata-cyan/20 text-tata-cyan flex items-center justify-center">
-                      <User size={16} />
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold">Rahul Singh</p>
-                      <p className="text-xs text-zinc-500">Corporate SPOC</p>
-                    </div>
-                  </div>
-                  {hasRisk ? (
-                    <div className="flex items-start gap-3 p-3 bg-red-500/10 border border-red-500/20 rounded-lg">
-                      <AlertTriangle size={16} className="text-red-500 shrink-0 mt-0.5" />
-                      <p className="text-xs text-red-200 leading-relaxed">
-                        Alert: {project?.title} health flagged. Action required.
-                      </p>
-                    </div>
-                  ) : (
-                    <p className="text-xs text-zinc-400 italic">No active alerts for your projects.</p>
-                  )}
-                </div>
-                <button className="w-full py-3 text-xs font-bold text-zinc-400 hover:text-white transition-colors cursor-pointer">
-                  View All Projects
-                </button>
-              </div>
-            </div>
 
             {/* Project Quick Stats */}
             <div className="bg-white rounded-3xl p-8 shadow-xl border border-slate-100">

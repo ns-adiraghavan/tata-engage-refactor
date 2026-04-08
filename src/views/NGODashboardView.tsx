@@ -366,7 +366,7 @@ const NGODashboardView = () => {
                               </td>
                               <td className="px-5 py-4 text-xs text-zinc-500">{v.hours ?? "—"}</td>
                               <td className="px-5 py-4">
-                                <button className="text-xs font-semibold text-zinc-400 hover:text-zinc-700 cursor-pointer">View</button>
+                                <button onClick={() => { setActiveProject(drillProject); navigate("active-project-management"); }} className="text-xs font-semibold text-zinc-400 hover:text-zinc-700 cursor-pointer">View</button>
                               </td>
                             </tr>
                           ))}
