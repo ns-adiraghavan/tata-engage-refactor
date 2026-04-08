@@ -237,7 +237,10 @@ const NGODashboardView = () => {
           <div className="lg:col-span-2 space-y-8">
             <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-8">
               <div className="flex justify-between items-center mb-8">
-                <h3 className="text-2xl font-bold text-tata-blue">Project Management</h3>
+                <div>
+                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Projects</p>
+                  <h3 className="text-xl font-black text-slate-900 tracking-tight">Project Management</h3>
+                </div>
                 {ngoData.pendingApplications > 0 && (
                   <span className="flex items-center gap-2 text-xs font-bold text-amber-700 bg-amber-50 border border-amber-100 px-3 py-1.5 rounded-full">
                     <span className="w-4 h-4 bg-red-500 text-white flex items-center justify-center rounded-full text-[10px]">{ngoData.pendingApplications}</span>
