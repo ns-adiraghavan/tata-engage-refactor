@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { User, Mail, CheckCircle2, Sparkles, Edit2, Pause, StopCircle, History, AlertTriangle, Activity, ChevronLeft } from "lucide-react";
+import { User, Mail, CheckCircle2, Sparkles, Edit2, StopCircle, AlertTriangle, Activity, ChevronLeft } from "lucide-react";
 import type { View } from "@/types";
 import { useAppContext } from "@/context/AppContext";
 import { useAuth } from "@/context/AuthContext";
