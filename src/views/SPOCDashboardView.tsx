@@ -361,7 +361,8 @@ const SPOCDashboardView = () => {
                         )}
                       </td>
                     </tr>
-                  ))}
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
