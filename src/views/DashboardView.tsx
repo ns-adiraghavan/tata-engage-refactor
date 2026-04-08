@@ -497,6 +497,7 @@ const DashboardView = () => {
             </div>
           </section>
         </div>
+        </div>
 
       </div>
 
