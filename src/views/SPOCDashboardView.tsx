@@ -803,12 +803,13 @@ const SPOCDashboardView = () => {
 
     return (
       <div className="space-y-10">
+        <div className="bg-tata-blue/5 border-b border-blue-100 rounded-t-xl px-6 pt-5 pb-4 -mx-6 -mt-6 mb-6 md:-mx-8 md:-mt-8">
+          <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Resources</p>
+          <h2 className="text-xl font-black text-slate-900 tracking-tight">Campaign Kit</h2>
+          <p className="text-slate-500 font-medium mt-1">Downloadable collateral to promote volunteering across your company.</p>
+        </div>
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-          <div>
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Resources</p>
-            <h2 className="text-xl font-black text-slate-900 tracking-tight mb-6">Campaign Kit</h2>
-            <p className="text-slate-500 font-medium">Downloadable collateral to promote volunteering across your company.</p>
-          </div>
+          <div></div>
           <button
             onClick={() => {
               setToastMessage("Preparing ZIP download...");
