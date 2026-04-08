@@ -111,7 +111,7 @@ const CreateProjectView = () => {
 
   return (
     <div className="min-h-screen pt-20 pb-20 bg-slate-50 px-6 md:px-12">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <button 
