@@ -501,11 +501,12 @@ const SPOCDashboardView = () => {
 
     return (
       <div className="space-y-12">
+        <div className="bg-slate-50 border-b border-slate-100 rounded-t-xl px-6 pt-5 pb-4 -mx-6 -mt-6 mb-6 md:-mx-8 md:-mt-8">
+          <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Analytics</p>
+          <h2 className="text-xl font-black text-slate-900 tracking-tight">Reports & Recognition</h2>
+          <p className="text-slate-500 font-medium mt-1">{isRegionalSPOC ? "Manage certificates for your region." : "Track company performance, manage certificates, and monitor feedback."}</p>
+        </div>
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-          <div>
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Analytics</p>
-            <h2 className="text-xl font-black text-slate-900 tracking-tight mb-6">Reports & Recognition</h2>
-            <p className="text-slate-500 font-medium">{isRegionalSPOC ? "Manage certificates for your region." : "Track company performance, manage certificates, and monitor feedback."}</p>
           </div>
           {!isRegionalSPOC && (
           <div className="flex gap-2 p-1.5 bg-slate-100 rounded-2xl shadow-inner">
