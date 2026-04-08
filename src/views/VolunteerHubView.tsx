@@ -42,10 +42,10 @@ const VolunteerHubView = () => {
   ];
 
   const stats = [
-    { num: user.history?.length ?? 0, label: "Projects completed", sub: "All time" },
-    { num: (user.hoursVolunteered != null ? `${user.hoursVolunteered}h` : "48h"), label: "Hours volunteered", sub: "This edition" },
-    { num: user.badges?.length ?? 0, label: "Badges earned", sub: "All time" },
-    { num: user.history?.length ?? 1, label: "Applications", sub: "This edition" },
+    { num: user.history?.length ?? 0, label: "Projects completed", sub: "All time", border: "border-tata-cyan", dot: "bg-cyan-100 text-tata-cyan" },
+    { num: (user.hoursVolunteered != null ? `${user.hoursVolunteered}h` : "48h"), label: "Hours volunteered", sub: "This edition", border: "border-violet-400", dot: "bg-violet-100 text-violet-500" },
+    { num: user.badges?.length ?? 0, label: "Badges earned", sub: "All time", border: "border-amber-400", dot: "bg-amber-100 text-amber-500" },
+    { num: user.history?.length ?? 1, label: "Applications", sub: "This edition", border: "border-red-400", dot: "bg-red-100 text-red-500" },
   ];
 
   return (
