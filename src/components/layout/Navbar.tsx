@@ -64,9 +64,29 @@ const Navbar = ({
   const unreadCount = notifications.filter((n) => !n.read).length;
 
   const dotColor = (type: string) => {
-    if (type === "match") return "bg-green-500";
+    if (type === "match" || type === "approval") return "bg-green-500";
     if (type === "certificate") return "bg-blue-500";
+    if (type === "verification" || type === "grievance") return "bg-red-500";
+    if (type === "leaderboard") return "bg-violet-500";
     return "bg-amber-500";
+  };
+
+  const iconChip = (type: string) => {
+    if (type === "match" || type === "approval") return "✓";
+    if (type === "certificate") return "↓";
+    if (type === "feedback") return "★";
+    if (type === "verification") return "!";
+    if (type === "leaderboard") return "↑";
+    if (type === "grievance") return "⚠";
+    return "•";
+  };
+
+  const notifRoleLabel = () => {
+    if (!user) return "Volunteer";
+    if (user.role === "ngo") return "NGO";
+    if (user.role === "corporate_spoc" || user.role === "regional_spoc") return "SPOC";
+    if (user.role === "platform_admin") return "Admin";
+    return "Volunteer";
   };
 
   const handleMarkAllRead = () => {
