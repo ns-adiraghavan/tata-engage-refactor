@@ -15,8 +15,8 @@ const SPOCDashboardView = () => {
   const location = useLocation();
   const { isOrientationDismissed, setIsOrientationDismissed, setShowOrientationModal, setShowToast, setToastMessage, formData, drResponses } = useAppContext();
   
-  // Regional vs Corporate SPOC toggle (prototype)
-  const [isRegionalSPOC, setIsRegionalSPOC] = useState(false);
+  // Regional vs Corporate SPOC — derived from logged-in user role
+  const isRegionalSPOC = user?.role === "regional_spoc";
   const spoc = isRegionalSPOC ? ANJALI_GUPTA_REGIONAL : ROHAN_DESAI;
   const [activeNav, setActiveNav] = useState("Dashboard");
   const [spocs, setSpocs] = useState(SPOC_DIRECTORY);
@@ -134,8 +134,9 @@ const SPOCDashboardView = () => {
       region: "West India",
       volunteeringHours: Number(formData.get("hours")),
       openToAll: formData.get("openToAll") === "on",
-      volunteers: []
-    };
+      createdBy: `${spoc.firstName} ${spoc.lastName}`,
+      volunteers: [] as any[]
+    } as any;
     setTvwEvents([newEvent, ...tvwEvents]);
     setShowCreateEvent(false);
     setToastMessage("Event posted to TVW Calendar. Live within 5 minutes.");
@@ -1279,11 +1280,40 @@ const SPOCDashboardView = () => {
           </div>
         </div>
 
-        {/* Event Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
-          {filteredEvents.map((event) => (
+        {/* Event Grid — split by ownership */}
+        {isRegionalSPOC ? (
+          <>
+            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">My Region Opportunities</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
+              {filteredEvents.map((event: any) => (
+        <EventCard key={event.id} event={event} />
+              ))}
+            </div>
+          </>
+        ) : (
+          <>
+            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">My Opportunities</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 mb-12">
+              {filteredEvents.filter((e: any) => e.createdBy === `${spoc.firstName} ${spoc.lastName}`).map((event: any) => (
+        <EventCard key={event.id} event={event} />
+              ))}
+            </div>
+            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Regional Opportunities</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
+              {filteredEvents.filter((e: any) => e.createdBy !== `${spoc.firstName} ${spoc.lastName}`).map((event: any) => (
+        <EventCard key={event.id} event={event} />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+    );
+  };
+
+  const EventCard = ({ event }: { event: any }) => {
+    const isCorporateCreated = event.createdBy === `${ROHAN_DESAI.firstName} ${ROHAN_DESAI.lastName}`;
+    return (
             <motion.div 
-              key={event.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden group"
@@ -1292,8 +1322,13 @@ const SPOCDashboardView = () => {
                 <div className="flex items-start justify-between">
                   <div>
                     <h4 className="text-xl font-black text-slate-900 tracking-tight leading-tight mb-2">{event.title}</h4>
-                    <div className="flex items-center gap-2 mb-3">
+                    <div className="flex items-center gap-2 mb-1">
                       <span className="text-xs font-bold text-tata-blue uppercase tracking-widest">{event.type}</span>
+                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-widest border ${
+                        isCorporateCreated ? "bg-tata-blue/10 text-tata-blue border-tata-blue/20" : "bg-tata-cyan/10 text-tata-blue border-tata-cyan/20"
+                      }`}>
+                        {isCorporateCreated ? "Corporate" : "Regional"}
+                      </span>
                       {event.vibeStatus && (
                         <span className="text-[10px] font-bold bg-purple-50 text-purple-600 px-2 py-0.5 rounded-full uppercase tracking-widest border border-purple-100">
                           {event.vibeStatus}
@@ -1305,6 +1340,7 @@ const SPOCDashboardView = () => {
                         </span>
                       )}
                     </div>
+                    <span className="text-xs text-slate-500">Created by: {event.createdBy}</span>
                   </div>
                   <span className={`text-xs font-semibold px-3 py-1.5 rounded-full uppercase tracking-widest whitespace-nowrap shadow-sm border ${
                     event.status === "Upcoming" ? "bg-blue-50 text-blue-700 border-blue-100" :
@@ -1462,9 +1498,6 @@ const SPOCDashboardView = () => {
                 </AnimatePresence>
               </div>
             </motion.div>
-          ))}
-        </div>
-      </div>
     );
   };
 
@@ -1485,21 +1518,7 @@ const SPOCDashboardView = () => {
               <p className="text-xs font-bold text-tata-blue uppercase tracking-widest">{spoc.tier}</p>
             </div>
           </div>
-          {/* Persona toggle for prototype */}
-          <div className="flex mt-3 p-1 bg-slate-100 rounded-xl">
-            <button 
-              onClick={() => setIsRegionalSPOC(false)}
-              className={`flex-1 px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all cursor-pointer ${!isRegionalSPOC ? "bg-white text-tata-blue shadow-sm" : "text-slate-400 hover:text-slate-600"}`}
-            >
-              Corporate
-            </button>
-            <button 
-              onClick={() => setIsRegionalSPOC(true)}
-              className={`flex-1 px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all cursor-pointer ${isRegionalSPOC ? "bg-white text-tata-blue shadow-sm" : "text-slate-400 hover:text-slate-600"}`}
-            >
-              Regional
-            </button>
-          </div>
+          {/* Persona toggle removed — role is derived from login */}
         </div>
         {(user?.role?.includes("spoc") || user?.role === "corporate_spoc") && (
           <div className="mb-8 px-2">
@@ -1685,10 +1704,10 @@ const SPOCDashboardView = () => {
             </div>
           </section>
 
-          {/* ── lg:grid-cols-3 Main Grid ─────────────────────────────── */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-            {/* Left col-span-2 — main sections */}
-            <div className="lg:col-span-2 space-y-12">
+          {/* ── Main Grid ─────────────────────────────── */}
+          <div className={`grid grid-cols-1 ${isRegionalSPOC ? "" : "lg:grid-cols-3"} gap-10`}>
+            {/* Left col — main sections */}
+            <div className={`${isRegionalSPOC ? "" : "lg:col-span-2"} space-y-12`}>
               {/* ProEngage Oversight (Corporate only) */}
               {!isRegionalSPOC && (
                 <section id="spoc-section-proengage" className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 md:p-8">
@@ -1709,7 +1728,8 @@ const SPOCDashboardView = () => {
               )}
             </div>
 
-            {/* Right col-span-1 — sidebar previews */}
+            {/* Right col — sidebar previews (Corporate only) */}
+            {!isRegionalSPOC && (
             <div className="space-y-10">
               {/* Verification Queue Preview */}
               <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 md:p-8">
@@ -1810,6 +1830,7 @@ const SPOCDashboardView = () => {
                 </button>
               </div>
             </div>
+            )}
           </div>
 
           {/* ── Full-width sections below the grid ───────────────────── */}
