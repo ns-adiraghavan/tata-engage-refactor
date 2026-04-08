@@ -266,7 +266,7 @@ const HomeView = () => {
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-tata-blue to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-zinc-950 to-transparent" />
       </section>
 
       {/* ═══ WHAT'S HAPPENING NOW ═══ */}
