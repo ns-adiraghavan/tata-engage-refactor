@@ -1,9 +1,10 @@
 import { useState, useRef, useEffect } from "react";
-import { Bell, ChevronDown, User, LogOut, Share2, LayoutDashboard } from "lucide-react";
+import { Bell, ChevronDown, User, LogOut, Share2, LayoutDashboard, Search } from "lucide-react";
 import tataLogo from "@/assets/tata-logo.png";
 import tataEngageLogo from "@/assets/tata-engage-logo.png";
 import type { View } from "@/types";
 import { MOCK_NOTIFICATIONS } from "@/data/mockData";
+import { useAppContext } from "@/context/AppContext";
 
 const Navbar = ({
   onNavigate,
