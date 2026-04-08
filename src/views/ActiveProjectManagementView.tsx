@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { User, Mail, CheckCircle2, Sparkles, Edit2, StopCircle, AlertTriangle, Activity, ChevronLeft, Clock } from "lucide-react";
+import { User, Mail, CheckCircle2, Sparkles, StopCircle, AlertTriangle, Activity, ChevronLeft, Clock } from "lucide-react";
 import type { View } from "@/types";
 import { useAppContext } from "@/context/AppContext";
 import { useAuth } from "@/context/AuthContext";
@@ -20,7 +20,6 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
   const [projectStatus, setProjectStatus] = useState(project?.status || "Active");
   const [showConfirmModal, setShowConfirmModal] = useState<"close" | null>(null);
   const [auditTrail, setAuditTrail] = useState<any[]>([]);
-  const [isSubAdminMode, setIsSubAdminMode] = useState(false);
 
   const handleStatusChange = (newStatus: string, action: string) => {
     setProjectStatus(newStatus);
@@ -32,16 +31,6 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
     }, ...prev]);
     triggerToast(`Project ${action} successfully. TSG Admin notified.`);
     setShowConfirmModal(null);
-  };
-
-  const toggleHealthStatus = (month: string) => {
-    setHealthUpdates(prev => prev.map(h => {
-      if (h.month === month) {
-        const nextStatus = h.status === "Updated" ? "At Risk" : h.status === "At Risk" ? "Pending" : "Updated";
-        return { ...h, status: nextStatus, date: nextStatus === "Updated" ? new Date().toISOString().split('T')[0] : h.date };
-      }
-      return h;
-    }));
   };
 
   const hasRisk = healthUpdates.some(h => h.status === "At Risk" || (h.month === "April" && h.status === "Pending"));
@@ -56,7 +45,7 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
               <ChevronLeft size={18} /> Back to Dashboard
             </button>
             <div className="flex items-center gap-4 mb-2">
-              <h1 className="text-4xl font-bold text-tata-blue">{project?.title || "Active Project"}</h1>
+              <h1 className="text-4xl font-bold text-slate-900">{project?.title || "Active Project"}</h1>
               <span className={`px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest ${
                 projectStatus === 'Active' ? 'bg-green-100 text-green-700' :
                 projectStatus === 'Paused' ? 'bg-amber-100 text-amber-700' :
@@ -77,49 +66,11 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-8">
-            {/* Kick-Off Card */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-3xl p-8 shadow-xl border border-slate-100 relative overflow-hidden"
-            >
-              <div className="absolute top-0 right-0 p-8 opacity-5">
-                <Mail size={120} />
-              </div>
-              <div className="flex items-start gap-6">
-                <div className="w-16 h-16 rounded-2xl bg-green-100 text-green-600 flex items-center justify-center shrink-0">
-                  <CheckCircle2 size={32} />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-slate-800 mb-2">Kick-Off Emails Sent</h3>
-                  <p className="text-slate-500 text-sm mb-4">
-                    Confirmation emails have been successfully dispatched to the NGO team and all 4 matched volunteers.
-                  </p>
-                  <div className="flex items-center gap-4 text-xs font-bold text-slate-400 uppercase tracking-widest">
-                    <span>Timestamp: April 01, 2026, 10:00 AM</span>
-                    <span className="w-1 h-1 bg-slate-300 rounded-full" />
-                    <span className="text-green-600">Status: Delivered</span>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
             {/* M&E Tracker */}
-            <div className="bg-white rounded-3xl p-8 shadow-xl border border-slate-100">
-              <div className="flex justify-between items-center mb-8">
-                <div>
-                  <h3 className="text-2xl font-bold text-tata-blue">M&E Tracker</h3>
-                  <p className="text-sm text-slate-500">Monitoring & Evaluation Monthly Health Updates</p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">TSG Sub-Admin Mode</span>
-                  <button 
-                    onClick={() => setIsSubAdminMode(!isSubAdminMode)}
-                    className={`w-12 h-6 rounded-full transition-all relative ${isSubAdminMode ? "bg-tata-cyan" : "bg-slate-200"}`}
-                  >
-                    <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${isSubAdminMode ? "left-7" : "left-1"}`} />
-                  </button>
-                </div>
+            <div className="bg-white rounded-2xl p-8 shadow-sm border border-slate-100">
+              <div className="mb-8">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Monitoring & Evaluation</p>
+                <h3 className="text-xl font-black text-slate-900 tracking-tight">M&E Tracker</h3>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -146,14 +97,6 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
                       }`}>
                         {update.status}
                       </span>
-                      {isSubAdminMode && (
-                        <button 
-                          onClick={() => toggleHealthStatus(update.month)}
-                          className="p-2 hover:bg-white rounded-lg text-slate-400 hover:text-tata-blue transition-all cursor-pointer"
-                        >
-                          <Edit2 size={16} />
-                        </button>
-                      )}
                     </div>
                   </div>
                 ))}
@@ -161,7 +104,7 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
             </div>
 
             {/* Audit Trail */}
-            <div className="bg-white rounded-3xl p-8 shadow-xl border border-slate-100">
+            <div className="bg-white rounded-2xl p-8 shadow-sm border border-slate-100">
               <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
                 <Clock size={20} className="text-tata-blue" /> Project Audit Trail
               </h3>
@@ -194,7 +137,7 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
               <motion.div 
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="bg-gradient-to-br from-red-500 to-red-700 rounded-3xl p-8 text-white shadow-xl relative overflow-hidden"
+                className="bg-gradient-to-br from-red-500 to-red-700 rounded-3xl p-8 text-white shadow-sm relative overflow-hidden"
               >
                 <div className="absolute top-0 right-0 p-4 opacity-20">
                   <AlertTriangle size={80} />
@@ -217,7 +160,7 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
 
 
             {/* Project Quick Stats */}
-            <div className="bg-white rounded-3xl p-8 shadow-xl border border-slate-100">
+            <div className="bg-white rounded-2xl p-8 shadow-sm border border-slate-100">
               <h3 className="font-bold text-slate-800 mb-6">Project Progress</h3>
               <div className="space-y-6">
                 <div>
@@ -260,7 +203,7 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-md bg-white rounded-3xl shadow-2xl p-10 text-center"
+              className="relative w-full max-w-md bg-white rounded-3xl shadow-sm p-10 text-center"
             >
               <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-8 bg-red-100 text-red-500">
                 <StopCircle size={40} />
