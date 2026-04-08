@@ -116,6 +116,7 @@ const VolunteerHubView = () => {
                 <p className="text-sm font-bold text-slate-900">{p.label}</p>
                 <p className="text-xs text-slate-400 mt-1">{PROGRAMME_DESCRIPTIONS[p.label]}</p>
               </button>
+            );
           })}
         </div>
         </div>
