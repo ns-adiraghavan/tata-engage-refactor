@@ -191,6 +191,7 @@ const CreateProjectView = () => {
                         />
                       </div>
                       
+                      {projectData.isSkillBased && (
                       <div>
                         <label className="form-label">Skill Area*</label>
                         <select 
@@ -207,6 +208,7 @@ const CreateProjectView = () => {
                           <option value="Marketing">Marketing</option>
                         </select>
                       </div>
+                      )}
 
                       <div>
                         <label className="form-label">Mode*</label>
