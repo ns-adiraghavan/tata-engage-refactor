@@ -431,7 +431,50 @@ export const ANJALI_MEHTA = {
     { id: 1, name: "Rahul Singh", email: "rahul.s@pratham.org", role: "SPOC" },
     { id: 2, name: "Sneha Kapur", email: "sneha.k@pratham.org", role: "Coordinator" }
   ],
-  pendingApplications: 8
+  pendingApplications: 8,
+  partnerNGOs: [
+    {
+      id: 201,
+      name: "Akanksha Foundation",
+      city: "Mumbai",
+      focusArea: "Education",
+      status: "Active",
+      contactName: "Priya Nair",
+      contactEmail: "priya@akanksha.org",
+      projects: [
+        { id: 201, title: "After-School Learning Programme", status: "Active", volunteers: 6 },
+        { id: 202, title: "Digital Classrooms Initiative", status: "Closed", volunteers: 10 }
+      ],
+      joinedDate: "2023-08-01",
+      volunteersTotal: 16
+    },
+    {
+      id: 202,
+      name: "Teach For India",
+      city: "Pune",
+      focusArea: "Education",
+      status: "Active",
+      contactName: "Arjun Mehta",
+      contactEmail: "arjun@teachforindia.org",
+      projects: [
+        { id: 203, title: "Fellowship Classroom Support", status: "Active", volunteers: 4 }
+      ],
+      joinedDate: "2024-01-15",
+      volunteersTotal: 4
+    },
+    {
+      id: 203,
+      name: "Smile Foundation",
+      city: "Delhi",
+      focusArea: "Health & Livelihood",
+      status: "Inactive",
+      contactName: "Kavita Sharma",
+      contactEmail: "kavita@smilefoundation.org",
+      projects: [],
+      joinedDate: "2022-05-10",
+      volunteersTotal: 0
+    }
+  ]
 };
 
 export const PRIYA_SHARMA = {
