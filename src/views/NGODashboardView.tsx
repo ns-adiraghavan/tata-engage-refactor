@@ -478,28 +478,126 @@ const NGODashboardView = () => {
 
           {/* Sidebar Stats & Shortlists */}
           <div className="space-y-8">
-            {/* Application Queue Summary */}
-            <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-8">
+            {/* Application Queue */}
+            <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6">
+              {/* Header */}
               <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Queue</p>
-              <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center justify-between mb-5">
                 <h3 className="text-xl font-black text-slate-900 tracking-tight">Applications</h3>
-                <span className="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full">8 Pending</span>
+                <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${
+                  applicants.filter(a => a.status === "Pending").length > 0
+                    ? "bg-red-50 text-red-600"
+                    : "bg-green-50 text-green-600"
+                }`}>
+                  {applicants.filter(a => a.status === "Pending").length} Pending
+                </span>
               </div>
-              <div className="space-y-4">
-                <div className="flex justify-between text-sm">
-                  <span className="text-slate-500">New Today</span>
-                  <span className="font-bold text-slate-800">+3</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-slate-500">Average Review Time</span>
-                  <span className="font-bold text-slate-800">1.2 Days</span>
-                </div>
-                <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
-                  <div className="h-full bg-tata-cyan w-2/3" />
-                </div>
-                <p className="text-xs text-slate-400 text-center">65% of applications reviewed this week</p>
+              {/* Tab toggle */}
+              <div className="flex gap-1 p-1 bg-slate-100 rounded-xl mb-5">
+                {(["shortlist", "all"] as const).map(tab => (
+                  <button
+                    key={tab}
+                    onClick={() => setApplicationTab(tab)}
+                    className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                      applicationTab === tab
+                        ? "bg-white text-tata-blue shadow-sm"
+                        : "text-slate-500 hover:text-slate-700"
+                    }`}
+                  >
+                    {tab === "shortlist" ? "🤖 AI Shortlist" : `All (${applicants.length})`}
+                  </button>
+                ))}
               </div>
+              {/* Search */}
+              <div className="relative mb-4">
+                <Search size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                <input
+                  placeholder="Search name or skill..."
+                  value={searchQuery}
+                  onChange={e => setSearchQuery(e.target.value)}
+                  className="w-full pl-8 pr-3 py-2 text-xs bg-slate-50 border border-slate-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-tata-blue/10"
+                />
               </div>
+              {/* Applicant list */}
+              <div className="space-y-2 max-h-[420px] overflow-y-auto pr-1">
+                {(applicationTab === "shortlist" ? shortlistedApplicants : filteredApplicants)
+                  .length === 0 ? (
+                  <p className="text-xs text-slate-400 text-center py-8 italic">No applicants found.</p>
+                ) : (
+                  (applicationTab === "shortlist" ? shortlistedApplicants : filteredApplicants)
+                    .map((applicant, i) => (
+                      <div
+                        key={applicant.id}
+                        className="flex items-center gap-3 p-3 rounded-xl border border-slate-100 hover:border-tata-blue/20 hover:bg-slate-50 transition-all group cursor-pointer"
+                        onClick={() => {
+                          setSelectedApplicant(applicant);
+                          setIsProfileDrawerOpen(true);
+                        }}
+                      >
+                        {applicationTab === "shortlist" && (
+                          <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-black flex-shrink-0 ${
+                            i === 0 ? "bg-amber-400 text-white" :
+                            i === 1 ? "bg-slate-300 text-slate-700" :
+                            i === 2 ? "bg-orange-300 text-white" :
+                            "bg-slate-100 text-slate-500"
+                          }`}>
+                            {i + 1}
+                          </div>
+                        )}
+                        <div className="w-8 h-8 rounded-lg bg-tata-blue/10 text-tata-blue flex items-center justify-center text-xs font-bold flex-shrink-0">
+                          {applicant.name.split(' ').map((n: string) => n[0]).join('')}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-xs font-bold text-slate-900 truncate">{applicant.name}</p>
+                          <p className="text-[10px] text-slate-400 truncate">
+                            {applicant.city} · {applicant.availability}
+                          </p>
+                        </div>
+                        <div className="text-right flex-shrink-0">
+                          <p className={`text-xs font-black ${
+                            applicant.matchPercentage >= 90 ? "text-emerald-600" :
+                            applicant.matchPercentage >= 80 ? "text-tata-blue" :
+                            "text-slate-400"
+                          }`}>
+                            {applicant.matchPercentage}%
+                          </p>
+                          <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${
+                            applicant.status === "Matched" ? "bg-green-50 text-green-700" :
+                            applicant.status === "Rejected" ? "bg-red-50 text-red-600" :
+                            "bg-amber-50 text-amber-700"
+                          }`}>
+                            {applicant.status}
+                          </span>
+                        </div>
+                      </div>
+                    ))
+                )}
+              </div>
+              {applicationTab === "shortlist" &&
+                shortlistedApplicants.filter(a => a.status === "Pending").length >= 5 && (
+                <button
+                  onClick={handleBulkAccept}
+                  className="w-full mt-4 py-2.5 bg-tata-blue text-white text-xs font-bold rounded-xl hover:bg-tata-blue/90 transition-all cursor-pointer"
+                >
+                  Bulk Accept Top {shortlistedApplicants.filter(a => a.status === "Pending").length}
+                </button>
+              )}
+              {auditLog.length > 0 && (
+                <div className="mt-4 pt-4 border-t border-slate-100">
+                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Recent Actions</p>
+                  <div className="space-y-1.5">
+                    {auditLog.slice(0, 2).map(log => (
+                      <div key={log.id} className="flex items-center justify-between text-[10px]">
+                        <span className={`font-bold ${log.action === "Accepted" || log.action === "Accepted (Bulk)" ? "text-green-600" : "text-red-500"}`}>
+                          {log.action}
+                        </span>
+                        <span className="text-slate-400 truncate ml-2 max-w-[100px]">{log.volunteer}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
 
             {/* Quick Actions */}
             <div className="bg-gradient-to-br from-slate-900 to-zinc-800 rounded-2xl shadow-sm p-8 text-white">
