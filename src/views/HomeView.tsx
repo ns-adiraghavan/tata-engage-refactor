@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Footer from "@/components/layout/Footer";
 import { UserPlus, Search, Award, ChevronRight, ChevronLeft } from "lucide-react";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
