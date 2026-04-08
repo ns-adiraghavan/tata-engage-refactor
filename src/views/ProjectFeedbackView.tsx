@@ -109,7 +109,7 @@ const ProjectFeedbackView = ({ project }: { project: any }) => {
         </div>
 
         {isBulkMode ? (
-          <div className="glass rounded-3xl p-10 shadow-xl bg-white text-center">
+          <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-8 text-center">
             <div className="w-20 h-20 bg-tata-blue/5 text-tata-blue rounded-full flex items-center justify-center mx-auto mb-6">
               <Upload size={40} />
             </div>
