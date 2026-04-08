@@ -1830,6 +1830,7 @@ const SPOCDashboardView = () => {
                 </button>
               </div>
             </div>
+            )}
           </div>
 
           {/* ── Full-width sections below the grid ───────────────────── */}
