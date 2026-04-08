@@ -47,7 +47,7 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
   const hasRisk = healthUpdates.some(h => h.status === "At Risk" || (h.month === "April" && h.status === "Pending"));
 
   return (
-    <div className="min-h-screen pt-28 pb-20 bg-slate-50 px-6 md:px-12">
+    <div className="min-h-screen pt-20 pb-20 bg-slate-50 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
