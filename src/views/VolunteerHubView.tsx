@@ -119,7 +119,6 @@ const VolunteerHubView = () => {
             );
           })}
         </div>
-        </div>
 
         {/* ═══ FEATURED TESTIMONIAL ═══ */}
         <h3 className="text-[13px] uppercase text-muted-foreground tracking-[0.08em] font-semibold mb-4">From the community</h3>
