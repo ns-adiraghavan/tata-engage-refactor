@@ -15,8 +15,8 @@ const SPOCDashboardView = () => {
   const location = useLocation();
   const { isOrientationDismissed, setIsOrientationDismissed, setShowOrientationModal, setShowToast, setToastMessage, formData, drResponses } = useAppContext();
   
-  // Regional vs Corporate SPOC toggle (prototype)
-  const [isRegionalSPOC, setIsRegionalSPOC] = useState(false);
+  // Regional vs Corporate SPOC — derived from logged-in user role
+  const isRegionalSPOC = user?.role === "regional_spoc";
   const spoc = isRegionalSPOC ? ANJALI_GUPTA_REGIONAL : ROHAN_DESAI;
   const [activeNav, setActiveNav] = useState("Dashboard");
   const [spocs, setSpocs] = useState(SPOC_DIRECTORY);
