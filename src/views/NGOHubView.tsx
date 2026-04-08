@@ -110,7 +110,7 @@ const NGOHubView = () => {
               <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">
                 Featured Story
               </p>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">
+              <h3 className="text-xl font-black text-slate-900 tracking-tight mb-3">
                 Enabling digital literacy for underserved communities
               </h3>
               <p className="text-sm text-slate-600 mb-4">

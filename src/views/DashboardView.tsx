@@ -424,7 +424,8 @@ const DashboardView = () => {
 
           {/* Earned Badges */}
           <section className="bg-white rounded-3xl p-8 shadow-sm border border-zinc-100">
-            <h2 className="text-xl font-bold text-zinc-900 mb-6">Earned Badges</h2>
+            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Recognition</p>
+            <h2 className="text-xl font-black text-slate-900 tracking-tight mb-8">Earned Badges</h2>
             <div className="flex flex-wrap gap-4">
               {(user?.badges ?? []).map((badge: any) => (
                 <div key={badge.id} className="group relative">
