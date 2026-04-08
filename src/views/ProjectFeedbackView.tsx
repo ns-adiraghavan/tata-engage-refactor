@@ -88,7 +88,7 @@ const ProjectFeedbackView = ({ project }: { project: any }) => {
   const allSubmitted = feedbackData.length > 0 && feedbackData.every((f: any) => f.submitted);
 
   return (
-    <div className="min-h-screen pt-28 pb-20 bg-slate-50 px-6 md:px-12">
+    <div className="min-h-screen pt-20 pb-20 bg-slate-50 px-6 md:px-12">
       <div className="max-w-5xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
           <div>
