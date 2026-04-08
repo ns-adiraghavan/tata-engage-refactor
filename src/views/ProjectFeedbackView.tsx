@@ -22,6 +22,9 @@ const ProjectFeedbackView = ({ project }: { project: any }) => {
   const [aiSummary, setAiSummary] = useState<any>(null);
   const [isGeneratingSummary, setIsGeneratingSummary] = useState(false);
   const [showCertificatePreview, setShowCertificatePreview] = useState<any>(null);
+  const [openVolunteerId, setOpenVolunteerId] = useState<number | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [submitted, setSubmitted] = useState<Set<number>>(new Set());
 
   const handleRating = (vId: number, category: string, value: number) => {
     setFeedbackData(prev => prev.map(f => 
@@ -128,74 +131,115 @@ const ProjectFeedbackView = ({ project }: { project: any }) => {
             </div>
           </div>
         ) : (
-          <div className="space-y-8">
-            {feedbackData.map((volunteer: any) => (
-              <div key={volunteer.volunteerId} className="bg-white border border-slate-100 rounded-2xl shadow-sm p-8">
-                <div className="flex justify-between items-start mb-8">
-                  <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 rounded-2xl bg-tata-blue text-white flex items-center justify-center text-xl font-bold">
-                      {volunteer.name.split(' ').map((n: string) => n[0]).join('')}
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-bold text-slate-800">{volunteer.name}</h4>
-                      <p className="text-xs text-slate-400 uppercase tracking-widest font-bold">Volunteer ID: #{volunteer.volunteerId}</p>
-                    </div>
-                  </div>
-                  {volunteer.submitted && (
-                    <span className="bg-green-100 text-green-700 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
-                      Submitted
-                    </span>
-                  )}
-                </div>
-
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                  <div className="space-y-6">
-                    <div>
-                      <label className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 block">Qualitative Assessment</label>
-                      <textarea 
-                        disabled={volunteer.submitted}
-                        value={volunteer.assessment}
-                        onChange={(e) => handleAssessment(volunteer.volunteerId, e.target.value)}
-                        placeholder="Describe the volunteer's performance, key achievements, and areas for growth..."
-                        className="w-full h-32 p-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-tata-blue/20 disabled:opacity-50"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="space-y-6">
-                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 block">Ratings (Optional)</label>
-                    {['communication', 'reliability', 'contribution'].map((cat) => (
-                      <div key={cat} className="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                        <span className="text-sm font-bold text-slate-700 capitalize">{cat}</span>
-                        <div className="flex gap-1">
-                          {[1, 2, 3, 4, 5].map((star) => (
-                            <button 
-                              key={star}
-                              disabled={volunteer.submitted}
-                              onClick={() => handleRating(volunteer.volunteerId, cat, star)}
-                              className={`p-1 transition-colors ${volunteer.ratings[cat] >= star ? "text-amber-400" : "text-slate-300"}`}
-                            >
-                              <Star size={20} fill={volunteer.ratings[cat] >= star ? "currentColor" : "none"} />
-                            </button>
-                          ))}
+          <div className="space-y-4">
+            <input
+              type="text"
+              placeholder="Search volunteers..."
+              value={searchQuery}
+              onChange={e => setSearchQuery(e.target.value)}
+              className="w-full p-3 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-tata-blue mb-6"
+            />
+            {feedbackData
+              .filter((v: any) => v.name.toLowerCase().includes(searchQuery.toLowerCase()))
+              .map((volunteer: any) => {
+                const isOpen = openVolunteerId === volunteer.volunteerId;
+                const isSubmitted = submitted.has(volunteer.volunteerId);
+                return (
+                  <div key={volunteer.volunteerId} className="bg-white border border-slate-100 rounded-2xl shadow-sm overflow-hidden">
+                    {/* Collapsed header row */}
+                    <div className="flex items-center justify-between p-6">
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 rounded-xl bg-tata-blue text-white flex items-center justify-center text-sm font-bold">
+                          {volunteer.name.split(' ').map((n: string) => n[0]).join('')}
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-bold text-slate-800">{volunteer.name}</h4>
+                          <p className="text-xs text-slate-400">ID: #{volunteer.volunteerId}</p>
                         </div>
                       </div>
-                    ))}
-                  </div>
-                </div>
+                      <div className="flex items-center gap-4">
+                        <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest ${
+                          isSubmitted ? "bg-green-100 text-green-700" : "bg-amber-100 text-amber-700"
+                        }`}>
+                          {isSubmitted ? "Submitted" : "Pending"}
+                        </span>
+                        <button
+                          onClick={() => setOpenVolunteerId(isOpen ? null : volunteer.volunteerId)}
+                          className="text-xs font-semibold text-tata-blue uppercase tracking-widest hover:underline cursor-pointer"
+                        >
+                          {isSubmitted ? "Edit" : "Give Feedback"}
+                        </button>
+                      </div>
+                    </div>
 
-                {!volunteer.submitted && (
-                  <div className="mt-8 pt-8 border-t border-slate-100 flex justify-end">
-                    <button 
-                      onClick={() => submitFeedback(volunteer.volunteerId)}
-                      className="bg-zinc-900 text-white py-3 px-10 rounded-2xl font-bold hover:bg-tata-blue transition-all shadow-xl shadow-black/10 cursor-pointer"
-                    >
-                      Submit Feedback
-                    </button>
+                    {/* Expandable form */}
+                    <AnimatePresence>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="px-6 pb-6 pt-2 border-t border-slate-100">
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-4">
+                              <div className="space-y-6">
+                                <div>
+                                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 block">Qualitative Assessment</label>
+                                  <textarea
+                                    disabled={volunteer.submitted}
+                                    value={volunteer.assessment}
+                                    onChange={(e) => handleAssessment(volunteer.volunteerId, e.target.value)}
+                                    placeholder="Describe the volunteer's performance, key achievements, and areas for growth..."
+                                    className="w-full h-32 p-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-tata-blue/20 disabled:opacity-50"
+                                  />
+                                </div>
+                              </div>
+
+                              <div className="space-y-6">
+                                <label className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 block">Ratings (Optional)</label>
+                                {['communication', 'reliability', 'contribution'].map((cat) => (
+                                  <div key={cat} className="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                                    <span className="text-sm font-bold text-slate-700 capitalize">{cat}</span>
+                                    <div className="flex gap-1">
+                                      {[1, 2, 3, 4, 5].map((star) => (
+                                        <button
+                                          key={star}
+                                          disabled={volunteer.submitted}
+                                          onClick={() => handleRating(volunteer.volunteerId, cat, star)}
+                                          className={`p-1 transition-colors ${volunteer.ratings[cat] >= star ? "text-amber-400" : "text-slate-300"}`}
+                                        >
+                                          <Star size={20} fill={volunteer.ratings[cat] >= star ? "currentColor" : "none"} />
+                                        </button>
+                                      ))}
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+
+                            {!volunteer.submitted && (
+                              <div className="mt-8 pt-8 border-t border-slate-100 flex justify-end">
+                                <button
+                                  onClick={() => {
+                                    submitFeedback(volunteer.volunteerId);
+                                    setSubmitted(prev => new Set(prev).add(volunteer.volunteerId));
+                                    setOpenVolunteerId(null);
+                                  }}
+                                  className="bg-zinc-900 text-white py-3 px-10 rounded-2xl font-bold hover:bg-tata-blue transition-all shadow-sm cursor-pointer"
+                                >
+                                  Submit Feedback
+                                </button>
+                              </div>
+                            )}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
-                )}
-              </div>
-            ))}
+                );
+              })}
           </div>
         )}
 
