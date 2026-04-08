@@ -361,7 +361,7 @@ const NGODashboardView = () => {
                               <td className="px-5 py-4">
                                 {v.feedbackDone
                                   ? <span className="text-xs text-green-600 font-semibold flex items-center gap-1"><CheckCircle2 size={12} /> Submitted</span>
-                                  : <button className="text-xs font-semibold text-tata-blue hover:underline cursor-pointer">Give Feedback</button>
+                                  : <button onClick={() => { setActiveProject(drillProject); navigate("project-feedback"); }} className="text-xs font-semibold text-tata-blue hover:underline cursor-pointer">Give Feedback</button>
                                 }
                               </td>
                               <td className="px-5 py-4 text-xs text-zinc-500">{v.hours ?? "—"}</td>
