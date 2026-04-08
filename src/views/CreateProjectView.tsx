@@ -16,7 +16,8 @@ const CreateProjectView = () => {
     volunteers: 1,
     location: "",
     brief: "",
-    outcomes: ""
+    outcomes: "",
+    isSkillBased: true
   });
   const [isGenerating, setIsGenerating] = useState(false);
   const [qualityScore, setQualityScore] = useState(0);
