@@ -1507,49 +1507,40 @@ const SPOCDashboardView = () => {
   return (
     <div className="min-h-screen pt-20 bg-[#F8FAFC] flex">
       {/* Sidebar */}
-      <aside className="w-72 bg-white border-r border-slate-100 hidden lg:flex flex-col p-6 fixed h-[calc(100vh-80px)] top-20 z-20">
-        <div className="mb-6 px-2">
-          <div className="flex items-center gap-4 p-4 bg-slate-50 rounded-[1.5rem] border border-slate-100">
-            <div className="w-12 h-12 rounded-2xl bg-tata-blue flex items-center justify-center text-white font-semibold text-lg shadow-lg shadow-blue-900/20">
+      <aside className="w-56 bg-white border-r border-slate-100 hidden lg:flex flex-col p-4 fixed h-[calc(100vh-80px)] top-20 z-20">
+        <div className="mb-4">
+          <div className="flex items-center gap-2.5 p-3 bg-slate-50 rounded-xl border border-slate-100">
+            <div className="w-10 h-10 rounded-xl bg-tata-blue flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
               {spoc.firstName.charAt(0)}
             </div>
-            <div>
-              <p className="text-sm font-semibold text-slate-900 tracking-tight">{spoc.firstName} {spoc.lastName}</p>
-              <p className="text-xs font-bold text-tata-blue uppercase tracking-widest">{spoc.tier}</p>
+            <div className="min-w-0">
+              <p className="text-sm font-semibold text-slate-900 truncate">{spoc.firstName} {spoc.lastName}</p>
+              <span className="text-[10px] font-bold text-tata-blue uppercase tracking-widest">{spoc.tier}</span>
             </div>
           </div>
-          {/* Persona toggle removed — role is derived from login */}
         </div>
         {(user?.role?.includes("spoc") || user?.role === "corporate_spoc") && (
-          <div className="mb-8 px-2">
+          <div className="mb-4">
             <RoleToggle activeView="spoc" className="!bg-slate-100 !border-slate-200 w-full justify-center" />
           </div>
         )}
 
-        <div className="space-y-2 flex-1">
-          <p className="text-xs font-semibold text-slate-400 uppercase tracking-[0.3em] mb-4 px-4">Main Menu</p>
+        <div className="space-y-0.5 flex-1">
+          <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-[0.3em] mb-2 px-2">Main Menu</p>
           {navItems.map((item) => (
             <button 
               key={item.name}
               onClick={() => handleNavClick(item.name)}
-              className={`w-full flex items-center justify-between p-4 rounded-2xl text-sm font-bold transition-all cursor-pointer group ${
+              className={`w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-sm font-medium transition-all cursor-pointer group ${
                 activeNav === item.name 
-                  ? "bg-tata-blue text-white shadow-xl shadow-blue-900/20" 
-                  : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
+                  ? "text-tata-blue bg-blue-50 border-l-2 border-tata-blue" 
+                  : "text-slate-500 hover:bg-slate-50 hover:text-slate-900 border-l-2 border-transparent"
               }`}
             >
-              <div className="flex items-center gap-4">
-                <div className={`p-2 rounded-lg transition-colors ${
-                  activeNav === item.name ? "bg-white/10" : "bg-slate-100 group-hover:bg-white"
-                }`}>
-                  <item.icon size={18} />
-                </div>
-                {item.name}
-              </div>
+              <item.icon size={16} className="flex-shrink-0" />
+              <span className="truncate">{item.name}</span>
               {item.badge && item.badge > 0 && (
-                <span className={`text-xs w-6 h-6 flex items-center justify-center rounded-full font-semibold ${
-                  activeNav === item.name ? "bg-tata-cyan text-tata-blue" : "bg-red-500 text-white"
-                }`}>
+                <span className="ml-auto text-[10px] w-5 h-5 flex items-center justify-center rounded-full font-bold bg-red-500 text-white flex-shrink-0">
                   {item.badge}
                 </span>
               )}
@@ -1557,21 +1548,16 @@ const SPOCDashboardView = () => {
           ))}
         </div>
 
-        <div className="pt-8 mt-8 border-t border-slate-100">
-          <div className="p-6 bg-gradient-to-br from-slate-900 to-zinc-800 rounded-3xl text-white relative overflow-hidden group">
-            <div className="absolute -right-8 -bottom-8 w-24 h-24 bg-white/5 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700" />
-            <p className="text-xs font-semibold text-white/40 uppercase tracking-[0.3em] mb-3 relative z-10">Support Hub</p>
-            <p className="text-xs font-medium text-white/70 mb-4 relative z-10 leading-relaxed">Need assistance with the SPOC portal?</p>
-            <button className="w-full py-3 bg-white/10 hover:bg-white/20 rounded-lg text-xs font-bold transition-all cursor-pointer relative z-10 border border-white/10">
-              Contact TSG Admin
-            </button>
-          </div>
+        <div className="pt-4 mt-4 border-t border-slate-100">
+          <button className="w-full py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-bold transition-all cursor-pointer">
+            Contact TSG Admin
+          </button>
         </div>
       </aside>
 
       {/* Main Content — single scroll */}
-      <main id="spoc-main-content" className="flex-1 lg:ml-72 p-8 md:p-16">
-        <div className="max-w-7xl mx-auto space-y-16">
+      <main id="spoc-main-content" className="flex-1 lg:ml-56 p-8 md:p-16">
+        <div className="max-w-7xl mx-auto space-y-10">
 
           {/* ── Welcome / Header ────────────────────────────────────── */}
           <section id="spoc-section-dashboard">
