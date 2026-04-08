@@ -69,12 +69,6 @@ const ActiveProjectManagementView = ({ project }: { project: any }) => {
           </div>
           
           <div className="flex gap-3">
-            <button onClick={() => setShowConfirmModal("pause")} className="btn-outline py-3 px-6 flex items-center gap-2 cursor-pointer">
-              <Pause size={18} /> Pause
-            </button>
-            <button onClick={() => setShowConfirmModal("extend")} className="btn-outline py-3 px-6 flex items-center gap-2 cursor-pointer">
-              <History size={18} /> Request Extension
-            </button>
             <button onClick={() => setShowConfirmModal("close")} className="bg-red-500 text-white py-3 px-6 rounded-lg font-bold hover:bg-red-600 transition-all flex items-center gap-2 cursor-pointer">
               <StopCircle size={18} /> Close Project
             </button>
