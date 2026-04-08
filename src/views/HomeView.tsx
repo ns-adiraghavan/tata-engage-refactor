@@ -258,7 +258,7 @@ const HomeView = () => {
       </section>
 
       {/* ═══ WHAT'S HAPPENING NOW ═══ */}
-      <section id="highlights" className="bg-zinc-950 py-12 px-6 md:px-12 border-t border-white/5">
+      <section id="highlights" className="py-12 px-6 md:px-12 border-t border-white/5 bg-slate-50">
         <div className="max-w-7xl mx-auto">
           <p className="text-xs font-semibold tracking-widest uppercase text-zinc-500 mb-6">
             What&apos;s happening now
@@ -279,14 +279,14 @@ const HomeView = () => {
               </div>
             </div>
             <div className="flex flex-col gap-4">
-              <div className="bg-[#1a0d2e] rounded-2xl p-6 flex flex-col justify-between min-h-[132px]">
+              <div className="rounded-2xl p-6 flex flex-col justify-between min-h-[132px] bg-yellow-600">
                 <span className="inline-block bg-violet-500/20 text-violet-300 text-xs font-bold px-3 py-1 rounded-full self-start">
                   TVW 2026
                 </span>
                 <p className="text-base font-bold text-white mt-3">Tata Volunteering Week registration opens in 14 days</p>
                 <span className="text-xs text-white/40">Mark your calendar</span>
               </div>
-              <div className="bg-[#0d2b1f] rounded-2xl p-6 flex flex-col justify-between min-h-[132px]">
+              <div className="rounded-2xl p-6 flex flex-col justify-between min-h-[132px] bg-zinc-950">
                 <span className="inline-block bg-emerald-500/20 text-emerald-300 text-xs font-bold px-3 py-1 rounded-full self-start">
                   Impact
                 </span>
