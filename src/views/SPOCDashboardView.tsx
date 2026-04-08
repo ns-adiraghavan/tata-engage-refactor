@@ -134,8 +134,9 @@ const SPOCDashboardView = () => {
       region: "West India",
       volunteeringHours: Number(formData.get("hours")),
       openToAll: formData.get("openToAll") === "on",
-      volunteers: []
-    };
+      createdBy: `${spoc.firstName} ${spoc.lastName}`,
+      volunteers: [] as any[]
+    } as any;
     setTvwEvents([newEvent, ...tvwEvents]);
     setShowCreateEvent(false);
     setToastMessage("Event posted to TVW Calendar. Live within 5 minutes.");
